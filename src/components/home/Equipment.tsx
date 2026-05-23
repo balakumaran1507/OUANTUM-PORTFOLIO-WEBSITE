@@ -5,55 +5,55 @@ import { ChevronRight } from 'lucide-react';
 const machineData = [
   {
     id: '01',
-    name: 'Phased Array Ultrasonic Scanner',
-    category: 'VOLUMETRIC NDT',
-    specs: '64:128PR · 3D Real-time Beamforming',
+    name: 'SonReb Calculation Engine',
+    category: 'DETERMINISTIC CORE',
+    specs: 'IS 13311 · IS 456 · SonReb Correlation',
     image: '/assets/images/cl4.png',
-    details: 'Advanced volumetric inspection for high-pressure weldments and composite structures. Supports live S-Scan and C-Scan data visualization for immediate defect characterization.',
-    tech: 'OLYMPUS OMNISCAN MX3',
-    tolerance: 'SUB-MM FLAW',
+    details: 'Combines Rebound Hammer (RH) and Ultrasonic Pulse Velocity (UPV) readings using the SonReb method - producing a more accurate concrete strength estimate than either test alone. Every calculation is deterministic: established civil engineering formulas, not AI guesses. Results are instantly cross-referenced against IS 13311 and IS 456 design grade requirements.',
+    tech: 'RULE ENGINE',
+    tolerance: 'ZERO APPROXIMATION',
     status: 'ONLINE',
   },
   {
     id: '02',
-    name: 'Eddy Current Array System',
-    category: 'SURFACE DIAGNOSTICS',
-    specs: 'Multifrequency · 128 Channels',
+    name: 'Multi-Model AI Consensus',
+    category: 'INTELLIGENCE LAYER',
+    specs: 'Claude AI · 3-Model Validation',
     image: '/assets/images/industrial-part.png',
-    details: 'High-speed surface and near-surface crack detection in conductive materials. Optimized for heat exchanger tube inspection and aircraft skin assessment.',
-    tech: 'EDDYFI REDDY ECA',
-    tolerance: '±0.01mm CRACK',
+    details: 'Every structural assessment is independently evaluated by three AI models: a Code Specialist (hard IS code limits), a Structural Safety Analyst (load-bearing context and safety margins), and a Pattern Intelligence engine (cross-project trends, contractor history, material batch tracking). All three must reach consensus before a result is confirmed. Disagreement triggers mandatory senior engineer review.',
+    tech: 'CONSENSUS AI',
+    tolerance: '3-MODEL AGREEMENT',
     status: 'ONLINE',
   },
   {
     id: '03',
-    name: 'Digital Radiography Panel',
-    category: 'X-RAY IMAGING',
-    specs: '100 Micron Pitch · Wireless CMOS',
+    name: 'Service Life Prediction',
+    category: 'PREDICTIVE ANALYTICS',
+    specs: 'Tuutti Model · ASTM C876 · IS 456',
     image: '/assets/images/project-pipeline.png',
-    details: 'High-fidelity digital imaging for internal structural validation. Eliminates chemical processing, providing instant high-contrast results for critical pipeline tie-ins.',
-    tech: 'CARESTREAM HPX-1 Plus',
-    tolerance: 'ZERO RADIOGRAPHIC',
+    details: 'For structural audit assignments, the platform combines carbonation depth, chloride content, and half-cell potential readings to predict remaining structural service life. Outputs include estimated years to corrosion initiation, recommended intervention window, and priority classification - all per the Tuutti model and IS 456 durability provisions.',
+    tech: 'PREDICTIVE MODEL',
+    tolerance: 'SERVICE LIFE OUTPUT',
     status: 'ONLINE',
   },
   {
     id: '04',
-    name: 'Ground Penetrating Radar',
-    category: 'SUBSURFACE SCANNING',
-    specs: '2.7 GHz Antenna · 3D Tomography',
+    name: 'Automated Government Reports',
+    category: 'OUTPUT LAYER',
+    specs: 'APCRDA · TNHB · ADB · NABL',
     image: '/assets/images/gears.png',
-    details: 'Precision concrete and soil scanning for rebar mapping and void detection. Vital for structural integrity assessments of bridges and high-rise foundations.',
-    tech: 'GSSI STRUCTURESCAN MINI',
-    tolerance: '±5mm DEPTH',
-    status: 'STANDBY',
+    details: 'The platform auto-generates complete assessment reports in the exact format required by government authorities - AP Capital Region Development Authority, Tamil Nadu Housing Board, Tamil Nadu Urban Habitat Development Board, and Asian Development Bank funded project formats. Includes IS code references, element-wise findings, condition grading (Good / Satisfactory / Poor / Critical), and engineer recommendations. Ready for digital sign-off within the same site visit day.',
+    tech: 'REPORT ENGINE',
+    tolerance: 'SAME-DAY DELIVERY',
+    status: 'ONLINE',
   },
 ];
 
 const fleetStats = [
-  { label: 'FLEET COUNT', value: '48', unit: 'UNITS' },
-  { label: 'UPTIME RATE', value: '99.4', unit: '%' },
-  { label: 'CALIBRATION CYCLE', value: '24', unit: 'HRS' },
-  { label: 'ISO CERTIFICATION', value: '17025', unit: ':2017' },
+  { label: 'REPORT COMPRESSION', value: '10×', unit: 'FASTER' },
+  { label: 'AI MODELS', value: '3', unit: 'CONSENSUS' },
+  { label: 'IS CODES INDEXED', value: '8+', unit: 'STANDARDS' },
+  { label: 'ASSESSMENT TIME', value: '<4', unit: 'HOURS' },
 ];
 
 const Equipment = () => {
@@ -70,19 +70,19 @@ const Equipment = () => {
           className="equipment-header"
         >
           <h2 className="equipment-title">
-            DIAGNOSTIC<br />ECOSYSTEM
+            HOW THE<br />AI WORKS
           </h2>
           <p className="equipment-subtitle">
-            ADVANCED NON-DESTRUCTIVE TESTING INSTRUMENTATION OPERATED UNDER ISO 17025 PROTOCOLS — CALIBRATED DAILY.
+            DETERMINISTIC MATH FIRST. AI SECOND. EVERY RESULT IS CONTEXT-AWARE, AUDIT-READY, AND VALIDATED BY THREE INDEPENDENT MODELS BEFORE IT IS CONFIRMED.
           </p>
         </motion.div>
 
         {/* ── Main Layout ── */}
-        <motion.div 
+        <motion.div
           animate="visible"
           className="equipment-grid"
         >
-          {/* LEFT — machine selector list */}
+          {/* LEFT - machine selector list */}
           <div className="equipment-list">
             {machineData.map((m, idx) => {
               const isActive = active === idx;
@@ -105,12 +105,12 @@ const Equipment = () => {
             })}
           </div>
 
-          {/* RIGHT — image + spec overlay */}
+          {/* RIGHT - image + spec overlay */}
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
             className="equipment-display-panel"
           >
-            {/* Machine image — animated crossfade */}
+            {/* Machine image - animated crossfade */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -153,7 +153,7 @@ const Equipment = () => {
         </motion.div>
 
         {/* ── Bottom stat bar ── */}
-        <motion.div 
+        <motion.div
           animate="visible"
           className="equipment-stat-grid"
         >

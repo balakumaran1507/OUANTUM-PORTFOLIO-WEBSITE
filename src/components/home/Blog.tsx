@@ -3,29 +3,29 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 const featuredPost = {
-  tag: '',
-  title: 'VOLUMETRIC FLAW DETECTION IN HIGH-PRESSURE HYDROCARBON ASSETS',
-  excerpt: 'A COMPREHENSIVE ANALYSIS OF PHASED ARRAY ULTRASONIC BEHAVIOR IN THICK-WALLED PRESSURE VESSELS.',
+  tag: 'RESEARCH',
+  title: 'ACHIEVING 99.9% ACCURACY IN REBOUND HAMMER VALIDATION',
+  excerpt: 'A COMPREHENSIVE ANALYSIS OF OUR CONSENSUS AI APPROACH IN CORRELATING SONREB DATA.',
 };
 
 const blogPosts = [
   {
     date: 'NOV 10, 2024',
     id: 1042,
-    title: 'ROBOTIC CRAWLERS IN SUBSEA INSPECTION',
-    excerpt: 'INTEGRATING AUTONOMOUS NAVIGATION WITH REAL-TIME CORROSION MAPPING IN DEEP-WATER ENVIRONMENTS.',
+    title: 'AUTOMATING IS CODE COMPLIANCE',
+    excerpt: 'HOW THE RULE ENGINE ELIMINATES HUMAN ERROR IN FIELD DATA VALIDATION.',
   },
   {
     date: 'OCT 25, 2024',
     id: 1043,
-    title: 'AI-DRIVEN RADIOGRAPHIC INTERPRETATION',
-    excerpt: 'LEVERAGING NEURAL NETWORKS TO ELIMINATE HUMAN ERROR IN WELD DEFECT CHARACTERIZATION.',
+    title: 'PREDICTIVE MODELING FOR SERVICE LIFE',
+    excerpt: 'LEVERAGING HALF-CELL POTENTIAL AND CHLORIDE CONTENT FOR ACCURATE PREDICTIONS.',
   },
   {
     date: 'SEP 14, 2024',
     id: 1044,
-    title: 'GPR APPLICATIONS IN CIVIL INFRASTRUCTURE',
-    excerpt: 'ASSESSING REBAR DEGRADATION AND VOID DETECTION IN LARGE-SCALE REINFORCED CONCRETE STRUCTURES.',
+    title: 'MOBILE-FIRST QA/QC WORKFLOWS',
+    excerpt: 'DIGITIZING ONSITE READINGS AND ELIMINATING PAPER-BASED RECORDS AT 4000+ UNITS.',
   },
 ];
 
@@ -70,7 +70,7 @@ const Blog: React.FC = () => {
           alignItems: 'stretch',
         }}>
 
-          {/* Featured card — click to toggle */}
+          {/* Featured card - click to toggle */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +159,7 @@ const Blog: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* 3 side posts stacked — click each to toggle */}
+          {/* 3 side posts stacked - click each to toggle */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {blogPosts.map((post, idx) => {
               const active = activeIndex === idx;
@@ -271,7 +271,7 @@ const Blog: React.FC = () => {
 
         </div>
 
-        {/* Archive CTA — rounded card, not pill */}
+        {/* Archive CTA - rounded card, not pill */}
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '4rem' }}>
           <motion.button
             whileHover={{ background: 'rgba(255,255,255,0.06)' }}

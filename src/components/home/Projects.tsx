@@ -1,55 +1,57 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 const projects = [
   {
-    id: 'P-2024-01',
-    title: 'TRANS-CONTINENTAL PIPELINE INTEGRITY',
+    id: 'REF-01',
+    title: 'AMARAVATI CAPITAL CITY',
     image: '/assets/images/project-pipeline.png',
-    category: 'HYDROCARBON',
-    location: 'NORTH SEA OFFSHORE',
-    year: '2024',
-    status: 'COMPLETED',
-    scope: 'AUTOMATED CORROSION MAPPING · LONG-RANGE UT · WELD SCANNING',
+    category: 'GOVERNMENT INFRASTRUCTURE · AP, INDIA',
+    location: 'AP, INDIA',
+    year: 'ONGOING',
+    status: 'ADVISORY',
+    scope: 'AP HIGH COURT · 4,000 RESIDENTIAL UNITS · 45-STOREY INTEGRATED SECRETARIAT. TPQM WORK BY OUR DOMAIN ADVISOR ER. KALAIMONY (IIT MADRAS CUBE) - THE METHODOLOGY BEHIND OUR REPORT GENERATION ENGINE.',
     featured: true,
   },
   {
-    id: 'P-2024-02',
-    title: 'BRIDGE STRUCTURAL HEALTH AUDIT',
-    image: '/assets/images/bg1.jpg',
-    category: 'INFRASTRUCTURE',
-    location: 'METROPOLITAN TRANSIT NETWORK',
-    year: '2024',
-    status: 'ACTIVE',
-    scope: 'GPR SCANNING · ACOUSTIC EMISSION · CONCRETE REBAR ANALYSIS',
+    id: 'REF-02',
+    title: 'TAMIL NADU HOUSING BOARD',
+    image: '/assets/images/philosophy.png',
+    category: 'HOUSING BOARD · CHENNAI',
+    location: 'CHENNAI, INDIA',
+    year: 'ONGOING',
+    status: 'ADVISORY',
+    scope: 'THIRD-PARTY QUALITY MONITORING ACROSS MULTIPLE HOUSING PROJECTS. FIELD WORKFLOW AND GOVERNMENT REPORTING FORMAT USED AS THE OPERATIONAL TEMPLATE FOR THE OUANTUM PLATFORM.',
     featured: false,
   },
   {
-    id: 'P-2023-09',
-    title: 'AEROSPACE TURBINE VALIDATION',
-    image: '/assets/images/cl4.png',
-    category: 'AERONAUTICS',
-    location: 'GLOBAL PROPULSION HUB',
+    id: 'REF-03',
+    title: 'TNUHDB - PMAY SCHEMES',
+    image: '/assets/images/contact-us-hero.jpg',
+    category: 'ADB FUNDED · VALLAM & KARAIKUDI',
+    location: 'VALLAM & KARAIKUDI',
     year: '2023',
-    status: 'VERIFIED',
-    scope: 'PHASED ARRAY UT · EDDY CURRENT ARRAY · FLAW CHARACTERIZATION',
+    status: 'VALIDATED',
+    scope: '1,869 HOUSING UNITS ACROSS 32 BLOCKS. ADB-FUNDED PROJECT. MULTI-STAGE QA PROCESS DOCUMENTED AND ENCODED INTO THE OUANTUM COMPLIANCE ENGINE.',
     featured: false,
   },
   {
-    id: 'P-2023-04',
-    title: 'NUCLEAR CONTAINMENT INSPECTION',
-    image: '/assets/images/manufacturing.png',
-    category: 'CRITICAL ENERGY',
-    location: 'REACTOR UNIT 4',
+    id: 'REF-04',
+    title: 'KENDRIYA VIDYALAYA SCHOOLS',
+    image: '/assets/images/privacy-and-security-page-hero.jpg',
+    category: 'EDUCATION INFRASTRUCTURE · PAN-INDIA',
+    location: 'PAN-INDIA',
     year: '2023',
-    status: 'OPERATIONAL',
-    scope: 'REMOTE VISUAL · VOLUMETRIC RADIOGRAPHY · LEAK DETECTION',
+    status: 'VALIDATED',
+    scope: 'NPCCL SCHOOL PROJECTS ACROSS KERALA, KARNATAKA & MADHYA PRADESH. FOUR-STAGE QA MONITORING PROTOCOL - NOW EMBEDDED AS A DEFAULT WORKFLOW TEMPLATE IN THE PLATFORM.',
     featured: false,
   },
 ];
 
 const Projects: React.FC = () => {
+  const navigate = useNavigate();
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const featured = projects[0];
   const rest = projects.slice(1);
@@ -60,20 +62,26 @@ const Projects: React.FC = () => {
 
         {/* ── Header ── */}
         <motion.div
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
           className="section-header"
         >
           <h2 className="section-title">
-            SELECTED<br />PROJECTS
+            WHERE IT'S BEEN TESTED
           </h2>
           <p className="section-subtitle">
-            HIGH-PRECISION NDT SOLUTIONS DELIVERED FOR GLOBAL INFRASTRUCTURE LEADERS ACROSS CRITICAL SECTORS, ENSURING ASSET LONGEVITY AND SAFETY COMPLIANCE.
+            REAL INFRASTRUCTURE PROJECTS MANAGED BY OUR DOMAIN ADVISORY PARTNER - THE FIELD REALITY THAT SHAPED EVERY DECISION IN THE OUANTUM PLATFORM.
           </p>
         </motion.div>
 
         {/* ── FEATURED card ── */}
         <motion.div
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
           onMouseEnter={() => setHoveredId(featured.id)}
           onMouseLeave={() => setHoveredId(null)}
           className={`featured-project-card ${hoveredId === featured.id ? 'hovered' : ''}`}
@@ -161,8 +169,9 @@ const Projects: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.02 }}
             className="explore-btn"
+            onClick={() => navigate('/case-studies')}
           >
-            EXPLORE ARCHIVE
+            EXPLORE ALL CASE STUDIES
             <ArrowRight size={16} />
           </motion.button>
         </div>

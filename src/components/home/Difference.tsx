@@ -1,23 +1,23 @@
 import { useRef } from 'react'
 import { MotionValue, motion, useScroll, useTransform } from 'framer-motion'
 
-interface CooperationPoint {
+interface DifferencePoint {
   id: string;
   title: string;
   subtitle: string;
+  description: string;
   img1: string;
   img2: string;
   img3: string;
 }
 
-const CooperationCard = ({ point, i, pointsLength, progress }: { point: CooperationPoint, i: number, pointsLength: number, progress: MotionValue<number> }) => {
+const DifferenceCard = ({ point, i, pointsLength, progress }: { point: DifferencePoint, i: number, pointsLength: number, progress: MotionValue<number> }) => {
   const container = useRef(null);
   
   // Outer Card Scale & Darkening
   const start = i / pointsLength;
   const targetScale = 1 - ((pointsLength - 1 - i) * 0.04);
   const targetOpacity = (pointsLength - 1 - i) * 0.3;
-  
   
   const safeRange = [start, 1];
   const safeScale = [1, targetScale];
@@ -37,7 +37,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
   return (
     <div 
       ref={container}
-      className="cooperation-card-wrapper"
+      className="difference-card-wrapper"
       style={{
         height: '100vh',
         display: 'flex',
@@ -61,7 +61,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
           border: '1px solid rgba(255,255,255,0.08)',
           borderRadius: '32px',
           padding: 'clamp(24px, 4vw, 40px)',
-          background: '#000000',
+          background: '#111111',
           display: 'flex',
           flexDirection: 'column',
           gap: 'clamp(16px, 2vh, 24px)',
@@ -92,18 +92,21 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
               <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 {point.title}
               </span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.7rem, 1vw, 0.85rem)', opacity: 0.6 }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.9rem, 1.2vw, 1rem)', opacity: 0.6 }}>
                 {point.subtitle}
               </span>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', marginTop: '8px', maxWidth: '600px', lineHeight: 1.6, textTransform: 'uppercase' }}>
+                {point.description}
+              </p>
             </div>
           </div>
-          <div style={{ padding: '8px 20px', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '30px', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            ADVISORY
+          <div style={{ padding: '8px 20px', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '30px', fontFamily: 'var(--font-mono)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px', whiteSpace: 'nowrap' }}>
+            THE DIFFERENCE
           </div>
         </div>
 
-        <div className="grid-2col" style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '65% 1fr', gap: '16px', height: 'clamp(280px, 45vh, 400px)', minHeight: 0 }}>
-          <div style={{ borderRadius: '24px', overflow: 'hidden', height: '100%', width: '100%' }}>
+        <div className="grid-2col" style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '65% 1fr', gap: '16px', height: 'clamp(280px, 45vh, 400px)', minHeight: 0, marginTop: 'auto' }}>
+          <div style={{ borderRadius: '24px', overflow: 'hidden', height: '100%', width: '100%', minHeight: 0 }}>
             <motion.img 
               src={point.img1} 
               alt="" 
@@ -115,12 +118,12 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
               }} 
             />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%' }}>
-            <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%' }}>
-              <motion.img src={point.img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale }} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', minHeight: 0 }}>
+            <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%', minHeight: 0, position: 'relative' }}>
+              <motion.img src={point.img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale, position: 'absolute', inset: 0 }} />
             </div>
-            <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%' }}>
-              <motion.img src={point.img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale }} />
+            <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%', minHeight: 0, position: 'relative' }}>
+              <motion.img src={point.img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale, position: 'absolute', inset: 0 }} />
             </div>
           </div>
         </div>
@@ -129,7 +132,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
   )
 }
 
-const Cooperation = () => {
+const Difference = () => {
   const sectionRef = useRef(null)
   const cardsContainerRef = useRef(null)
   
@@ -149,53 +152,57 @@ const Cooperation = () => {
   const points = [
     { 
       id: '01',
-      title: 'PROF. DR. DEVADAS MANOHARAN', 
-      subtitle: 'FORMER VC, ANNA UNIVERSITY · IIT MADRAS',
+      title: 'NOT A DATA PROBLEM', 
+      subtitle: "IT'S A CONTEXTUAL JUDGMENT PROBLEM",
+      description: "Most AI tools treat construction testing as a data problem. It isn't.",
       img1: '/assets/images/bg1.jpg',
-      img2: 'https://images.unsplash.com/photo-1545143333-6382f1d020e2?q=80&w=1000&auto=format&fit=crop',
-      img3: 'https://images.unsplash.com/photo-1544991180-2a138096f920?q=80&w=1000&auto=format&fit=crop',
+      img2: '/assets/images/bg3.jpg',
+      img3: '/assets/images/bg4.jpg',
     },
     { 
       id: '02',
-      title: 'COL. DR. P. NALLATHAMBI', 
-      subtitle: 'PRINCIPAL STRUCTURAL CONSULTANT',
+      title: 'CONTEXT IS EVERYTHING', 
+      subtitle: 'AGE, EXPOSURE, CEMENT TYPE, CURING',
+      description: "A reading of 32 means something completely different on a 30-year-old coastal building versus a freshly cast M25 column inland.",
       img1: '/assets/images/bg2.jpg',
-      img2: 'https://images.unsplash.com/photo-1542281286-9e0a16bb7366?q=80&w=1000&auto=format&fit=crop',
-      img3: 'https://images.unsplash.com/photo-1516937622178-745583720b22?q=80&w=1000&auto=format&fit=crop',
+      img2: '/assets/images/cl3.png',
+      img3: '/assets/images/cl4.png',
     },
     { 
       id: '03',
-      title: 'ER. N. KALAIMONY', 
-      subtitle: 'FORMER SE, PWD · EXPERT CONSULTANT',
+      title: 'VARIABLES REQUIRED', 
+      subtitle: 'SYSTEM DEMANDS CONTEXT TO RUN',
+      description: "Every variable is a required input. The system refuses to give you a result without the context that makes the result meaningful.",
       img1: '/assets/images/bg3.jpg',
-      img2: 'https://images.unsplash.com/photo-1582967702041-0f7300c87f9e?q=80&w=1000&auto=format&fit=crop',
-      img3: 'https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?q=80&w=1000&auto=format&fit=crop',
+      img2: '/assets/images/bg1.jpg',
+      img3: '/assets/images/bg2.jpg',
     },
     { 
       id: '04',
-      title: '30+ YEAR VETERANS', 
-      subtitle: 'BUILT IN COLLABORATION WITH INDUSTRY LEADERS',
+      title: 'EMBEDDED EXPERTISE', 
+      subtitle: 'A 30-YEAR ENGINEERING DECISION',
+      description: "That's not a software decision. That's a 30-year-structural-engineer decision, embedded.",
       img1: '/assets/images/bg4.jpg',
-      img2: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1000&auto=format&fit=crop',
-      img3: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1000&auto=format&fit=crop',
+      img2: '/assets/images/philosophy.png',
+      img3: '/assets/images/project-pipeline.png',
     }
   ]
 
   return (
-    <section ref={sectionRef} id="cooperation" className="cooperation" style={{ padding: '120px 0 50px', background: '#000', position: 'relative' }}>
+    <section ref={sectionRef} id="difference" className="difference" style={{ padding: '120px 0 50px', background: '#000', position: 'relative' }}>
       <div style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0 4vw' }}>
         <motion.div
           style={{ marginBottom: '80px', textAlign: 'center', y: titleY }}
         >
           <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(2.5rem, 6vw, 5rem)', fontWeight: 400, lineHeight: 0.9 }}>
-            ADVISORY<br />BOARD
+            WHAT MAKES US<br />DIFFERENT
           </h2>
         </motion.div>
 
         <div ref={cardsContainerRef} style={{ position: 'relative' }}>
           {points.map((point, i) => {
             return (
-              <CooperationCard 
+              <DifferenceCard 
                 key={i} 
                 point={point} 
                 i={i} 
@@ -212,5 +219,4 @@ const Cooperation = () => {
   )
 }
 
-export default Cooperation
-
+export default Difference

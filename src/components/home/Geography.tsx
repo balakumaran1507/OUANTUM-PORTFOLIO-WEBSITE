@@ -2,16 +2,12 @@ import { useState, useEffect } from 'react'
 import Globe3D from '../common/Globe3D'
 
 const regions = [
-  { name: 'EUROPE', cities: 'Oslo · London · Hamburg', node: 'EU_01', status: 'STABLE' },
-  { name: 'NORTH AMERICA', cities: 'New York · Toronto · Houston', node: 'NA_04', status: 'STABLE' },
-  { name: 'MIDDLE EAST', cities: 'Abu Dhabi · Doha · Riyadh', node: 'ME_09', status: 'STABLE' },
-  { name: 'ASIA PACIFIC', cities: 'Singapore · Tokyo · Seoul', node: 'AP_12', status: 'STABLE' },
-  { name: 'SOUTH AMERICA', cities: 'Rio · Santiago · Bogota', node: 'SA_07', status: 'STABLE' },
-  { name: 'AFRICA', cities: 'Cape Town · Cairo · Lagos', node: 'AF_02', status: 'STABLE' },
-  { name: 'SCANDINAVIA', cities: 'Helsinki · Stockholm · Copenhagen', node: 'SC_05', status: 'STABLE' },
-  { name: 'CENTRAL ASIA', cities: 'Tashkent · Almaty', node: 'CA_11', status: 'STABLE' },
-  { name: 'SOUTHERN ASIA', cities: 'Mumbai · New Delhi · Colombo', node: 'IN_08', status: 'STABLE' },
-  { name: 'EASTERN EUROPE', cities: 'Warsaw · Prague · Bucharest', node: 'EE_03', status: 'STABLE' },
+  { name: 'AMARAVATI', cities: 'Capital Region · Guntur · Vijayawada', node: 'IN_01', status: 'ACTIVE' },
+  { name: 'TAMIL NADU', cities: 'Chennai · Thanjavur · Karaikudi', node: 'IN_02', status: 'ACTIVE' },
+  { name: 'KERALA', cities: 'Kochi · Trivandrum', node: 'IN_03', status: 'STABLE' },
+  { name: 'KARNATAKA', cities: 'Bengaluru · Mangaluru', node: 'IN_04', status: 'STABLE' },
+  { name: 'MADHYA PRADESH', cities: 'Bhopal · Indore', node: 'IN_05', status: 'STABLE' },
+  { name: 'PAN-INDIA', cities: 'Government Infrastructure Grid', node: 'IN_00', status: 'ACTIVE' },
 ]
 
 const Geography = () => {
@@ -28,7 +24,7 @@ const Geography = () => {
     <section className="geography-section section-padding" id="geography">
       <div className="container">
         <div className="section-header">
-          <h2 className="section-title">GLOBAL NODES</h2>
+          <h2 className="section-title">TARGET GEOGRAPHY</h2>
         </div>
 
         <div className="geography-grid">

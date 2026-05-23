@@ -3,33 +3,33 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 const activityItems = [
-  { 
-    id: '01', 
-    title: 'PHASED ARRAY ULTRASONICS', 
-    category: 'SUBSURFACE_DIAGNOSTICS',
-    tags: ['PAUT', 'TFM', 'AUT'],
-    description: 'ADVANCED VOLUMETRIC SCANNING FOR CRITICAL WELD INTEGRITY AND CORROSION MAPPING IN HIGH-PRESSURE SYSTEMS.'
+  {
+    id: '01',
+    title: 'NDT ANALYSIS ENGINE',
+    category: 'CALCULATION',
+    tags: ['SONREB', 'UPV', 'IS 13311'],
+    description: 'PROCESSES REBOUND HAMMER AND UPV READINGS AUTOMATICALLY. RUNS SONREB CORRELATION AND FLAGS OUTLIER READINGS.'
   },
-  { 
-    id: '02', 
-    title: 'DIGITAL RADIOGRAPHY', 
-    category: 'PENETRATING_RADIATION',
-    tags: ['DR', 'CR', 'X-RAY'],
-    description: 'HIGH-RESOLUTION IMAGING FOR INTERNAL DEFECT ANALYSIS IN COMPLEX PIPING NETWORKS AND LARGE-SCALE CASTINGS.'
+  {
+    id: '02',
+    title: 'IS CODE COMPLIANCE',
+    category: 'VALIDATION',
+    tags: ['IS 456', 'IS 2386', 'IS 1786'],
+    description: 'EVERY TEST VALUE IS AUTOMATICALLY CHECKED AGAINST THE RELEVANT INDIAN STANDARD. PASS / CONCERN / FAIL IS AUTO-FLAGGED.'
   },
-  { 
-    id: '03', 
-    title: 'MAGNETIC FLUX LEAKAGE', 
-    category: 'ELECTROMAGNETIC',
-    tags: ['MFL', 'PEC', 'SURFACE'],
-    description: 'HIGH-SPEED DIAGNOSTICS FOR STORAGE TANKS AND BURIED INFRASTRUCTURE, DETECTING WALL THICKNESS LOSS WITH PRECISION.'
+  {
+    id: '03',
+    title: 'MULTI-MODEL CONSENSUS',
+    category: 'AI ENGINE',
+    tags: ['CODE SPECIALIST', 'SAFETY ANALYST', 'PATTERN INTELLIGENCE'],
+    description: 'EVERY ASSESSMENT IS INDEPENDENTLY ANALYZED BY THREE AI MODELS. ALL THREE MUST REACH CONSENSUS BEFORE A RESULT IS CONFIRMED.'
   },
-  { 
-    id: '04', 
-    title: 'EDDY CURRENT ARRAY', 
-    category: 'ELECTROMAGNETIC',
-    tags: ['ECA', 'RFT', 'NFT'],
-    description: 'RAPID SURFACE SCANNING FOR FATIGUE CRACKS AND MICRO-DISCONTINUITIES IN CONDUCTIVE MATERIALS AND HEAT EXCHANGERS.'
+  {
+    id: '04',
+    title: 'SERVICE LIFE PREDICTION',
+    category: 'PREDICTIVE',
+    tags: ['CARBONATION', 'CHLORIDE', 'HALF-CELL'],
+    description: 'COMBINES CARBONATION DEPTH, CHLORIDE CONTENT, AND HALF-CELL POTENTIAL READINGS TO PREDICT REMAINING SERVICE LIFE.'
   },
 ];
 
@@ -43,15 +43,18 @@ const Services: React.FC = () => {
       <div className="container">
 
         {/* Centered Header */}
-        <motion.div 
-          animate={{ opacity: 1, y: 0 }}
-          className="services-header"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="section-header"
         >
           <h2 className="section-title services-main-title">
-            DIAGNOSTIC<br />SOLUTIONS
+            CORE<br />CAPABILITIES
           </h2>
-          <p className="services-subtitle">
-            OUR CORE COMPETENCIES ENCOMPASS THE ENTIRE SPECTRUM OF NON-DESTRUCTIVE TESTING AND INFRASTRUCTURE ANALYSIS, ENSURING OPERATIONAL CONTINUITY IN CRITICAL ENVIRONMENTS.
+          <p className="section-subtitle">
+            OUR DOMAIN-SPECIFIC AI PLATFORM AUTOMATES QUALITY ASSURANCE WORKFLOWS, COMPRESSING WEEKS OF MANUAL ANALYSIS INTO A SINGLE WORKING DAY.
           </p>
         </motion.div>
 
@@ -63,7 +66,7 @@ const Services: React.FC = () => {
               <div
                 key={index}
                 onClick={() => setActiveCard(active ? null : index)}
-                className={`service-card ${active ? 'active' : ''}`}
+                className={`service-card animated-silver-bg ${active ? 'active' : ''}`}
               >
                 <div>
                   {/* ID number placeholder */}

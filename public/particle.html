@@ -1,222 +1,235 @@
-<style>html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#000;overscroll-behavior:none;touch-action:none;}</style>
+<style>
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+</style>
 <canvas id="c" style="display:block;width:100%;height:100vh;cursor:none;background:#000;"></canvas>
 <script>
-(function(){
-const cv=document.getElementById('c');
-const cx=cv.getContext('2d');
-let W,H,CX,CY;
-const PR=Math.min(devicePixelRatio,2);
+  (function () {
+    const cv = document.getElementById('c');
+    const cx = cv.getContext('2d');
+    let W, H, CX, CY;
+    const PR = Math.min(devicePixelRatio, 2);
 
-function resize(){
-  const r=cv.getBoundingClientRect();
-  W=cv.width=r.width*PR; H=cv.height=r.height*PR;
-  CX=W/2; CY=H/2;
-}
-resize(); window.addEventListener('resize',resize);
-
-const R=140*PR;
-let rotX=0.18,rotY=0,rotVX=0,rotVY=0.0018;
-let autoRot=true,dragging=false,pmx=0,pmy=0;
-let mouse={x:CX,y:CY,active:false};
-let waves=[];
-let T=0,lastT=0;
-
-function rv(x,y,z,rx,ry){
-  let y1=y*Math.cos(rx)-z*Math.sin(rx),z1=y*Math.sin(rx)+z*Math.cos(rx);
-  let x2=x*Math.cos(ry)+z1*Math.sin(ry),z2=-x*Math.sin(ry)+z1*Math.cos(ry);
-  return[x2,y1,z2];
-}
-function pj(x,y,z){
-  const f=520*PR,d=f+z*R;
-  const s=f/d;
-  return[x*R*s+CX,y*R*s+CY,s];
-}
-function sph(phi,th){return[Math.sin(phi)*Math.cos(th),Math.sin(phi)*Math.sin(th),Math.cos(phi)];}
-
-// fibonacci sphere
-const NP=5500;
-const parts=[];
-for(let i=0;i<NP;i++){
-  const phi=Math.acos(1-2*(i+0.5)/NP);
-  const th=Math.PI*(1+Math.sqrt(5))*i;
-  const[ox,oy,oz]=sph(phi,th);
-  parts.push({ox,oy,oz,
-    sz:(0.16+Math.random()*0.26)*PR,
-    ba:0.5+Math.random()*0.5,
-    ph:Math.random()*Math.PI*2,
-    sp:0.3+Math.random()*1.2,
-    disp:0,dv:0,
-  });
-}
-
-// pre-bake tight glow sprite
-const GS=18;
-const glowCv=document.createElement('canvas');
-glowCv.width=glowCv.height=GS*2;
-const gc=glowCv.getContext('2d');
-const gg=gc.createRadialGradient(GS,GS,0,GS,GS,GS);
-gg.addColorStop(0,'rgba(255,255,255,1)');
-gg.addColorStop(0.15,'rgba(220,232,255,0.55)');
-gg.addColorStop(0.4,'rgba(190,215,255,0.15)');
-gg.addColorStop(1,'rgba(170,205,255,0)');
-gc.fillStyle=gg;gc.beginPath();gc.arc(GS,GS,GS,0,Math.PI*2);gc.fill();
-
-// vignette offscreen
-const vigCv=document.createElement('canvas');
-function buildVig(){
-  vigCv.width=W; vigCv.height=H;
-  const vc=vigCv.getContext('2d');
-  const vg=vc.createRadialGradient(W/2,H/2,H*0.28,W/2,H/2,H*0.78);
-  vg.addColorStop(0,'rgba(0,0,0,0)');
-  vg.addColorStop(1,'rgba(0,0,0,0.72)');
-  vc.fillStyle=vg;vc.fillRect(0,0,W,H);
-}
-buildVig();
-window.addEventListener('resize',()=>{resize();buildVig();});
-
-cv.addEventListener('mouseenter',()=>{mouse.active=true;});
-cv.addEventListener('mouseleave',()=>{mouse.active=false;autoRot=true;});
-cv.addEventListener('mousemove',e=>{
-  const r=cv.getBoundingClientRect();
-  mouse.x=(e.clientX-r.left)*PR;mouse.y=(e.clientY-r.top)*PR;
-  if(dragging){rotVY+=(e.clientX-pmx)*0.005;rotVX+=(e.clientY-pmy)*0.005;pmx=e.clientX;pmy=e.clientY;autoRot=false;}
-});
-cv.addEventListener('mousedown',e=>{dragging=true;pmx=e.clientX;pmy=e.clientY;autoRot=false;});
-cv.addEventListener('mouseup',()=>{dragging=false;});
-cv.addEventListener('click',e=>{
-  const r=cv.getBoundingClientRect();
-  const mx=(e.clientX-r.left)*PR,my=(e.clientY-r.top)*PR;
-  const dx=mx-CX,dy=my-CY;
-  if(Math.sqrt(dx*dx+dy*dy)<R*1.12) waves.push({x:mx,y:my,t:0});
-});
-cv.addEventListener('touchstart',e=>{e.preventDefault();const tc=e.touches[0];const r=cv.getBoundingClientRect();mouse.x=(tc.clientX-r.left)*PR;mouse.y=(tc.clientY-r.top)*PR;mouse.active=true;dragging=true;pmx=tc.clientX;pmy=tc.clientY;},{passive:false});
-cv.addEventListener('touchmove',e=>{e.preventDefault();const tc=e.touches[0];const r=cv.getBoundingClientRect();mouse.x=(tc.clientX-r.left)*PR;mouse.y=(tc.clientY-r.top)*PR;rotVY+=(tc.clientX-pmx)*0.004;rotVX+=(tc.clientY-pmy)*0.004;pmx=tc.clientX;pmy=tc.clientY;autoRot=false;},{passive:false});
-cv.addEventListener('touchend',()=>{dragging=false;mouse.active=false;});
-
-// slow breathe
-let breatheT=0;
-
-function frame(ts){
-  const dt=Math.min((ts-lastT)/16.67,3); lastT=ts;
-  T=ts*0.001;
-  breatheT+=0.006*dt;
-  const breathe=1+Math.sin(breatheT)*0.012; // subtle scale pulse
-
-  // cinematic motion blur trail
-  cx.fillStyle='rgba(0,0,2,0.30)';
-  cx.fillRect(0,0,W,H);
-
-  if(autoRot){
-    // slow drift with gentle wobble
-    rotVY+=(0.0018-rotVY)*0.03*dt;
-    rotVX+=Math.sin(T*0.2)*0.00008*dt;
-  }
-  rotVX*=Math.pow(0.88,dt);rotVY*=Math.pow(0.96,dt);
-  rotX+=rotVX*dt;rotY+=rotVY*dt;
-
-  waves=waves.filter(w=>w.t<1);
-  waves.forEach(w=>w.t+=0.014*dt);
-
-  // cinematic rim light direction — top-left key, bottom-right fill
-  const keyX=-0.5,keyY=-0.6,keyZ=0.7;
-  const fillX=0.4,fillY=0.5,fillZ=0.3;
-
-  const drawList=[];
-  for(let i=0;i<NP;i++){
-    const p=parts[i];
-    let disp=0;
-    const[rx,ry,rz]=rv(p.ox,p.oy,p.oz,rotX,rotY);
-    const[sx,sy,sc]=pj(rx*breathe,ry*breathe,rz*breathe);
-
-    if(mouse.active){
-      const dx=(sx-mouse.x)/R,dy=(sy-mouse.y)/R;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<0.42) disp+=Math.pow((0.42-d)/0.42,2)*0.32;
+    function resize() {
+      const r = cv.getBoundingClientRect();
+      W = cv.width = r.width * PR; H = cv.height = r.height * PR;
+      CX = W / 2; CY = H / 2;
     }
-    waves.forEach(w=>{
-      const dx=(sx-w.x)/R,dy=(sy-w.y)/R;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      const ring=Math.exp(-((d-w.t*2.2)*(d-w.t*2.2))*18);
-      disp+=ring*1.8*(1-w.t);
+    resize(); window.addEventListener('resize', resize);
+
+    const R = 140 * PR;
+    let rotX = 0.18, rotY = 0, rotVX = 0, rotVY = 0.0018;
+    let autoRot = true, dragging = false, pmx = 0, pmy = 0;
+    let mouse = { x: CX, y: CY, active: false };
+    let waves = [];
+    let T = 0, lastT = 0;
+
+    function rv(x, y, z, rx, ry) {
+      let y1 = y * Math.cos(rx) - z * Math.sin(rx), z1 = y * Math.sin(rx) + z * Math.cos(rx);
+      let x2 = x * Math.cos(ry) + z1 * Math.sin(ry), z2 = -x * Math.sin(ry) + z1 * Math.cos(ry);
+      return [x2, y1, z2];
+    }
+    function pj(x, y, z) {
+      const f = 520 * PR, d = f + z * R;
+      const s = f / d;
+      return [x * R * s + CX, y * R * s + CY, s];
+    }
+    function sph(phi, th) { return [Math.sin(phi) * Math.cos(th), Math.sin(phi) * Math.sin(th), Math.cos(phi)]; }
+
+    // fibonacci sphere
+    const NP = 5500;
+    const parts = [];
+    for (let i = 0; i < NP; i++) {
+      const phi = Math.acos(1 - 2 * (i + 0.5) / NP);
+      const th = Math.PI * (1 + Math.sqrt(5)) * i;
+      const [ox, oy, oz] = sph(phi, th);
+      parts.push({
+        ox, oy, oz,
+        sz: (0.16 + Math.random() * 0.26) * PR,
+        ba: 0.5 + Math.random() * 0.5,
+        ph: Math.random() * Math.PI * 2,
+        sp: 0.3 + Math.random() * 1.2,
+        disp: 0, dv: 0,
+      });
+    }
+
+    // pre-bake tight glow sprite
+    const GS = 18;
+    const glowCv = document.createElement('canvas');
+    glowCv.width = glowCv.height = GS * 2;
+    const gc = glowCv.getContext('2d');
+    const gg = gc.createRadialGradient(GS, GS, 0, GS, GS, GS);
+    gg.addColorStop(0, 'rgba(255,255,255,1)');
+    gg.addColorStop(0.15, 'rgba(220,232,255,0.55)');
+    gg.addColorStop(0.4, 'rgba(190,215,255,0.15)');
+    gg.addColorStop(1, 'rgba(170,205,255,0)');
+    gc.fillStyle = gg; gc.beginPath(); gc.arc(GS, GS, GS, 0, Math.PI * 2); gc.fill();
+
+    // vignette offscreen
+    const vigCv = document.createElement('canvas');
+    function buildVig() {
+      vigCv.width = W; vigCv.height = H;
+      const vc = vigCv.getContext('2d');
+      const vg = vc.createRadialGradient(W / 2, H / 2, H * 0.28, W / 2, H / 2, H * 0.78);
+      vg.addColorStop(0, 'rgba(0,0,0,0)');
+      vg.addColorStop(1, 'rgba(0,0,0,0.72)');
+      vc.fillStyle = vg; vc.fillRect(0, 0, W, H);
+    }
+    buildVig();
+    window.addEventListener('resize', () => { resize(); buildVig(); });
+
+    cv.addEventListener('mouseenter', () => { mouse.active = true; });
+    cv.addEventListener('mouseleave', () => { mouse.active = false; autoRot = true; });
+    cv.addEventListener('mousemove', e => {
+      const r = cv.getBoundingClientRect();
+      mouse.x = (e.clientX - r.left) * PR; mouse.y = (e.clientY - r.top) * PR;
+      if (dragging) { rotVY += (e.clientX - pmx) * 0.005; rotVX += (e.clientY - pmy) * 0.005; pmx = e.clientX; pmy = e.clientY; autoRot = false; }
     });
+    cv.addEventListener('mousedown', e => { dragging = true; pmx = e.clientX; pmy = e.clientY; autoRot = false; });
+    cv.addEventListener('mouseup', () => { dragging = false; });
+    cv.addEventListener('click', e => {
+      const r = cv.getBoundingClientRect();
+      const mx = (e.clientX - r.left) * PR, my = (e.clientY - r.top) * PR;
+      const dx = mx - CX, dy = my - CY;
+      if (Math.sqrt(dx * dx + dy * dy) < R * 1.12) waves.push({ x: mx, y: my, t: 0 });
+    });
+    cv.addEventListener('touchstart', e => { e.preventDefault(); const tc = e.touches[0]; const r = cv.getBoundingClientRect(); mouse.x = (tc.clientX - r.left) * PR; mouse.y = (tc.clientY - r.top) * PR; mouse.active = true; dragging = true; pmx = tc.clientX; pmy = tc.clientY; }, { passive: false });
+    cv.addEventListener('touchmove', e => { e.preventDefault(); const tc = e.touches[0]; const r = cv.getBoundingClientRect(); mouse.x = (tc.clientX - r.left) * PR; mouse.y = (tc.clientY - r.top) * PR; rotVY += (tc.clientX - pmx) * 0.004; rotVX += (tc.clientY - pmy) * 0.004; pmx = tc.clientX; pmy = tc.clientY; autoRot = false; }, { passive: false });
+    cv.addEventListener('touchend', () => { dragging = false; mouse.active = false; });
 
-    p.dv+=(disp*0.5-p.disp)*0.16;
-    p.disp+=p.dv*dt;p.disp*=Math.pow(0.85,dt);p.dv*=Math.pow(0.82,dt);
+    // slow breathe
+    let breatheT = 0;
 
-    const[rx2,ry2,rz2]=rv(p.ox*(1+p.disp),p.oy*(1+p.disp),p.oz*(1+p.disp),rotX,rotY);
-    const[sx2,sy2]=pj(rx2*breathe,ry2*breathe,rz2*breathe);
+    function frame(ts) {
+      const dt = Math.min((ts - lastT) / 16.67, 3); lastT = ts;
+      T = ts * 0.001;
+      breatheT += 0.006 * dt;
+      const breathe = 1 + Math.sin(breatheT) * 0.012; // subtle scale pulse
 
-    // cinematic lighting model
-    const keyDot=Math.max(0,rx2*keyX+ry2*keyY+rz2*keyZ);
-    const fillDot=Math.max(0,rx2*fillX+ry2*fillY+rz2*fillZ)*0.25;
-    const rimDot=Math.max(0,1-Math.abs(rz2)*1.4)*0.35; // rim edge glow
-    const light=0.08+keyDot*0.72+fillDot+rimDot;
-    const depth=(rz2+1)/2;
+      // cinematic motion blur trail
+      cx.fillStyle = 'rgba(0,0,2,0.30)';
+      cx.fillRect(0, 0, W, H);
 
-    const flk=0.92+0.08*Math.sin(T*p.sp*3+p.ph);
-    const alpha=Math.min(1,p.ba*light*flk);
-    const sz=p.sz*(0.45+depth*0.65);
+      if (autoRot) {
+        // slow drift with gentle wobble
+        rotVY += (0.0018 - rotVY) * 0.03 * dt;
+        rotVX += Math.sin(T * 0.2) * 0.00008 * dt;
+      }
+      rotVX *= Math.pow(0.88, dt); rotVY *= Math.pow(0.96, dt);
+      rotX += rotVX * dt; rotY += rotVY * dt;
 
-    // color temperature: key=warm white, fill=cool blue, rim=icy
-    const keyStrength=keyDot*0.7;
-    const rimStrength=rimDot*1.2;
-    const cr=Math.min(255,Math.round(180+keyStrength*75+rimStrength*25));
-    const cg=Math.min(255,Math.round(185+keyStrength*65+rimStrength*30));
-    const cb=Math.min(255,Math.round(200+keyStrength*45+rimStrength*55));
+      waves = waves.filter(w => w.t < 1);
+      waves.forEach(w => w.t += 0.014 * dt);
 
-    drawList.push({sx:sx2,sy:sy2,sz,alpha,depth,disp:p.disp,cr,cg,cb,light,rimStrength});
-  }
+      // cinematic rim light direction - top-left key, bottom-right fill
+      const keyX = -0.5, keyY = -0.6, keyZ = 0.7;
+      const fillX = 0.4, fillY = 0.5, fillZ = 0.3;
 
-  drawList.sort((a,b)=>a.depth-b.depth);
+      const drawList = [];
+      for (let i = 0; i < NP; i++) {
+        const p = parts[i];
+        let disp = 0;
+        const [rx, ry, rz] = rv(p.ox, p.oy, p.oz, rotX, rotY);
+        const [sx, sy, sc] = pj(rx * breathe, ry * breathe, rz * breathe);
 
-  for(let i=0;i<drawList.length;i++){
-    const p=drawList[i];
-    if(p.sz<0.1||p.alpha<0.015) continue;
+        if (mouse.active) {
+          const dx = (sx - mouse.x) / R, dy = (sy - mouse.y) / R;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 0.42) disp += Math.pow((0.42 - d) / 0.42, 2) * 0.32;
+        }
+        waves.forEach(w => {
+          const dx = (sx - w.x) / R, dy = (sy - w.y) / R;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          const ring = Math.exp(-((d - w.t * 2.2) * (d - w.t * 2.2)) * 18);
+          disp += ring * 1.8 * (1 - w.t);
+        });
 
-    const isDisplaced=p.disp>0.04;
+        p.dv += (disp * 0.5 - p.disp) * 0.16;
+        p.disp += p.dv * dt; p.disp *= Math.pow(0.85, dt); p.dv *= Math.pow(0.82, dt);
 
-    if(isDisplaced){
-      // sharp crisp white, tiny halo only
-      const hr=p.sz*2.6;
-      cx.globalAlpha=Math.min(0.16,p.alpha*0.25);
-      cx.drawImage(glowCv,p.sx-hr,p.sy-hr,hr*2,hr*2);
-      cx.globalAlpha=Math.min(1,p.alpha);
-      cx.fillStyle='rgb(255,255,255)';
-      cx.beginPath();cx.arc(p.sx,p.sy,Math.max(0.15,p.sz),0,Math.PI*2);cx.fill();
-    } else {
-      // cinematic lit particle — soft glow sized by rim+light
-      const glowStrength=(p.light*0.55+p.rimStrength*0.6);
-      const glowR=p.sz*(4+glowStrength*5)*(0.35+p.depth*0.65);
-      cx.globalAlpha=Math.min(0.32,p.alpha*0.18*glowStrength);
-      cx.drawImage(glowCv,p.sx-glowR,p.sy-glowR,glowR*2,glowR*2);
-      cx.globalAlpha=Math.min(1,p.alpha);
-      cx.fillStyle=`rgb(${p.cr},${p.cg},${p.cb})`;
-      cx.beginPath();cx.arc(p.sx,p.sy,Math.max(0.15,p.sz),0,Math.PI*2);cx.fill();
+        const [rx2, ry2, rz2] = rv(p.ox * (1 + p.disp), p.oy * (1 + p.disp), p.oz * (1 + p.disp), rotX, rotY);
+        const [sx2, sy2] = pj(rx2 * breathe, ry2 * breathe, rz2 * breathe);
+
+        // cinematic lighting model
+        const keyDot = Math.max(0, rx2 * keyX + ry2 * keyY + rz2 * keyZ);
+        const fillDot = Math.max(0, rx2 * fillX + ry2 * fillY + rz2 * fillZ) * 0.25;
+        const rimDot = Math.max(0, 1 - Math.abs(rz2) * 1.4) * 0.35; // rim edge glow
+        const light = 0.08 + keyDot * 0.72 + fillDot + rimDot;
+        const depth = (rz2 + 1) / 2;
+
+        const flk = 0.92 + 0.08 * Math.sin(T * p.sp * 3 + p.ph);
+        const alpha = Math.min(1, p.ba * light * flk);
+        const sz = p.sz * (0.45 + depth * 0.65);
+
+        // color temperature: key=warm white, fill=cool blue, rim=icy
+        const keyStrength = keyDot * 0.7;
+        const rimStrength = rimDot * 1.2;
+        const cr = Math.min(255, Math.round(180 + keyStrength * 75 + rimStrength * 25));
+        const cg = Math.min(255, Math.round(185 + keyStrength * 65 + rimStrength * 30));
+        const cb = Math.min(255, Math.round(200 + keyStrength * 45 + rimStrength * 55));
+
+        drawList.push({ sx: sx2, sy: sy2, sz, alpha, depth, disp: p.disp, cr, cg, cb, light, rimStrength });
+      }
+
+      drawList.sort((a, b) => a.depth - b.depth);
+
+      for (let i = 0; i < drawList.length; i++) {
+        const p = drawList[i];
+        if (p.sz < 0.1 || p.alpha < 0.015) continue;
+
+        const isDisplaced = p.disp > 0.04;
+
+        if (isDisplaced) {
+          // sharp crisp white, tiny halo only
+          const hr = p.sz * 2.6;
+          cx.globalAlpha = Math.min(0.16, p.alpha * 0.25);
+          cx.drawImage(glowCv, p.sx - hr, p.sy - hr, hr * 2, hr * 2);
+          cx.globalAlpha = Math.min(1, p.alpha);
+          cx.fillStyle = 'rgb(255,255,255)';
+          cx.beginPath(); cx.arc(p.sx, p.sy, Math.max(0.15, p.sz), 0, Math.PI * 2); cx.fill();
+        } else {
+          // cinematic lit particle - soft glow sized by rim+light
+          const glowStrength = (p.light * 0.55 + p.rimStrength * 0.6);
+          const glowR = p.sz * (4 + glowStrength * 5) * (0.35 + p.depth * 0.65);
+          cx.globalAlpha = Math.min(0.32, p.alpha * 0.18 * glowStrength);
+          cx.drawImage(glowCv, p.sx - glowR, p.sy - glowR, glowR * 2, glowR * 2);
+          cx.globalAlpha = Math.min(1, p.alpha);
+          cx.fillStyle = `rgb(${p.cr},${p.cg},${p.cb})`;
+          cx.beginPath(); cx.arc(p.sx, p.sy, Math.max(0.15, p.sz), 0, Math.PI * 2); cx.fill();
+        }
+      }
+      cx.globalAlpha = 1;
+
+      // vignette
+      cx.drawImage(vigCv, 0, 0, W, H);
+
+      // cursor
+      if (mouse.active && !dragging) {
+        cx.strokeStyle = 'rgba(255,255,255,0.3)';
+        cx.lineWidth = 0.7 * PR;
+        cx.beginPath(); cx.arc(mouse.x, mouse.y, 2.2 * PR, 0, Math.PI * 2); cx.stroke();
+        cx.beginPath();
+        cx.moveTo(mouse.x - 7 * PR, mouse.y); cx.lineTo(mouse.x + 7 * PR, mouse.y);
+        cx.moveTo(mouse.x, mouse.y - 7 * PR); cx.lineTo(mouse.x, mouse.y + 7 * PR);
+        cx.stroke();
+      }
+
+      requestAnimationFrame(frame);
     }
-  }
-  cx.globalAlpha=1;
+    requestAnimationFrame(frame);
 
-  // vignette
-  cx.drawImage(vigCv,0,0,W,H);
-
-  // cursor
-  if(mouse.active&&!dragging){
-    cx.strokeStyle='rgba(255,255,255,0.3)';
-    cx.lineWidth=0.7*PR;
-    cx.beginPath();cx.arc(mouse.x,mouse.y,2.2*PR,0,Math.PI*2);cx.stroke();
-    cx.beginPath();
-    cx.moveTo(mouse.x-7*PR,mouse.y);cx.lineTo(mouse.x+7*PR,mouse.y);
-    cx.moveTo(mouse.x,mouse.y-7*PR);cx.lineTo(mouse.x,mouse.y+7*PR);
-    cx.stroke();
-  }
-
-  requestAnimationFrame(frame);
-}
-requestAnimationFrame(frame);
-
-// Forward wheel scroll to parent so page scrolls normally
-window.addEventListener('wheel', function(e) {
-  window.parent.postMessage({ type: 'wheel', deltaY: e.deltaY, deltaX: e.deltaX }, '*');
-}, { passive: true });
-})();
+    // Forward wheel scroll to parent so page scrolls normally
+    window.addEventListener('wheel', function (e) {
+      window.parent.postMessage({ type: 'wheel', deltaY: e.deltaY, deltaX: e.deltaX }, '*');
+    }, { passive: true });
+  })();
 </script>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Header: React.FC = () => {
@@ -13,20 +14,22 @@ const Header: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Identity', href: '#about' },
-    { name: 'Diagnostics', href: '#services' },
-    { name: 'Fleet', href: '#equipment' },
-    { name: 'Works', href: '#projects' },
-    { name: 'Nodes', href: '#geography' },
-    { name: 'Journal', href: '#blog' },
-    { name: 'Audit', href: '#contact' },
+    { name: 'Problem', href: '/#problem' },
+    { name: 'Core', href: '/#activities' },
+    { name: 'Flow', href: '/#how-it-works' },
+    { name: 'Difference', href: '/#difference' },
+    { name: 'Partners', href: '/#partners' },
+    { name: 'Nodes', href: '/#geography' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'About', href: '/about' },
+    { name: 'Careers', href: '/careers' },
   ];
 
   return (
     <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
       <div className="container header-container">
         <div className="logo">
-          <a href="/" style={{ fontFamily: 'var(--font-adieu)', letterSpacing: '-0.02em' }}>ZYRA<span>NDT</span></a>
+          <a href="/" style={{ fontFamily: 'var(--font-adieu)', letterSpacing: '-0.02em' }}>Ouantum</a>
         </div>
 
         <nav className="desktop-nav">
@@ -40,11 +43,21 @@ const Header: React.FC = () => {
         </nav>
 
         <div className="header-actions">
-          <div className="lang-switcher" style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.7rem' }}>
-            <button className="active" style={{ fontFamily: 'inherit' }}>EN</button>
-            <span style={{ opacity: 0.3 }}>/</span>
-            <button style={{ fontFamily: 'inherit' }}>RU</button>
-          </div>
+          <Link to="/contact" className="contact-btn" style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.75rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            padding: '10px 24px',
+            background: '#fff',
+            color: '#000',
+            borderRadius: '30px',
+            textDecoration: 'none',
+            display: 'inline-block',
+            fontWeight: 600
+          }}>
+            Contact Us
+          </Link>
           <button 
             className="menu-toggle" 
             onClick={() => setIsMenuOpen(!isMenuOpen)}

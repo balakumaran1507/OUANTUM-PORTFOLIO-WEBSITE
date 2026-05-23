@@ -1,34 +1,41 @@
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'
-import Hero from './components/home/Hero'
-import About from './components/home/About'
-import Services from './components/home/Services'
-import Cooperation from './components/home/Cooperation'
-import Equipment from './components/home/Equipment'
-import Projects from './components/home/Projects'
-import Geography from './components/home/Geography'
-import Blog from './components/home/Blog'
-import Contact from './components/home/Contact'
+import Chatbot from './components/common/Chatbot'
+import ErrorBoundary from './components/common/ErrorBoundary'
+import Home from './pages/Home'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import SecurityTerms from './pages/SecurityTerms'
+import About from './pages/About'
+import Careers from './pages/Careers'
+import Contact from './pages/Contact'
+import CaseStudies from './pages/CaseStudies'
+import SystemStatus from './pages/SystemStatus'
+import NotFound from './pages/NotFound'
 import './styles/global.css'
 
 function App() {
   return (
-    <div className="app-wrapper">
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Cooperation />
-        <Equipment />
-        <Projects />
-        <Geography />
-        <Blog />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ErrorBoundary>
+      <Router>
+        <div className="app-wrapper">
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/system-status" element={<SystemStatus />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/security" element={<SecurityTerms />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+          <Chatbot />
+        </div>
+      </Router>
+    </ErrorBoundary>
   )
 }
 
