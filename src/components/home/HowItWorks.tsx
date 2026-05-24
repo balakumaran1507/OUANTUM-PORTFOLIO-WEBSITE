@@ -1,4 +1,3 @@
-import React from 'react';
 import { Activity, CheckCircle, AlertTriangle, XCircle, ArrowRight } from 'lucide-react';
 
 const steps = [
