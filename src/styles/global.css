@@ -3492,14 +3492,13 @@ section {
     padding: 2rem 1.5rem !important;
     border-radius: 24px !important;
   }
-
-  .blog-grid h3 {
-    font-size: 1.4rem !important;
+  .hero-main-image {
+    transform: scale(1.1) translateY(0) !important;
+    object-fit: cover !important;
+    object-position: center bottom;
   }
 
-  /* Contact Section */
-  .contact-card {
-/* About Section Mobile */
+  /* About Section Mobile */
   .about-content-layout {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
@@ -3739,6 +3738,11 @@ section {
     justify-content: center !important;
     gap: 1.5rem !important;
   }
+
+  /* Hide Hero Image on Tablet and Mobile */
+  .hero-image-container {
+    display: none !important;
+  }
 }
 
 /* --- Tiny Mobile (480px) --- */
@@ -3777,6 +3781,12 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.contact-modal-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .contact-modal-form-row {
@@ -3881,9 +3891,8 @@ section {
     max-width: 100% !important;
   }
 
-  /* Hide 3D Globe and Hero Image on mobile to save space and performance */
-  .geography-globe-card,
-  .hero-image-container {
+  /* Hide 3D Globe on mobile to save space and performance */
+  .geography-globe-card {
     display: none !important;
   }
 
@@ -4015,6 +4024,4 @@ section {
   .projects-grid {
     grid-template-columns: 1fr !important;
   }
-}
-
 }
