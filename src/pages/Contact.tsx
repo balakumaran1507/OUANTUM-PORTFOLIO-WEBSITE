@@ -59,12 +59,7 @@ const Contact: React.FC = () => {
 
       {/* Content Section */}
       <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', paddingTop: '4rem' }}>
-        <div className="contact-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gap: '1.5rem',
-          marginBottom: '2rem'
-        }}>
+        <div className="contact-grid">
 
           {/* Email */}
           <motion.div

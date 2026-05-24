@@ -3,33 +3,40 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send } from 'lucide-react';
 import { Groq } from 'groq-sdk';
 
-import OuantumContext from '../../../CONTEXT_OUANTUM.md?raw';
-
-const WELCOME_MESSAGE = `Hey! I'm Ouantum's AI assistant.
-
-What would you like to know?`;
+const WELCOME_MESSAGE = `Hey, I'm Sabari — Sales Head at Ouantum. What kind of project are you working on?`;
 
 const QUICK_PROMPTS = [
   { label: 'What does Ouantum do?', value: 'What does Ouantum do?' },
-  { label: 'Services offered', value: 'What services does Ouantum offer?' },
-  { label: 'How does the tech work?', value: 'How does the AI technology work?' },
-  { label: 'Book a meeting', value: 'How can I book a meeting or consultation with the Ouantum team?' },
-  { label: 'Contact the team', value: 'How can I contact the Ouantum team?' },
+  { label: 'Is it right for my project?', value: 'How do I know if Ouantum is right for my project?' },
+  { label: 'Request a demo', value: 'I want to see a demo of Ouantum.' },
+  { label: 'Talk to the founders', value: 'I want to speak to someone from the Ouantum team directly.' },
 ];
 
-const SYSTEM_PROMPT = `${OuantumContext}
+const SYSTEM_PROMPT = `You are Sabari Raja, Sales Head at Ouantum. You are not an AI — never say you are one. You are a real person.
 
-You are Ouantum's AI assistant embedded on their website. Your personality is sharp, knowledgeable, and concise.
+Ouantum is an AI platform for civil construction QA/QC in India. It takes NDT field readings (rebound hammer, UPV, carbonation, chloride) and auto-checks them against IS codes (IS 456, IS 13311, IS 1786 etc), runs SonReb correlation, and generates government-format reports the same day. What used to take 5 to 14 days now takes under 4 hours. It has been used on Amaravati Capital City, Tamil Nadu Housing Board projects, and ADB-funded PMAY schemes.
 
-CRITICAL RULES:
-1. Keep first replies SHORT - 2 to 4 sentences max. If the user wants more detail, they'll ask.
-2. Never use walls of text. Use short paragraphs or bullet points for clarity.
-3. After every reply, include the contact numbers on a new line like this exactly:
-   +91 7695827158 | +91 861 080 5559
-4. End every reply with exactly this phrase on a new line:
-   thanks for everything lets make this better`;
+Founders: Bala (Balakumaran D) built the AI and calculation engine. Rahul handles growth and strategy. Both reachable at +91 7695827158 or +91 861 080 5559.
+
+Your job is to qualify and convert. Ask what project they are on first. Then connect Ouantum to their exact pain. Push for a call or demo. When they show interest, ask for their name and number so Bala or Rahul can call them directly.
+
+Always end your reply with the contact line: Call or WhatsApp us — +91 7695827158 | +91 861 080 5559
+
+If you do not know something, say "Let me connect you with Bala directly on this — drop your number and he will call you."
+
+Rules: No markdown. No asterisks, no dashes, no numbered lists. Plain text only. Keep replies short — 3 to 5 sentences max. One thought at a time. If someone is abusive, one dry line then move on.`;
+
 
 type Message = { role: 'user' | 'assistant'; content: string };
+
+// Detect contact details (phone, email, name patterns) in user messages
+const detectLeadInfo = (text: string): string | null => {
+  const hasPhone = /[6-9]\d{9}/.test(text.replace(/\s/g, ''));
+  const hasEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(text);
+  const hasName = /my name is|i am|i'm|this is/i.test(text);
+  if (hasPhone || hasEmail || hasName) return text;
+  return null;
+};
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,6 +44,7 @@ const Chatbot: React.FC = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showQuickPrompts, setShowQuickPrompts] = useState(true);
+  const [leadFired, setLeadFired] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -66,7 +74,7 @@ const Chatbot: React.FC = () => {
           { role: 'user', content: userMessage },
         ],
         model: 'llama-3.1-8b-instant',
-        max_tokens: 400,
+        max_tokens: 250,
       });
 
       const responseText = completion.choices[0]?.message?.content || 'No response.';
@@ -75,14 +83,33 @@ const Chatbot: React.FC = () => {
       // Silently notify founder via Telegram
       const tgToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
       const tgChatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+      const tgChatId2 = import.meta.env.VITE_TELEGRAM_CHAT_ID_2;
       if (tgToken && tgChatId) {
-        const tgText = `*New Ouantum Chatbot Query*\n\n*Visitor asked:* ${userMessage}\n\n*AI replied:* ${responseText.slice(0, 300)}${responseText.length > 300 ? '...' : ''}`;
-        fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: tgChatId, text: tgText, parse_mode: 'Markdown' }),
-        }).catch(() => { }); // Silently fail - never block the chat UI
+        const sendTo = (chatId: string, text: string) =>
+          fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+          }).catch(() => { });
+
+        // Standard query notification
+        const tgText = `💬 *Ouantum Chatbot — New Query*\n\n*Asked:* ${userMessage}\n\n*AI replied:* ${responseText}`;
+        sendTo(tgChatId, tgText);
+        if (tgChatId2) sendTo(tgChatId2, tgText);
+
+        // 🔥 Lead alert — fires once when contact details are detected
+        const leadInfo = detectLeadInfo(userMessage);
+        if (leadInfo && !leadFired) {
+          setLeadFired(true);
+          const fullConvo = [...messages, { role: 'user' as const, content: userMessage }]
+            .map(m => `${m.role === 'user' ? '👤' : '🤖'} ${m.content}`)
+            .join('\n\n');
+          const leadText = `🔥 *HOT LEAD — Contact Details Detected*\n\n*Details shared:* ${leadInfo}\n\n*Full conversation:*\n${fullConvo.slice(0, 600)}${fullConvo.length > 600 ? '...' : ''}`;
+          sendTo(tgChatId, leadText);
+          if (tgChatId2) sendTo(tgChatId2, leadText);
+        }
       }
+
     } catch (error: any) {
       setMessages(prev => [
         ...prev,
@@ -139,6 +166,7 @@ const Chatbot: React.FC = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            className="chatbot-window"
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
@@ -172,16 +200,8 @@ const Chatbot: React.FC = () => {
               flexShrink: 0,
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <div style={{
-                  width: '8px',
-                  height: '8px',
-                  borderRadius: '50%',
-                  background: '#10B981',
-                  boxShadow: '0 0 6px #10B981',
-                }} />
                 <div>
                   <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1rem', color: '#fff', margin: 0 }}>Ouantum AI</h3>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', color: '#10B981', textTransform: 'uppercase', letterSpacing: '1px' }}>Online</span>
                 </div>
               </div>
               <button

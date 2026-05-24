@@ -1,4 +1,5 @@
-
+import React from 'react';
+import { Activity, CheckCircle, AlertTriangle, XCircle, ArrowRight } from 'lucide-react';
 
 const steps = [
   {
@@ -25,134 +26,222 @@ const steps = [
 ];
 
 const tableRows = [
-  { element: 'Column C-12 / B3', reading: 'RH: 32 | UPV: 3.8 km/s', code: 'IS 13311', status: 'PASS', color: '#10B981' },
-  { element: 'Slab S-04 / B3', reading: 'RH: 24 | UPV: 3.1 km/s', code: 'IS 13311', status: 'CONCERN', color: '#F59E0B' },
-  { element: 'Column C-07 / B2', reading: 'RH: 19 | UPV: 2.7 km/s', code: 'IS 456', status: 'FAIL', color: '#EF4444' },
-  { element: 'Beam B-11 / B4', reading: 'RH: 34 | UPV: 4.1 km/s', code: 'IS 13311', status: 'PASS', color: '#10B981' },
+  { element: 'Column C-12 / B3', reading: 'RH: 32 | UPV: 3.8 km/s', code: 'IS 13311', status: 'PASS', color: '#10B981', icon: CheckCircle },
+  { element: 'Slab S-04 / B3', reading: 'RH: 24 | UPV: 3.1 km/s', code: 'IS 13311', status: 'CONCERN', color: '#F59E0B', icon: AlertTriangle },
+  { element: 'Column C-07 / B2', reading: 'RH: 19 | UPV: 2.7 km/s', code: 'IS 456', status: 'FAIL', color: '#EF4444', icon: XCircle },
+  { element: 'Beam B-11 / B4', reading: 'RH: 34 | UPV: 4.1 km/s', code: 'IS 13311', status: 'PASS', color: '#10B981', icon: CheckCircle },
 ];
 
 const HowItWorks = () => {
   return (
     <section id="how-it-works" style={{ background: '#000', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
 
         {/* Header */}
-        <div style={{ marginBottom: '4rem' }}>
-          <span style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.9rem',
-            letterSpacing: '0.25em',
-            color: 'rgba(255,255,255,0.35)',
-            textTransform: 'uppercase',
-            display: 'block',
-            marginBottom: '1.5rem',
-          }}>
-            THE FLOW
-          </span>
-          <h2 style={{
-            fontFamily: 'var(--font-adieu)',
-            fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-            fontWeight: 400,
-            lineHeight: 1.05,
-            color: '#fff',
-          }}>
-            HOW IT WORKS
-          </h2>
+        <div style={{ marginBottom: '4rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '2rem' }}>
+          <div>
+            <span style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.9rem',
+              letterSpacing: '0.25em',
+              color: 'rgba(255,255,255,0.35)',
+              textTransform: 'uppercase',
+              display: 'block',
+              marginBottom: '1rem',
+            }}>
+              THE FLOW
+            </span>
+            <h2 style={{
+              fontFamily: 'var(--font-adieu)',
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: 400,
+              lineHeight: 1,
+              color: '#fff',
+              margin: 0
+            }}>
+              HOW IT WORKS
+            </h2>
+          </div>
+          <div style={{ fontFamily: 'var(--font-mono)', color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem', textAlign: 'right', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <Activity size={16} color="#10B981" />
+            <span>SYSTEM ARCHITECTURE OVERVIEW</span>
+          </div>
         </div>
 
-        <div className="how-it-works-grid" style={{
+        {/* Steps Horizontal Grid */}
+        <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '4rem',
-          alignItems: 'start'
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '2rem',
+          marginBottom: '4rem'
         }}>
-          {/* Vertical Steps */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            {steps.map((step, i) => (
-              <div key={i} style={{
-                borderLeft: '1px solid rgba(255,255,255,0.2)',
-                paddingLeft: '2rem',
-                paddingBottom: '2rem',
-                position: 'relative'
+          {steps.map((step, i) => (
+            <div key={i} style={{
+              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'linear-gradient(180deg, #0a0a0a 0%, #000 100%)',
+              padding: '2.5rem',
+              position: 'relative',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column'
+            }}>
+              {/* Background faint number */}
+              <div style={{
+                position: 'absolute',
+                right: '-10%',
+                top: '-10%',
+                fontSize: '12rem',
+                color: 'rgba(255,255,255,0.02)',
+                fontFamily: 'var(--font-adieu)',
+                lineHeight: 0.8,
+                pointerEvents: 'none'
               }}>
-                <div style={{
-                  position: 'absolute',
-                  left: '-16px',
-                  top: '0',
-                  background: '#000',
-                  padding: '4px 0',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '1rem',
-                  color: 'rgba(255,255,255,0.8)'
-                }}>{step.num}</div>
-
-                <h3 style={{
-                  fontFamily: 'var(--font-adieu)',
-                  fontSize: '1.25rem',
-                  color: '#fff',
-                  marginBottom: '0.5rem',
-                  letterSpacing: '0.02em'
-                }}>{step.title}</h3>
-
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.85rem',
-                  letterSpacing: '0.15em',
-                  color: 'rgba(255,255,255,0.4)',
-                  marginBottom: '1rem'
-                }}>{step.sub}</div>
-
-                <p style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '1rem',
-                  color: 'rgba(255,255,255,0.6)',
-                  lineHeight: 1.6,
-                  textTransform: 'uppercase',
-                  marginBottom: '1rem'
-                }}>{step.description}</p>
-
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.9rem',
-                  color: '#fff',
-                  borderTop: '1px solid rgba(255,255,255,0.1)',
-                  paddingTop: '1rem'
-                }}>{step.detail}</div>
+                {step.num}
               </div>
-            ))}
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
+                <div style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '1rem',
+                  color: '#fff',
+                  borderBottom: '1px solid #fff',
+                  paddingBottom: '0.25rem'
+                }}>{step.num}</div>
+                {i < steps.length - 1 && (
+                  <ArrowRight size={20} color="rgba(255,255,255,0.2)" />
+                )}
+              </div>
+
+              <h3 style={{
+                fontFamily: 'var(--font-adieu)',
+                fontSize: '1.5rem',
+                color: '#fff',
+                marginBottom: '0.5rem',
+                letterSpacing: '0.02em',
+                position: 'relative',
+                zIndex: 1
+              }}>{step.title}</h3>
+
+              <div style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.75rem',
+                letterSpacing: '0.15em',
+                color: 'rgba(255,255,255,0.4)',
+                marginBottom: '1.5rem',
+                position: 'relative',
+                zIndex: 1
+              }}>{step.sub}</div>
+
+              <p style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.9rem',
+                color: 'rgba(255,255,255,0.6)',
+                lineHeight: 1.6,
+                textTransform: 'uppercase',
+                marginBottom: '2rem',
+                flexGrow: 1,
+                position: 'relative',
+                zIndex: 1
+              }}>{step.description}</p>
+
+              <div style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.8rem',
+                color: 'rgba(255,255,255,0.8)',
+                borderTop: '1px solid rgba(255,255,255,0.1)',
+                paddingTop: '1rem',
+                position: 'relative',
+                zIndex: 1
+              }}>+ {step.detail}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Dashboard/Table Section */}
+        <div style={{
+          border: '1px solid rgba(255,255,255,0.1)',
+          background: '#050505',
+          borderRadius: '4px',
+          overflow: 'hidden'
+        }}>
+          {/* Dashboard Header */}
+          <div style={{
+            background: '#111',
+            padding: '1rem 1.5rem',
+            borderBottom: '1px solid rgba(255,255,255,0.1)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            fontFamily: 'var(--font-mono)',
+            fontSize: '0.8rem',
+            color: 'rgba(255,255,255,0.5)'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
+                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
+              </div>
+              <span style={{ letterSpacing: '0.1em' }}>OUANTUM_TELEMETRY_VIEW</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px #10B981' }} />
+              <span>LIVE</span>
+            </div>
           </div>
 
-          {/* Stark Data Table */}
+          {/* Table */}
           <div style={{ width: '100%', overflowX: 'auto' }}>
             <table style={{
               width: '100%',
               borderCollapse: 'collapse',
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.95rem',
+              fontSize: '0.9rem',
               color: 'rgba(255,255,255,0.7)',
-              border: '1px solid rgba(255,255,255,0.2)'
+              minWidth: '800px'
             }}>
               <thead>
-                <tr style={{ background: '#111111' }}>
-                  <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '1px solid rgba(255,255,255,0.2)', color: '#fff', letterSpacing: '0.1em' }}>ELEMENT</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '1px solid rgba(255,255,255,0.2)', color: '#fff', letterSpacing: '0.1em' }}>READING</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '1px solid rgba(255,255,255,0.2)', color: '#fff', letterSpacing: '0.1em' }}>IS CODE</th>
-                  <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '1px solid rgba(255,255,255,0.2)', color: '#fff', letterSpacing: '0.1em' }}>STATUS</th>
+                <tr>
+                  <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '25%' }}>ELEMENT ID</th>
+                  <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '35%' }}>TEST READINGS</th>
+                  <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '20%' }}>REFERENCE CODE</th>
+                  <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '20%' }}>AI VERDICT</th>
                 </tr>
               </thead>
               <tbody>
-                {tableRows.map((row, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', background: i % 2 === 0 ? '#000' : '#050505' }}>
-                    <td style={{ padding: '1rem', borderRight: '1px solid rgba(255,255,255,0.05)' }}>{row.element}</td>
-                    <td style={{ padding: '1rem', color: 'rgba(255,255,255,0.5)', borderRight: '1px solid rgba(255,255,255,0.05)' }}>{row.reading}</td>
-                    <td style={{ padding: '1rem', color: 'rgba(255,255,255,0.5)', borderRight: '1px solid rgba(255,255,255,0.05)' }}>{row.code}</td>
-                    <td style={{ padding: '1rem', color: row.color, fontWeight: 'bold' }}>{row.status}</td>
-                  </tr>
-                ))}
+                {tableRows.map((row, i) => {
+                  const Icon = row.icon;
+                  return (
+                    <tr key={i} style={{ 
+                      borderTop: '1px solid rgba(255,255,255,0.05)',
+                      background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)',
+                      transition: 'background 0.2s',
+                    }}>
+                      <td style={{ padding: '1.5rem', color: '#fff' }}>{row.element}</td>
+                      <td style={{ padding: '1.5rem', color: 'rgba(255,255,255,0.5)' }}>{row.reading}</td>
+                      <td style={{ padding: '1.5rem' }}>
+                        <span style={{ 
+                          background: 'rgba(255,255,255,0.05)', 
+                          padding: '0.25rem 0.5rem', 
+                          borderRadius: '2px',
+                          color: 'rgba(255,255,255,0.6)',
+                          fontSize: '0.8rem'
+                        }}>
+                          {row.code}
+                        </span>
+                      </td>
+                      <td style={{ padding: '1.5rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: row.color }}>
+                          <Icon size={16} />
+                          <span style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>{row.status}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
-
         </div>
 
       </div>

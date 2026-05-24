@@ -118,7 +118,7 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
               }} 
             />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', minHeight: 0 }}>
+          <div className="difference-secondary-images" style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', minHeight: 0 }}>
             <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%', minHeight: 0, position: 'relative' }}>
               <motion.img src={point.img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale, position: 'absolute', inset: 0 }} />
             </div>
@@ -156,8 +156,8 @@ const Difference = () => {
       subtitle: "IT'S A CONTEXTUAL JUDGMENT PROBLEM",
       description: "Most AI tools treat construction testing as a data problem. It isn't.",
       img1: '/assets/images/bg1.jpg',
-      img2: '/assets/images/bg3.jpg',
-      img3: '/assets/images/bg4.jpg',
+      img2: '/assets/images/diff_01_green.png',
+      img3: '/assets/images/diff_01_green.png',
     },
     { 
       id: '02',
@@ -165,8 +165,8 @@ const Difference = () => {
       subtitle: 'AGE, EXPOSURE, CEMENT TYPE, CURING',
       description: "A reading of 32 means something completely different on a 30-year-old coastal building versus a freshly cast M25 column inland.",
       img1: '/assets/images/bg2.jpg',
-      img2: '/assets/images/cl3.png',
-      img3: '/assets/images/cl4.png',
+      img2: '/assets/images/diff_02_red.png',
+      img3: '/assets/images/diff_02_red.png',
     },
     { 
       id: '03',
@@ -174,8 +174,8 @@ const Difference = () => {
       subtitle: 'SYSTEM DEMANDS CONTEXT TO RUN',
       description: "Every variable is a required input. The system refuses to give you a result without the context that makes the result meaningful.",
       img1: '/assets/images/bg3.jpg',
-      img2: '/assets/images/bg1.jpg',
-      img3: '/assets/images/bg2.jpg',
+      img2: '/assets/images/diff_03_sandy.png',
+      img3: '/assets/images/diff_03_sandy.png',
     },
     { 
       id: '04',
@@ -183,13 +183,13 @@ const Difference = () => {
       subtitle: 'A 30-YEAR ENGINEERING DECISION',
       description: "That's not a software decision. That's a 30-year-structural-engineer decision, embedded.",
       img1: '/assets/images/bg4.jpg',
-      img2: '/assets/images/philosophy.png',
-      img3: '/assets/images/project-pipeline.png',
+      img2: '/assets/images/diff_04_desert.png',
+      img3: '/assets/images/diff_04_desert.png',
     }
   ]
 
   return (
-    <section ref={sectionRef} id="difference" className="difference" style={{ padding: '120px 0 50px', background: '#000', position: 'relative' }}>
+    <section ref={sectionRef} id="difference" className="difference" style={{ paddingTop: '200px', paddingBottom: '50px', background: '#000', position: 'relative' }}>
       <div style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0 4vw' }}>
         <motion.div
           style={{ marginBottom: '80px', textAlign: 'center', y: titleY }}
@@ -212,7 +212,7 @@ const Difference = () => {
             )
           })}
           {/* Spacer to allow the last card to remain sticky and visible while reading */}
-          <div style={{ height: '50vh' }} />
+          <div className="difference-spacer" style={{ height: '50vh' }} />
         </div>
       </div>
     </section>

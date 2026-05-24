@@ -7,7 +7,7 @@ const projects = [
   {
     id: 'REF-01',
     title: 'AMARAVATI CAPITAL CITY',
-    image: '/assets/images/project-pipeline.png',
+    image: '/assets/images/amaravati_project.png',
     category: 'GOVERNMENT INFRASTRUCTURE · AP, INDIA',
     location: 'AP, INDIA',
     year: 'ONGOING',
@@ -18,7 +18,7 @@ const projects = [
   {
     id: 'REF-02',
     title: 'TAMIL NADU HOUSING BOARD',
-    image: '/assets/images/philosophy.png',
+    image: '/assets/images/tnhb_project.png',
     category: 'HOUSING BOARD · CHENNAI',
     location: 'CHENNAI, INDIA',
     year: 'ONGOING',
@@ -29,7 +29,7 @@ const projects = [
   {
     id: 'REF-03',
     title: 'TNUHDB - PMAY SCHEMES',
-    image: '/assets/images/contact-us-hero.jpg',
+    image: '/assets/images/pmay_project.png',
     category: 'ADB FUNDED · VALLAM & KARAIKUDI',
     location: 'VALLAM & KARAIKUDI',
     year: '2023',
@@ -40,7 +40,7 @@ const projects = [
   {
     id: 'REF-04',
     title: 'KENDRIYA VIDYALAYA SCHOOLS',
-    image: '/assets/images/privacy-and-security-page-hero.jpg',
+    image: '/assets/images/kv_project.png',
     category: 'EDUCATION INFRASTRUCTURE · PAN-INDIA',
     location: 'PAN-INDIA',
     year: '2023',

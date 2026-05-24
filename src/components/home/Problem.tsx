@@ -60,7 +60,7 @@ const Problem = () => {
         {/* Stat Cards */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '1px',
           background: 'rgba(255,255,255,0.07)',
           border: '1px solid rgba(255,255,255,0.07)',
@@ -77,7 +77,7 @@ const Problem = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.12 }}
               style={{
-                padding: 'clamp(2rem, 5vw, 3.5rem)',
+                padding: 'clamp(1rem, 5vw, 3.5rem)',
                 position: 'relative',
               }}
             >
@@ -95,7 +95,7 @@ const Problem = () => {
               <div style={{ marginBottom: '1.25rem' }}>
                 <span style={{
                   fontFamily: 'var(--font-adieu)',
-                  fontSize: 'clamp(3rem, 7vw, 5.5rem)',
+                  fontSize: 'clamp(2rem, 10vw, 5.5rem)',
                   fontWeight: 400,
                   lineHeight: 0.9,
                   color: '#fff',
@@ -171,7 +171,6 @@ const Problem = () => {
             letterSpacing: '0.18em',
             color: 'rgba(255,255,255,0.25)',
             textTransform: 'uppercase',
-            whiteSpace: 'nowrap',
           }}>
             Ouantum compresses this to{' '}
             <span style={{ color: 'rgba(255,255,255,0.7)' }}>under 4 hours</span>
