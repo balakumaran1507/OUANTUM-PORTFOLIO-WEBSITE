@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { motion } from 'framer-motion'
 
 /* ─── Crosshair corner accent ─── */
-const Crosshair = ({ className }: { className?: string }) => (
+const Crosshair = ({ className, style }: { className?: string; style?: CSSProperties }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="14"
@@ -10,7 +11,7 @@ const Crosshair = ({ className }: { className?: string }) => (
     viewBox="0 0 14 14"
     fill="none"
     className={className}
-    style={{ position: 'absolute', zIndex: 30, color: 'rgba(255,255,255,0.3)' }}
+    style={{ position: 'absolute', zIndex: 30, color: 'rgba(255,255,255,0.3)', ...style }}
   >
     <path d="M7 0L7 14" stroke="currentColor" strokeWidth="1.5" />
     <path d="M0 7L14 7" stroke="currentColor" strokeWidth="1.5" />
