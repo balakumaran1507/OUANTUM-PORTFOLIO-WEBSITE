@@ -3290,7 +3290,7 @@ section {
     gap: 1.5rem !important;
   }
 
-  .hero-image-container {
+  #hero .hero-image-container {
     height: 45vh !important;
     position: relative !important;
     margin-top: 2rem !important;
@@ -3740,7 +3740,7 @@ section {
   }
 
   /* Hide Hero Image on Tablet and Mobile */
-  .hero-image-container {
+  #hero .hero-image-container {
     display: none !important;
   }
 }
