@@ -71,7 +71,7 @@ const CaseStudies: React.FC = () => {
           }}
         >
           {/* Left Text Content */}
-          <div style={{ flex: '1 1 400px', padding: '4rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div className="case-study-featured-content">
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'block' }}>
               AUTHOR: {featuredCaseStudy.author}
             </span>
@@ -87,7 +87,7 @@ const CaseStudies: React.FC = () => {
           </div>
           
           {/* Right Image */}
-          <div style={{ flex: '1 1 500px', position: 'relative', minHeight: '300px' }}>
+          <div className="case-study-featured-image">
             <img src={featuredCaseStudy.image} alt={featuredCaseStudy.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
           </div>
         </motion.div>

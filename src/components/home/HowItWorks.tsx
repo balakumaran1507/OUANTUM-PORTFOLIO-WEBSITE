@@ -190,16 +190,15 @@ const HowItWorks = () => {
           </div>
 
           {/* Table */}
-          <div style={{ width: '100%', overflowX: 'auto' }}>
-            <table style={{
+          <div className="telemetry-table-wrapper" style={{ width: '100%', overflowX: 'auto' }}>
+            <table className="telemetry-table" style={{
               width: '100%',
               borderCollapse: 'collapse',
               fontFamily: 'var(--font-mono)',
               fontSize: '0.9rem',
-              color: 'rgba(255,255,255,0.7)',
-              minWidth: '800px'
+              color: 'rgba(255,255,255,0.7)'
             }}>
-              <thead>
+              <thead className="telemetry-thead">
                 <tr>
                   <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '25%' }}>ELEMENT ID</th>
                   <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '35%' }}>TEST READINGS</th>
@@ -207,18 +206,18 @@ const HowItWorks = () => {
                   <th style={{ padding: '1.5rem', textAlign: 'left', color: 'rgba(255,255,255,0.4)', fontWeight: 'normal', letterSpacing: '0.1em', width: '20%' }}>AI VERDICT</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="telemetry-tbody">
                 {tableRows.map((row, i) => {
                   const Icon = row.icon;
                   return (
-                    <tr key={i} style={{ 
+                    <tr className="telemetry-row" key={i} style={{ 
                       borderTop: '1px solid rgba(255,255,255,0.05)',
                       background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.02)',
                       transition: 'background 0.2s',
                     }}>
-                      <td style={{ padding: '1.5rem', color: '#fff' }}>{row.element}</td>
-                      <td style={{ padding: '1.5rem', color: 'rgba(255,255,255,0.5)' }}>{row.reading}</td>
-                      <td style={{ padding: '1.5rem' }}>
+                      <td className="telemetry-cell" data-label="ELEMENT ID" style={{ padding: '1.5rem', color: '#fff' }}>{row.element}</td>
+                      <td className="telemetry-cell" data-label="TEST READINGS" style={{ padding: '1.5rem', color: 'rgba(255,255,255,0.5)' }}>{row.reading}</td>
+                      <td className="telemetry-cell" data-label="REFERENCE CODE" style={{ padding: '1.5rem' }}>
                         <span style={{ 
                           background: 'rgba(255,255,255,0.05)', 
                           padding: '0.25rem 0.5rem', 
@@ -229,7 +228,7 @@ const HowItWorks = () => {
                           {row.code}
                         </span>
                       </td>
-                      <td style={{ padding: '1.5rem' }}>
+                      <td className="telemetry-cell" data-label="AI VERDICT" style={{ padding: '1.5rem' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: row.color }}>
                           <Icon size={16} />
                           <span style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>{row.status}</span>

@@ -2592,21 +2592,28 @@ section {
 
 /* ANIMATED METALLIC GRADIENT BACKGROUND */
 @keyframes futuristic-metal-shimmer {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .animated-silver-bg {
-  background: linear-gradient(135deg, 
-    #080808 0%, 
-    #121212 20%, 
-    #1a1a1a 45%, 
-    #2a2a2a 50%, 
-    #1a1a1a 55%, 
-    #121212 80%, 
-    #080808 100%
-  ) !important;
+  background: linear-gradient(135deg,
+      #080808 0%,
+      #121212 20%,
+      #1a1a1a 45%,
+      #2a2a2a 50%,
+      #1a1a1a 55%,
+      #121212 80%,
+      #080808 100%) !important;
   background-size: 300% 300% !important;
   animation: futuristic-metal-shimmer 12s ease-in-out infinite !important;
 }
@@ -3138,8 +3145,8 @@ section {
   }
 
   /* Force uniform image height instead of relying on intrinsic aspect ratio */
-  .cooperation-card-wrapper .grid-2col > div:first-child,
-  .difference-card-wrapper .grid-2col > div:first-child {
+  .cooperation-card-wrapper .grid-2col>div:first-child,
+  .difference-card-wrapper .grid-2col>div:first-child {
     height: 220px !important;
     width: 100% !important;
     flex-shrink: 0 !important;
@@ -3492,6 +3499,7 @@ section {
     padding: 2rem 1.5rem !important;
     border-radius: 24px !important;
   }
+
   .hero-main-image {
     transform: scale(1.1) translateY(0) !important;
     object-fit: cover !important;
@@ -3829,7 +3837,7 @@ section {
     height: 100% !important;
     z-index: 0 !important;
     display: block !important;
-    opacity: 0.3 !important;
+    opacity: 0.80 !important;
   }
 }
 
@@ -3866,24 +3874,27 @@ section {
     font-size: 0.95rem !important;
     line-height: 1.5 !important;
   }
-  
+
   .hero-description {
     font-size: 1.15rem !important;
     line-height: 1.6 !important;
   }
-  
+
   .hero-subtext {
     font-size: 1.25rem !important;
     line-height: 1.5 !important;
   }
 }
+
 /* Contact Modal Responsive Overrides */
 .contact-modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .contact-modal-grid::-webkit-scrollbar {
@@ -3900,6 +3911,7 @@ section {
   .contact-modal-grid {
     grid-template-columns: 1fr;
   }
+
   .contact-modal-form-row {
     grid-template-columns: 1fr;
   }
@@ -3917,7 +3929,7 @@ section {
   overscroll-behavior: contain;
   background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 20px 20px 100px 20px;
   z-index: 1000;
 }
@@ -3951,6 +3963,7 @@ section {
   .desktop-nav {
     display: none !important;
   }
+
   .menu-toggle {
     display: flex !important;
     align-items: center;
@@ -3960,21 +3973,25 @@ section {
 
 /* --- MOBILE OPTIMIZATION OVERRIDES --- */
 @media (max-width: 768px) {
+
   /* Global Padding */
   section {
     padding: 60px 0 !important;
   }
-  
+
   #difference {
     padding-top: 250px !important;
   }
-  
+
   .container {
     padding: 0 20px;
   }
 
   /* Prevent horizontal scrolling completely (fixes iOS Safari bug) */
-  html, body, #root, .app-wrapper {
+  html,
+  body,
+  #root,
+  .app-wrapper {
     position: relative !important;
     overflow-x: hidden !important;
     width: 100% !important;
@@ -3988,7 +4005,10 @@ section {
     box-sizing: border-box !important;
   }
 
-  img, video, canvas, svg {
+  img,
+  video,
+  canvas,
+  svg {
     max-width: 100% !important;
   }
 
@@ -4001,21 +4021,21 @@ section {
   .section-title {
     font-size: clamp(1.8rem, 8vw, 3.5rem) !important;
   }
-  
+
   /* Difference Section Mobile Fixes */
   .difference-secondary-images {
     display: none !important;
   }
-  
+
   .difference-spacer {
     display: none !important;
   }
-  
+
   /* Geography Grid Space Fix */
   .geography-grid {
     min-height: auto !important;
   }
-  
+
   /* Chatbot Mobile View (Bottom Sheet) */
   .chatbot-window {
     width: 100vw !important;
@@ -4036,7 +4056,7 @@ section {
     padding: 8px 16px !important;
     font-size: 0.65rem !important;
   }
-  
+
   .header-actions {
     gap: 10px;
   }
@@ -4067,10 +4087,10 @@ section {
   }
 
   /* Problem Section (id="problem") */
-  #problem > div > div:nth-child(2) {
+  #problem>div>div:nth-child(2) {
     grid-template-columns: 1fr !important;
   }
-  
+
   /* Services Section */
   .service-card {
     min-height: auto !important;
@@ -4082,21 +4102,9 @@ section {
     grid-template-columns: 1fr !important;
     gap: 2rem !important;
   }
-  
+
   /* Difference Section (Slider) */
-  /* Disable sticky on mobile because it causes usability issues and overlaps on small viewports */
-  .difference-card-wrapper {
-    height: auto !important;
-    position: relative !important;
-    margin-bottom: 2rem;
-  }
-  
-  .difference-card-wrapper > div {
-    top: 0 !important;
-    transform: none !important;
-    min-height: auto !important;
-    padding: 1.5rem !important;
-  }
+  /* Sticky animation is now enabled on mobile as well */
 
   /* Override the difference card internal layout to stack vertically */
   .difference-card-wrapper .grid-2col {
@@ -4104,20 +4112,21 @@ section {
     height: auto !important;
     min-height: 300px !important;
   }
-  
+
   /* Stack the header area in Difference cards */
-  .difference-card-wrapper > div > div:nth-of-type(3) {
+  .difference-card-wrapper .difference-card-header {
     flex-direction: column;
     align-items: flex-start !important;
     gap: 1rem;
   }
-  .difference-card-wrapper > div > div:nth-of-type(3) > div:first-child {
+
+  .difference-card-wrapper .difference-card-title {
     flex-direction: column;
     align-items: flex-start !important;
   }
 
   /* Partners Section */
-  #partners > div > div:nth-child(2) {
+  #partners>div>div:nth-child(2) {
     grid-template-columns: 1fr !important;
   }
 
@@ -4196,7 +4205,8 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 88px; /* FOOTER_H */
+  bottom: 88px;
+  /* FOOTER_H */
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -4242,7 +4252,8 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 88px; /* FOOTER_H */
+  bottom: 88px;
+  /* FOOTER_H */
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   background: #000;
   display: grid;
@@ -4602,5 +4613,83 @@ section {
 
   .about-partner-card {
     padding: 1.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   CASE STUDIES PAGE
+═══════════════════════════════════════════════ */
+.case-study-featured-content {
+  flex: 1 1 400px;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.case-study-featured-image {
+  flex: 0 1 340px;
+  max-width: 380px;
+  position: relative;
+  min-height: 280px;
+}
+
+@media (max-width: 768px) {
+  .case-study-featured-content {
+    padding: 2.5rem;
+  }
+
+  .case-study-featured-image {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-height: 220px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   TELEMETRY TABLE (HOW IT WORKS)
+═══════════════════════════════════════════════ */
+.telemetry-table {
+  min-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .telemetry-table {
+    min-width: 100% !important;
+    display: block;
+  }
+  
+  .telemetry-thead {
+    display: none;
+  }
+  
+  .telemetry-tbody {
+    display: block;
+    width: 100%;
+  }
+  
+  .telemetry-row {
+    display: block;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding: 1rem 0;
+  }
+  
+  .telemetry-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem !important;
+    text-align: right;
+  }
+  
+  .telemetry-cell::before {
+    content: attr(data-label);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding-right: 1rem;
+    text-align: left;
   }
 }

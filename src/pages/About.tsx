@@ -3,49 +3,28 @@ import { motion } from 'framer-motion';
 
 const team = [
   {
-    role: 'FOUNDER & CHIEF EXECUTIVE OFFICER',
+    role: 'PRESIDENT',
     name: 'Balakumaran D',
     image: '/assets/images/Balakumaran_CEO_Profile_Pic.png',
     initials: 'BD',
     bio: 'Balakumaran built Ouantum with a clear vision: civil engineers deserve infrastructure that works from day one. He works with clients across India to turn weeks of manual QA into a single efficient workflow.\n\nHe leads the company’s strategic direction, ensuring every deployment meets high standards of deterministic quality assurance.\nReach him at +91 7695827158.',
   },
   {
-    role: 'CO-FOUNDER — GROWTH & STRATEGY',
+    role: 'CHIEF EXECUTIVE OFFICER',
     name: 'Rahul',
     image: '/assets/images/rahul.jpeg',
     initials: 'RA',
     bio: 'Rahul leads the commercial and strategic direction of Ouantum. He has shaped the go-to-market across Tamil Nadu Housing Board, ADB-funded PMAY schemes, and Amaravati Capital City — building systems that help Ouantum scale without compromising audit quality.\n\nHis focus is on delivering reliable same-day outcomes for every client.\nReach him at +91 861 080 5559.',
   },
   {
-    role: 'CHIEF OPERATING OFFICER',
-    name: 'Nabeelah Anjum A',
-    image: '/assets/images/Nabeelah_COO_Profile_Pic.jpeg',
-    initials: 'NA',
-    bio: 'Nabeelah oversees the operational excellence of Ouantum, ensuring that our quality-first mission is translated into every project and client relationship we manage.\n\nHer focus is on building resilient organizational structures that allow our technical teams to focus on what they do best: hardening every audit output to government-grade standards.',
-  },
-  {
-    role: 'CHIEF TECHNOLOGY OFFICER',
-    name: 'Guru Prasanth M',
-    image: '/assets/images/Guru_CTO_Profile.jpeg',
-    initials: 'GP',
-    bio: 'Guru leads our technical vision, specializing in the AI pipeline architecture and data integrity layers that power Ouantum\'s NDT analysis engine.\n\nPreviously he has worked on complex systems integration, bringing a wealth of experience in building infrastructure that can scale without compromising on accuracy or compliance.',
-  },
-  {
-    role: 'LEAD AUTHOR',
-    name: 'Jaie Balaji T',
-    image: '/assets/images/Jaie_lead_author_Profile.jpeg',
-    initials: 'JB',
-    bio: 'Jaie leads our research and documentation efforts, ensuring that our QA methodologies are communicated clearly and implemented rigorously across all deployments.\n\nHer work bridges the gap between complex IS-code compliance research and practical, deployable audit standards that field engineers can trust.',
-  },
-  {
-    role: 'LEGAL & JUNIOR AI ENGINEER',
+    role: 'Cheif Marketing Officer',
     name: 'Raghu',
     image: '/assets/images/raghu.png',
     initials: 'RG',
     bio: 'Raghu handles the legal framework and compliance structures that underpin Ouantum\'s government-grade report generation. He also contributes to the AI pipeline — ensuring every automated output is legally defensible and technically sound.\n\nHis dual role bridges the gap between engineering precision and regulatory compliance.',
   },
   {
-    role: 'SALES HEAD',
+    role: 'Chief Financial Offier',
     name: 'Sabari Raja',
     image: '/assets/images/sabari.jpeg',
     initials: 'SR',
