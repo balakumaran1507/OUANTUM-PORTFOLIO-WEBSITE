@@ -110,10 +110,10 @@ const Chatbot: React.FC = () => {
         }
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: `Error: ${error.message || 'Something went wrong.'}` },
+        { role: 'assistant', content: `Error: ${error instanceof Error ? error.message : 'Something went wrong.'}` },
       ]);
     } finally {
       setIsLoading(false);

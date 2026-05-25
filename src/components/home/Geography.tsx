@@ -48,7 +48,7 @@ const Geography = () => {
                   <div className="region-status-badge">
                     <div className="latency-box">
                       <span className="status-value">
-                        {Math.floor(Math.random() * 15) + 3 + (telemetrySeed % 2)}
+                        {((idx * 7 + telemetrySeed) % 15) + 3}
                       </span>
                     </div>
                   </div>
