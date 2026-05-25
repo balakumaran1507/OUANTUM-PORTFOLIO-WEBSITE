@@ -3707,47 +3707,134 @@ section {
     font-size: 0.75rem !important;
   }
 
-  /* Footer */
+  /* ── Footer Mobile ── */
   .footer-industrial {
-    padding: 60px 0 40px !important;
+    padding: 48px 0 32px !important;
+  }
+
+  /* Container gets proper mobile padding */
+  .footer-industrial .container {
+    padding: 0 1.25rem !important;
+  }
+
+  /* Brand title: scale down for mobile, more breathing room */
+  .footer-brand-title {
+    margin-bottom: 32px !important;
+    padding-top: 0 !important;
   }
 
   .footer-brand-title h2 {
-    font-size: 13vw !important;
-    margin-bottom: 40px !important;
+    font-size: clamp(2.8rem, 14vw, 5rem) !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.03em !important;
   }
 
+  /* Nav columns: 2-column grid on mobile (not single column) */
   .footer-nav-grid {
-    grid-template-columns: 1fr !important;
-    text-align: center !important;
-    gap: 2rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem 1.5rem !important;
+    text-align: left !important;
+    margin-bottom: 40px !important;
+    justify-content: unset !important;
   }
 
+  /* Each column: left-aligned, good spacing */
   .footer-nav-col {
-    align-items: center !important;
+    align-items: flex-start !important;
+    gap: 0.8rem !important;
   }
 
+  /* Column label */
+  .footer-col-label {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.18em !important;
+    margin-bottom: 0.25rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  /* Larger touch targets for links */
+  .footer-nav-link {
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em !important;
+    padding: 4px 0 !important;
+    min-height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    opacity: 0.75 !important;
+  }
+
+  /* Address row: smaller text, tighter margin */
+  .footer-address-row {
+    text-align: center !important;
+    margin-bottom: 32px !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .footer-address-row p {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.06em !important;
+    line-height: 2 !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  /* Bottom bar: stack everything centered */
   .footer-bottom-bar {
     flex-direction: column !important;
-    text-align: center !important;
-    gap: 2rem !important;
     align-items: center !important;
+    text-align: center !important;
+    gap: 1rem !important;
+    padding-top: 24px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* Group copyright + legal together */
+  .footer-copyright-group {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+  }
+
+  .footer-separator {
+    display: none !important;
   }
 
   .footer-legal-links {
     justify-content: center !important;
-    gap: 1.5rem !important;
+    gap: 1.25rem !important;
   }
 
-  /* Hide Hero Image on Tablet and Mobile */
+  .footer-legal-links .footer-nav-link {
+    font-size: 0.72rem !important;
+    min-height: unset !important;
+    padding: 2px 0 !important;
+  }
+
+  .footer-copyright {
+    font-size: 0.65rem !important;
+  }
+
+  .iso-badge {
+    font-size: 0.62rem !important;
+    padding: 0.35rem 0.7rem !important;
+  }
+
+  /* Homepage Hero Image — show on mobile as background, behind content */
   #hero .hero-image-container {
-    display: none !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    display: block !important;
+    opacity: 0.3 !important;
   }
 }
 
 /* --- Tiny Mobile (480px) --- */
 @media (max-width: 480px) {
-
 
   .equipment-stat-grid {
     grid-template-columns: 1fr !important;
@@ -3757,10 +3844,24 @@ section {
     font-size: 1.25rem !important;
   }
 
-  .footer-brand-title h2 {
-    font-size: 13.5vw !important;
+  /* Footer: single column at very small sizes */
+  .footer-nav-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
   }
-  
+
+  .footer-brand-title h2 {
+    font-size: clamp(2.2rem, 16vw, 3.5rem) !important;
+  }
+
+  .footer-nav-link {
+    font-size: 0.78rem !important;
+  }
+
+  .footer-address-row p {
+    font-size: 0.68rem !important;
+  }
+
   .hero-tech-label {
     font-size: 0.95rem !important;
     line-height: 1.5 !important;
@@ -4023,5 +4124,483 @@ section {
   /* Projects Section */
   .projects-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT PAGE — BASE STYLES
+═══════════════════════════════════════════════ */
+
+/* Outer content wrapper */
+.about-content-outer {
+  max-width: 1600px;
+  width: 95%;
+  margin: 0 auto;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.about-content-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+/* Team heading / eyebrow */
+.about-team-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(58, 30, 30, 0.28);
+  margin-bottom: 0.75rem;
+}
+
+.about-team-heading {
+  font-family: var(--font-adieu);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  margin-bottom: 2.5rem;
+}
+
+.about-team-rule {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Team grid — 3 columns desktop */
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Individual card */
+.about-team-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: #000;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  height: 78vh;
+  min-height: 600px;
+  max-height: 860px;
+}
+
+/* Portrait layer */
+.about-team-portrait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 88px; /* FOOTER_H */
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.about-team-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: grayscale(100%);
+  display: block;
+}
+
+.about-team-initials-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #111 0%, #050505 100%);
+}
+
+.about-team-initials {
+  font-family: var(--font-adieu);
+  font-size: 6rem;
+  color: rgba(255, 255, 255, 0.05);
+}
+
+.about-team-tap-hint {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+}
+
+/* Bio panel — 2 columns: photo | text */
+.about-team-bio-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 88px; /* FOOTER_H */
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #000;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  overflow: hidden;
+}
+
+.about-team-bio-photo-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1.25rem 2rem 2rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.about-team-bio-thumb {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0d0d0d;
+  flex-shrink: 0;
+}
+
+.about-team-bio-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+}
+
+.about-team-profile-label {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.2);
+  text-transform: uppercase;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.about-team-bio-text-col {
+  padding: 2rem 2rem 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.about-team-bio-header {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.about-team-bio-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.about-team-bio-para {
+  font-family: var(--font-main);
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 300;
+  margin: 0;
+}
+
+.about-team-tap-close {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Footer bar */
+.about-team-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 1.5rem;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.about-team-footer-role {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0;
+}
+
+.about-team-footer-name {
+  font-family: var(--font-adieu);
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Partner section */
+.about-partners-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2rem;
+}
+
+.about-partners-heading {
+  font-family: var(--font-adieu);
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.about-partners-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.about-partner-link {
+  text-decoration: none;
+  flex: 1 1 300px;
+  max-width: 350px;
+}
+
+.about-partner-card {
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+  transition: border-color 0.3s;
+}
+
+.about-partner-name {
+  color: #fff;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+}
+
+.about-partner-desc {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 1.5rem 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+}
+
+.about-partner-url {
+  color: #2563EB;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT PAGE — TABLET (≤ 1024px)
+═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-content-outer {
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* 2 columns on tablet */
+  .about-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-team-card {
+    height: 65vh;
+    min-height: 480px;
+  }
+
+  /* Bio panel stays 2-col on tablet but slightly narrower photo */
+  .about-team-bio-panel {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .about-team-bio-photo-col {
+    padding: 1.5rem 1rem 1.5rem 1.5rem;
+  }
+
+  .about-team-bio-text-col {
+    padding: 1.5rem;
+  }
+
+  .about-team-footer-name {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+  }
+
+  .about-partner-link {
+    flex: 1 1 260px;
+    max-width: 320px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT PAGE — MOBILE (≤ 768px)
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .about-content-outer {
+    width: 100%;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-top: 2rem;
+  }
+
+  .about-content-stack {
+    gap: 2.5rem;
+  }
+
+  .about-team-heading {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Single column on mobile */
+  .about-team-grid {
+    grid-template-columns: 1fr;
+    border-left: none;
+  }
+
+  /* Cards: full width, sensible height */
+  .about-team-card {
+    height: auto;
+    min-height: 500px;
+    max-height: 600px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* On mobile the bio panel stacks vertically — no side-by-side */
+  .about-team-bio-panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    overflow-y: auto;
+  }
+
+  /* Hide the passport photo column on mobile to save space */
+  .about-team-bio-photo-col {
+    display: none;
+  }
+
+  /* Bio text takes full width */
+  .about-team-bio-text-col {
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+
+  .about-team-bio-header {
+    font-size: 0.6rem;
+  }
+
+  .about-team-bio-para {
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  .about-team-footer {
+    padding: 0 1rem;
+  }
+
+  .about-team-footer-role {
+    font-size: 0.55rem;
+  }
+
+  .about-team-footer-name {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+  }
+
+  .about-team-tap-hint {
+    font-size: 0.55rem;
+  }
+
+  /* Partners: full width stacked */
+  .about-partners-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .about-partner-link {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .about-partners-heading {
+    font-size: 1.2rem;
+  }
+
+  /* Hero on About page: tighter padding */
+  .subpage-wrapper .hero {
+    padding-top: 90px !important;
+    min-height: 50vh !important;
+  }
+
+  .subpage-wrapper .hero-image-container {
+    height: 40vh !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT PAGE — SMALL MOBILE (≤ 480px)
+═══════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .about-content-outer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-team-card {
+    min-height: 440px;
+    max-height: 540px;
+  }
+
+  .about-team-bio-text-col {
+    padding: 1.25rem;
+  }
+
+  .about-team-bio-para {
+    font-size: 0.82rem;
+  }
+
+  .about-team-footer-name {
+    font-size: 1rem;
+  }
+
+  .about-partner-card {
+    padding: 1.5rem;
   }
 }
