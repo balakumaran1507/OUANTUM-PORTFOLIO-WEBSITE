@@ -3974,6 +3974,14 @@ section {
 /* --- MOBILE OPTIMIZATION OVERRIDES --- */
 @media (max-width: 768px) {
 
+  /* Text Reduction Utilities */
+  .desktop-only { display: none !important; }
+}
+@media (min-width: 769px) {
+  .mobile-only { display: none !important; }
+}
+
+@media (max-width: 768px) {
   /* Global Padding */
   section {
     padding: 60px 0 !important;

@@ -161,7 +161,8 @@ const Problem = () => {
             lineHeight: 1.5,
             maxWidth: '620px',
           }}>
-            India's largest infrastructure projects - government housing, capital city developments, ADB-funded construction - rely on a process that is slow, inconsistent, and completely unscalable.{' '}
+            <span className="desktop-only">India's largest infrastructure projects - government housing, capital city developments, ADB-funded construction - rely on a process that is slow, inconsistent, and completely unscalable. </span>
+            <span className="mobile-only">Manual infrastructure QA is slow, inconsistent, and completely unscalable. </span>
             <span style={{ color: '#fff' }}>Ouantum changes that.</span>
           </p>
 

@@ -53,18 +53,20 @@ const Hero: React.FC = () => {
           <motion.div className="sidebar-info hero-left">
             <div className="hero-labels">
               <span className="hero-tech-label">
-                AI-POWERED QUALITY ASSURANCE · STRUCTURAL AUDITING · INFRASTRUCTURE INTEGRITY
+                <span className="desktop-only">AI-POWERED QUALITY ASSURANCE · STRUCTURAL AUDITING · </span>INFRASTRUCTURE INTEGRITY
               </span>
             </div>
 
-            <p className="side-description hero-description">
+            <p className="side-description hero-description desktop-only">
               EVERY VARIABLE. INSTANT INTELLIGENCE. AI-POWERED QUALITY ASSURANCE FOR INDIA'S CONSTRUCTION INFRASTRUCTURE.
             </p>
           </motion.div>
 
           <motion.div className="hero-right-content hero-right">
             <p className="hero-subtext">
-              OUANTUM IS THE AI PLATFORM BUILT FOR CIVIL CONSTRUCTION QUALITY ASSURANCE, MONITORING, AND AUDITING. FIELD DATA IN. GOVERNMENT-GRADE REPORTS OUT. SAME DAY.
+              <span className="desktop-only">OUANTUM IS THE AI PLATFORM BUILT FOR CIVIL CONSTRUCTION QUALITY ASSURANCE, MONITORING, AND AUDITING. </span>
+              <span className="mobile-only">AI PLATFORM FOR CIVIL QA/QC.<br/><br/></span>
+              FIELD DATA IN. GOVERNMENT-GRADE REPORTS OUT. SAME DAY.
             </p>
 
             <button

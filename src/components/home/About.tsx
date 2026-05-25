@@ -323,10 +323,10 @@ const About = () => {
             gap: '1.5rem',
           }}>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', lineHeight: '1.9', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              Ouantum is a domain-specific AI platform built exclusively for civil construction QA/QC and structural auditing in India.
+              Ouantum is a domain-specific AI platform built exclusively for civil construction QA/QC<span className="desktop-only"> and structural auditing</span>.
             </p>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', lineHeight: '1.9', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-              We built in collaboration with 30+ year civil engineering veterans. Quality assurance is not a feature we bolt on — it is the entire product.
+            <p className="desktop-only" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', lineHeight: '1.9', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Built in collaboration with 30+ year civil engineering veterans. Quality assurance is not a feature we bolt on — it is the entire product.
             </p>
           </div>
         </motion.div>
@@ -352,8 +352,11 @@ const About = () => {
             <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', color: '#fff', marginBottom: '2rem', letterSpacing: '0.01em', lineHeight: 1.1 }}>
               The Core Mission
             </h3>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: '1.9', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <p className="desktop-only" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: '1.9', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Compress weeks of manual QA analysis into a single working day. Ouantum takes NDT field readings and auto-checks every value against IS codes — producing government-grade reports the same day.
+            </p>
+            <p className="mobile-only" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: '1.9', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Compress weeks of manual QA analysis into a single working day. Auto-check against IS codes. Same day reports.
             </p>
           </motion.div>
 
@@ -369,8 +372,11 @@ const About = () => {
             <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', color: '#fff', marginBottom: '2rem', letterSpacing: '0.01em', lineHeight: 1.1 }}>
               The Problem We Solve
             </h3>
-            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: '1.9', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+            <p className="desktop-only" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: '1.9', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               India's construction QA industry relies on slow, inconsistent manual processes. What used to take 5–14 days and 40–60 hours of senior engineer time now takes under 4 hours. Field data in. Government-grade reports out. Same day.
+            </p>
+            <p className="mobile-only" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.55)', lineHeight: '1.9', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              From 14 days and 60 hours to under 4 hours. Field data in. Government-grade reports out. Same day.
             </p>
           </motion.div>
         </div>
