@@ -148,18 +148,27 @@ const Chatbot: React.FC = () => {
           width: '60px',
           height: '60px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #2563EB, #1d4ed8)',
-          color: '#fff',
+          background: '#111',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 24px rgba(37, 99, 235, 0.5)',
+          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.5)',
           zIndex: 1000,
           cursor: 'pointer',
           border: 'none',
+          padding: 0,
+          overflow: 'hidden',
         }}
       >
-        <MessageSquare size={24} />
+        <img 
+          src="/assets/images/chatbot.jpeg" 
+          alt="Chatbot Icon" 
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover' 
+          }} 
+        />
       </motion.button>
 
       {/* Chat Window */}
