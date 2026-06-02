@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 import { Groq } from 'groq-sdk';
 
 const WELCOME_MESSAGE = `Hey, I'm Sabari — Sales Head at Ouantum. What kind of project are you working on?`;
