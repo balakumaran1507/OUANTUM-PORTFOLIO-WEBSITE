@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 import { Groq } from 'groq-sdk';
 
 const WELCOME_MESSAGE = `Hey, I'm Sabari — Sales Head at Ouantum. What kind of project are you working on?`;
@@ -148,18 +148,27 @@ const Chatbot: React.FC = () => {
           width: '60px',
           height: '60px',
           borderRadius: '50%',
-          background: 'linear-gradient(135deg, #2563EB, #1d4ed8)',
-          color: '#fff',
+          background: '#111',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 24px rgba(37, 99, 235, 0.5)',
+          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.5)',
           zIndex: 1000,
           cursor: 'pointer',
           border: 'none',
+          padding: 0,
+          overflow: 'hidden',
         }}
       >
-        <MessageSquare size={24} />
+        <img 
+          src="/assets/images/chatbot.jpeg" 
+          alt="Chatbot Icon" 
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover' 
+          }} 
+        />
       </motion.button>
 
       {/* Chat Window */}
@@ -179,7 +188,7 @@ const Chatbot: React.FC = () => {
               maxWidth: 'calc(100vw - 2rem)',
               height: '580px',
               maxHeight: '80vh',
-              background: '#111111',
+              background: '#000000',
               borderRadius: '20px',
               border: '1px solid rgba(255,255,255,0.08)',
               boxShadow: '0 24px 48px rgba(0,0,0,0.8)',
@@ -196,7 +205,7 @@ const Chatbot: React.FC = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              background: '#0d0d0d',
+              background: '#000000',
               flexShrink: 0,
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -307,7 +316,7 @@ const Chatbot: React.FC = () => {
             <div style={{
               padding: '1rem 1.25rem',
               borderTop: '1px solid rgba(255,255,255,0.06)',
-              background: '#0d0d0d',
+              background: '#000000',
               flexShrink: 0,
             }}>
               <div style={{

@@ -126,7 +126,7 @@ const Hero: React.FC = () => {
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               className="contact-modal-grid"
               style={{
-                background: '#111',
+                background: '#000',
                 border: '1px solid rgba(255,255,255,0.1)',
                 borderRadius: '24px',
                 width: '100%',
@@ -157,7 +157,7 @@ const Hero: React.FC = () => {
               </button>
 
               {/* Left Column - Form */}
-              <div style={{ padding: '40px', background: '#0a0a0a' }}>
+              <div style={{ padding: '40px', background: '#000' }}>
                 <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Send us a message</h3>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', marginBottom: '30px' }}>Fill out the form below and we'll get back to you.</p>
 
@@ -173,7 +173,7 @@ const Hero: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      style={{ width: '100%', boxSizing: 'border-box', background: '#111', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', outline: 'none' }}
+                      style={{ width: '100%', boxSizing: 'border-box', background: '#080808', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', outline: 'none' }}
                     />
                     <div className="contact-modal-form-row">
                       <input
@@ -182,14 +182,14 @@ const Hero: React.FC = () => {
                         required
                         value={formData.email}
                         onChange={e => setFormData({ ...formData, email: e.target.value })}
-                        style={{ width: '100%', boxSizing: 'border-box', background: '#111', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', outline: 'none' }}
+                        style={{ width: '100%', boxSizing: 'border-box', background: '#080808', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', outline: 'none' }}
                       />
                       <input
                         type="tel"
                         placeholder="Phone (Optional)"
                         value={formData.phone}
                         onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                        style={{ width: '100%', boxSizing: 'border-box', background: '#111', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', outline: 'none' }}
+                        style={{ width: '100%', boxSizing: 'border-box', background: '#080808', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', outline: 'none' }}
                       />
                     </div>
                     <textarea
@@ -197,7 +197,7 @@ const Hero: React.FC = () => {
                       rows={4}
                       value={formData.message}
                       onChange={e => setFormData({ ...formData, message: e.target.value })}
-                      style={{ width: '100%', boxSizing: 'border-box', background: '#111', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', resize: 'vertical', outline: 'none' }}
+                      style={{ width: '100%', boxSizing: 'border-box', background: '#080808', border: '1px solid rgba(255,255,255,0.1)', padding: '14px 16px', borderRadius: '8px', color: '#fff', fontFamily: 'var(--font-mono)', resize: 'vertical', outline: 'none' }}
                     />
                     <button
                       type="submit"
@@ -212,12 +212,12 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Right Column - Direct Links */}
-              <div style={{ padding: '40px', background: '#111', display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '40px', background: '#000', display: 'flex', flexDirection: 'column' }}>
                 <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Direct Contact</h3>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)', marginBottom: '30px' }}>Or reach out to us instantly via these channels.</p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1, justifyContent: 'center' }}>
-                  <a href="https://api.whatsapp.com/send/?phone=917695827158&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#222'} onMouseLeave={e => e.currentTarget.style.background = '#1a1a1a'}>
+                  <a href="https://api.whatsapp.com/send/?phone=917695827158&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#121212'} onMouseLeave={e => e.currentTarget.style.background = '#0a0a0a'}>
                     <div style={{ background: '#25D366', color: '#fff', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <MessageCircle size={20} />
                     </div>
@@ -227,7 +227,7 @@ const Hero: React.FC = () => {
                     </div>
                   </a>
 
-                  <a href="tel:+917695827158" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#222'} onMouseLeave={e => e.currentTarget.style.background = '#1a1a1a'}>
+                  <a href="tel:+917695827158" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#121212'} onMouseLeave={e => e.currentTarget.style.background = '#0a0a0a'}>
                     <div style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Phone size={20} />
                     </div>
@@ -237,7 +237,7 @@ const Hero: React.FC = () => {
                     </div>
                   </a>
 
-                  <a href="mailto:contact@ouantum.com" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#222'} onMouseLeave={e => e.currentTarget.style.background = '#1a1a1a'}>
+                  <a href="mailto:contact@ouantum.com" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#121212'} onMouseLeave={e => e.currentTarget.style.background = '#0a0a0a'}>
                     <div style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Mail size={20} />
                     </div>
@@ -247,7 +247,7 @@ const Hero: React.FC = () => {
                     </div>
                   </a>
 
-                  <a href="https://linkedin.com/company/ouantum" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#222'} onMouseLeave={e => e.currentTarget.style.background = '#1a1a1a'}>
+                  <a href="https://linkedin.com/company/ouantum" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '20px', background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.05)', borderRadius: '12px', color: '#fff', textDecoration: 'none', transition: 'all 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#121212'} onMouseLeave={e => e.currentTarget.style.background = '#0a0a0a'}>
                     <div style={{ background: '#0A66C2', color: '#fff', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     </div>

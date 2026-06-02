@@ -23,7 +23,7 @@ const stats = [
 
 const Problem = () => {
   return (
-    <section id="problem" style={{ background: '#000', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+    <section id="problem" style={{ background: '#000', padding: '120px 0' }}>
       <div className="container">
 
         {/* Header */}
