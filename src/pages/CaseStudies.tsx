@@ -46,7 +46,7 @@ const CaseStudies: React.FC = () => {
       <section style={{ paddingTop: '160px', paddingBottom: '60px', textAlign: 'center' }}>
         <div className="container">
           <h1 style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(3rem, 7vw, 5rem)', fontWeight: 400, color: '#fff' }}>
-            The Ouantum <span style={{ color: '#2563EB' }}>Log</span>
+            The Ouantum Log
           </h1>
         </div>
       </section>
@@ -81,7 +81,24 @@ const CaseStudies: React.FC = () => {
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9rem', lineHeight: 1.8, color: 'rgba(255,255,255,0.6)', marginBottom: '3rem', maxWidth: '90%' }}>
               {featuredCaseStudy.description}
             </p>
-            <a href={featuredCaseStudy.link} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#2563EB', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', textDecoration: 'none', fontWeight: 'bold' }}>
+            <a 
+              href={featuredCaseStudy.link} 
+              style={{ 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                gap: '0.5rem', 
+                color: '#fff', 
+                fontFamily: 'var(--font-mono)', 
+                fontSize: '0.8rem', 
+                letterSpacing: '0.1em', 
+                textDecoration: 'none', 
+                fontWeight: 'bold',
+                opacity: 0.8,
+                transition: 'opacity 0.2s'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
+              onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}
+            >
               READ MORE <ArrowUpRight size={16} />
             </a>
           </div>
@@ -126,7 +143,25 @@ const CaseStudies: React.FC = () => {
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.5)', marginBottom: '2.5rem', flex: 1 }}>
                   {study.description}
                 </p>
-                <a href={study.link} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#2563EB', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', textDecoration: 'none', fontWeight: 'bold', marginTop: 'auto' }}>
+                <a 
+                  href={study.link} 
+                  style={{ 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '0.5rem', 
+                    color: '#fff', 
+                    fontFamily: 'var(--font-mono)', 
+                    fontSize: '0.8rem', 
+                    letterSpacing: '0.1em', 
+                    textDecoration: 'none', 
+                    fontWeight: 'bold', 
+                    marginTop: 'auto',
+                    opacity: 0.8,
+                    transition: 'opacity 0.2s'
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}
+                >
                   READ MORE <ArrowUpRight size={16} />
                 </a>
               </div>

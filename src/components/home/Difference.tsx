@@ -58,7 +58,7 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
           border: '1px solid rgba(255,255,255,0.08)',
           borderRadius: '32px',
           padding: 'clamp(24px, 4vw, 40px)',
-          background: '#111111',
+          background: '#000000',
           display: 'flex',
           flexDirection: 'column',
           gap: 'clamp(16px, 2vh, 24px)',
@@ -86,7 +86,7 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
         {/* Header row */}
         <div className="difference-card-header" style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div className="difference-card-title" style={{ display: 'flex', gap: 'clamp(10px, 2vw, 20px)', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, lineHeight: 0.9, color: point.accent, opacity: 0.6 }}>
+            <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, lineHeight: 0.9, color: '#ffffff', opacity: 0.8 }}>
               {point.id}
             </span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
@@ -106,124 +106,45 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
           </div>
         </div>
 
-        {/* Content grid — no images, all data */}
-        <div className="grid-2col" style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '65% 1fr', gap: '16px', height: 'clamp(280px, 45vh, 400px)', minHeight: 0, marginTop: 'auto' }}>
-          
-          {/* LEFT — large metric panel */}
+        {/* Content image panel — premium visual storytelling with img3, img2, img1, and img4 */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          height: 'clamp(280px, 45vh, 400px)',
+          minHeight: 0,
+          marginTop: 'auto',
+          borderRadius: '24px',
+          overflow: 'hidden',
+          border: '1px solid rgba(255,255,255,0.06)',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
+          background: '#0a0a0a',
+        }}>
+          <img
+            src={
+              point.id === '01'
+                ? "/assets/images/img1.png"
+                : point.id === '02'
+                  ? "/assets/images/img2.png"
+                  : point.id === '03'
+                    ? "/assets/images/img3.png"
+                    : "/assets/images/img4.png"
+            }
+            alt={point.title}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.9,
+            }}
+          />
+          {/* Subtle premium dark gradient overlay to blend into the luxury aesthetic */}
           <div style={{
-            borderRadius: '24px',
-            overflow: 'hidden',
-            height: '100%',
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.06)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: 'clamp(20px, 3vw, 36px)',
-            position: 'relative',
-          }}>
-            {/* Background grid pattern */}
-            <div style={{
-              position: 'absolute', inset: 0,
-              backgroundImage: `linear-gradient(${point.accent}08 1px, transparent 1px), linear-gradient(90deg, ${point.accent}08 1px, transparent 1px)`,
-              backgroundSize: '40px 40px',
-              borderRadius: '24px',
-            }} />
-
-            {/* Top tag row */}
-            <div style={{ position: 'relative', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {point.tags.map(tag => (
-                <span key={tag} style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.6rem',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  padding: '4px 10px',
-                  border: `1px solid ${point.accent}40`,
-                  borderRadius: '20px',
-                  color: point.accent,
-                }}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Main metric */}
-            <div style={{ position: 'relative' }}>
-              <div style={{
-                fontFamily: 'var(--font-adieu)',
-                fontSize: 'clamp(4rem, 8vw, 7rem)',
-                lineHeight: 0.85,
-                color: '#fff',
-                letterSpacing: '-0.04em',
-                marginBottom: '12px',
-              }}>
-                {point.metric}
-              </div>
-              <div style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'clamp(0.65rem, 1vw, 0.8rem)',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.4)',
-              }}>
-                {point.metricLabel}
-              </div>
-            </div>
-
-            {/* Bottom accent bar */}
-            <div style={{ position: 'relative', height: '2px', background: 'rgba(255,255,255,0.06)', borderRadius: '2px', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', left: 0, top: 0, height: '100%', width: '72%', background: `linear-gradient(90deg, ${point.accent}, ${point.accent}40)`, borderRadius: '2px' }} />
-            </div>
-          </div>
-
-          {/* RIGHT — two stat blocks */}
-          <div className="difference-secondary-images" style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%', minHeight: 0 }}>
-            <div style={{
-              borderRadius: '24px',
-              flex: 1,
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.06)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: '20px',
-              gap: '8px',
-              position: 'relative',
-              overflow: 'hidden',
-            }}>
-              <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at center, ${point.accent}10 0%, transparent 70%)` }} />
-              <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', color: '#fff', lineHeight: 1, position: 'relative' }}>
-                {point.stat1}
-              </span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textAlign: 'center', position: 'relative' }}>
-                {point.stat1Label}
-              </span>
-            </div>
-            <div style={{
-              borderRadius: '24px',
-              flex: 1,
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.06)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              padding: '20px',
-              gap: '8px',
-              position: 'relative',
-              overflow: 'hidden',
-            }}>
-              <div style={{ position: 'absolute', inset: 0, background: `radial-gradient(circle at center, ${point.accent}10 0%, transparent 70%)` }} />
-              <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(1.8rem, 3vw, 2.8rem)', color: '#fff', lineHeight: 1, position: 'relative' }}>
-                {point.stat2}
-              </span>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.6rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textAlign: 'center', position: 'relative' }}>
-                {point.stat2Label}
-              </span>
-            </div>
-          </div>
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)',
+            pointerEvents: 'none'
+          }} />
         </div>
       </motion.div>
     </div>

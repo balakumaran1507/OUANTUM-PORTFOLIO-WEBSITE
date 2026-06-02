@@ -79,7 +79,7 @@ const PrivacyPolicy: React.FC = () => {
           <div>
             <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', color: '#fff', marginBottom: '1rem', letterSpacing: '0.1em' }}>4. CONTACT FOR COMPLIANCE</h2>
             <p>
-              For data inquiries, audit requests, or to review our information security practices, reach out to our compliance node at <a href="mailto:contact@ouantum.com" style={{ color: '#2563EB', textDecoration: 'underline' }}>contact@ouantum.com</a>.
+              For data inquiries, audit requests, or to review our information security practices, reach out to our compliance node at <a href="mailto:contact@ouantum.com" style={{ color: '#fff', textDecoration: 'underline', opacity: 0.8, transition: 'opacity 0.2s' }} onMouseOver={(e) => e.currentTarget.style.opacity = '1'} onMouseOut={(e) => e.currentTarget.style.opacity = '0.8'}>contact@ouantum.com</a>.
             </p>
           </div>
         </div>
