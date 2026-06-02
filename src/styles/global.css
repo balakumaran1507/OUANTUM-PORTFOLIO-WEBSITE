@@ -4229,16 +4229,6 @@ section {
   background: #000000;
 }
 
-.about-team-portrait-img.rahul-scale {
-  width: 170% !important;
-  height: 170% !important;
-  max-width: none !important;
-  position: absolute;
-  left: -35% !important;
-  top: -30% !important;
-  object-fit: cover;
-  object-position: center center !important;
-}
 
 .about-team-initials {
   font-family: var(--font-adieu);
