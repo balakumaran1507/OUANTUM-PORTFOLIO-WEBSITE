@@ -123,11 +123,11 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
           <img
             src={
               point.id === '01'
-                ? "/assets/images/img3.png"
+                ? "/assets/images/img1.png"
                 : point.id === '02'
                   ? "/assets/images/img2.png"
                   : point.id === '03'
-                    ? "/assets/images/img1.png"
+                    ? "/assets/images/img3.png"
                     : "/assets/images/img4.png"
             }
             alt={point.title}
