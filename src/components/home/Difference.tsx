@@ -80,8 +80,7 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
         {/* Noise Overlay */}
         <div style={{ position: 'absolute', inset: 0, opacity: 0.03, pointerEvents: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")', mixBlendMode: 'overlay', zIndex: 1, borderRadius: '24px' }}></div>
 
-        {/* Subtle accent line at top */}
-        <div style={{ position: 'absolute', top: 0, left: '40px', right: '40px', height: '1px', background: `linear-gradient(90deg, transparent, ${point.accent}, transparent)`, zIndex: 3 }} />
+
         
         {/* Header row */}
         <div className="difference-card-header" style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
