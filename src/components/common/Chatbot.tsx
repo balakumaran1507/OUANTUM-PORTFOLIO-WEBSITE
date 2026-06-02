@@ -188,7 +188,7 @@ const Chatbot: React.FC = () => {
               maxWidth: 'calc(100vw - 2rem)',
               height: '580px',
               maxHeight: '80vh',
-              background: '#111111',
+              background: '#000000',
               borderRadius: '20px',
               border: '1px solid rgba(255,255,255,0.08)',
               boxShadow: '0 24px 48px rgba(0,0,0,0.8)',
@@ -205,7 +205,7 @@ const Chatbot: React.FC = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              background: '#0d0d0d',
+              background: '#000000',
               flexShrink: 0,
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -316,7 +316,7 @@ const Chatbot: React.FC = () => {
             <div style={{
               padding: '1rem 1.25rem',
               borderTop: '1px solid rgba(255,255,255,0.06)',
-              background: '#0d0d0d',
+              background: '#000000',
               flexShrink: 0,
             }}>
               <div style={{

@@ -58,7 +58,7 @@ const DifferenceCard = ({ point, i, pointsLength, progress }: { point: Differenc
           border: '1px solid rgba(255,255,255,0.08)',
           borderRadius: '32px',
           padding: 'clamp(24px, 4vw, 40px)',
-          background: '#111111',
+          background: '#000000',
           display: 'flex',
           flexDirection: 'column',
           gap: 'clamp(16px, 2vh, 24px)',
