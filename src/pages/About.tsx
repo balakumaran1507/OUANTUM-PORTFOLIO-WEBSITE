@@ -57,7 +57,7 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
             src={member.image}
             alt={member.name}
             onError={() => setImgError(true)}
-            className="about-team-portrait-img"
+            className={`about-team-portrait-img ${member.name === 'Rahul' ? 'rahul-scale' : ''}`}
           />
         ) : (
           <div className="about-team-initials-bg">
