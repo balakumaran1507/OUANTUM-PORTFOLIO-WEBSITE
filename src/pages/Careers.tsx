@@ -66,7 +66,7 @@ const Careers: React.FC = () => {
                   <h3 style={{ color: '#fff', margin: '0 0 0.5rem 0', fontSize: '1.1rem', letterSpacing: '0.1em' }}>AI ENGINEER / ML RESEARCHER</h3>
                   <p style={{ color: 'rgba(255,255,255,0.5)', margin: '0', fontSize: '0.8rem', letterSpacing: '0.1em' }}>CHENNAI, IN (HYBRID) · FULL-TIME</p>
                 </div>
-                <a href="mailto:contact@ouantum.com?subject=Application: AI Engineer" style={{ background: '#2563EB', color: '#fff', textDecoration: 'none', padding: '0.75rem 1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'background 0.3s' }}>
+                <a href="mailto:contact@ouantum.com?subject=Application: AI Engineer" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', textDecoration: 'none', padding: '0.75rem 1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'all 0.3s' }}>
                   APPLY NOW
                 </a>
               </div>
@@ -76,7 +76,7 @@ const Careers: React.FC = () => {
                   <h3 style={{ color: '#fff', margin: '0 0 0.5rem 0', fontSize: '1.1rem', letterSpacing: '0.1em' }}>STRUCTURAL AUDIT ENGINEER</h3>
                   <p style={{ color: 'rgba(255,255,255,0.5)', margin: '0', fontSize: '0.8rem', letterSpacing: '0.1em' }}>FIELD/REMOTE · FULL-TIME</p>
                 </div>
-                <a href="mailto:contact@ouantum.com?subject=Application: Structural Audit Engineer" style={{ background: '#2563EB', color: '#fff', textDecoration: 'none', padding: '0.75rem 1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'background 0.3s' }}>
+                <a href="mailto:contact@ouantum.com?subject=Application: Structural Audit Engineer" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', textDecoration: 'none', padding: '0.75rem 1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'all 0.3s' }}>
                   APPLY NOW
                 </a>
               </div>
@@ -86,7 +86,7 @@ const Careers: React.FC = () => {
                   <h3 style={{ color: '#fff', margin: '0 0 0.5rem 0', fontSize: '1.1rem', letterSpacing: '0.1em' }}>FRONTEND/UI DEVELOPER</h3>
                   <p style={{ color: 'rgba(255,255,255,0.5)', margin: '0', fontSize: '0.8rem', letterSpacing: '0.1em' }}>CHENNAI, IN (HYBRID) · FULL-TIME</p>
                 </div>
-                <a href="mailto:contact@ouantum.com?subject=Application: Frontend Developer" style={{ background: '#2563EB', color: '#fff', textDecoration: 'none', padding: '0.75rem 1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'background 0.3s' }}>
+                <a href="mailto:contact@ouantum.com?subject=Application: Frontend Developer" style={{ background: '#000000', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', textDecoration: 'none', padding: '0.75rem 1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'all 0.3s' }}>
                   APPLY NOW
                 </a>
               </div>
@@ -100,7 +100,7 @@ const Careers: React.FC = () => {
             <p style={{ maxWidth: '600px', marginBottom: '2rem' }}>
               We are always looking for exceptional talent. If you believe your skills align with our mission to overhaul construction quality assurance, send your resume and a brief introduction.
             </p>
-            <a href="mailto:contact@ouantum.com?subject=General Application" style={{ display: 'inline-block', border: '1px solid #2563EB', color: '#2563EB', textDecoration: 'none', padding: '1rem 2rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'all 0.3s' }}>
+            <a href="mailto:contact@ouantum.com?subject=General Application" style={{ display: 'inline-block', background: '#000000', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', textDecoration: 'none', padding: '1rem 2rem', fontFamily: 'var(--font-mono)', fontSize: '0.8rem', letterSpacing: '0.1em', transition: 'all 0.3s' }}>
               SUBMIT OPEN APPLICATION
             </a>
           </div>
