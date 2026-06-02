@@ -33,7 +33,7 @@ const tableRows = [
 
 const HowItWorks = () => {
   return (
-    <section id="how-it-works" style={{ background: '#000', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+    <section id="how-it-works" style={{ background: '#000', padding: '120px 0' }}>
       <div className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 2rem' }}>
 
         {/* Header */}
@@ -77,39 +77,16 @@ const HowItWorks = () => {
           {steps.map((step, i) => (
             <div key={i} style={{
               border: '1px solid rgba(255,255,255,0.1)',
-              background: 'linear-gradient(180deg, #0a0a0a 0%, #000 100%)',
+              background: '#000000',
               padding: '2.5rem',
               position: 'relative',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column'
             }}>
-              {/* Background faint number */}
-              <div style={{
-                position: 'absolute',
-                right: '-10%',
-                top: '-10%',
-                fontSize: '12rem',
-                color: 'rgba(255,255,255,0.02)',
-                fontFamily: 'var(--font-adieu)',
-                lineHeight: 0.8,
-                pointerEvents: 'none'
-              }}>
-                {step.num}
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '2rem' }}>
-                <div style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '1rem',
-                  color: '#fff',
-                  borderBottom: '1px solid #fff',
-                  paddingBottom: '0.25rem'
-                }}>{step.num}</div>
-                {i < steps.length - 1 && (
-                  <ArrowRight size={20} color="rgba(255,255,255,0.2)" />
-                )}
-              </div>
+              {i < steps.length - 1 && (
+                <ArrowRight size={20} color="rgba(255,255,255,0.2)" style={{ position: 'absolute', top: '2.5rem', right: '2.5rem' }} />
+              )}
 
               <h3 style={{
                 fontFamily: 'var(--font-adieu)',
@@ -158,9 +135,9 @@ const HowItWorks = () => {
 
         {/* Dashboard/Table Section */}
         <div style={{
-          border: '1px solid rgba(255,255,255,0.1)',
-          background: '#050505',
-          borderRadius: '4px',
+          border: '1px solid rgba(255,255,255,0.15)',
+          background: '#000000',
+          borderRadius: '24px',
           overflow: 'hidden'
         }}>
           {/* Dashboard Header */}
@@ -176,16 +153,7 @@ const HowItWorks = () => {
             color: 'rgba(255,255,255,0.5)'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ display: 'flex', gap: '0.4rem' }}>
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
-                <div style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(255,255,255,0.2)' }} />
-              </div>
               <span style={{ letterSpacing: '0.1em' }}>OUANTUM_TELEMETRY_VIEW</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 10px #10B981' }} />
-              <span>LIVE</span>
             </div>
           </div>
 
@@ -229,9 +197,19 @@ const HowItWorks = () => {
                         </span>
                       </td>
                       <td className="telemetry-cell" data-label="AI VERDICT" style={{ padding: '1.5rem' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: row.color }}>
-                          <Icon size={16} />
-                          <span style={{ fontWeight: 'bold', letterSpacing: '0.05em' }}>{row.status}</span>
+                        <div style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255, 255, 255, 0.15)',
+                          padding: '0.25rem 0.75rem',
+                          borderRadius: '30px',
+                          fontSize: '0.8rem',
+                          fontFamily: 'var(--font-mono)'
+                        }}>
+                          <Icon size={14} color="#ffffff" />
+                          <span style={{ fontWeight: 'normal', letterSpacing: '0.05em' }}>{row.status}</span>
                         </div>
                       </td>
                     </tr>
