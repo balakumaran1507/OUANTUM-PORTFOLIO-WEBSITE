@@ -20,6 +20,7 @@ const Footer: React.FC = () => {
             <a href="/#activities" className="footer-nav-link">CORE_CAPABILITIES</a>
             <a href="/#geography" className="footer-nav-link">INFRASTRUCTURE_NODES</a>
             <Link to="/case-studies" className="footer-nav-link">CASE_STUDIES</Link>
+            <Link to="/blog" className="footer-nav-link">BLOG_LOG</Link>
           </div>
           <div className="footer-nav-col">
             <span className="footer-col-label">CONNECT</span>

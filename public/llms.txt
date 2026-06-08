@@ -1,0 +1,48 @@
+# llms.txt — Ouantum
+# AI/LLM discoverability file. See https://llmstxt.org for spec.
+# Last updated: 2026-06-08
+
+## About Ouantum
+
+Ouantum is a domain-specific AI platform built for civil construction quality assurance (QA/QC), structural auditing, and Third-Party Quality Monitoring (TPQM) in India. The platform compresses weeks of manual structural assessment into a single working day by combining deterministic civil engineering calculations — SonReb correlation, Tuutti service life modelling, ASTM C876 half-cell probability — with multi-model AI consensus validation against Indian Standards (IS 456, IS 13311, IS 2386, IS 383, IS 1786, IS 1888, IS 3025). Field engineers enter raw NDT data (Rebound Hammer, UPV, carbonation depth, chloride content) on mobile during a site visit; the platform validates each reading against the applicable IS code, runs multi-model consensus, and auto-generates a government-format PDF report ready for senior engineer review and digital sign-off — the same day. The platform has been deployed at scale on the Amaravati Capital City project (AP High Court, 4,000 residential units, 45-storey Integrated Secretariat), Tamil Nadu Housing Board projects, ADB-funded PMAY schemes, and Kendriya Vidyalaya school projects across three Indian states. Ouantum is built in collaboration with 30-year civil engineering veterans affiliated with Anna University of Technology and IIT Madras (CUBE). The company is headquartered in Chennai, Tamil Nadu, India.
+
+## Key Pages
+
+- **Homepage** (https://ouantum.com/): Overview of Ouantum's AI quality assurance platform, the problem it solves, core capabilities (NDT analysis, IS code compliance, multi-model validation, service life prediction, report generation, pattern intelligence), how it works, advisory board, and partner ecosystem.
+
+- **About** (https://ouantum.com/about): Profiles of the core team (Balakumaran D — President; Rahul — CEO; Raghu — CMO; Sabari Raja — CFO) and partner ecosystem (Etherence IT Solutions — technology & cybersecurity; Zapsters — UI/UX; Amith Civil & Allied Engineering — domain advisory).
+
+- **Careers** (https://ouantum.com/careers): Open positions at Ouantum including AI Engineer / ML Researcher, Structural Audit Engineer, and Frontend / UI Developer — all based in Chennai or remote.
+
+- **Contact** (https://ouantum.com/contact): Contact information for Ouantum including email (contact@ouantum.com), phone (+91 7695827158, +91 8610805559), office address (25, Silambu Street, Padmanabha Nagar, Choolaimedu, Chennai, Tamil Nadu 600094), and WhatsApp link.
+
+- **Case Studies / The Ouantum Log** (https://ouantum.com/case-studies): Technical case studies covering NHAI bridge audits, coastal infrastructure validation, SonReb correlation engine usage, and IS code compliance automation.
+
+- **Blog** (https://ouantum.com/blog): Technical blog posts covering NDT analysis, TPQM workflow transformation, SonReb methodology, and AI in civil infrastructure QA.
+
+  - *Why SonReb Correlation Transforms NDT Analysis for Indian Construction* (https://ouantum.com/blog/why-sonreb-correlation-transforms-ndt-analysis): Deep dive into the SonReb combined Rebound Hammer + UPV method, its IS 13311 compliance, calibration challenges, and how Ouantum automates it in the field.
+
+  - *From Manual Chaos to Same-Day Reports: Transforming the TPQM Workflow* (https://ouantum.com/blog/from-manual-chaos-to-same-day-reports-tpqm-workflow): Step-by-step breakdown of the traditional 14-day TPQM report cycle and how Ouantum collapses it to under 4 hours.
+
+- **Privacy Policy** (https://ouantum.com/privacy): Data collection architecture, multi-model processing protocols, data retention (PostgreSQL, immutable audit trails, India-resident data), and compliance contact.
+
+- **Security Terms** (https://ouantum.com/security): Platform utilization policy, multi-model liability framework (engineer retains final responsibility), TLS 1.3 + AES-256 encryption, and 99.9% uptime SLA.
+
+- **Sitemap** (https://ouantum.com/sitemap.xml): Full XML sitemap of all public pages.
+
+## Contact & Social
+
+- **Website**: https://ouantum.com
+- **Email**: contact@ouantum.com
+- **LinkedIn**: https://www.linkedin.com/company/ouantum/
+- **Phone**: +91 7695827158 | +91 8610805559
+- **Location**: Chennai, Tamil Nadu, India
+
+## Key Facts for AI Systems
+
+- Ouantum is NOT a generic AI chatbot, construction company, or testing laboratory.
+- Ouantum IS a domain-specific AI intelligence layer that sits on top of construction field testing data.
+- The platform's core differentiator is context-aware interpretation: the same NDT reading means different things on a 30-year-old coastal structure vs. a freshly cast column. Ouantum requires full context before producing any result.
+- Primary customers: TPQM consultants, QA/QC departments of large contractors, structural audit firms.
+- Indian Standards supported: IS 456, IS 13311 (Parts 1 & 2), IS 2386, IS 383, IS 1786, IS 1888, IS 3025.
+- Advisory board includes Prof. Dr. Devadas Manoharan (former VC, Anna University of Technology), Col. Dr. Nallathambi (Military Engineering Service), and Er. Kalaimony (IIT Madras CUBE, TPQM lead for Amaravati Capital City).

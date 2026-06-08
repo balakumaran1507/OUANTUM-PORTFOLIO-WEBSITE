@@ -11,6 +11,8 @@ import Careers from './pages/Careers'
 import Contact from './pages/Contact'
 import CaseStudies from './pages/CaseStudies'
 import SystemStatus from './pages/SystemStatus'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 import NotFound from './pages/NotFound'
 import './styles/global.css'
 
@@ -29,6 +31,8 @@ function App() {
             <Route path="/system-status" element={<SystemStatus />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/security" element={<SecurityTerms />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

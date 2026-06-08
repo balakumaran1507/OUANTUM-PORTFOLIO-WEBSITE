@@ -1,5 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import useSEO from '../hooks/useSEO';
+
+const BASE_URL = 'https://ouantum.com';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Ouantum',
+  url: BASE_URL,
+  sameAs: ['https://www.linkedin.com/company/ouantum/'],
+  founders: [
+    {
+      '@type': 'Person',
+      name: 'Balakumaran D',
+      jobTitle: 'President',
+      description: 'Built Ouantum with a vision to transform manual QA into a single efficient workflow.',
+    },
+    {
+      '@type': 'Person',
+      name: 'Rahul',
+      jobTitle: 'Chief Executive Officer',
+      description: 'Leads commercial and strategic direction, shaping go-to-market across government infrastructure projects.',
+    },
+  ],
+};
 
 const team = [
   {
@@ -7,7 +32,7 @@ const team = [
     name: 'Balakumaran D',
     image: '/assets/images/Balakumaran_CEO_Profile_Pic.png',
     initials: 'BD',
-    bio: 'Balakumaran built Ouantum with a clear vision: civil engineers deserve infrastructure that works from day one. He works with clients across India to turn weeks of manual QA into a single efficient workflow.\n\nHe leads the company’s strategic direction, ensuring every deployment meets high standards of deterministic quality assurance.\nReach him at +91 7695827158.',
+    bio: 'Balakumaran built Ouantum with a clear vision: civil engineers deserve infrastructure that works from day one. He works with clients across India to turn weeks of manual QA into a single efficient workflow.\n\nHe leads the company\'s strategic direction, ensuring every deployment meets high standards of deterministic quality assurance.\nReach him at +91 7695827158.',
   },
   {
     role: 'CHIEF EXECUTIVE OFFICER',
@@ -17,14 +42,14 @@ const team = [
     bio: 'Rahul leads the commercial and strategic direction of Ouantum. He has shaped the go-to-market across Tamil Nadu Housing Board, ADB-funded PMAY schemes, and Amaravati Capital City — building systems that help Ouantum scale without compromising audit quality.\n\nHis focus is on delivering reliable same-day outcomes for every client.\nReach him at +91 861 080 5559.',
   },
   {
-    role: 'Cheif Marketing Officer',
+    role: 'CHIEF MARKETING OFFICER',
     name: 'Raghu',
     image: '/assets/images/raghu.png',
     initials: 'RG',
     bio: 'Raghu handles the legal framework and compliance structures that underpin Ouantum\'s government-grade report generation. He also contributes to the AI pipeline — ensuring every automated output is legally defensible and technically sound.\n\nHis dual role bridges the gap between engineering precision and regulatory compliance.',
   },
   {
-    role: 'Chief Financial Offier',
+    role: 'CHIEF FINANCIAL OFFICER',
     name: 'Sabari Raja',
     image: '/assets/images/sabari.jpeg',
     initials: 'SR',
@@ -46,16 +71,22 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
       transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
       onClick={() => setExpanded(e => !e)}
       className="about-team-card"
+      role="button"
+      tabIndex={0}
+      aria-expanded={expanded}
+      aria-label={`${member.name}, ${member.role} — click to view biography`}
+      onKeyDown={(e) => e.key === 'Enter' && setExpanded(v => !v)}
     >
       {/* ── PORTRAIT ── */}
       <div
         className="about-team-portrait"
         style={{ transform: expanded ? 'translateY(-100%)' : 'translateY(0)' }}
+        aria-hidden="true"
       >
         {member.image && !imgError ? (
           <img
             src={member.image}
-            alt={member.name}
+            alt={`${member.name}, ${member.role} at Ouantum`}
             onError={() => setImgError(true)}
             className="about-team-portrait-img"
           />
@@ -78,7 +109,7 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
             {member.image && !imgError ? (
               <img
                 src={member.image}
-                alt={member.name}
+                alt={`Portrait of ${member.name}`}
                 className="about-team-portrait-img"
               />
             ) : (
@@ -112,30 +143,31 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
 };
 
 const About: React.FC = () => {
+  useSEO({
+    title: 'About Ouantum | Team, Mission & Partner Ecosystem',
+    description:
+      'Meet the core team behind Ouantum — civil engineers, AI specialists, and structural auditors building deterministic quality assurance for India\'s critical infrastructure.',
+    keywords:
+      'Ouantum team, Balakumaran D, about Ouantum, civil engineering AI team, structural auditing company India, Etherence, Zapsters, Amith',
+    canonicalPath: '/about',
+    jsonLd: [organizationSchema],
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="subpage-wrapper" style={{ background: '#000', color: '#fff', minHeight: '100vh', paddingBottom: '80px' }}>
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Ouantum",
-            "founder": [
-              { "@type": "Person", "name": "Balakumaran D", "jobTitle": "Founder" },
-              { "@type": "Person", "name": "Rahul", "jobTitle": "Co-founder" }
-            ]
-          })
-        }}
-      />
-
+    <main
+      className="subpage-wrapper"
+      style={{ background: '#000', color: '#fff', minHeight: '100vh', paddingBottom: '80px' }}
+    >
       {/* Hero */}
-      <section className="hero" style={{ minHeight: '60vh', paddingTop: '120px' }}>
+      <section
+        className="hero"
+        style={{ minHeight: '60vh', paddingTop: '120px' }}
+        aria-label="About Ouantum hero section"
+      >
         <div className="container hero-content">
           <div className="section-split hero-main-layout">
             <motion.div className="sidebar-info hero-left">
@@ -147,7 +179,14 @@ const About: React.FC = () => {
               </p>
             </motion.div>
             <motion.div className="hero-right-content hero-right">
-              <h1 style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', lineHeight: 1.1, marginBottom: '2rem' }}>
+              <h1
+                style={{
+                  fontFamily: 'var(--font-adieu)',
+                  fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                  lineHeight: 1.1,
+                  marginBottom: '2rem',
+                }}
+              >
                 ABOUT<br />ARCHIVE
               </h1>
               <p className="hero-subtext">
@@ -163,8 +202,12 @@ const About: React.FC = () => {
           transition={{ duration: 1.5 }}
           style={{ height: '60vh' }}
         >
-          <img src="/assets/images/about-hero.jpg" alt="Infrastructure Archive" className="subpage-hero-image" />
-          <div className="overlay-gradient" />
+          <img
+            src="/assets/images/about-hero.jpg"
+            alt="Civil infrastructure site — background image for Ouantum About page"
+            className="subpage-hero-image"
+          />
+          <div className="overlay-gradient" aria-hidden="true" />
         </motion.div>
       </section>
 
@@ -173,7 +216,7 @@ const About: React.FC = () => {
         <div className="about-content-stack">
 
           {/* LEADERSHIP */}
-          <div>
+          <section aria-label="Leadership team">
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -193,17 +236,17 @@ const About: React.FC = () => {
               Meet The Core Team
             </motion.h2>
 
-            <div className="about-team-rule" />
+            <div className="about-team-rule" aria-hidden="true" />
 
             <div className="about-team-grid">
               {team.map((member, i) => (
                 <TeamCard key={i} member={member} index={i} />
               ))}
             </div>
-          </div>
+          </section>
 
           {/* PARTNER ECOSYSTEM */}
-          <div className="about-partners-section">
+          <section className="about-partners-section" aria-label="Partner ecosystem">
             <h2 className="about-partners-heading">
               PARTNER ECOSYSTEM
             </h2>
@@ -213,7 +256,14 @@ const About: React.FC = () => {
                 { name: 'ZAPSTERS', desc: 'UI/UX & CIVIL INTERFACE', url: 'https://zapsters.in', label: 'zapsters.in' },
                 { name: 'AMITH', desc: 'CIVIL & ALLIED ENGINEERING', url: 'https://amith.in.net', label: 'amith.in.net' },
               ].map(p => (
-                <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="about-partner-link">
+                <a
+                  key={p.name}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="about-partner-link"
+                  aria-label={`Visit ${p.name} — ${p.desc} partner of Ouantum`}
+                >
                   <div className="animated-silver-bg about-partner-card">
                     <h3 className="about-partner-name">{p.name}</h3>
                     <p className="about-partner-desc">{p.desc}</p>
@@ -222,11 +272,11 @@ const About: React.FC = () => {
                 </a>
               ))}
             </div>
-          </div>
+          </section>
 
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 
