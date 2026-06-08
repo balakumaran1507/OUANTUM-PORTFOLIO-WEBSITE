@@ -1,8 +1,4 @@
 {
-  "framework": "vite",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -10,11 +6,6 @@
     }
   ],
   "redirects": [
-    {
-      "source": "https://www.ouantum.com/(.*)",
-      "destination": "https://ouantum.com/$1",
-      "permanent": true
-    },
     {
       "source": "/home",
       "destination": "/",
