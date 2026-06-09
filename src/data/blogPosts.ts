@@ -1,14 +1,15 @@
 export interface BlogPost {
+  id: number;
   slug: string;
   title: string;
+  category: string;
   date: string;
-  publishedTime: string; // ISO 8601
+  datePublished: string; // ISO 8601
   author: string;
   authorRole: string;
   excerpt: string;
   coverImage: string;
   coverImageAlt: string;
-  readingTime: string;
   tags: string[];
   content: BlogSection[];
 }
@@ -19,204 +20,475 @@ interface BlogSection {
   items?: string[];
 }
 
+export const CATEGORIES = [
+  'All',
+  'AI in Construction',
+  'Predictive Maintenance',
+  'BIM',
+  'Civil Engineering AI',
+  'Quality Assurance',
+] as const;
+
+export type Category = (typeof CATEGORIES)[number];
+
 export const blogPosts: BlogPost[] = [
+  // ─── AI IN CONSTRUCTION ──────────────────────────────────────────────────
   {
-    slug: 'why-sonreb-correlation-transforms-ndt-analysis',
-    title: 'Why SonReb Correlation Transforms NDT Analysis for Indian Construction',
+    id: 1,
+    slug: 'how-ai-reduces-rework-costs-in-construction',
+    title: 'How Can AI Reduce Rework Costs in Construction Projects?',
+    category: 'AI in Construction',
     date: 'June 5, 2026',
-    publishedTime: '2026-06-05T09:00:00+05:30',
-    author: 'Balakumaran D',
-    authorRole: 'President, Ouantum',
+    datePublished: '2026-06-05T09:00:00+05:30',
+    author: 'BALAKUMARAN D',
+    authorRole: 'CEO',
     excerpt:
-      'Manual NDT analysis forces engineers to treat Rebound Hammer and UPV readings as isolated data points. The SonReb method unifies both, delivering a statistically stronger concrete strength estimate — and Ouantum runs it automatically, in the field, on every element.',
-    coverImage: '/assets/images/bg2.jpg',
-    coverImageAlt: 'NDT field engineer running ultrasonic pulse velocity test on concrete column at an Indian infrastructure site',
-    readingTime: '7 min read',
-    tags: ['NDT', 'SonReb', 'IS 13311', 'concrete strength', 'quality assurance'],
+      'AI identifies defects, design conflicts, and quality issues before they become expensive problems. Through computer vision, predictive analytics, and real-time monitoring, AI enables project teams to take corrective action immediately.',
+    coverImage: '/assets/images/amaravati_project.png',
+    coverImageAlt: 'Amaravati project showing AI defect detection in action',
+    tags: ['AI', 'rework', 'construction costs', 'quality assurance', 'computer vision'],
     content: [
       {
         type: 'paragraph',
-        text: 'Every civil quality engineer in India knows the frustration: you run a Rebound Hammer test on a column, get a value of 34, and then spend the next hour debating whether the reading is valid given the surface carbonation, the curing age, and the specified grade. Then you run a Ultrasonic Pulse Velocity test and get a conflicting signal. Which reading do you trust?',
+        text: 'AI reduces rework costs in construction projects by identifying defects, design conflicts, and quality issues before they become expensive problems. Through computer vision, predictive analytics, and real-time monitoring, AI can detect construction errors early, allowing project teams to take corrective action immediately.',
       },
       {
         type: 'heading',
-        text: 'The Problem with Isolated NDT Readings',
+        text: 'Early Detection Through Computer Vision',
       },
       {
         type: 'paragraph',
-        text: 'IS 13311 (Part 1 and Part 2) governs both UPV and Rebound Hammer testing in India. What the standard does not automate is the synthesis. A Rebound Hammer reading of 32 on a 90-day-old M30 column in a coastal exposure zone means something entirely different from the same reading on a freshly cast M25 column inland. Age, exposure condition, cement type, curing quality — all of these are required context before a single reading can be meaningfully interpreted.',
-      },
-      {
-        type: 'paragraph',
-        text: 'The consequence of ignoring this context is not just imprecision. It is structural risk. Engineers who work from tables and rules of thumb — even good engineers — cannot hold six interdependent variables in mind simultaneously across 300 data points per bi-weekly site visit.',
+        text: 'AI-powered quality assurance systems compare actual site conditions with project specifications and BIM models to ensure compliance. By reducing human error, improving inspection accuracy, and accelerating issue detection, AI helps contractors minimize material waste, labor costs, project delays, and costly reconstruction work.',
       },
       {
         type: 'heading',
-        text: 'What SonReb Actually Does',
+        text: 'Predictive Analytics for Risk Prevention',
       },
       {
         type: 'paragraph',
-        text: 'The SonReb method, developed by Gasparik and refined through decades of European and Indian structural research, combines Rebound Hammer (R) and Ultrasonic Pulse Velocity (V) readings into a single, more reliable estimate of in-situ concrete compressive strength. The general form is:',
-      },
-      {
-        type: 'quote',
-        text: 'fc = a · V^b · R^c — where a, b, and c are empirically calibrated coefficients that account for cement type, aggregate characteristics, and curing conditions.',
-      },
-      {
-        type: 'paragraph',
-        text: 'The key insight is that UPV is sensitive to concrete density and homogeneity, while Rebound is sensitive to surface hardness and near-surface properties. Neither alone gives you the full picture. Together, calibrated against IS standards and the specific concrete mix design, they produce a combined estimate that is statistically superior to either test in isolation — reducing the standard error from approximately ±25% to ±15% when properly calibrated.',
-      },
-      {
-        type: 'heading',
-        text: 'The Calibration Problem — and How Ouantum Solves It',
-      },
-      {
-        type: 'paragraph',
-        text: 'The reason SonReb has not been widely adopted in Indian construction practice is not conceptual resistance — it is the calibration burden. The coefficients a, b, and c are not universal. They depend on the cement type, water-cement ratio, aggregate grading, and curing regime. Developing project-specific calibration curves requires destructive core testing and lab verification — a process that is expensive and time-consuming when done manually.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Ouantum\'s NDT Analysis Engine automates the calibration selection. Based on the context fields entered at data collection — concrete grade, cement type, exposure condition, age of element — the engine selects the appropriate coefficient set from a calibrated database built in collaboration with NABL-accredited lab partners. This means every field engineer using Ouantum gets a calibrated SonReb estimate without needing to understand the underlying regression model.',
-      },
-      {
-        type: 'heading',
-        text: 'What This Means in Practice',
+        text: 'Machine learning models trained on historical project data can predict where rework is most likely to occur before the work even begins. These systems analyze patterns from thousands of completed projects to surface risk factors that human reviewers might miss.',
       },
       {
         type: 'list',
         items: [
-          'An M25 column with RH = 34 and UPV = 3.8 km/s at 28 days gets a SonReb estimate of approximately 26.3 MPa — below the characteristic strength, flagged immediately.',
-          'The same readings on an M20 column at 90 days map to a different calibration curve and produce a different result — context-aware from the first data entry.',
-          'Outlier readings (RH too high relative to UPV, suggesting surface carbonation) are flagged separately, with a recommendation for core sampling.',
-          'All three values — RH, UPV, and SonReb estimate — are logged against the specific element, floor, block, and project, creating a complete audit trail.',
+          'Real-time defect detection using camera feeds and sensor data',
+          'Automated comparison of as-built conditions against BIM models',
+          'Predictive risk scoring for each construction activity',
+          'Immediate alert systems that notify supervisors of deviations',
         ],
       },
       {
         type: 'heading',
-        text: 'The Compliance Connection',
+        text: 'The ROI of Prevention',
       },
       {
         type: 'paragraph',
-        text: 'For Third-Party Quality Monitors (TPQM) working on government and ADB-funded projects, the audit trail is as important as the finding itself. The Tamil Nadu Housing Board, Amaravati Capital Region Development Authority, and ADB project formats all require documented IS code references alongside test findings. Ouantum generates these automatically — the SonReb estimate, the applicable IS code clause, and the pass/concern/fail classification — in the exact government report format required.',
+        text: 'Industry data consistently shows that identifying a defect at design stage costs roughly 1x to fix. The same defect identified during construction costs 10x. Identified post-completion, it costs 100x or more. AI moves the detection point earlier, compressing that cost curve dramatically.',
       },
       {
-        type: 'paragraph',
-        text: 'The result is a structural finding that is not just technically defensible but legally and procedurally compliant — ready for engineer sign-off within the same day as the site visit.',
+        type: 'quote',
+        text: 'Every hour spent on AI-powered quality monitoring during construction can save 10–100 hours of rework after completion.',
       },
     ],
   },
   {
-    slug: 'from-manual-chaos-to-same-day-reports-tpqm-workflow',
-    title: 'From Manual Chaos to Same-Day Reports: Transforming the TPQM Workflow',
+    id: 2,
+    slug: 'roi-of-ai-powered-construction-quality-assurance',
+    title: 'What Is the ROI of AI-Powered Construction Quality Assurance?',
+    category: 'AI in Construction',
     date: 'May 28, 2026',
-    publishedTime: '2026-05-28T09:00:00+05:30',
-    author: 'Rahul',
-    authorRole: 'Chief Executive Officer, Ouantum',
+    datePublished: '2026-05-28T09:00:00+05:30',
+    author: 'RAHUL',
+    authorRole: 'Engineering Lead',
     excerpt:
-      'A bi-weekly site visit on a 4,000-unit government housing project generates 150–300 data points. Manually processing these into a compliant TPQM report takes 40–60 hours. Here is exactly what that process looks like — and how Ouantum collapses it to under 4 hours.',
-    coverImage: '/assets/images/bg4.jpg',
-    coverImageAlt: 'Civil engineer reviewing government format quality assurance report on a large housing project site in Tamil Nadu',
-    readingTime: '9 min read',
-    tags: ['TPQM', 'government reporting', 'workflow', 'Amaravati', 'Tamil Nadu Housing Board'],
+      'The return on investment of AI-powered QA comes from reduced rework, improved productivity, faster inspections, and lower operational costs. Organizations implementing AI-driven QA often experience fewer project delays and better resource utilization.',
+    coverImage: '/assets/images/bg1.jpg',
+    coverImageAlt: 'Engineer reviewing AI-generated quality assurance report',
+    tags: ['ROI', 'quality assurance', 'AI', 'construction productivity'],
     content: [
       {
         type: 'paragraph',
-        text: 'Third-Party Quality Monitoring (TPQM) is the backbone of accountability in India\'s government-funded construction sector. Whether it\'s PMAY housing funded by the Asian Development Bank, the Amaravati Capital City development, or Tamil Nadu Housing Board\'s multi-block residential complexes, every major government project mandates an independent TPQM consultant whose bi-weekly reports are the record of quality across the life of the build.',
+        text: 'The return on investment (ROI) of AI-powered construction quality assurance comes from reduced rework, improved productivity, faster inspections, and lower operational costs. AI automates defect detection, compliance verification, and documentation processes, enabling teams to identify issues earlier than traditional inspections.',
       },
       {
         type: 'heading',
-        text: 'The Manual Reality',
-      },
-      {
-        type: 'paragraph',
-        text: 'Here is what a standard bi-weekly site visit on a 4,000-unit project looks like today — before Ouantum.',
+        text: 'Where the Value Comes From',
       },
       {
         type: 'list',
         items: [
-          'Day 1–2 (Site): Field engineers visit each block and element. Readings — Rebound Hammer, UPV, carbonation depth, chloride content, half-cell potential, slump, cube strength — are recorded on paper forms or, if the team is progressive, an Excel template on a tablet.',
-          'Day 3–5 (Lab): Paper forms are sent to a NABL-accredited lab. Lab technicians transcribe readings, run calculations, and return preliminary results. Data from different blocks arrives at different times.',
-          'Day 6–10 (Analysis): A senior engineer manually cross-references every reading against the applicable IS codes. IS 456 for concrete, IS 13311 for NDT, IS 1786 for rebar. Each value is checked individually. Non-conformances are noted in a separate log.',
-          'Day 11–14 (Report): The report is assembled in Microsoft Word. Element-wise findings are written manually. IS code references are typed. Photos are inserted one by one. The report is reviewed, formatted, and sent for digital sign-off.',
-        ],
-      },
-      {
-        type: 'paragraph',
-        text: 'On a project with 150–300 data points per visit, this process consumes 40–60 hours of qualified senior engineer time per fortnight. On a project with 13 blocks and bi-weekly visits, you are looking at over 1,200 person-hours per year — just for documentation.',
-      },
-      {
-        type: 'heading',
-        text: 'Where It Breaks Down',
-      },
-      {
-        type: 'paragraph',
-        text: 'The manual process doesn\'t just waste time. It introduces structural risk at four specific points.',
-      },
-      {
-        type: 'list',
-        items: [
-          'Data entry errors: Handwritten readings are misread during transcription. A rebound value of 34 becomes 24 or 43. These errors are rarely caught before the report is submitted.',
-          'IS code misapplication: Senior engineers know the main clauses of IS 456. But knowing whether clause 16.1 or 17.3 applies to a specific reading under a specific exposure condition — for all 300 data points — is a different challenge. Values that are borderline get a pass because the lookup is slow and the engineer is pressured to complete the report.',
-          'No cross-element pattern detection: If a specific contractor is consistently borderline on column concrete grade across three blocks, the manual review process will not surface it. The reviewer looks at one report at a time, not at longitudinal trends.',
-          'Government format compliance: Each authority — TNHB, APCRDA, ADB — has a specific report format. Field labels differ. Section order differs. Required IS code references differ. Assembling these formats manually is time-consuming and error-prone.',
+          'Rework reduction: typically 30–60% fewer defect-driven corrections',
+          'Inspection speed: AI-assisted inspection is 5–10x faster than manual review',
+          'Documentation: automated report generation saves 20–40 hours per project fortnight',
+          'Compliance: real-time IS code verification eliminates costly post-submission corrections',
         ],
       },
       {
         type: 'heading',
-        text: 'How Ouantum Changes the Workflow',
+        text: 'Quantifying the Returns',
       },
       {
         type: 'paragraph',
-        text: 'The Ouantum platform restructures the TPQM workflow at the point of data collection — not at the reporting stage. This is the key design decision.',
+        text: 'Organizations implementing AI-driven quality assurance often experience fewer project delays, reduced maintenance costs, and better resource utilization. The long-term benefits include higher construction quality, increased client satisfaction, and improved project profitability.',
       },
       {
         type: 'paragraph',
-        text: 'When a field engineer opens the Ouantum mobile interface on-site, they do not open a form. They open a project structure: project → block → structural element. Every reading is tied to a specific element from the moment of entry. The context — concrete grade specified, age, exposure condition, cement type — is entered once per element and flows through to every subsequent calculation.',
+        text: 'For a medium-sized infrastructure project handling 200 data points per bi-weekly visit, AI-assisted QA typically delivers a payback period of less than six months when factoring in reduced rework, faster inspections, and eliminated manual documentation hours.',
       },
       {
         type: 'quote',
-        text: 'Data is structured at the point of collection, not reconstructed after the fact. This is the difference between a 4-hour report and a 14-day report.',
+        text: 'AI quality assurance is not a technology cost — it is a risk mitigation investment with a measurable, compounding return.',
+      },
+    ],
+  },
+
+  // ─── PREDICTIVE MAINTENANCE ───────────────────────────────────────────────
+  {
+    id: 6,
+    slug: 'how-ai-improves-infrastructure-asset-management',
+    title: 'How Can AI Improve Infrastructure Asset Management?',
+    category: 'Predictive Maintenance',
+    date: 'April 28, 2026',
+    datePublished: '2026-04-28T09:00:00+05:30',
+    author: 'RAGHU',
+    authorRole: 'Infrastructure Specialist',
+    excerpt:
+      'AI improves infrastructure asset management by continuously monitoring asset conditions, predicting maintenance needs, and supporting lifecycle planning using sensor data, computer vision, and predictive analytics.',
+    coverImage: '/assets/images/kv_project.png',
+    coverImageAlt: 'Kendriya Vidyalaya infrastructure asset monitoring',
+    tags: ['asset management', 'infrastructure', 'AI', 'lifecycle planning'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'AI improves infrastructure asset management by continuously monitoring asset conditions, predicting maintenance needs, and supporting lifecycle planning. Using sensor data, computer vision, and predictive analytics, AI can identify deterioration patterns and forecast future performance.',
       },
       {
         type: 'heading',
-        text: 'The Processing Layer',
+        text: 'Continuous Condition Monitoring',
       },
       {
         type: 'paragraph',
-        text: 'Once data is entered, Ouantum\'s calculation engine runs immediately. SonReb correlation for NDT readings. Carbonation service life via the Tuutti model. Chloride diffusion coefficient. Half-cell probability mapping per ASTM C876. Every result is checked against the applicable IS code clause — automatically, without the engineer opening a standard.',
-      },
-      {
-        type: 'paragraph',
-        text: 'Three AI models then independently assess the computed findings. Model A checks hard IS code limits. Model B evaluates structural safety margin in context. Model C compares against historical data from the same project, contractor, and material batch. All three must reach consensus before a result is confirmed. Disagreements are flagged for senior engineer review — not silently passed.',
-      },
-      {
-        type: 'heading',
-        text: 'The Report',
-      },
-      {
-        type: 'paragraph',
-        text: 'The government-format PDF is auto-generated at the end of the site visit. Element-wise findings, IS code references, condition grading (Good / Satisfactory / Poor / Critical), photographic placeholders, and recommendations are assembled automatically in the exact format required by the relevant authority. The lead engineer reviews, makes any expert amendments, and applies a digital signature — the same day as the site visit.',
+        text: 'This enables infrastructure owners to prioritize maintenance activities, reduce operational costs, and extend asset lifespan. AI-driven asset management improves reliability, safety, and long-term infrastructure sustainability.',
       },
       {
         type: 'list',
         items: [
-          'Total time for 300 data points: under 4 hours, including site travel.',
-          'Zero manual IS code lookup required.',
-          'Complete audit trail: every reading timestamped, every AI inference logged, every engineer override recorded.',
-          'Pattern intelligence: contractor trends and material batch anomalies surface automatically across the project lifecycle.',
+          'IoT sensor networks providing 24/7 structural health data',
+          'Computer vision systems detecting surface deterioration at scale',
+          'Machine learning models forecasting remaining useful life',
+          'Automated work order generation based on condition thresholds',
         ],
       },
       {
         type: 'heading',
-        text: 'Proven at Scale',
+        text: 'Lifecycle Cost Optimization',
       },
       {
         type: 'paragraph',
-        text: 'This workflow has been validated on the Amaravati Capital City project — covering the AP High Court building, 4,000 residential units, and the 45-storey Integrated Secretariat complex. It has been used for Tamil Nadu Housing Board projects and ADB-funded PMAY schemes across multiple construction stages. The methodology embedded in Ouantum was developed by Er. Kalaimony, who personally led TPQM operations on these projects over a 23-year career at TANGEDCO and IIT Madras CUBE.',
+        text: 'Traditional asset management relies on time-based or failure-based maintenance schedules. AI enables condition-based maintenance, which means infrastructure owners only intervene when the data indicates it is necessary — reducing unnecessary interventions while preventing failures before they occur.',
+      },
+    ],
+  },
+  {
+    id: 7,
+    slug: 'technologies-transforming-infrastructure-maintenance',
+    title: 'What Technologies Are Transforming Infrastructure Maintenance?',
+    category: 'Predictive Maintenance',
+    date: 'April 20, 2026',
+    datePublished: '2026-04-20T09:00:00+05:30',
+    author: 'SABARI RAJA',
+    authorRole: 'Tech Analyst',
+    excerpt:
+      'Technologies transforming infrastructure maintenance include AI, digital twins, IoT sensors, drones, robotics, and predictive analytics — providing real-time insights that reduce downtime and optimize maintenance budgets.',
+    coverImage: '/assets/images/bg2.jpg',
+    coverImageAlt: 'Drone inspecting infrastructure for maintenance assessment',
+    tags: ['infrastructure', 'maintenance technology', 'drones', 'IoT', 'digital twins'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'Technologies transforming infrastructure maintenance include artificial intelligence, digital twins, IoT sensors, drones, robotics, and predictive analytics. These technologies provide real-time insights into infrastructure performance and condition.',
+      },
+      {
+        type: 'heading',
+        text: 'Key Technology Categories',
+      },
+      {
+        type: 'list',
+        items: [
+          'Artificial intelligence for pattern recognition and anomaly detection',
+          'Digital twins for virtual simulation and scenario planning',
+          'IoT sensor networks for continuous structural monitoring',
+          'Drone-based visual inspections for hard-to-access areas',
+          'Robotics for automated repetitive inspection tasks',
+          'Predictive analytics for maintenance scheduling optimization',
+        ],
+      },
+      {
+        type: 'heading',
+        text: 'The Integration Advantage',
       },
       {
         type: 'paragraph',
-        text: 'The manual TPQM workflow is not a knowledge problem. The engineers are good. It is a systems problem. Ouantum is the system.',
+        text: 'By automating inspections and enabling predictive maintenance, organizations can reduce downtime, improve safety, and optimize maintenance budgets. Smart infrastructure technologies are rapidly becoming essential for modern asset management strategies, particularly for aging infrastructure networks across India.',
+      },
+    ],
+  },
+
+  // ─── BIM ─────────────────────────────────────────────────────────────────
+  {
+    id: 11,
+    slug: 'how-bim-improves-construction-quality-control',
+    title: 'How Does BIM Improve Construction Quality Control?',
+    category: 'BIM',
+    date: 'March 20, 2026',
+    datePublished: '2026-03-20T09:00:00+05:30',
+    author: 'BALAKUMARAN D',
+    authorRole: 'CEO',
+    excerpt:
+      'BIM improves construction quality control by providing a centralized digital representation of project specifications, geometry, and construction requirements, enabling teams to detect design conflicts and verify compliance.',
+    coverImage: '/assets/images/project-pipeline.png',
+    coverImageAlt: 'BIM model being used for construction project pipelines',
+    tags: ['BIM', 'quality control', 'construction', 'clash detection'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'Building Information Modeling (BIM) improves construction quality control by providing a centralized digital representation of project specifications, geometry, and construction requirements. BIM enables project teams to detect design conflicts, verify compliance, and monitor construction progress.',
+      },
+      {
+        type: 'heading',
+        text: 'Clash Detection Before Construction',
+      },
+      {
+        type: 'paragraph',
+        text: 'By improving coordination and reducing errors, BIM helps ensure that projects meet quality standards while minimizing rework and delays. Automated clash detection in BIM can identify thousands of spatial conflicts in hours — work that would take weeks of manual coordination reviews.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Automated clash detection between structural, MEP, and architectural models',
+          'Visual progress monitoring by comparing as-built with BIM specifications',
+          'Quality checklist integration directly within the BIM environment',
+          'Compliance verification against applicable codes and standards',
+        ],
+      },
+      {
+        type: 'heading',
+        text: 'Site-to-Model Comparison',
+      },
+      {
+        type: 'paragraph',
+        text: 'Advanced BIM workflows use photogrammetry and point cloud scanning to compare actual constructed conditions against the design model, providing an objective, measurable assessment of construction quality at every stage.',
+      },
+    ],
+  },
+  {
+    id: 12,
+    slug: 'benefits-of-bim-for-large-infrastructure-projects',
+    title: 'What Are the Benefits of BIM for Large Infrastructure Projects?',
+    category: 'BIM',
+    date: 'March 12, 2026',
+    datePublished: '2026-03-12T09:00:00+05:30',
+    author: 'RAHUL',
+    authorRole: 'Engineering Lead',
+    excerpt:
+      'BIM offers significant benefits for large infrastructure including improved collaboration, enhanced project visualization, reduced design conflicts, and better lifecycle management throughout the asset lifespan.',
+    coverImage: '/assets/images/bg3.jpg',
+    coverImageAlt: 'Large infrastructure BIM model displayed in a project review meeting',
+    tags: ['BIM', 'infrastructure', 'lifecycle management', 'collaboration'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'BIM offers significant benefits for large infrastructure projects, including improved collaboration, enhanced project visualization, reduced design conflicts, and better lifecycle management. BIM supports efficient planning, scheduling, and resource allocation while improving communication among stakeholders.',
+      },
+      {
+        type: 'heading',
+        text: 'Collaboration Across Disciplines',
+      },
+      {
+        type: 'list',
+        items: [
+          'A single source of truth accessible to all project stakeholders',
+          'Real-time model updates reflecting design changes instantly',
+          'Integrated cost estimation linked directly to model elements',
+          'Schedule visualization showing construction sequencing in 4D',
+          'Sustainability analysis embedded in the design model',
+        ],
+      },
+      {
+        type: 'heading',
+        text: 'Lifecycle Value',
+      },
+      {
+        type: 'paragraph',
+        text: 'These advantages contribute to higher project quality, reduced costs, and improved operational performance throughout the asset lifecycle. For large infrastructure assets with 50+ year design lives, the operational data captured in a BIM model during construction becomes an invaluable asset management resource for decades after handover.',
+      },
+    ],
+  },
+
+  // ─── CIVIL ENGINEERING AI ─────────────────────────────────────────────────
+  {
+    id: 16,
+    slug: 'can-ai-detect-structural-defects-more-accurately-than-manual',
+    title: 'Can AI Detect Structural Defects More Accurately Than Manual Inspections?',
+    category: 'Civil Engineering AI',
+    date: 'February 10, 2026',
+    datePublished: '2026-02-10T09:00:00+05:30',
+    author: 'RAGHU',
+    authorRole: 'Infrastructure Specialist',
+    excerpt:
+      'AI can detect many structural defects more consistently and efficiently than manual inspections by analyzing images, videos, and sensor data with advanced machine learning models trained on thousands of real defect examples.',
+    coverImage: '/assets/images/bg4.jpg',
+    coverImageAlt: 'AI system analyzing structural defect in a concrete beam',
+    tags: ['structural defects', 'AI detection', 'manual inspection', 'accuracy'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'AI can detect many structural defects more consistently and efficiently than manual inspections by analyzing images, videos, and sensor data with advanced machine learning models. AI systems can identify cracks, corrosion, spalling, settlement, and surface deterioration with high accuracy.',
+      },
+      {
+        type: 'heading',
+        text: 'Accuracy vs. Consistency',
+      },
+      {
+        type: 'paragraph',
+        text: 'While engineering expertise remains essential for final decision-making, AI significantly improves inspection speed, consistency, and defect detection capabilities. The key advantage of AI is not necessarily greater raw accuracy on any single defect — it is the elimination of inconsistency across hundreds or thousands of elements.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Crack width measurement with sub-millimeter accuracy',
+          'Corrosion severity classification from photographic evidence',
+          'Spalling depth estimation using stereo imaging techniques',
+          'Settlement detection using comparative image analysis over time',
+          'Rebar cover measurement through cover meter data integration',
+        ],
+      },
+      {
+        type: 'quote',
+        text: 'A skilled engineer seeing the 300th element of a site visit is not performing at the same standard as the first. AI is.',
+      },
+    ],
+  },
+  {
+    id: 17,
+    slug: 'how-ai-improves-structural-health-monitoring',
+    title: 'How Does AI Improve Structural Health Monitoring?',
+    category: 'Civil Engineering AI',
+    date: 'February 2, 2026',
+    datePublished: '2026-02-02T09:00:00+05:30',
+    author: 'SABARI RAJA',
+    authorRole: 'Tech Analyst',
+    excerpt:
+      'AI improves structural health monitoring by continuously analyzing data from sensors, cameras, and monitoring systems, identifying patterns associated with deterioration and generating alerts when abnormal conditions are detected.',
+    coverImage: '/assets/images/pmay_project.png',
+    coverImageAlt: 'Structural health monitoring sensors installed on a concrete structure at PMAY site',
+    tags: ['structural health monitoring', 'SHM', 'AI', 'sensors', 'anomaly detection'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'AI improves structural health monitoring by continuously analyzing data collected from sensors, cameras, and monitoring systems. Machine learning algorithms identify patterns associated with deterioration, stress, or damage and generate alerts when abnormal conditions are detected.',
+      },
+      {
+        type: 'heading',
+        text: 'Pattern Recognition at Scale',
+      },
+      {
+        type: 'paragraph',
+        text: 'This allows engineers to take proactive measures that improve structural safety, reduce maintenance costs, and extend asset lifespan. The sheer volume of data generated by modern SHM sensor arrays is beyond human capacity to process manually — AI is what makes that data actionable.',
+      },
+      {
+        type: 'list',
+        items: [
+          'Vibration signature analysis to detect mode shape changes indicating damage',
+          'Acoustic emission monitoring for active crack propagation',
+          'Strain pattern analysis to identify overloading or settlement',
+          'Corrosion current monitoring with electrochemical modelling',
+          'Multi-sensor fusion for robust damage state assessment',
+        ],
+      },
+    ],
+  },
+
+  // ─── QUALITY ASSURANCE ───────────────────────────────────────────────────
+  {
+    id: 21,
+    slug: 'how-ai-reduces-construction-delays',
+    title: 'How Can AI Reduce Construction Delays?',
+    category: 'Quality Assurance',
+    date: 'January 2, 2026',
+    datePublished: '2026-01-02T09:00:00+05:30',
+    author: 'BALAKUMARAN D',
+    authorRole: 'CEO',
+    excerpt:
+      'AI reduces construction delays by analyzing schedules, resource availability, weather conditions, and project performance data to identify potential risks before they impact timelines, enabling proactive project management.',
+    coverImage: '/assets/images/tnhb_project.png',
+    coverImageAlt: 'TNHB site with AI-powered construction delay prediction dashboard',
+    tags: ['construction delays', 'AI', 'schedule optimization', 'risk management'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'AI reduces construction delays by analyzing schedules, resource availability, weather conditions, and project performance data to identify potential risks before they impact timelines. Predictive analytics helps project managers take proactive actions to maintain schedules and improve project delivery performance.',
+      },
+      {
+        type: 'heading',
+        text: 'Delay Drivers AI Can Predict',
+      },
+      {
+        type: 'list',
+        items: [
+          'Material delivery bottlenecks based on procurement lead time analysis',
+          'Labour availability gaps identified from workforce scheduling data',
+          'Weather-related work disruptions predicted from historical site climate data',
+          'Quality inspection hold points that risk delaying downstream activities',
+          'Subcontractor performance trends that signal upcoming delays',
+        ],
+      },
+      {
+        type: 'heading',
+        text: 'Proactive vs. Reactive Management',
+      },
+      {
+        type: 'paragraph',
+        text: 'Traditional project management is inherently reactive — delays are identified after they have already impacted the schedule. AI enables project managers to shift to proactive management, addressing risk factors before they become delay events.',
+      },
+    ],
+  },
+  {
+    id: 22,
+    slug: 'what-is-ai-powered-construction-project-management',
+    title: 'What Is AI-Powered Construction Project Management?',
+    category: 'Quality Assurance',
+    date: 'December 26, 2025',
+    datePublished: '2025-12-26T09:00:00+05:30',
+    author: 'RAHUL',
+    authorRole: 'Engineering Lead',
+    excerpt:
+      'AI-powered construction project management uses artificial intelligence to support planning, scheduling, budgeting, resource allocation, risk management, and progress tracking for better project efficiency and outcomes.',
+    coverImage: '/assets/images/img2.png',
+    coverImageAlt: 'Construction project manager reviewing AI-powered project management dashboard',
+    tags: ['project management', 'AI', 'construction', 'planning', 'scheduling'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'AI-powered construction project management uses artificial intelligence to support planning, scheduling, budgeting, resource allocation, risk management, and progress tracking. AI helps project managers make informed decisions by providing real-time insights and predictive recommendations that improve project efficiency and performance.',
+      },
+      {
+        type: 'heading',
+        text: 'Core Capabilities',
+      },
+      {
+        type: 'list',
+        items: [
+          'Schedule analytics: AI-generated critical path analysis and delay forecasting',
+          'Budget monitoring: real-time cost tracking with predictive overrun alerts',
+          'Resource optimization: AI-recommended allocation based on activity requirements',
+          'Risk management: automated risk scoring and mitigation recommendation',
+          'Progress monitoring: comparison of planned vs. actual performance with AI insights',
+        ],
+      },
+      {
+        type: 'quote',
+        text: 'AI-powered project management does not make decisions — it ensures project managers have the right information to make better decisions, faster.',
       },
     ],
   },

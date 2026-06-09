@@ -13,6 +13,7 @@ import CaseStudies from './pages/CaseStudies'
 import SystemStatus from './pages/SystemStatus'
 import Blog from './pages/Blog'
 import BlogPost from './pages/BlogPost'
+import FAQ from './pages/FAQ'
 import NotFound from './pages/NotFound'
 import './styles/global.css'
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/security" element={<SecurityTerms />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />

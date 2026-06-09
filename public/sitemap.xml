@@ -1,87 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
-  <url>
-    <loc>https://ouantum.com/</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- Core Pages -->
+  <url><loc>https://ouantum.com/</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://ouantum.com/about</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ouantum.com/careers</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ouantum.com/contact</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ouantum.com/blog</loc><lastmod>2026-06-09</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ouantum.com/faq</loc><lastmod>2026-06-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://ouantum.com/privacy</loc><lastmod>2026-06-09</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ouantum.com/security</loc><lastmod>2026-06-09</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
-  <!-- About -->
-  <url>
-    <loc>https://ouantum.com/about</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Careers -->
-  <url>
-    <loc>https://ouantum.com/careers</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Contact -->
-  <url>
-    <loc>https://ouantum.com/contact</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Case Studies -->
-  <url>
-    <loc>https://ouantum.com/case-studies</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Blog Listing -->
-  <url>
-    <loc>https://ouantum.com/blog</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Blog Post: SonReb NDT Analysis -->
-  <url>
-    <loc>https://ouantum.com/blog/why-sonreb-correlation-transforms-ndt-analysis</loc>
-    <lastmod>2026-06-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Blog Post: TPQM Workflow -->
-  <url>
-    <loc>https://ouantum.com/blog/from-manual-chaos-to-same-day-reports-tpqm-workflow</loc>
-    <lastmod>2026-05-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Privacy Policy -->
-  <url>
-    <loc>https://ouantum.com/privacy</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
-  <!-- Security Terms -->
-  <url>
-    <loc>https://ouantum.com/security</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <!-- Blog Posts -->
+  <url><loc>https://ouantum.com/blog/how-ai-reduces-rework-costs-in-construction</loc><lastmod>2026-06-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/roi-of-ai-powered-construction-quality-assurance</loc><lastmod>2026-05-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/how-ai-improves-infrastructure-asset-management</loc><lastmod>2026-04-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/technologies-transforming-infrastructure-maintenance</loc><lastmod>2026-04-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/how-bim-improves-construction-quality-control</loc><lastmod>2026-03-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/benefits-of-bim-for-large-infrastructure-projects</loc><lastmod>2026-03-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/can-ai-detect-structural-defects-more-accurately-than-manual</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/how-ai-improves-structural-health-monitoring</loc><lastmod>2026-02-02</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/how-ai-reduces-construction-delays</loc><lastmod>2026-01-02</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ouantum.com/blog/what-is-ai-powered-construction-project-management</loc><lastmod>2025-12-26</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 
 </urlset>
