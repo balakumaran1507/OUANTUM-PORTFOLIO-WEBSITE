@@ -4621,6 +4621,90 @@ section {
 }
 
 /* ═══════════════════════════════════════════════
+   AI ENGINEERS MARQUEE — ABOUT PAGE
+═══════════════════════════════════════════════ */
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Section wrapper — matches existing about-* rhythm */
+.about-engineers-section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Outer mask: hides overflow and adds soft edge fade */
+.about-eng-marquee-outer {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 2.5rem;
+  cursor: default;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    #000 8%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+/* Moving track — doubled content for seamless loop */
+.about-eng-marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: marquee-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+/* Individual card */
+.about-eng-marquee-item {
+  flex-shrink: 0;
+  height: clamp(260px, 30vw, 400px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Image */
+.about-eng-marquee-img {
+  height: 100%;
+  width: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: grayscale(20%);
+  transition: filter 0.4s ease;
+}
+
+.about-eng-marquee-item:hover .about-eng-marquee-img {
+  filter: grayscale(0%);
+}
+
+@media (max-width: 768px) {
+  .about-eng-marquee-item {
+    height: clamp(200px, 55vw, 280px);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-eng-marquee-item {
+    height: 200px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
    CASE STUDIES PAGE
 ═══════════════════════════════════════════════ */
 .case-study-featured-content {
