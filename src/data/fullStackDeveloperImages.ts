@@ -8,9 +8,9 @@
  * Each path is relative to the public root.
  */
 const fullStackDeveloperImages: string[] = [
-  '/assets/images/fullstack-developers/fs-dev-1.jpg',
-  '/assets/images/fullstack-developers/fs-dev-poster-1.jpg',
-  '/assets/images/fullstack-developers/fs-dev-poster.jpg',
+  '/assets/images/fullstack-developers/fs-dev-1.webp',
+  '/assets/images/fullstack-developers/fs-dev-poster-1.webp',
+  '/assets/images/fullstack-developers/fs-dev-poster.webp',
 ];
 
 export default fullStackDeveloperImages;
