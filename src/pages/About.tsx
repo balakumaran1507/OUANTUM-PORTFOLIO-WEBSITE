@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import useSEO from '../hooks/useSEO';
+import aiEngineerImages from '../data/aiEngineerImages';
+import dataEngineerImages from '../data/dataEngineerImages';
+import fullStackDeveloperImages from '../data/fullStackDeveloperImages';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -142,6 +145,72 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
   );
 };
 
+/** Seconds of animation per image — calibrated so 27 images ≈ 60 s. */
+const SECONDS_PER_IMAGE = 2.22;
+/** Minimum total cards in the track to avoid short, repetitive loops. */
+const MIN_TRACK_ITEMS = 16;
+
+const EngineerMarquee = ({
+  images,
+  title,
+  eyebrow,
+}: {
+  images: string[];
+  title: string;
+  eyebrow: string;
+}) => {
+  // Repeat enough times to fill MIN_TRACK_ITEMS, must be even for seamless -50% loop
+  let repeatCount = Math.max(2, Math.ceil(MIN_TRACK_ITEMS / images.length));
+  if (repeatCount % 2 !== 0) repeatCount += 1;
+
+  const track = Array.from({ length: repeatCount }, () => images).flat();
+  const effectiveCount = track.length / 2;
+  const duration = effectiveCount * SECONDS_PER_IMAGE;
+
+  return (
+    <section className="about-engineers-section" aria-label={`${title} team`}>
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="about-team-eyebrow"
+      >
+        {eyebrow}
+      </motion.p>
+
+      <motion.h2
+        initial={{ opacity: 0, y: 14 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="about-team-heading"
+      >
+        {title}
+      </motion.h2>
+
+      <div className="about-team-rule" aria-hidden="true" />
+
+      <div className="about-eng-marquee-outer" aria-hidden="true">
+        <div
+          className="about-eng-marquee-track"
+          style={{ animationDuration: `${duration}s` }}
+        >
+          {track.map((src, i) => (
+            <div key={i} className="about-eng-marquee-item">
+              <img
+                src={src}
+                alt=""
+                loading="lazy"
+                className="about-eng-marquee-img"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const About: React.FC = () => {
   useSEO({
     title: 'About Ouantum | Team, Mission & Partner Ecosystem',
@@ -244,6 +313,27 @@ const About: React.FC = () => {
               ))}
             </div>
           </section>
+
+          {/* AI ENGINEERS MARQUEE */}
+          <EngineerMarquee
+            images={aiEngineerImages}
+            title="AI Engineers"
+            eyebrow="THE ENGINEERS"
+          />
+
+          {/* DATA ENGINEERS MARQUEE */}
+          <EngineerMarquee
+            images={dataEngineerImages}
+            title="Data Engineers"
+            eyebrow="THE ENGINEERS"
+          />
+
+          {/* FULL STACK DEVELOPERS MARQUEE */}
+          <EngineerMarquee
+            images={fullStackDeveloperImages}
+            title="Full Stack Developers"
+            eyebrow="THE DEVELOPERS"
+          />
 
           {/* PARTNER ECOSYSTEM */}
           <section className="about-partners-section" aria-label="Partner ecosystem">
