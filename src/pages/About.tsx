@@ -4,6 +4,7 @@ import useSEO from '../hooks/useSEO';
 import aiEngineerImages from '../data/aiEngineerImages';
 import dataEngineerImages from '../data/dataEngineerImages';
 import fullStackDeveloperImages from '../data/fullStackDeveloperImages';
+import { CanvasMarquee } from '../components/CanvasMarquee';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -145,12 +146,7 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
   );
 };
 
-/** Seconds of animation per image — calibrated so 27 images ≈ 60 s. */
-const SECONDS_PER_IMAGE = 2.22;
-/** Minimum total cards in the track to avoid short, repetitive loops. */
-const MIN_TRACK_ITEMS = 16;
-
-const EngineerMarquee = ({
+const EngineerSection = ({
   images,
   title,
   eyebrow,
@@ -159,13 +155,7 @@ const EngineerMarquee = ({
   title: string;
   eyebrow: string;
 }) => {
-  // Repeat enough times to fill MIN_TRACK_ITEMS, must be even for seamless -50% loop
-  let repeatCount = Math.max(2, Math.ceil(MIN_TRACK_ITEMS / images.length));
-  if (repeatCount % 2 !== 0) repeatCount += 1;
-
-  const track = Array.from({ length: repeatCount }, () => images).flat();
-  const effectiveCount = track.length / 2;
-  const duration = effectiveCount * SECONDS_PER_IMAGE;
+  const marqueeImages = images.map((src, i) => ({ src, alt: `${title} ${i + 1}` }));
 
   return (
     <section className="about-engineers-section" aria-label={`${title} team`}>
@@ -191,21 +181,14 @@ const EngineerMarquee = ({
       <div className="about-team-rule" aria-hidden="true" />
 
       <div className="about-eng-marquee-outer" aria-hidden="true">
-        <div
-          className="about-eng-marquee-track"
-          style={{ animationDuration: `${duration}s` }}
-        >
-          {track.map((src, i) => (
-            <div key={i} className="about-eng-marquee-item">
-              <img
-                src={src}
-                alt=""
-                loading="lazy"
-                className="about-eng-marquee-img"
-              />
-            </div>
-          ))}
-        </div>
+        <CanvasMarquee
+          images={marqueeImages}
+          imageWidth={200}
+          imageHeight={300}
+          gap={16}
+          speed={60}
+          borderRadius={16}
+        />
       </div>
     </section>
   );
@@ -315,21 +298,21 @@ const About: React.FC = () => {
           </section>
 
           {/* AI ENGINEERS MARQUEE */}
-          <EngineerMarquee
+          <EngineerSection
             images={aiEngineerImages}
             title="AI Engineers"
             eyebrow="THE ENGINEERS"
           />
 
           {/* DATA ENGINEERS MARQUEE */}
-          <EngineerMarquee
+          <EngineerSection
             images={dataEngineerImages}
             title="Data Engineers"
             eyebrow="THE ENGINEERS"
           />
 
           {/* FULL STACK DEVELOPERS MARQUEE */}
-          <EngineerMarquee
+          <EngineerSection
             images={fullStackDeveloperImages}
             title="Full Stack Developers"
             eyebrow="THE DEVELOPERS"
