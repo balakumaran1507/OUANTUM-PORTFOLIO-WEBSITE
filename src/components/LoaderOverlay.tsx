@@ -1,20 +1,34 @@
 import React, { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
 
-interface LoaderOverlayProps {
+export interface LoaderOverlayProps {
   forceShow?: boolean;
+  scale?: number | string;
+  x?: number | string;
+  y?: number | string;
+  mobileScale?: number | string;
+  mobileX?: number | string;
+  mobileY?: number | string;
+  videoSrc?: string;
 }
 
-const LoaderOverlay: React.FC<LoaderOverlayProps> = ({ forceShow }) => {
+const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
+  forceShow = false,
+  scale = 1.25,
+  x = 0,
+  y = 0,
+  mobileScale = 2,
+  mobileX = 0,
+  mobileY = 0,
+  videoSrc = '/assets/images/logo/Untitled%20design.mp4',
+}) => {
   const [isMounted, setIsMounted] = useState(false);
   const [shouldPlay, setShouldPlay] = useState(false);
 
   const overlayRef = useRef<HTMLDivElement>(null);
-  const textContainerRef = useRef<HTMLDivElement>(null);
-  const textOverlayRef = useRef<HTMLDivElement>(null);
-  const progressBarRef = useRef<HTMLDivElement>(null);
-  const logoImgRef = useRef<HTMLImageElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const hasFinishedRef = useRef(false);
 
   // 1. Client-side mount and session guard check
   useEffect(() => {
@@ -43,7 +57,27 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({ forceShow }) => {
     }
   }, [forceShow]);
 
-  // 2. GSAP animation timeline execution (only when shouldPlay is true and component is rendered)
+  // Handle curtain exit transition
+  const finishLoading = () => {
+    if (hasFinishedRef.current) return;
+    hasFinishedRef.current = true;
+
+    if (overlayRef.current) {
+      gsap.to(overlayRef.current, {
+        yPercent: -100,
+        duration: 0.8,
+        ease: 'power3.inOut',
+        force3D: true,
+        onComplete: () => {
+          sessionStorage.setItem('quantum_loader_played', 'true');
+          document.body.style.overflow = 'unset';
+          document.documentElement.style.overflow = 'unset';
+        },
+      });
+    }
+  };
+
+  // 2. Setup locking and video play execution
   useEffect(() => {
     if (!shouldPlay) return;
 
@@ -55,68 +89,23 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({ forceShow }) => {
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
 
-    // Set up GSAP timeline with a startup delay to let the browser settle down
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        delay: 0.4,
-        onComplete: () => {
-          sessionStorage.setItem('quantum_loader_played', 'true');
-          document.body.style.overflow = 'unset';
-          document.documentElement.style.overflow = 'unset';
-        },
+    // Try playing video programmatically
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Autoplay policy fallback
       });
+    }
 
-      timelineRef.current = tl;
-
-      // 1. Set initial states (using hardware accelerated scaleX for progress bar)
-      gsap.set(textOverlayRef.current, { width: '0%', force3D: true });
-      gsap.set(progressBarRef.current, { scaleX: 0, transformOrigin: 'left', force3D: true });
-      gsap.set(logoImgRef.current, { opacity: 0, force3D: true });
-
-      // 2. Progress wipe (duration: 1.2s, ease: power2.inOut)
-      tl.to(textOverlayRef.current, {
-        width: '100%',
-        duration: 1.2,
-        ease: 'power2.inOut',
-        force3D: true,
-      });
-      tl.to(progressBarRef.current, {
-        scaleX: 1,
-        duration: 1.2,
-        ease: 'power2.inOut',
-        force3D: true,
-      }, '<'); // simultaneously
-
-      // 3. Fade out Slide 1 (duration: 0.3s, starts 0.1s after wipe)
-      tl.to([textContainerRef.current, progressBarRef.current], {
-        opacity: 0,
-        duration: 0.3,
-        ease: 'power1.inOut',
-        force3D: true,
-      }, '+=0.1');
-
-      // 4. Fade in Slide 2 logo (duration: 1.0s, overlaps Slide 1 fade out by 0.2s for cross-fade)
-      tl.to(logoImgRef.current, {
-        opacity: 1,
-        duration: 1.0,
-        ease: 'power1.inOut',
-        force3D: true,
-      }, '-=0.2');
-
-      // 5. Curtain exit (duration: 0.8s, starts 0.6s after logo fade completes)
-      tl.to(overlayRef.current, {
-        yPercent: -100,
-        duration: 0.8,
-        ease: 'power3.inOut',
-        force3D: true,
-      }, '+=0.6');
-    });
+    // Safety fallback timeout (6 seconds max duration)
+    const fallbackTimer = setTimeout(() => {
+      finishLoading();
+    }, 6000);
 
     return () => {
+      clearTimeout(fallbackTimer);
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
-      ctx.revert();
       document.body.style.overflow = originalBodyOverflow || 'unset';
       document.documentElement.style.overflow = originalHtmlOverflow || 'unset';
     };
@@ -126,52 +115,87 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({ forceShow }) => {
     return null;
   }
 
+  const formatOffset = (val?: number | string) => {
+    if (val === undefined) return undefined;
+    if (typeof val === 'number') return `${val}px`;
+    return val;
+  };
+
+  const xDesktop = formatOffset(x) ?? '0px';
+  const yDesktop = formatOffset(y) ?? '0px';
+  const scaleDesktop = scale ?? 1;
+
+  const xMobile = formatOffset(mobileX ?? x) ?? '0px';
+  const yMobile = formatOffset(mobileY ?? y) ?? '0px';
+  const scaleMobile = mobileScale ?? scale ?? 1;
+
   return (
     <>
       <style>{`
-        .loader-logo-text {
-          font-family: 'Adieu', var(--font-adieu), sans-serif;
-          font-weight: 400;
-          font-size: 4rem;
-          letter-spacing: -0.02em;
-          text-transform: uppercase;
-          user-select: none;
+        .loader-video-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          --loader-x: ${xDesktop};
+          --loader-y: ${yDesktop};
+          --loader-scale: ${scaleDesktop};
         }
-        .loader-logo-image {
-          width: 14rem;
-          height: 14rem;
+        .loader-video-card-wrapper {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          transform: translate(var(--loader-x), var(--loader-y)) scale(var(--loader-scale));
+          transition: transform 0.2s ease-out;
+        }
+        .loader-video-element {
+          max-width: 90vw;
+          max-height: 80vh;
           object-fit: contain;
         }
+        .loader-video-card-border-blur {
+          display: none;
+        }
         @media (max-width: 768px) {
-          .loader-logo-text {
-            font-size: 3.2rem;
-            letter-spacing: -0.01em;
+          .loader-video-container {
+            --loader-x: ${xMobile};
+            --loader-y: ${yMobile};
+            --loader-scale: ${scaleMobile};
           }
-          .loader-logo-image {
-            width: 14rem;
-            height: 14rem;
+          .loader-video-element {
+            max-width: 100vw;
+            max-height: 85vh;
+            mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, #000 70%, transparent 100%);
           }
-        }
-        @media (max-width: 480px) {
-          .loader-logo-text {
-            font-size: 2.2rem;
-            letter-spacing: 0;
-          }
-          .loader-logo-image {
-            width: 6.5rem;
-            height: 6.5rem;
-          }
-        }
-        @media (min-width: 769px) {
-          .loader-logo-image {
-            width: 18rem;
-            height: 18rem;
+          .loader-video-card-border-blur {
+            display: block;
+            position: absolute;
+            inset: -12px;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: inset 0 0 35px 20px #000000, 0 0 20px 10px #000000;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, transparent 45%, #000000 80%);
+            -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, transparent 45%, #000000 80%);
           }
         }
       `}</style>
 
       <div
         ref={overlayRef}
+        className="quantum-loader-overlay"
+        data-scale={scale}
+        data-x={x}
+        data-y={y}
+        data-mobile-scale={mobileScale ?? scale}
+        data-mobile-x={mobileX ?? x}
+        data-mobile-y={mobileY ?? y}
         style={{
           position: 'fixed',
           inset: 0,
@@ -185,91 +209,30 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({ forceShow }) => {
           transform: 'translate3d(0, 0, 0)',
         }}
       >
-        {/* Slide 1 - Logo/Brand Text */}
-        <div
-          ref={textContainerRef}
-          style={{
-            position: 'absolute',
-            display: 'inline-block',
-            willChange: 'opacity',
-          }}
-        >
-          {/* Base Layer ("unlit") */}
-          <div
-            className="loader-logo-text"
-            style={{
-              color: '#333333',
-            }}
-          >
-            OUANTUM
-          </div>
-          {/* Overlay Layer ("lit") */}
-          <div
-            ref={textOverlayRef}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '0%',
-              height: '100%',
-              overflow: 'hidden',
-              willChange: 'width',
-            }}
-          >
-            <div
-              className="loader-logo-text"
+        <div className="loader-video-container">
+          <div className="loader-video-card-wrapper">
+            <video
+              ref={videoRef}
+              src={videoSrc}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onEnded={finishLoading}
+              className="loader-video-element"
               style={{
-                color: '#ffffff',
-                whiteSpace: 'nowrap',
-                width: 'max-content',
+                willChange: 'transform',
               }}
-            >
-              OUANTUM
-            </div>
+            />
+            <div className="loader-video-card-border-blur" />
           </div>
         </div>
-
-        {/* Slide 2 - Logo Image */}
-        <div
-          style={{
-            position: 'absolute',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <img
-            ref={logoImgRef}
-            src="/assets/images/logo.png"
-            alt="OUANTUM Logo"
-            className="loader-logo-image"
-            style={{
-              filter: 'invert(1)',
-              opacity: 0,
-              willChange: 'opacity',
-            }}
-          />
-        </div>
-
-        {/* Full-width bottom progress bar */}
-        <div
-          ref={progressBarRef}
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            height: '4px',
-            backgroundColor: '#ffffff',
-            width: '100%',
-            transform: 'scaleX(0)',
-            willChange: 'transform',
-          }}
-        />
       </div>
     </>
   );
 };
 
 export default LoaderOverlay;
+
 
 
