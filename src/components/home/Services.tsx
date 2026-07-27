@@ -63,7 +63,7 @@ const Services: React.FC = () => {
     <section
       id="activities"
       className="section-padding services-section"
-      style={{ background: '#f5f5f7', color: '#111111', position: 'relative' }}
+      style={{ background: '#f5f5f7', color: '#111111', overflow: 'hidden' }}
     >
       <div className="container">
 
