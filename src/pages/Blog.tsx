@@ -19,7 +19,7 @@ const organizationSchema = {
 const blogListingSchema = {
   '@context': 'https://schema.org',
   '@type': 'Blog',
-  name: 'OUANTUM Knowledge Centre — Resources & Insights',
+  name: 'OUANTUM Knowledge Centre, Resources & Insights',
   description:
     'Practical resources, technical guidance, and industry insights related to civil infrastructure quality assurance.',
   url: `${BASE_URL}/blog`,
@@ -40,7 +40,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const Blog: React.FC = () => {
   useSEO({
-    title: 'Knowledge Centre | OUANTUM — Resources & Insights',
+    title: 'Knowledge Centre | OUANTUM, Resources & Insights',
     description:
       'The OUANTUM Knowledge Centre provides practical resources, technical guidance, and industry insights related to civil infrastructure quality assurance.',
     keywords:
@@ -208,8 +208,8 @@ const Blog: React.FC = () => {
                         (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
                       }}
                     >
-                      <GlowCard borderRadius={20} style={{ padding: 0 }}>
-                        <div style={{ height: '200px', width: '100%', overflow: 'hidden' }}>
+                      <GlowCard borderRadius={20} style={{ padding: '0.85rem' }}>
+                        <div style={{ height: '200px', width: '100%', overflow: 'hidden', borderRadius: '12px' }}>
                           <img
                             src={post.coverImage}
                             alt={post.coverImageAlt}
@@ -218,7 +218,7 @@ const Blog: React.FC = () => {
                         </div>
                         <div
                           style={{
-                            padding: '1.5rem 2rem 2rem',
+                            padding: '1.25rem 0.85rem 0.85rem',
                             display: 'flex',
                             flexDirection: 'column',
                             flex: 1,

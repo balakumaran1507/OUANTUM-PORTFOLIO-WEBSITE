@@ -4,19 +4,19 @@ import GlowCard from '@/components/GlowCard';
 
 const stats = [
   {
-    value: '5–14',
+    value: '5-14',
     unit: 'DAYS',
     label: 'To complete one manual structural assessment',
     index: '01',
   },
   {
-    value: '150–300',
+    value: '150-300',
     unit: 'DATA POINTS',
     label: 'Collected per bi-weekly site visit on a large project',
     index: '02',
   },
   {
-    value: '40–60',
+    value: '40-60',
     unit: 'HRS',
     label: 'Senior engineer time writing reports per fortnight',
     index: '03',
@@ -104,13 +104,6 @@ const Problem = () => {
             transition={{ duration: 0.6, delay: 0 }}
             style={{
               gridColumn: '1 / -1',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
             }}
           >
             <GlowCard style={{ padding: 'clamp(2rem, 4vw, 3.5rem)' }}>
@@ -167,15 +160,6 @@ const Problem = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.12 }}
-            style={{
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
-            }}
           >
             <GlowCard style={{ padding: 'clamp(2rem, 4vw, 3rem)', minHeight: '260px' }}>
               <div>
@@ -205,8 +189,8 @@ const Problem = () => {
 
               <p style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.85rem',
-                color: 'rgba(255, 255, 255, 0.65)',
+                fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+                color: 'rgba(255, 255, 255, 0.75)',
                 lineHeight: 1.6,
                 margin: '1.5rem 0 0 0',
               }}>
@@ -221,15 +205,6 @@ const Problem = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.24 }}
-            style={{
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)';
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
-            }}
           >
             <GlowCard style={{ padding: 'clamp(2rem, 4vw, 3rem)', minHeight: '260px' }}>
               <div>
@@ -259,8 +234,8 @@ const Problem = () => {
 
               <p style={{
                 fontFamily: 'var(--font-mono)',
-                fontSize: '0.85rem',
-                color: 'rgba(255, 255, 255, 0.65)',
+                fontSize: 'clamp(0.9rem, 1.5vw, 1.1rem)',
+                color: 'rgba(255, 255, 255, 0.75)',
                 lineHeight: 1.6,
                 margin: '1.5rem 0 0 0',
               }}>

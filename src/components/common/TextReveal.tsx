@@ -12,7 +12,7 @@ interface TextRevealProps {
 }
 
 /**
- * TextReveal — words clip upward from behind an overflow:hidden mask.
+ * TextReveal, words clip upward from behind an overflow:hidden mask.
  * Triggers once when the element scrolls into view (IntersectionObserver).
  */
 const TextReveal = ({

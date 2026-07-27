@@ -265,10 +265,11 @@ const BlogPost: React.FC = () => {
                     key={idx}
                     style={{
                       margin: '1.5rem 0 2rem',
-                      paddingLeft: '1.5rem',
+                      paddingLeft: 0,
                       display: 'flex',
                       flexDirection: 'column',
                       gap: '0.85rem',
+                      listStyle: 'none',
                     }}
                   >
                     {section.items?.map((item, i) => (
@@ -276,11 +277,23 @@ const BlogPost: React.FC = () => {
                         key={i}
                         style={{
                           lineHeight: 1.75,
-                          paddingLeft: '0.5rem',
-                          borderLeft: `1px solid ${catColor}40`,
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '0.75rem',
                         }}
                       >
-                        {item}
+                        <span
+                          style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            backgroundColor: '#ffffff',
+                            display: 'inline-block',
+                            marginTop: '0.65em',
+                            flexShrink: 0,
+                          }}
+                        />
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -306,10 +319,11 @@ const BlogPost: React.FC = () => {
                 </h3>
                 <ul style={{
                   margin: 0,
-                  paddingLeft: '1.25rem',
+                  paddingLeft: 0,
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '1rem',
+                  listStyle: 'none',
                 }}>
                   {post.takeaways.map((takeaway, tIdx) => (
                     <li key={tIdx} style={{
@@ -317,8 +331,22 @@ const BlogPost: React.FC = () => {
                       fontSize: '0.9rem',
                       lineHeight: 1.6,
                       color: 'rgba(255, 255, 255, 0.65)',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '0.75rem',
                     }}>
-                      {takeaway}
+                      <span
+                        style={{
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          backgroundColor: '#ffffff',
+                          display: 'inline-block',
+                          marginTop: '0.5em',
+                          flexShrink: 0,
+                        }}
+                      />
+                      <span>{takeaway}</span>
                     </li>
                   ))}
                 </ul>
@@ -453,15 +481,15 @@ const BlogPost: React.FC = () => {
                     flexDirection: 'column',
                   }}
                 >
-                  <GlowCard borderRadius={16} style={{ padding: 0, height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ height: '180px', width: '100%', overflow: 'hidden' }}>
+                  <GlowCard borderRadius={16} style={{ padding: '0.75rem', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ height: '180px', width: '100%', overflow: 'hidden', borderRadius: '10px' }}>
                       <img
                         src={related.coverImage}
                         alt={related.coverImageAlt}
                         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                       />
                     </div>
-                    <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                    <div style={{ padding: '1rem 0.5rem 0.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <h3
                         style={{
                           fontFamily: 'var(--font-adieu)',

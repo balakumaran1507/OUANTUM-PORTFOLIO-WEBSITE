@@ -11,7 +11,7 @@ const MASCOT_CONFIG = {
 
 const NotFound: React.FC = () => {
   useSEO({
-    title: '404 — Page Not Found | OUANTUM',
+    title: '404, Page Not Found | OUANTUM',
     description: 'The page you are looking for does not exist or has been moved. Return to the OUANTUM homepage.',
     canonicalPath: '/404',
     noIndex: true,

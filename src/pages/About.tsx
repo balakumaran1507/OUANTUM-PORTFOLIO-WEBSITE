@@ -50,7 +50,7 @@ const team = [
     name: 'Raghu',
     image: '/assets/images/raghu.png',
     initials: 'RG',
-    bio: 'Raghu handles the legal framework and compliance structures that underpin OUANTUM\'s government-grade report generation. He also contributes to the AI pipeline — ensuring every automated output is legally defensible and technically sound.\n\nHis dual role bridges the gap between engineering precision and regulatory compliance.',
+    bio: 'Raghu handles the legal framework and compliance structures that underpin OUANTUM\'s government-grade report generation. He also contributes to the AI pipeline, ensuring every automated output is legally defensible and technically sound.\n\nHis dual role bridges the gap between engineering precision and regulatory compliance.',
   },
   {
     role: 'CHIEF FINANCIAL OFFICER',
@@ -79,7 +79,7 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
       role="button"
       tabIndex={0}
       aria-expanded={expanded}
-      aria-label={`${member.name}, ${member.role} — click to view biography`}
+      aria-label={`${member.name}, ${member.role}, click to view biography`}
       onKeyDown={(e) => e.key === 'Enter' && setExpanded(v => !v)}
     >
       {/* ── PORTRAIT ── */}
@@ -118,7 +118,7 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
           e.stopPropagation();
         }}
       >
-        {/* LEFT — passport photo */}
+        {/* LEFT, passport photo */}
         <div className="about-team-bio-photo-col">
           <div className="about-team-bio-thumb">
             {member.image && !imgError ? (
@@ -136,7 +136,7 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
           </div>
         </div>
 
-        {/* RIGHT — bio text */}
+        {/* RIGHT, bio text */}
         <div className="about-team-bio-text-col">
           <div className="about-team-bio-top-bar">
             <p className="about-team-bio-header">BIOGRAPHY</p>
@@ -327,7 +327,7 @@ const About: React.FC = () => {
   useSEO({
     title: 'About OUANTUM | Team, Mission & Partner Ecosystem',
     description:
-      'Meet the core team behind OUANTUM — civil engineers, AI specialists, and structural auditors building deterministic quality assurance for India\'s critical infrastructure.',
+      'Meet the core team behind OUANTUM, civil engineers, AI specialists, and structural auditors building deterministic quality assurance for India\'s critical infrastructure.',
     keywords:
       'OUANTUM team, Balakumaran D, about OUANTUM, civil engineering AI team, structural auditing company India, Etherence, Zapsters, Amith',
     canonicalPath: '/about',
@@ -386,7 +386,7 @@ const About: React.FC = () => {
         >
           <img
             src="/assets/images/about-hero.jpg"
-            alt="Civil infrastructure site — background image for OUANTUM About page"
+            alt="Civil infrastructure site, background image for OUANTUM About page"
             className="subpage-hero-image"
           />
           <div className="overlay-gradient" aria-hidden="true" />
@@ -649,7 +649,7 @@ const About: React.FC = () => {
                   rel="noopener noreferrer"
                   className="about-partner-link"
                   style={{ textDecoration: 'none', display: 'block' }}
-                  aria-label={`Visit ${p.name} — ${p.desc} partner of OUANTUM`}
+                  aria-label={`Visit ${p.name}, ${p.desc} partner of OUANTUM`}
                 >
                   <GlowCard borderRadius={24} style={{ padding: '2.5rem' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', gap: '0.75rem' }}>

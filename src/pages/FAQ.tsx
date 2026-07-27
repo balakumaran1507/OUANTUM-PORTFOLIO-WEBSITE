@@ -374,7 +374,7 @@ const SECTION_COLORS = [
 
 const FAQ: React.FC = () => {
   useSEO({
-    title: 'FAQ | OUANTUM — AI, BIM & Construction Engineering Questions',
+    title: 'FAQ | OUANTUM, AI, BIM & Construction Engineering Questions',
     description:
       'Answers to the most common questions about AI in construction, predictive maintenance, BIM, structural engineering, construction management, and the future of civil engineering.',
     keywords:

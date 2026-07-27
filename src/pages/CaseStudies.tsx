@@ -15,7 +15,7 @@ const organizationSchema = {
 
 const CaseStudies: React.FC = () => {
   useSEO({
-    title: 'Case Studies | OUANTUM — AI QA in Action at Scale',
+    title: 'Case Studies | OUANTUM, AI QA in Action at Scale',
     description:
       'Explore how OUANTUM has transformed quality assurance for NHAI bridge audits, Amaravati Capital City, coastal infrastructure, and Indian Standard code compliance at scale.',
     keywords:
@@ -34,7 +34,7 @@ const CaseStudies: React.FC = () => {
     description:
       'Explore why manual field data collection is evolving into a model of determinism and control, allowing for real-time validation of critical infrastructure against IS 456.',
     image: '/assets/images/bg4.jpg',
-    imageAlt: 'NHAI bridge structural audit — AI-powered quality assurance using NDT methods and IS 456 compliance',
+    imageAlt: 'NHAI bridge structural audit, AI-powered quality assurance using NDT methods and IS 456 compliance',
     link: '#',
   };
 
@@ -45,7 +45,7 @@ const CaseStudies: React.FC = () => {
       description:
         'See how the OUANTUM engine redefines structural scaling, removing manual bottlenecks with co-packaged AI models to unlock 50x faster reporting.',
       image: '/assets/images/bg1.jpg',
-      imageAlt: 'Coastal infrastructure expansion project — structural validation using OUANTUM AI platform',
+      imageAlt: 'Coastal infrastructure expansion project, structural validation using OUANTUM AI platform',
       link: '#',
     },
     {
@@ -54,7 +54,7 @@ const CaseStudies: React.FC = () => {
       description:
         'Run automated NDT analysis on OUANTUM. The AI pipeline unifies Rebound Hammer and UPV readings to achieve deterministic consensus on concrete strength.',
       image: '/assets/images/bg2.jpg',
-      imageAlt: 'SonReb correlation NDT analysis — rebound hammer and UPV combined concrete strength testing',
+      imageAlt: 'SonReb correlation NDT analysis, rebound hammer and UPV combined concrete strength testing',
       link: '#',
     },
     {
@@ -63,7 +63,7 @@ const CaseStudies: React.FC = () => {
       description:
         'A deep dive into how OUANTUM automatically flags outlier readings and correlates them against Indian Standards without requiring human intervention.',
       image: '/assets/images/bg3.jpg',
-      imageAlt: 'IS code compliance automation — OUANTUM flagging concrete test outliers against IS 456 and IS 13311',
+      imageAlt: 'IS code compliance automation, OUANTUM flagging concrete test outliers against IS 456 and IS 13311',
       link: '#',
     },
   ];

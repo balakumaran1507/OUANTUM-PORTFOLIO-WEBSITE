@@ -1,5 +1,5 @@
 /**
- * Data Engineers — poster images for the infinite marquee on the About page.
+ * Data Engineers, poster images for the infinite marquee on the About page.
  *
  * Source: C:\Users\latha\Downloads\data engineers\data engineers
  * Stored: public/assets/images/data-engineers/

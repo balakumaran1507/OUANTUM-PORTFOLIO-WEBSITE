@@ -1,5 +1,5 @@
 /**
- * Full Stack Developers — poster images for the infinite marquee on the About page.
+ * Full Stack Developers, poster images for the infinite marquee on the About page.
  *
  * Source: C:\Users\latha\Downloads\fullstack dev\fullstack dev
  * Stored: public/assets/images/fullstack-developers/

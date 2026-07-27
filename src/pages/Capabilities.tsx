@@ -274,7 +274,7 @@ const Capabilities: React.FC = () => {
                   Reducing Cycle Times From Weeks To Minutes
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.65)' }}>
-                  Instead of waiting 7–14 days for a senior structural engineer to compile lab results, verify standard deviations, cross-reference tables, and write reports, civil authorities get same-day certified reports, drastically accelerating project development.
+                  Instead of waiting 7 to 14 days for a senior structural engineer to compile lab results, verify standard deviations, cross-reference tables, and write reports, civil authorities get same-day certified reports, drastically accelerating project development.
                 </p>
               </div>
 

@@ -42,7 +42,7 @@ const About = () => {
               <WordHover text="India's construction quality assurance industry relies heavily on slow, inconsistent manual processes. NDT field readings are recorded on paper, and engineers manually cross-reference every value against IS codes." />
             </p>
             <p style={{ fontFamily: 'var(--font-main)', fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.8' }}>
-              <WordHover text="What used to take 5–14 days and 40–60 hours of senior engineer time is now compressed to under 4 hours. Field data in. Government-grade reports out. Same day. Nothing slips through unchecked." />
+              <WordHover text="What used to take 5 to 14 days and 40 to 60 hours of senior engineer time is now compressed to under 4 hours. Field data in. Government-grade reports out. Same day. Nothing slips through unchecked." />
             </p>
           </div>
         </motion.div>

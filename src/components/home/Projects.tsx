@@ -12,7 +12,7 @@ const projects = [
     location: 'AP, INDIA',
     year: 'ONGOING',
     status: 'ADVISORY',
-    scope: 'AP HIGH COURT · 4,000 RESIDENTIAL UNITS · 45-STOREY INTEGRATED SECRETARIAT. TPQM WORK BY OUR DOMAIN ADVISOR ER. KALAIMONY (IIT MADRAS CUBE) - THE METHODOLOGY BEHIND OUR REPORT GENERATION ENGINE.',
+    scope: 'AP HIGH COURT · 4,000 RESIDENTIAL UNITS · 45-STOREY INTEGRATED SECRETARIAT. TPQM WORK BY OUR DOMAIN ADVISOR ER. KALAIMONY (IIT MADRAS CUBE): THE METHODOLOGY BEHIND OUR REPORT GENERATION ENGINE.',
     featured: true,
   },
   {
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     id: 'REF-03',
-    title: 'TNUHDB - PMAY SCHEMES',
+    title: 'TNUHDB: PMAY SCHEMES',
     image: '/assets/images/pmay_project.png',
     category: 'ADB FUNDED · VALLAM & KARAIKUDI',
     location: 'VALLAM & KARAIKUDI',
@@ -45,7 +45,7 @@ const projects = [
     location: 'PAN-INDIA',
     year: '2023',
     status: 'VALIDATED',
-    scope: 'NPCCL SCHOOL PROJECTS ACROSS KERALA, KARNATAKA & MADHYA PRADESH. FOUR-STAGE QA MONITORING PROTOCOL - NOW EMBEDDED AS A DEFAULT WORKFLOW TEMPLATE IN THE PLATFORM.',
+    scope: 'NPCCL SCHOOL PROJECTS ACROSS KERALA, KARNATAKA & MADHYA PRADESH. FOUR-STAGE QA MONITORING PROTOCOL: NOW EMBEDDED AS A DEFAULT WORKFLOW TEMPLATE IN THE PLATFORM.',
     featured: false,
   },
 ];
@@ -72,7 +72,7 @@ const Projects: React.FC = () => {
             Where It's Been Tested
           </h2>
           <p className="section-subtitle">
-            Real infrastructure projects managed by our domain advisory partner - the field reality that shaped every decision in the OUANTUM platform.
+            Real infrastructure projects managed by our domain advisory partner, the field reality that shaped every decision in the OUANTUM platform.
           </p>
         </motion.div>
 

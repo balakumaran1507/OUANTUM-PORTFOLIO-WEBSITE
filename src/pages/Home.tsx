@@ -7,6 +7,7 @@ import HowItWorks from '../components/home/HowItWorks';
 import Difference from '../components/home/Difference';
 import Partners from '../components/home/Partners';
 import Contact from '../components/home/Contact';
+import SectionBlurDivider from '../components/common/SectionBlurDivider';
 import useSEO from '../hooks/useSEO';
 
 const BASE_URL = 'https://ouantum.com';
@@ -66,13 +67,17 @@ const Home: React.FC = () => {
   });
 
   return (
-    <main id="main-content" aria-label="OUANTUM home page">
+    <main id="main-content" aria-label="OUANTUM home page" style={{ position: 'relative', overflow: 'hidden' }}>
       <Hero />
       <PlatformIntro />
       <Problem />
+      <SectionBlurDivider type="dark-to-light" />
       <Services />
+      <SectionBlurDivider type="light-to-dark" />
       <HowItWorks />
+      <SectionBlurDivider type="dark-to-light" />
       <Difference />
+      <SectionBlurDivider type="light-to-dark" />
       <Partners />
       <Contact />
     </main>

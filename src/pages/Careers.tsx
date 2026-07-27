@@ -17,7 +17,7 @@ const Careers: React.FC = () => {
   useSEO({
     title: 'Careers at OUANTUM | Join the AI Infrastructure Team',
     description:
-      'Join OUANTUM — we are hiring AI engineers, structural audit specialists, and frontend developers to scale deterministic quality assurance for India\'s construction infrastructure.',
+      'Join OUANTUM, we are hiring AI engineers, structural audit specialists, and frontend developers to scale deterministic quality assurance for India\'s construction infrastructure.',
     keywords:
       'OUANTUM careers, AI engineer jobs Chennai, structural audit engineer, civil engineering AI jobs, ML researcher construction, frontend developer Chennai',
     canonicalPath: '/careers',

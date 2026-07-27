@@ -9,10 +9,10 @@ const SystemStatus: React.FC = () => {
   useSEO({
     title: 'System Status | OUANTUM UI Component States',
     description:
-      'Preview of deterministic UI feedback states used across the OUANTUM platform — loading, success, error, and empty states for field data ingestion and processing.',
+      'Preview of deterministic UI feedback states used across the OUANTUM platform, loading, success, error, and empty states for field data ingestion and processing.',
     keywords: 'OUANTUM system status, UI states, loading screen, error screen, field data ingestion',
     canonicalPath: '/system-status',
-    noIndex: true, // Internal dev page — do not index
+    noIndex: true, // Internal dev page, do not index
   });
 
   useEffect(() => {

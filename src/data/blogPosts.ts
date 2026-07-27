@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'Every hour spent on AI-powered quality monitoring during construction can save 10–100 hours of rework after completion.',
+        text: 'Every hour spent on AI-powered quality monitoring during construction can save 10 to 100 hours of rework after completion.',
       },
     ],
   },
@@ -136,9 +136,9 @@ export const blogPosts: BlogPost[] = [
       {
         type: 'list',
         items: [
-          'Rework reduction: typically 30–60% fewer defect-driven corrections',
-          'Inspection speed: AI-assisted inspection is 5–10x faster than manual review',
-          'Documentation: automated report generation saves 20–40 hours per project fortnight',
+          'Rework reduction: typically 30 to 60% fewer defect-driven corrections',
+          'Inspection speed: AI-assisted inspection is 5 to 10x faster than manual review',
+          'Documentation: automated report generation saves 20 to 40 hours per project fortnight',
           'Compliance: real-time IS code verification eliminates costly post-submission corrections',
         ],
       },
@@ -156,7 +156,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'AI quality assurance is not a technology cost — it is a risk mitigation investment with a measurable, compounding return.',
+        text: 'AI quality assurance is not a technology cost, it is a risk mitigation investment with a measurable, compounding return.',
       },
     ],
   },
@@ -213,7 +213,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'Traditional asset management relies on time-based or failure-based maintenance schedules. AI enables condition-based maintenance, which means infrastructure owners only intervene when the data indicates it is necessary — reducing unnecessary interventions while preventing failures before they occur.',
+        text: 'Traditional asset management relies on time-based or failure-based maintenance schedules. AI enables condition-based maintenance, which means infrastructure owners only intervene when the data indicates it is necessary, reducing unnecessary interventions while preventing failures before they occur.',
       },
     ],
   },
@@ -227,7 +227,7 @@ export const blogPosts: BlogPost[] = [
     author: 'SABARI RAJA',
     authorRole: 'CFO',
     excerpt:
-      'Technologies transforming infrastructure maintenance include AI, digital twins, IoT sensors, drones, robotics, and predictive analytics — providing real-time insights that reduce downtime and optimize maintenance budgets.',
+      'Technologies transforming infrastructure maintenance include AI, digital twins, IoT sensors, drones, robotics, and predictive analytics, providing real-time insights that reduce downtime and optimize maintenance budgets.',
     coverImage: '/assets/images/blog_images/mixboard-image (5).png',
     coverImageAlt: 'Drone inspecting infrastructure for maintenance assessment',
     tags: ['infrastructure', 'maintenance technology', 'drones', 'IoT', 'digital twins'],
@@ -304,7 +304,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'By improving coordination and reducing errors, BIM helps ensure that projects meet quality standards while minimizing rework and delays. Automated clash detection in BIM can identify thousands of spatial conflicts in hours — work that would take weeks of manual coordination reviews.',
+        text: 'By improving coordination and reducing errors, BIM helps ensure that projects meet quality standards while minimizing rework and delays. Automated clash detection in BIM can identify thousands of spatial conflicts in hours, work that would take weeks of manual coordination reviews.',
       },
       {
         type: 'list',
@@ -411,7 +411,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'While engineering expertise remains essential for final decision-making, AI significantly improves inspection speed, consistency, and defect detection capabilities. The key advantage of AI is not greater raw accuracy on any single defect — it is the elimination of inconsistency across hundreds or thousands of elements.',
+        text: 'While engineering expertise remains essential for final decision-making, AI significantly improves inspection speed, consistency, and defect detection capabilities. The key advantage of AI is not greater raw accuracy on any single defect, it is the elimination of inconsistency across hundreds or thousands of elements.',
       },
       {
         type: 'list',
@@ -462,7 +462,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'This allows engineers to take proactive measures that improve structural safety, reduce maintenance costs, and extend asset lifespan. The sheer volume of data generated by modern SHM sensor arrays is beyond human capacity to process manually — AI is what makes that data actionable.',
+        text: 'This allows engineers to take proactive measures that improve structural safety, reduce maintenance costs, and extend asset lifespan. The sheer volume of data generated by modern SHM sensor arrays is beyond human capacity to process manually, AI is what makes that data actionable.',
       },
       {
         type: 'list',
@@ -525,7 +525,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'Traditional project management is inherently reactive — delays are identified after they have already impacted the schedule. AI enables project managers to shift to proactive management, addressing risk factors before they become delay events.',
+        text: 'Traditional project management is inherently reactive, delays are identified after they have already impacted the schedule. AI enables project managers to shift to proactive management, addressing risk factors before they become delay events.',
       },
     ],
   },
@@ -572,7 +572,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'AI-powered project management does not make decisions — it ensures project managers have the right information to make better decisions, faster.',
+        text: 'AI-powered project management does not make decisions, it ensures project managers have the right information to make better decisions, faster.',
       },
     ],
   },

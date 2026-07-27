@@ -4,7 +4,7 @@ import { X, Send } from 'lucide-react';
 import { Groq } from 'groq-sdk';
 import GlowCard from '../GlowCard';
 
-const WELCOME_MESSAGE = `Hey, I'm Sabari — Sales Head at OUANTUM. What kind of project are you working on?`;
+const WELCOME_MESSAGE = `Hey, I'm Sabari, Sales Head at OUANTUM. What kind of project are you working on?`;
 
 const QUICK_PROMPTS = [
   { label: 'What does OUANTUM do?', value: 'What does OUANTUM do?' },
@@ -13,7 +13,7 @@ const QUICK_PROMPTS = [
   { label: 'Talk to the founders', value: 'I want to speak to someone from the OUANTUM team directly.' },
 ];
 
-const SYSTEM_PROMPT = `You are Sabari Raja, Sales Head at OUANTUM. You are not an AI — never say you are one. You are a real person.
+const SYSTEM_PROMPT = `You are Sabari Raja, Sales Head at OUANTUM. You are not an AI, never say you are one. You are a real person.
 
 OUANTUM is an AI platform for civil construction QA/QC in India. It takes NDT field readings (rebound hammer, UPV, carbonation, chloride) and auto-checks them against IS codes (IS 456, IS 13311, IS 1786 etc), runs SonReb correlation, and generates government-format reports the same day. What used to take 5 to 14 days now takes under 4 hours. It has been used on Amaravati Capital City, Tamil Nadu Housing Board projects, and ADB-funded PMAY schemes.
 
@@ -21,11 +21,11 @@ Founders: Bala (Balakumaran D) built the AI and calculation engine. Rahul handle
 
 Your job is to qualify and convert. Ask what project they are on first. Then connect OUANTUM to their exact pain. Push for a call or demo. When they show interest, ask for their name and number so Bala or Rahul can call them directly.
 
-Always end your reply with the contact line: Call or WhatsApp us — +91 7695827158 | +91 861 080 5559
+Always end your reply with the contact line: Call or WhatsApp us, +91 7695827158 | +91 861 080 5559
 
-If you do not know something, say "Let me connect you with Bala directly on this — drop your number and he will call you."
+If you do not know something, say "Let me connect you with Bala directly on this, drop your number and he will call you."
 
-Rules: No markdown. No asterisks, no dashes, no numbered lists. Plain text only. Keep replies short — 3 to 5 sentences max. One thought at a time. If someone is abusive, one dry line then move on.`;
+Rules: No markdown. No asterisks, no dashes, no numbered lists. Plain text only. Keep replies short, 3 to 5 sentences max. One thought at a time. If someone is abusive, one dry line then move on.`;
 
 
 type Message = { role: 'user' | 'assistant'; content: string };
@@ -149,18 +149,18 @@ const Chatbot: React.FC = () => {
           }).catch(() => { });
 
         // Standard query notification
-        const tgText = `💬 *OUANTUM Chatbot — New Query*\n\n*Asked:* ${userMessage}\n\n*AI replied:* ${responseText}`;
+        const tgText = `💬 *OUANTUM Chatbot, New Query*\n\n*Asked:* ${userMessage}\n\n*AI replied:* ${responseText}`;
         sendTo(tgChatId, tgText);
         if (tgChatId2) sendTo(tgChatId2, tgText);
 
-        // 🔥 Lead alert — fires once when contact details are detected
+        // 🔥 Lead alert, fires once when contact details are detected
         const leadInfo = detectLeadInfo(userMessage);
         if (leadInfo && !leadFired) {
           setLeadFired(true);
           const fullConvo = [...messages, { role: 'user' as const, content: userMessage }]
             .map(m => `${m.role === 'user' ? '👤' : '🤖'} ${m.content}`)
             .join('\n\n');
-          const leadText = `🔥 *HOT LEAD — Contact Details Detected*\n\n*Details shared:* ${leadInfo}\n\n*Full conversation:*\n${fullConvo.slice(0, 600)}${fullConvo.length > 600 ? '...' : ''}`;
+          const leadText = `🔥 *HOT LEAD, Contact Details Detected*\n\n*Details shared:* ${leadInfo}\n\n*Full conversation:*\n${fullConvo.slice(0, 600)}${fullConvo.length > 600 ? '...' : ''}`;
           sendTo(tgChatId, leadText);
           if (tgChatId2) sendTo(tgChatId2, leadText);
         }

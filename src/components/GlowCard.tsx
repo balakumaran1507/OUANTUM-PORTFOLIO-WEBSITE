@@ -15,7 +15,7 @@ function buildRadial(layer: GlowLayer): string {
   return `radial-gradient(ellipse ${layer.scaleX}% ${layer.scaleY}% at ${layer.x}% ${layer.y}%, ${stopStr})`;
 }
 
-// MAIN AMBIENT GLOW — the light living inside the card panel.
+// MAIN AMBIENT GLOW, the light living inside the card panel.
 const MAIN_GLOW_LAYERS: GlowLayer[] = [
   {
     name: "highlight-line",
@@ -110,7 +110,7 @@ const MAIN_GLOW_LAYERS: GlowLayer[] = [
 const MAIN_GLOW_FLOOR_FILL =
   "linear-gradient(to top, rgba(190,98,44,0.6) 0%, rgba(150,78,35,0.4) 3%, rgba(100,52,24,0.2) 8%, rgba(60,30,14,0.09) 16%, rgba(30,15,7,0.03) 32%, rgba(0,0,0,0) 60%)";
 
-// BORDER-MARGIN GLOW BLEED — sits behind border stroke.
+// BORDER-MARGIN GLOW BLEED, sits behind border stroke.
 const MARGIN_GLOW_LAYERS: GlowLayer[] = [
   {
     name: "margin-tight-glow",
@@ -226,7 +226,7 @@ export default function GlowCard({
           width: "100%",
           height: "100%",
           pointerEvents: "none",
-          zIndex: 2,
+          zIndex: 10,
         }}
       >
         <defs>

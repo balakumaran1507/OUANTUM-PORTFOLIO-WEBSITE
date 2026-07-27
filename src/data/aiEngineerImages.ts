@@ -1,5 +1,5 @@
 /**
- * AI Engineers — poster images for the infinite marquee on the About page.
+ * AI Engineers, poster images for the infinite marquee on the About page.
  *
  * Source: C:\Users\latha\Downloads\AI-Engineers Posters\AI-Engineers Posters
  * Stored: public/assets/images/ai-engineers/
