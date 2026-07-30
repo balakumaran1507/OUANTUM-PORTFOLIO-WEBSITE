@@ -7,7 +7,7 @@ import { WordHover } from '@/components/common/WordHover';
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '', website: '' }); // 'website' is a honeypot field
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -58,36 +58,39 @@ const Hero: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
+    // Honeypot check — bots fill hidden fields, humans don't
+    if (formData.website) return;
 
     setIsSubmitting(true);
 
     try {
-      const tgToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-      const tgChatId = import.meta.env.VITE_TELEGRAM_BOT_TOKEN ? import.meta.env.VITE_TELEGRAM_CHAT_ID : null;
-      const tgChatId2 = import.meta.env.VITE_TELEGRAM_BOT_TOKEN ? import.meta.env.VITE_TELEGRAM_CHAT_ID_2 : null;
-
-      if (tgToken && tgChatId) {
-        const text = `🚨 *New Website Lead (Hero Form)*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Message:* ${formData.message || 'N/A'}`;
-
-        const sendTo = (chatId: string) =>
-          fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
-          }).catch(() => { });
-
-        await sendTo(tgChatId);
-        if (tgChatId2) await sendTo(tgChatId2);
-      }
+      // Notify via server-side API route — no secrets in client code
+      await fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'hero_form',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
 
       setIsSuccess(true);
       setTimeout(() => {
         setIsModalOpen(false);
         setIsSuccess(false);
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', message: '', website: '' });
       }, 3000);
-    } catch (error) {
-      console.error(error);
+    } catch {
+      // Silently succeed — notification is non-critical
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setIsSuccess(false);
+        setFormData({ name: '', email: '', phone: '', message: '', website: '' });
+      }, 3000);
     } finally {
       setIsSubmitting(false);
     }
@@ -354,6 +357,17 @@ const Hero: React.FC = () => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    {/* Honeypot — hidden from real users, bots fill it */}
+                    <input
+                      type="text"
+                      name="website"
+                      value={formData.website}
+                      onChange={e => setFormData({ ...formData, website: e.target.value })}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      style={{ display: 'none' }}
+                      aria-hidden="true"
+                    />
                     <input
                       type="text"
                       placeholder="Name"

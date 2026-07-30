@@ -5,7 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -15,6 +15,16 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['metal-fx'],
+  },
+  server: {
+    proxy: {
+      // Proxies /api/* to vercel dev server for local development.
+      // Run `vercel dev` on port 3000 alongside `npm run dev`.
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     chunkSizeWarningLimit: 1000,
