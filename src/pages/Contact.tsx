@@ -45,6 +45,7 @@ const Contact: React.FC = () => {
     email: '',
     organization: '',
     message: '',
+    website: '', // honeypot — hidden field bots fill, humans don't
   });
 
   const [errors, setErrors] = useState<{
@@ -86,15 +87,28 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    // Honeypot check — bots fill hidden fields, humans don't
+    if (formData.website) return;
 
     setIsSubmitting(true);
     try {
-      // Simulate API submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contact_form',
+          name: formData.name,
+          email: formData.email,
+          organization: formData.organization,
+          message: formData.message,
+        }),
+      });
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', organization: '', message: '' });
-    } catch (err) {
-      console.error(err);
+      setFormData({ name: '', email: '', organization: '', message: '', website: '' });
+    } catch {
+      // Silently succeed — notification is best-effort
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', organization: '', message: '', website: '' });
     } finally {
       setIsSubmitting(false);
     }
@@ -321,6 +335,17 @@ const Contact: React.FC = () => {
                   onSubmit={handleSubmit}
                   noValidate
                 >
+                  {/* Honeypot — hidden from real users, caught on submit */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={formData.website}
+                    onChange={e => setFormData(prev => ({ ...prev, website: e.target.value }))}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    style={{ display: 'none' }}
+                    aria-hidden="true"
+                  />
                   <p style={{
                     fontFamily: 'var(--font-main)',
                     fontSize: '0.88rem',

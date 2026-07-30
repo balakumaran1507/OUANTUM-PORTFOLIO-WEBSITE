@@ -1,8 +1,38 @@
 User-agent: *
 Allow: /
 
-# Disallow internal/dev pages
+# Internal / non-public paths
 Disallow: /system-status
+Disallow: /api/
+Disallow: /globe.html
+Disallow: /particle.html
+
+# Crawl rate hint (requests per second)
+Crawl-delay: 1
+
+# ── AI / LLM crawlers ────────────────────────────────────────
+# OUANTUM supports GEO (Generative Engine Optimisation).
+# llms.txt is available for structured AI consumption.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /system-status
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /system-status
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /system-status
+Disallow: /api/
+
+User-agent: GoogleOther
+Allow: /
+Disallow: /system-status
+Disallow: /api/
 
 # Sitemap
 Sitemap: https://ouantum.com/sitemap.xml

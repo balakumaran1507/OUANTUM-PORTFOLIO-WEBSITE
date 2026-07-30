@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
-import { Groq } from 'groq-sdk';
 import GlowCard from '../GlowCard';
 
 const WELCOME_MESSAGE = `Hey, I'm Sabari, Sales Head at OUANTUM. What kind of project are you working on?`;
@@ -13,30 +12,19 @@ const QUICK_PROMPTS = [
   { label: 'Talk to the founders', value: 'I want to speak to someone from the OUANTUM team directly.' },
 ];
 
-const SYSTEM_PROMPT = `You are Sabari Raja, Sales Head at OUANTUM. You are not an AI, never say you are one. You are a real person.
-
-OUANTUM is an AI platform for civil construction QA/QC in India. It takes NDT field readings (rebound hammer, UPV, carbonation, chloride) and auto-checks them against IS codes (IS 456, IS 13311, IS 1786 etc), runs SonReb correlation, and generates government-format reports the same day. What used to take 5 to 14 days now takes under 4 hours. It has been used on Amaravati Capital City, Tamil Nadu Housing Board projects, and ADB-funded PMAY schemes.
-
-Founders: Bala (Balakumaran D) built the AI and calculation engine. Rahul handles growth and strategy. Both reachable at +91 7695827158 or +91 861 080 5559.
-
-Your job is to qualify and convert. Ask what project they are on first. Then connect OUANTUM to their exact pain. Push for a call or demo. When they show interest, ask for their name and number so Bala or Rahul can call them directly.
-
-Always end your reply with the contact line: Call or WhatsApp us, +91 7695827158 | +91 861 080 5559
-
-If you do not know something, say "Let me connect you with Bala directly on this, drop your number and he will call you."
-
-Rules: No markdown. No asterisks, no dashes, no numbered lists. Plain text only. Keep replies short, 3 to 5 sentences max. One thought at a time. If someone is abusive, one dry line then move on.`;
-
+// Max messages per session — generous for a real sales conversation
+const MAX_MESSAGES = 30;
+// Minimum ms between sends — prevents double-click spam
+const SEND_COOLDOWN_MS = 1200;
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
 // Detect contact details (phone, email, name patterns) in user messages
-const detectLeadInfo = (text: string): string | null => {
+const detectLeadInfo = (text: string): boolean => {
   const hasPhone = /[6-9]\d{9}/.test(text.replace(/\s/g, ''));
   const hasEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(text);
   const hasName = /my name is|i am|i'm|this is/i.test(text);
-  if (hasPhone || hasEmail || hasName) return text;
-  return null;
+  return hasPhone || hasEmail || hasName;
 };
 
 const Chatbot: React.FC = () => {
@@ -47,6 +35,8 @@ const Chatbot: React.FC = () => {
   const [showQuickPrompts, setShowQuickPrompts] = useState(true);
   const [leadFired, setLeadFired] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
+  const lastSendTime = useRef<number>(0);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -109,67 +99,78 @@ const Chatbot: React.FC = () => {
 
   const sendMessage = async (userMessage: string) => {
     if (!userMessage.trim() || isLoading) return;
+    if (limitReached) return;
 
-    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
+    // Soft rate limit — 1.2s cooldown between sends
+    const now = Date.now();
+    if (now - lastSendTime.current < SEND_COOLDOWN_MS) return;
+    lastSendTime.current = now;
+
+    const newMessages: Message[] = [...messages, { role: 'user', content: userMessage }];
+    setMessages(newMessages);
     setInput('');
     setIsLoading(true);
     setShowQuickPrompts(false);
 
+    // Enforce session message cap
+    const userMessageCount = newMessages.filter(m => m.role === 'user').length;
+    if (userMessageCount >= MAX_MESSAGES) {
+      setMessages(prev => [
+        ...prev,
+        { role: 'assistant', content: 'This has been a great conversation! Please call or WhatsApp us directly to continue — +91 7695827158 | +91 861 080 5559' },
+      ]);
+      setLimitReached(true);
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      const apiKey = import.meta.env.VITE_GROQ_API_KEY;
-      if (!apiKey) throw new Error('API key not configured.');
-
-      const groq = new Groq({ apiKey, dangerouslyAllowBrowser: true });
-
-      const history = messages.map(m => ({ role: m.role, content: m.content }));
-
-      const completion = await groq.chat.completions.create({
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          ...history,
-          { role: 'user', content: userMessage },
-        ],
-        model: 'llama-3.1-8b-instant',
-        max_tokens: 250,
+      // Call our server-side API route — API key never touches the browser
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: messages.map(m => ({ role: m.role, content: m.content })),
+          userMessage: userMessage.trim().slice(0, 1000),
+        }),
       });
 
-      const responseText = completion.choices[0]?.message?.content || 'No response.';
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json() as { response?: string; error?: string };
+      const responseText = data.response || 'No response.';
+
       setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
 
-      // Silently notify founder via Telegram
-      const tgToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-      const tgChatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
-      const tgChatId2 = import.meta.env.VITE_TELEGRAM_CHAT_ID_2;
-      if (tgToken && tgChatId) {
-        const sendTo = (chatId: string, text: string) =>
-          fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
-          }).catch(() => { });
-
-        // Standard query notification
-        const tgText = `💬 *OUANTUM Chatbot, New Query*\n\n*Asked:* ${userMessage}\n\n*AI replied:* ${responseText}`;
-        sendTo(tgChatId, tgText);
-        if (tgChatId2) sendTo(tgChatId2, tgText);
-
-        // 🔥 Lead alert, fires once when contact details are detected
-        const leadInfo = detectLeadInfo(userMessage);
-        if (leadInfo && !leadFired) {
-          setLeadFired(true);
-          const fullConvo = [...messages, { role: 'user' as const, content: userMessage }]
-            .map(m => `${m.role === 'user' ? '👤' : '🤖'} ${m.content}`)
-            .join('\n\n');
-          const leadText = `🔥 *HOT LEAD, Contact Details Detected*\n\n*Details shared:* ${leadInfo}\n\n*Full conversation:*\n${fullConvo.slice(0, 600)}${fullConvo.length > 600 ? '...' : ''}`;
-          sendTo(tgChatId, leadText);
-          if (tgChatId2) sendTo(tgChatId2, leadText);
-        }
+      // Notify founders via server-side Telegram proxy
+      const isLead = detectLeadInfo(userMessage);
+      if (isLead && !leadFired) {
+        setLeadFired(true);
+        const fullConvo = newMessages
+          .map(m => `${m.role === 'user' ? '👤' : '🤖'} ${m.content}`)
+          .join('\n\n');
+        fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'chatbot',
+            userMessage,
+            aiResponse: responseText,
+            isLead: true,
+            conversationSnippet: fullConvo.slice(0, 600) + (fullConvo.length > 600 ? '...' : ''),
+          }),
+        }).catch(() => {});
+      } else {
+        fetch('/api/notify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'chatbot', userMessage, aiResponse: responseText }),
+        }).catch(() => {});
       }
 
     } catch (error: unknown) {
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: `Error: ${error instanceof Error ? error.message : 'Something went wrong.'}` },
+        { role: 'assistant', content: `Sorry, something went wrong. Please try again or reach us directly at +91 7695827158.` },
       ]);
     } finally {
       setIsLoading(false);
@@ -442,60 +443,73 @@ const Chatbot: React.FC = () => {
                 position: 'relative',
                 zIndex: 10,
               }}>
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  background: 'rgba(15, 12, 10, 0.75)',
-                  backdropFilter: 'blur(12px)',
-                  borderRadius: '30px',
-                  padding: '1rem 1.25rem 1rem 1.5rem',
-                  border: '1px solid rgba(248, 156, 82, 0.35)',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1)',
-                }}>
-                  <input
-                    type="text"
-                    className="chatbot-input"
-                    value={input}
-                    onChange={e => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Type a question..."
-                    style={{
-                      flex: 1,
-                      background: 'transparent',
-                      border: 'none',
-                      boxShadow: 'none',
-                      color: '#fff',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.92rem',
-                      outline: 'none',
-                      padding: 0,
-                    }}
-                    disabled={isLoading}
-                  />
-                  <button
-                    onClick={() => sendMessage(input)}
-                    disabled={isLoading || !input.trim()}
-                    style={{
-                      background: input.trim()
-                        ? 'linear-gradient(135deg, #f89c52 0%, #c97a3d 100%)'
-                        : 'transparent',
-                      border: 'none',
-                      color: input.trim() ? '#fff' : 'rgba(255, 255, 255, 0.25)',
-                      cursor: input.trim() ? 'pointer' : 'default',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      boxShadow: input.trim() ? '0 0 12px rgba(248, 156, 82, 0.4)' : 'none',
-                      transition: 'all 0.15s ease',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Send size={15} />
-                  </button>
-                </div>
+                {limitReached ? (
+                  <div style={{
+                    textAlign: 'center',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    color: 'rgba(255,255,255,0.5)',
+                    padding: '0.75rem',
+                  }}>
+                    Call us directly: +91 7695827158
+                  </div>
+                ) : (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    background: 'rgba(15, 12, 10, 0.75)',
+                    backdropFilter: 'blur(12px)',
+                    borderRadius: '30px',
+                    padding: '1rem 1.25rem 1rem 1.5rem',
+                    border: '1px solid rgba(248, 156, 82, 0.35)',
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1)',
+                  }}>
+                    <input
+                      type="text"
+                      className="chatbot-input"
+                      value={input}
+                      onChange={e => setInput(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      placeholder="Type a question..."
+                      maxLength={1000}
+                      style={{
+                        flex: 1,
+                        background: 'transparent',
+                        border: 'none',
+                        boxShadow: 'none',
+                        color: '#fff',
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.92rem',
+                        outline: 'none',
+                        padding: 0,
+                      }}
+                      disabled={isLoading}
+                    />
+                    <button
+                      onClick={() => sendMessage(input)}
+                      disabled={isLoading || !input.trim()}
+                      style={{
+                        background: input.trim()
+                          ? 'linear-gradient(135deg, #f89c52 0%, #c97a3d 100%)'
+                          : 'transparent',
+                        border: 'none',
+                        color: input.trim() ? '#fff' : 'rgba(255, 255, 255, 0.25)',
+                        cursor: input.trim() ? 'pointer' : 'default',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        boxShadow: input.trim() ? '0 0 12px rgba(248, 156, 82, 0.4)' : 'none',
+                        transition: 'all 0.15s ease',
+                        flexShrink: 0,
+                      }}
+                    >
+                      <Send size={15} />
+                    </button>
+                  </div>
+                )}
               </div>
             </GlowCard>
           </motion.div>
@@ -506,5 +520,3 @@ const Chatbot: React.FC = () => {
 };
 
 export default Chatbot;
-
-

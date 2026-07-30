@@ -2,32 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./assets/images/logo.png" />
+    <link rel="icon" type="image/png" href="/assets/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Deferred Non-Critical Analytics -->
-    <script>
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          // Google Analytics
-          var gaScript = document.createElement('script');
-          gaScript.async = true;
-          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XVXJYL311Z';
-          document.head.appendChild(gaScript);
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XVXJYL311Z');
+    <script defer src="/analytics.js"></script>
 
-          // Microsoft Clarity
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "x3p7v4kzcc");
-        }, 1000);
-      });
-    </script>
 
     <!-- Primary SEO -->
     <title>OUANTUM | AI-Powered Quality Assurance for Civil Infrastructure</title>
@@ -138,29 +118,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <!-- Preload Critical LCP Assets -->
-    <link rel="preload" as="image" href="./assets/images/logo_horizontal.png" type="image/png">
-    <link rel="preload" as="image" href="./assets/images/0deda3f3-08be-4515-af7b-2e1b6c2d97d8.png" type="image/png">
+    <link rel="preload" as="image" href="/assets/images/logo_horizontal.png" type="image/png">
+    <link rel="preload" as="image" href="/assets/images/0deda3f3-08be-4515-af7b-2e1b6c2d97d8.png" type="image/png">
 
     <!-- Preload Marquee Images -->
-    <link rel="preload" as="image" href="./assets/images/ai-engineers/ai-eng-1.webp" type="image/webp">
-    <link rel="preload" as="image" href="./assets/images/ai-engineers/ai-eng-1-1.webp" type="image/webp">
-    <link rel="preload" as="image" href="./assets/images/ai-engineers/ai-eng-1-2.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/ai-engineers/ai-eng-1.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/ai-engineers/ai-eng-1-1.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/ai-engineers/ai-eng-1-2.webp" type="image/webp">
     
-    <link rel="preload" as="image" href="./assets/images/data-engineers/data-eng-11.webp" type="image/webp">
-    <link rel="preload" as="image" href="./assets/images/data-engineers/data-eng-12.webp" type="image/webp">
-    <link rel="preload" as="image" href="./assets/images/data-engineers/data-eng-15.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/data-engineers/data-eng-11.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/data-engineers/data-eng-12.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/data-engineers/data-eng-15.webp" type="image/webp">
     
-    <link rel="preload" as="image" href="./assets/images/fullstack-developers/fs-dev-1.webp" type="image/webp">
-    <link rel="preload" as="image" href="./assets/images/fullstack-developers/fs-dev-poster-1.webp" type="image/webp">
-    <link rel="preload" as="image" href="./assets/images/fullstack-developers/fs-dev-poster.webp" type="image/webp">
-    <script type="module" crossorigin src="./assets/index-fIirEJ9M.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/rolldown-runtime-Cyuzqnbw.js">
-    <link rel="modulepreload" crossorigin href="./assets/vendor-framer-Do6ZKNKQ.js">
-    <link rel="modulepreload" crossorigin href="./assets/vendor-lucide-DqgXile6.js">
-    <link rel="modulepreload" crossorigin href="./assets/vendor-react-mlvhJty4.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-CwCiTnWM.css">
+    <link rel="preload" as="image" href="/assets/images/fullstack-developers/fs-dev-1.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/fullstack-developers/fs-dev-poster-1.webp" type="image/webp">
+    <link rel="preload" as="image" href="/assets/images/fullstack-developers/fs-dev-poster.webp" type="image/webp">
+    <script type="module" crossorigin src="/assets/index-CKz3fjWv.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Cyuzqnbw.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-framer-Do6ZKNKQ.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-lucide-DqgXile6.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-mlvhJty4.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-G-yCyxaG.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
