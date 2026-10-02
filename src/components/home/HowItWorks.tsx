@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ScrollReveal from '@/components/common/ScrollReveal';
+import GlowCard from '../GlowCard';
 
 const steps = [
   {
@@ -82,13 +83,11 @@ const StepCard = ({ step }: { step: typeof steps[0] }) => {
   const y = isMobile ? step.mobileY : step.desktopY;
 
   return (
-    <div
+    <GlowCard
       style={{
         position: 'relative',
         height: '520px',
-        borderRadius: '20px',
-        overflow: 'hidden',
-        border: '1px solid rgba(255,255,255,0.10)',
+        padding: 0,
       }}
     >
       {/* ── Background image ── */}
@@ -125,7 +124,7 @@ const StepCard = ({ step }: { step: typeof steps[0] }) => {
         }}
       />
 
-      {/* ── Front content (title / step number) ── */}
+      {/* ── Front content (title) ── */}
       <div
         style={{
           position: 'absolute',
@@ -139,40 +138,19 @@ const StepCard = ({ step }: { step: typeof steps[0] }) => {
           pointerEvents: 'none',
         }}
       >
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.62rem',
-            letterSpacing: '0.25em',
-            color: 'rgba(255,255,255,0.3)',
-            display: 'block',
-            marginBottom: '0.4rem',
-          }}
-        >
-          {step.num}
-        </span>
         <h3
           style={{
-            fontFamily: 'var(--font-adieu)',
+            fontFamily: 'var(--font-geist)',
+            fontWeight: 200,
             fontSize: '1.55rem',
             color: '#fff',
-            margin: '0 0 0.3rem 0',
+            margin: 0,
             letterSpacing: '0.02em',
             lineHeight: 1.1,
           }}
         >
           {step.title}
         </h3>
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.6rem',
-            color: 'rgba(255,255,255,0.28)',
-            letterSpacing: '0.12em',
-          }}
-        >
-          {step.sub}
-        </span>
       </div>
 
       {/* ── DARK CIRCLE OVERLAY ──
@@ -217,21 +195,10 @@ const StepCard = ({ step }: { step: typeof steps[0] }) => {
             transitionDelay: expanded ? '0.4s' : '0s',
           }}
         >
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.62rem',
-              letterSpacing: '0.2em',
-              color: 'rgba(255,255,255,0.32)',
-              display: 'block',
-              marginBottom: '0.5rem',
-            }}
-          >
-            {step.sub}
-          </span>
           <h3
             style={{
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-geist)',
+              fontWeight: 200,
               fontSize: '1.45rem',
               color: '#fff',
               margin: '0 0 1rem 0',
@@ -299,7 +266,7 @@ const StepCard = ({ step }: { step: typeof steps[0] }) => {
       >
         {expanded ? '✕' : '↗'}
       </button>
-    </div>
+    </GlowCard>
   );
 };
 
@@ -318,6 +285,8 @@ const HowItWorks = () => {
         }}>
           <div style={{ position: 'relative', display: 'inline-block', margin: '0' }}>
             <h2 className="section-title" style={{
+              fontFamily: 'var(--font-geist)',
+              fontWeight: 200,
               position: 'relative',
               zIndex: 1,
             }}>

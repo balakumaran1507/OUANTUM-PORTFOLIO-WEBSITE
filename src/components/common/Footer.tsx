@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Adjust logo scale, X-axis position, and Y-axis position directly here
-  const logoScale = 15.0;
+  const logoScale = isMobile ? 11.5 : 15.0;
   const logoX = 0; // in pixels
-  const logoY = 2.0; // in pixels
+  const logoY = isMobile ? 1.0 : 2.0; // in pixels
 
   return (
     <footer className="footer-industrial">
@@ -14,7 +23,7 @@ const Footer: React.FC = () => {
         {/* Large Brand Title */}
         <div className="footer-brand-title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{
-            height: `calc(3.0 * clamp(1.9rem, 4vw, 3rem))`,
+            height: isMobile ? '56px' : `calc(3.0 * clamp(1.9rem, 4vw, 3rem))`,
             width: '100%',
             overflow: 'hidden',
             position: 'relative',
@@ -27,7 +36,7 @@ const Footer: React.FC = () => {
               alt="OUANTUM Logo"
               loading="lazy"
               style={{
-                height: 'clamp(1.5rem, 4vw, 3rem)',
+                height: isMobile ? '20px' : 'clamp(1.5rem, 4vw, 3rem)',
                 width: 'auto',
                 transform: `scale(${logoScale}) translate(${logoX}px, ${logoY}px)`,
                 transformOrigin: 'center center',
@@ -42,6 +51,7 @@ const Footer: React.FC = () => {
         <div className="footer-nav-grid">
           <div className="footer-nav-col">
             <span className="footer-col-label">Navigation</span>
+            <Link to="/ox1" className="footer-nav-link">OX1 Product</Link>
             <Link to="/about" className="footer-nav-link">About Archive</Link>
             <Link to="/careers" className="footer-nav-link">Careers</Link>
             <Link to="/capabilities" className="footer-nav-link">Core Capabilities</Link>
@@ -75,7 +85,6 @@ const Footer: React.FC = () => {
             <span className="footer-copyright">
               © 2026 OUANTUM
             </span>
-            <div className="footer-separator"></div>
             <div className="footer-legal-links">
               <Link to="/privacy" className="footer-nav-link">Privacy Policy</Link>
               <Link to="/security" className="footer-nav-link">Security & Terms</Link>

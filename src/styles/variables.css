@@ -10,11 +10,16 @@
   --line-color: rgba(255, 255, 255, 0.1);
   --line-active: #444444;
 
+  /* Glow Card Global Color */
+  --glow-card-color: #ffffff;
+
   /* Fonts */
   --font-main: 'Inter', sans-serif;
   --font-mono: 'Inter', sans-serif;
   --font-adieu: 'Adieu', sans-serif;
   --font-brand: 'Adieu', sans-serif;
+  --font-geist: 'Geist', sans-serif;
+  --font-title: 'Geist', sans-serif;
 
   /* Spacing */
   --container-width: 1600px;
@@ -22,8 +27,8 @@
   --header-height: 90px;
 
   /* Radius */
-  --card-radius: 32px;
-  --card-radius-sm: 24px;
+  --card-radius: 0px;
+  --card-radius-sm: 0px;
 
   /* Transitions */
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import useSEO from '../hooks/useSEO';
 import ScrollReveal from '../components/common/ScrollReveal';
+import GlowCard from '../components/GlowCard';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -230,6 +232,41 @@ const faqData: FAQSection[] = [
       },
     ],
   },
+  {
+    title: 'Careers & Opportunities',
+    items: [
+      {
+        id: 31,
+        question: 'What Roles Is OUANTUM Currently Hiring For?',
+        answer:
+          'OUANTUM is actively expanding its core engineering team across Autonomous Systems, Computer Vision Research, Structural QA Engineering, Embedded Edge Compute, and Full-Stack Systems Architecture. We recruit passionate engineers and researchers looking to deploy production AI to large-scale civil infrastructure.',
+      },
+      {
+        id: 32,
+        question: 'What Is the Engineering Culture at OUANTUM?',
+        answer:
+          'Our engineering culture is rooted in rigorous empirical validation, extreme ownership, and deterministic design. We bridge real-world physical site conditions with state-of-the-art neural architectures. We believe in rapid prototyping, autonomous decision-making, and delivering zero-defect safety-critical infrastructure technologies.',
+      },
+      {
+        id: 33,
+        question: 'How Can Civil Engineers and Computer Scientists Collaborate Here?',
+        answer:
+          'At OUANTUM, structural engineers collaborate daily with computer vision scientists and machine learning engineers. Civil domain specialists define deterministic inspection thresholds, fracture mechanics, and code compliance standards, while AI engineers develop real-time volumetric point cloud reconstruction and edge defect detection algorithms.',
+      },
+      {
+        id: 34,
+        question: 'What Does the Interview and Selection Process Involve?',
+        answer:
+          'Our evaluation process is transparent and hands-on: an initial technical discussion, a practical domain assessment or architecture challenge reflecting our actual problems, and a cultural alignment session with engineering leadership. We evaluate first-principles reasoning and execution speed over memorized trivia.',
+      },
+      {
+        id: 35,
+        question: 'Does OUANTUM Support Internships and Research Fellowships?',
+        answer:
+          'Yes. We offer intensive engineering internships and graduate research fellowships for talented students and researchers in robotics, computer vision, structural engineering, and edge AI compute. High-performing fellows regularly transition into full-time core engineering roles.',
+      },
+    ],
+  },
 ];
 
 // Build JSON-LD FAQPage schema
@@ -267,11 +304,7 @@ interface AccordionItemProps {
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle, accentColor }) => {
   return (
-    <div
-      style={{
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-      }}
-    >
+    <div>
       <button
         onClick={onToggle}
         aria-expanded={isOpen}
@@ -368,17 +401,18 @@ const SECTION_COLORS = [
   '#ffffff', // Structural Engineering
   '#ffffff', // Construction Management
   '#ffffff', // Future Engineering
+  '#ffffff', // Careers & Opportunities
 ];
 
 // ─── FAQ Page ────────────────────────────────────────────────────────────────
 
 const FAQ: React.FC = () => {
   useSEO({
-    title: 'FAQ | OUANTUM, AI, BIM & Construction Engineering Questions',
+    title: 'FAQ | Ouantum',
     description:
-      'Answers to the most common questions about AI in construction, predictive maintenance, BIM, structural engineering, construction management, and the future of civil engineering.',
+      'Answers to the most common questions about AI in construction, predictive maintenance, BIM, structural engineering, careers at OUANTUM, and civil infrastructure innovation.',
     keywords:
-      'AI construction FAQ, BIM questions, predictive maintenance, structural engineering AI, construction management, civil engineering future',
+      'AI construction FAQ, BIM questions, civil engineering careers, OUANTUM jobs, predictive maintenance, structural engineering AI',
     canonicalPath: '/faq',
     jsonLd: [organizationSchema, faqSchema],
   });
@@ -412,7 +446,7 @@ const FAQ: React.FC = () => {
           <div className="section-split hero-main-layout">
             <motion.div className="sidebar-info hero-left">
               <div className="hero-labels">
-                <span className="hero-tech-label">30 QUESTIONS · 6 CATEGORIES · SYSTEM COMPLIANCE</span>
+                <span className="hero-tech-label">35 QUESTIONS · 7 CATEGORIES · SYSTEM COMPLIANCE</span>
               </div>
               <p className="side-description hero-description">
                 RESOLVING THE CORE QUERIES OF DETERMINISTIC CIVIL QA.
@@ -471,7 +505,6 @@ const FAQ: React.FC = () => {
                   gap: '1rem',
                   marginBottom: '2rem',
                   paddingBottom: '1rem',
-                  borderBottom: `1px solid rgba(255, 255, 255, 0.1)`,
                 }}
               >
                 <h2
@@ -500,6 +533,64 @@ const FAQ: React.FC = () => {
             </motion.section>
           );
         })}
+
+        {/* Careers & Engineering Portal */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{
+            marginTop: '3.5rem',
+          }}
+        >
+          <GlowCard
+            style={{
+              padding: 'clamp(2rem, 4vw, 3.5rem)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1.5rem',
+            }}
+          >
+            <h2
+              className="section-title"
+              style={{
+                fontSize: 'clamp(1.75rem, 3.2vw, 2.6rem)',
+                margin: 0,
+                lineHeight: 1.25,
+              }}
+            >
+              Careers at OUANTUM
+            </h2>
+
+            <div style={{ paddingTop: '0.5rem' }}>
+              <Link
+                to="/careers"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  padding: '14px 26px',
+                  backgroundColor: '#ffffff',
+                  color: '#000000',
+                  borderRadius: '8px',
+                  fontFamily: 'var(--font-adieu)',
+                  fontSize: '0.85rem',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  fontWeight: 600,
+                  transition: 'opacity 0.2s ease',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+              >
+                <span>Explore All Open Roles</span>
+                <ArrowUpRight size={16} />
+              </Link>
+            </div>
+          </GlowCard>
+        </motion.div>
       </div>
     </main>
   );

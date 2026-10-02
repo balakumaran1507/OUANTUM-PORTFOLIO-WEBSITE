@@ -15,7 +15,7 @@ const organizationSchema = {
 
 const PrivacyPolicy: React.FC = () => {
   useSEO({
-    title: 'Privacy Policy | OUANTUM Data Collection & Processing',
+    title: 'Privacy Policy | Ouantum',
     description:
       'OUANTUM\'s privacy policy covering data collection architecture, multi-model processing protocols, data retention and auditability for our deterministic AI platform for civil infrastructure QA.',
     keywords:

@@ -15,7 +15,7 @@ const organizationSchema = {
 
 const Careers: React.FC = () => {
   useSEO({
-    title: 'Careers at OUANTUM | Join the AI Infrastructure Team',
+    title: 'Careers | Ouantum',
     description:
       'Join OUANTUM, we are hiring AI engineers, structural audit specialists, and frontend developers to scale deterministic quality assurance for India\'s construction infrastructure.',
     keywords:
@@ -51,7 +51,8 @@ const Careers: React.FC = () => {
             <motion.div className="hero-right-content hero-right">
               <h1
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-geist)',
+                  fontWeight: 200,
                   fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
                   lineHeight: 1.1,
                   marginBottom: '2rem',

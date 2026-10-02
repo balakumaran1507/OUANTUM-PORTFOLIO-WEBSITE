@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import GlowCard from '../GlowCard';
 
 const featuredPost = {
   tag: 'RESEARCH',
@@ -31,8 +32,7 @@ const blogPosts = [
 ];
 
 const Blog: React.FC = () => {
-  const [featuredActive, setFeaturedActive] = useState(false);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <section id="blog" className="section-padding" style={{ background: '#000000' }}>
@@ -46,7 +46,7 @@ const Blog: React.FC = () => {
           transition={{ duration: 0.7 }}
           style={{ textAlign: 'left', marginBottom: '4rem' }}
         >
-          <h2 className="section-title" style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', lineHeight: 0.9, fontFamily: 'var(--font-adieu)' }}>
+          <h2 className="section-title" style={{ lineHeight: 0.9, fontFamily: 'var(--font-geist)', fontWeight: 200 }}>
             Diagnostic<br />Journal
           </h2>
           <p style={{
@@ -77,93 +77,85 @@ const Blog: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            onClick={() => setFeaturedActive(v => !v)}
+            onClick={() => navigate('/blog')}
             style={{
-              background: featuredActive ? '#000000' : '#fff',
-              border: `1px solid ${featuredActive ? 'transparent' : 'rgba(0, 0, 0, 0.07)'}`,
-              borderRadius: '32px',
-              padding: '3rem',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              minHeight: '420px',
-              transform: featuredActive ? 'translateY(-6px)' : 'translateY(0)',
-              transition: 'all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              height: '100%',
               cursor: 'pointer',
             }}
           >
-            <div>
-              <div style={{
-                fontFamily: 'var(--font-adieu)',
-                fontSize: '0.65rem',
-                letterSpacing: '0.12em',
-                color: featuredActive ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.4)',
-                marginBottom: '2rem',
-                transition: 'color 0.4s ease',
-              }}>
-                {featuredPost.tag}
-              </div>
-              <h3 style={{
-                fontFamily: 'var(--font-adieu)',
-                fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)',
-                fontWeight: 400,
-                lineHeight: 1.1,
-                textTransform: 'uppercase',
-                color: featuredActive ? '#fff' : '#000000',
-                transition: 'color 0.4s ease',
-              }}>
-                {featuredPost.title}
-              </h3>
-              <p style={{
-                color: featuredActive ? 'rgba(255, 255, 255, 0.55)' : 'rgba(0, 0, 0, 0.4)',
-                marginTop: '1.5rem',
-                fontSize: '0.85rem',
-                fontFamily: 'var(--font-adieu)',
-                lineHeight: 1.6,
-                transition: 'color 0.4s ease',
-              }}>
-                {featuredPost.excerpt}
-              </p>
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <GlowCard
+              style={{
+                padding: '3rem',
+                minHeight: '420px',
+              }}
+            >
+              <div>
                 <div style={{
-                  width: '20px',
-                  height: '1px',
-                  background: featuredActive ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)',
-                  transition: 'background 0.4s ease',
-                }} />
-                <span style={{
                   fontFamily: 'var(--font-adieu)',
-                  fontSize: '0.6rem',
-                  letterSpacing: '0.1em',
-                  color: featuredActive ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.4)',
-                  transition: 'color 0.4s ease',
+                  fontSize: '0.65rem',
+                  letterSpacing: '0.12em',
+                  color: 'rgba(255, 255, 255, 0.5)',
+                  marginBottom: '2rem',
                 }}>
-                </span>
+                  {featuredPost.tag}
+                </div>
+                <h3 style={{
+                  fontFamily: 'var(--font-geist)',
+                  fontSize: 'clamp(1.4rem, 2.5vw, 2.2rem)',
+                  fontWeight: 200,
+                  lineHeight: 1.1,
+                  textTransform: 'uppercase',
+                  color: '#ffffff',
+                }}>
+                  {featuredPost.title}
+                </h3>
+                <p style={{
+                  color: 'rgba(255, 255, 255, 0.55)',
+                  marginTop: '1.5rem',
+                  fontSize: '0.85rem',
+                  fontFamily: 'var(--font-adieu)',
+                  lineHeight: 1.6,
+                }}>
+                  {featuredPost.excerpt}
+                </p>
               </div>
-              <div style={{
-                width: '44px',
-                height: '44px',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: featuredActive ? '#fff' : 'rgba(0, 0, 0, 0.05)',
-                border: `1px solid ${featuredActive ? '#fff' : 'rgba(0, 0, 0, 0.15)'}`,
-                color: '#fff',
-                transition: 'all 0.4s ease',
-              }}>
-                <ArrowUpRight size={20} />
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                  <div style={{
+                    width: '20px',
+                    height: '1px',
+                    background: 'rgba(255, 255, 255, 0.3)',
+                  }} />
+                  <span style={{
+                    fontFamily: 'var(--font-adieu)',
+                    fontSize: '0.6rem',
+                    letterSpacing: '0.1em',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                  }}>
+                  </span>
+                </div>
+                <div style={{
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: '#fff',
+                  transition: 'all 0.4s ease',
+                }}>
+                  <ArrowUpRight size={20} />
+                </div>
               </div>
-            </div>
+            </GlowCard>
           </motion.div>
 
-          {/* 3 side posts stacked - click each to toggle */}
+          {/* 3 side posts stacked */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {blogPosts.map((post, idx) => {
-              const active = activeIndex === idx;
               return (
                 <motion.div
                   key={idx}
@@ -171,100 +163,91 @@ const Blog: React.FC = () => {
                   animate={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1, duration: 0.6 }}
-                  onClick={() => setActiveIndex(active ? null : idx)}
+                  onClick={() => navigate('/blog')}
                   style={{
-                    borderRadius: '24px',
-                    padding: '2rem 2.5rem',
-                    background: active ? '#000000' : '#fff',
-                    border: `1px solid ${active ? 'transparent' : 'rgba(0, 0, 0, 0.05)'}`,
-                    display: 'flex',
-                    flexDirection: 'column',
                     flex: 1,
-                    transform: active ? 'translateY(-4px)' : 'translateY(0)',
-                    transition: 'all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     cursor: 'pointer',
                   }}
                 >
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-                    <span style={{
-                      fontSize: '0.6rem',
-                      opacity: 0.4,
-                      fontFamily: 'var(--font-adieu)',
-                      color: active ? '#fff' : '#000000',
-                      transition: 'color 0.4s ease',
-                    }}>
-                      {post.date}
-                    </span>
-                    <span style={{
-                      fontSize: '0.5rem',
-                      opacity: 0.25,
-                      fontFamily: 'var(--font-adieu)',
-                      letterSpacing: '0.1em',
-                      color: active ? '#fff' : '#000000',
-                      transition: 'color 0.4s ease',
-                    }}>
-                      ID_LOG: {post.id}
-                    </span>
-                  </div>
-
-                  <h3 style={{
-                    textTransform: 'uppercase',
-                    fontSize: '0.95rem',
-                    fontWeight: 400,
-                    fontFamily: 'var(--font-adieu)',
-                    color: active ? '#fff' : '#000000',
-                    marginBottom: '0.5rem',
-                    lineHeight: 1.25,
-                    transition: 'color 0.4s ease',
-                  }}>
-                    {post.title}
-                  </h3>
-
-                  <p style={{
-                    fontSize: '0.78rem',
-                    color: active ? 'rgba(255, 255, 255, 0.55)' : 'rgba(0, 0, 0, 0.35)',
-                    lineHeight: 1.55,
-                    flex: 1,
-                    fontFamily: 'var(--font-adieu)',
-                    transition: 'color 0.4s ease',
-                  }}>
-                    {post.excerpt}
-                  </p>
-
-                  <div style={{
-                    borderTop: `1px solid ${active ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.04)'}`,
-                    paddingTop: '1rem',
-                    marginTop: '1rem',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    transition: 'border-color 0.4s ease',
-                  }}>
-                    <span style={{
-                      fontFamily: 'var(--font-adieu)',
-                      fontSize: '0.55rem',
-                      letterSpacing: '0.1em',
-                      opacity: 0.45,
-                      color: active ? 'rgba(255, 255, 255, 0.6)' : '#000000',
-                      transition: 'color 0.4s ease',
-                    }}>
-                      TECH_ANALYSIS
-                    </span>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      background: active ? '#fff' : 'rgba(0, 0, 0, 0.04)',
-                      border: `1px solid ${active ? '#fff' : 'rgba(0, 0, 0, 0.08)'}`,
-                      color: '#fff',
-                      transition: 'all 0.4s ease',
-                    }}>
-                      <ArrowUpRight size={14} />
+                  <GlowCard
+                    style={{
+                      padding: '2rem 2.5rem',
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
+                      <span style={{
+                        fontSize: '0.6rem',
+                        opacity: 0.5,
+                        fontFamily: 'var(--font-adieu)',
+                        color: '#ffffff',
+                      }}>
+                        {post.date}
+                      </span>
+                      <span style={{
+                        fontSize: '0.5rem',
+                        opacity: 0.35,
+                        fontFamily: 'var(--font-adieu)',
+                        letterSpacing: '0.1em',
+                        color: '#ffffff',
+                      }}>
+                        ID_LOG: {post.id}
+                      </span>
                     </div>
-                  </div>
+
+                    <h3 style={{
+                      textTransform: 'uppercase',
+                      fontSize: '1rem',
+                      fontWeight: 200,
+                      fontFamily: 'var(--font-geist)',
+                      color: '#ffffff',
+                      marginBottom: '0.5rem',
+                      lineHeight: 1.25,
+                    }}>
+                      {post.title}
+                    </h3>
+
+                    <p style={{
+                      fontSize: '0.78rem',
+                      color: 'rgba(255, 255, 255, 0.55)',
+                      lineHeight: 1.55,
+                      flex: 1,
+                      fontFamily: 'var(--font-adieu)',
+                    }}>
+                      {post.excerpt}
+                    </p>
+
+                    <div style={{
+                      paddingTop: '1rem',
+                      marginTop: '1rem',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}>
+                      <span style={{
+                        fontFamily: 'var(--font-adieu)',
+                        fontSize: '0.55rem',
+                        letterSpacing: '0.1em',
+                        opacity: 0.5,
+                        color: 'rgba(255, 255, 255, 0.7)',
+                      }}>
+                        TECH_ANALYSIS
+                      </span>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        background: 'rgba(255, 255, 255, 0.08)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        color: '#fff',
+                        transition: 'all 0.4s ease',
+                      }}>
+                        <ArrowUpRight size={14} />
+                      </div>
+                    </div>
+                  </GlowCard>
                 </motion.div>
               );
             })}

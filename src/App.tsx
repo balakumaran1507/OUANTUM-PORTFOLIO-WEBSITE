@@ -27,6 +27,8 @@ const ServiceLife = lazy(() => import('./pages/ServiceLife'))
 const FieldDataIn = lazy(() => import('./pages/FieldDataIn'))
 const AiAnalysis = lazy(() => import('./pages/AiAnalysis'))
 const ReportOut = lazy(() => import('./pages/ReportOut'))
+const OX1 = lazy(() => import('./pages/OX1'))
+const OX1Countdown = lazy(() => import('./pages/OX1Countdown'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function GlobalWordHover() {
@@ -117,45 +119,58 @@ function GlobalWordHover() {
   return null;
 }
 
+function AppContent() {
+  const location = useLocation();
+  const isCountdown = location.pathname.includes('countdown');
+
+  return (
+    <div className="app-wrapper">
+      <Header />
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/system-status" element={<SystemStatus />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/security" element={<SecurityTerms />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/capabilities" element={<Capabilities />} />
+          <Route path="/capabilities/ndt-analysis-engine" element={<NdtAnalysis />} />
+          <Route path="/capabilities/ndt analysis engine" element={<NdtAnalysis />} />
+          <Route path="/capabilities/is-code-compliance" element={<IsCompliance />} />
+          <Route path="/capabilities/is code compliance" element={<IsCompliance />} />
+          <Route path="/capabilities/multi-model-consensus" element={<Consensus />} />
+          <Route path="/capabilities/multi model consensus" element={<Consensus />} />
+          <Route path="/capabilities/service-life-prediction" element={<ServiceLife />} />
+          <Route path="/capabilities/service life prediction" element={<ServiceLife />} />
+          <Route path="/how-it-works/field-data-in" element={<FieldDataIn />} />
+          <Route path="/how-it-works/ai-analysis" element={<AiAnalysis />} />
+          <Route path="/how-it-works/report-out" element={<ReportOut />} />
+          <Route path="/ox1" element={<OX1 />} />
+          <Route path="/ox-1" element={<OX1 />} />
+          <Route path="/ox1-countdown" element={<OX1Countdown />} />
+          <Route path="/ox1/countdown" element={<OX1Countdown />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      {!isCountdown && <Footer />}
+      {!isCountdown && <Chatbot />}
+    </div>
+  );
+}
+
 function App() {
   return (
     <ErrorBoundary>
       <LoaderOverlay />
       <Router>
         <GlobalWordHover />
-        <div className="app-wrapper">
-          <Header />
-          <Suspense fallback={null}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/case-studies" element={<CaseStudies />} />
-              <Route path="/system-status" element={<SystemStatus />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/security" element={<SecurityTerms />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/capabilities" element={<Capabilities />} />
-              <Route path="/capabilities/ndt-analysis-engine" element={<NdtAnalysis />} />
-              <Route path="/capabilities/ndt analysis engine" element={<NdtAnalysis />} />
-              <Route path="/capabilities/is-code-compliance" element={<IsCompliance />} />
-              <Route path="/capabilities/is code compliance" element={<IsCompliance />} />
-              <Route path="/capabilities/multi-model-consensus" element={<Consensus />} />
-              <Route path="/capabilities/multi model consensus" element={<Consensus />} />
-              <Route path="/capabilities/service-life-prediction" element={<ServiceLife />} />
-              <Route path="/capabilities/service life prediction" element={<ServiceLife />} />
-              <Route path="/how-it-works/field-data-in" element={<FieldDataIn />} />
-              <Route path="/how-it-works/ai-analysis" element={<AiAnalysis />} />
-              <Route path="/how-it-works/report-out" element={<ReportOut />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-          <Footer />
-          <Chatbot />
-        </div>
+        <AppContent />
       </Router>
     </ErrorBoundary>
   )

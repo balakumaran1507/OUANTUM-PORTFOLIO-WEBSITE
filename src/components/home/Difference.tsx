@@ -41,15 +41,15 @@ const Difference = () => {
   ];
 
   return (
-    <section id="difference" className="difference section-padding" style={{ background: '#f5f5f7', color: '#111111' }}>
+    <section id="difference" className="difference section-padding" style={{ background: '#000000', color: '#ffffff' }}>
       <div className="container">
         <h2
           className="section-title"
           style={{
-            fontFamily: 'var(--font-adieu)',
-            fontSize: 'clamp(3rem, 8vw, 7rem)',
+            fontFamily: 'var(--font-geist)',
+            fontWeight: 200,
             lineHeight: 0.9,
-            color: '#111111',
+            color: '#ffffff',
             marginBottom: '4rem',
             textTransform: 'none',
           }}
@@ -64,9 +64,8 @@ const Difference = () => {
               <div
                 key={item.id}
                 style={{
-                  borderTop: '1px solid rgba(0, 0, 0, 0.12)',
-                  paddingTop: '24px',
-                  paddingBottom: '24px',
+                  paddingTop: '20px',
+                  paddingBottom: '20px',
                   transition: 'background 0.3s ease',
                 }}
               >
@@ -85,24 +84,15 @@ const Difference = () => {
                     textAlign: 'left',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                    <span
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.95rem',
-                        color: 'rgba(0, 0, 0, 0.4)',
-                        letterSpacing: '0.05em',
-                      }}
-                    >
-                      {item.id}
-                    </span>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     <h3
                       style={{
-                        fontFamily: 'var(--font-adieu)',
-                        fontSize: 'clamp(1.2rem, 2.8vw, 2.2rem)',
-                        fontWeight: 400,
-                        color: '#111111',
-                        letterSpacing: '-0.01em',
+                        fontFamily: 'var(--font-geist)',
+                        fontSize: 'clamp(1.75rem, 3.8vw, 3.2rem)',
+                        fontWeight: 200,
+                        color: '#ffffff',
+                        letterSpacing: '-0.02em',
+                        lineHeight: 1.1,
                         margin: 0,
                         textTransform: 'uppercase',
                       }}
@@ -113,22 +103,23 @@ const Difference = () => {
 
                   <div
                     style={{
-                      width: '44px',
-                      height: '44px',
+                      width: '48px',
+                      height: '48px',
                       borderRadius: '50%',
-                      background: isOpen ? '#e5e5e7' : '#111111',
-                      color: isOpen ? '#111111' : '#ffffff',
+                      background: isOpen ? '#ffffff' : 'rgba(255, 255, 255, 0.08)',
+                      color: isOpen ? '#000000' : '#ffffff',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       transition: 'all 0.3s ease',
                       flexShrink: 0,
+                      border: '1px solid rgba(255, 255, 255, 0.15)',
                     }}
                   >
                     {isOpen ? (
-                      <ArrowDown size={20} />
+                      <ArrowDown size={22} />
                     ) : (
-                      <ArrowUpRight size={20} />
+                      <ArrowUpRight size={22} />
                     )}
                   </div>
                 </button>
@@ -143,10 +134,10 @@ const Difference = () => {
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       style={{ overflow: 'hidden' }}
                     >
-                      <div style={{ paddingTop: '20px', paddingLeft: 'clamp(0px, 4vw, 54px)' }}>
+                      <div style={{ paddingTop: '20px', paddingLeft: '0px' }}>
                         <ScrollReveal
-                          textColor="#000000"
-                          baseOpacity={0.25}
+                          textColor="#ffffff"
+                          baseOpacity={0.35}
                           style={{
                             fontFamily: 'var(--font-main)',
                             fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
@@ -162,9 +153,10 @@ const Difference = () => {
                           style={{
                             width: '100%',
                             maxHeight: '480px',
-                            borderRadius: '28px',
+                            borderRadius: '0px',
                             overflow: 'hidden',
-                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
+                            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
                           }}
                         >
                           <img
@@ -186,7 +178,6 @@ const Difference = () => {
               </div>
             );
           })}
-          <div style={{ borderTop: '1px solid rgba(0, 0, 0, 0.12)' }} />
         </div>
       </div>
     </section>

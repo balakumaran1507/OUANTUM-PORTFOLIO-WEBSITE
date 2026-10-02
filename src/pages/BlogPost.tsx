@@ -75,7 +75,7 @@ const BlogPost: React.FC = () => {
   useSEO(
     post
       ? {
-        title: `${post.title} | OUANTUM Knowledge Centre`,
+        title: `${post.title} | Ouantum`,
         description: post.excerpt,
         keywords: post.tags.join(', '),
         ogType: 'article',
@@ -135,12 +135,12 @@ const BlogPost: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             style={{
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-geist)',
               fontSize: 'clamp(2.5rem, 5vw, 4rem)',
               lineHeight: 1.1,
               color: '#fff',
               marginBottom: '2rem',
-              fontWeight: 400,
+              fontWeight: 200,
             }}
           >
             {post.title}
@@ -214,13 +214,13 @@ const BlogPost: React.FC = () => {
                   <h2
                     key={idx}
                     style={{
-                      fontFamily: 'var(--font-adieu)',
+                      fontFamily: 'var(--font-geist)',
                       fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
                       color: '#fff',
                       marginTop: '3rem',
                       marginBottom: '1.25rem',
                       lineHeight: 1.2,
-                      fontWeight: 400,
+                      fontWeight: 200,
                     }}
                   >
                     {section.text}
@@ -231,12 +231,12 @@ const BlogPost: React.FC = () => {
                   <h3
                     key={idx}
                     style={{
-                      fontFamily: 'var(--font-adieu)',
+                      fontFamily: 'var(--font-geist)',
                       fontSize: '1.1rem',
                       color: 'rgba(255, 255, 255, 0.85)',
                       marginTop: '2rem',
                       marginBottom: '1rem',
-                      fontWeight: 400,
+                      fontWeight: 200,
                     }}
                   >
                     {section.text}
@@ -444,7 +444,6 @@ const BlogPost: React.FC = () => {
           aria-label="Related posts"
           style={{
             marginTop: '5rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
             paddingTop: '4rem',
             paddingBottom: '2rem',
           }}
@@ -492,12 +491,12 @@ const BlogPost: React.FC = () => {
                     <div style={{ padding: '1rem 0.5rem 0.5rem', display: 'flex', flexDirection: 'column', flex: 1 }}>
                       <h3
                         style={{
-                          fontFamily: 'var(--font-adieu)',
+                          fontFamily: 'var(--font-geist)',
                           fontSize: '1.1rem',
                           lineHeight: 1.3,
                           color: '#fff',
                           marginBottom: '0.85rem',
-                          fontWeight: 400,
+                          fontWeight: 200,
                         }}
                       >
                         {related.title}

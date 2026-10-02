@@ -11,7 +11,7 @@ const MASCOT_CONFIG = {
 
 const NotFound: React.FC = () => {
   useSEO({
-    title: '404, Page Not Found | OUANTUM',
+    title: '404 | Ouantum',
     description: 'The page you are looking for does not exist or has been moved. Return to the OUANTUM homepage.',
     canonicalPath: '/404',
     noIndex: true,
@@ -91,7 +91,8 @@ const NotFound: React.FC = () => {
         {/* Main Heading */}
         <h1
           style={{
-            fontFamily: 'var(--font-adieu)',
+            fontFamily: 'var(--font-geist)',
+            fontWeight: 200,
             fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             color: '#ffffff',
             margin: '0 0 1rem 0',

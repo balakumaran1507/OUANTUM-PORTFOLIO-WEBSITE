@@ -59,7 +59,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
           willChange: 'transform',
           boxShadow: '0 -20px 40px rgba(0, 0, 0, 0.12)',
           border: '1px solid rgba(255, 255, 255, 0.08)',
-          borderRadius: '32px',
+          borderRadius: '0px',
           padding: 'clamp(24px, 4vw, 40px)',
           background: '#000000',
           display: 'flex',
@@ -81,7 +81,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
         />
         
         {/* Noise Overlay */}
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.03, pointerEvents: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")', mixBlendMode: 'overlay', zIndex: 1, borderRadius: '24px' }}></div>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.03, pointerEvents: 'none', backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")', mixBlendMode: 'overlay', zIndex: 1, borderRadius: '0px' }}></div>
         
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div style={{ display: 'flex', gap: 'clamp(10px, 2vw, 20px)', alignItems: 'center' }}>
@@ -89,7 +89,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
               {point.id}
             </span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(1rem, 1.5vw, 1.2rem)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              <span style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: 'clamp(1.1rem, 1.6vw, 1.35rem)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 {point.title}
               </span>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.7rem, 1vw, 0.85rem)', opacity: 0.6 }}>
@@ -103,7 +103,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
         </div>
 
         <div className="grid-2col" style={{ position: 'relative', zIndex: 2, display: 'grid', gridTemplateColumns: '65% 1fr', gap: '16px', height: 'clamp(280px, 45vh, 400px)', minHeight: 0 }}>
-          <div style={{ borderRadius: '24px', overflow: 'hidden', height: '100%', width: '100%' }}>
+          <div style={{ borderRadius: '0px', overflow: 'hidden', height: '100%', width: '100%' }}>
             <motion.img 
               src={point.img1} 
               alt="" 
@@ -116,10 +116,10 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
             />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', height: '100%' }}>
-            <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%' }}>
+            <div style={{ borderRadius: '0px', overflow: 'hidden', flex: 1, width: '100%' }}>
               <motion.img src={point.img2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale }} />
             </div>
-            <div style={{ borderRadius: '24px', overflow: 'hidden', flex: 1, width: '100%' }}>
+            <div style={{ borderRadius: '0px', overflow: 'hidden', flex: 1, width: '100%' }}>
               <motion.img src={point.img3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', scale: innerScale }} />
             </div>
           </div>

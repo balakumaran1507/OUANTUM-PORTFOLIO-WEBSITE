@@ -2,7 +2,6 @@ import React from 'react';
 import Hero from '../components/home/Hero';
 import PlatformIntro from '../components/home/PlatformIntro';
 import Problem from '../components/home/Problem';
-import Services from '../components/home/Services';
 import HowItWorks from '../components/home/HowItWorks';
 import Difference from '../components/home/Difference';
 import Partners from '../components/home/Partners';
@@ -56,7 +55,7 @@ const organizationSchema = {
 
 const Home: React.FC = () => {
   useSEO({
-    title: 'OUANTUM | AI-Powered Quality Assurance for Civil Infrastructure',
+    title: 'Ouantum',
     description:
       'OUANTUM is the AI platform built for civil infrastructure quality assurance, monitoring, and structural auditing. Field data in. Government-grade reports out. Same day.',
     keywords:
@@ -70,7 +69,6 @@ const Home: React.FC = () => {
       <Hero />
       <PlatformIntro />
       <Problem />
-      <Services />
       <HowItWorks />
       <Difference />
       <Partners />

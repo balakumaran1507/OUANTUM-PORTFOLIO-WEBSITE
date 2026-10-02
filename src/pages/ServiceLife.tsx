@@ -13,7 +13,7 @@ const ServiceLife: React.FC = () => {
   }, []);
 
   useSEO({
-    title: 'Service Life Prediction Engine | Concrete Durability Modeling | OUANTUM AI',
+    title: 'Service Life Prediction | Ouantum',
     description: 'Fickian chloride diffusion and carbonation front rate modeling. Predicts residual life (years) for reinforced concrete in coastal Indian zones.',
     canonicalPath: '/capabilities/service-life-prediction',
   });
@@ -57,7 +57,7 @@ const ServiceLife: React.FC = () => {
         </motion.button>
 
         {/* Hero Section */}
-        <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '3rem', marginBottom: '3rem' }}>
+        <div style={{ paddingBottom: '3rem', marginBottom: '3rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,9 +75,9 @@ const ServiceLife: React.FC = () => {
               PREDICTION · ENGINE NODE 04
             </span>
             <h1 style={{
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-geist)',
               fontSize: 'clamp(3rem, 8vw, 7rem)',
-              fontWeight: 400,
+              fontWeight: 200,
               lineHeight: 0.9,
               color: '#ffffff',
               margin: '0 0 1.5rem 0',
@@ -106,7 +106,7 @@ const ServiceLife: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '1.25rem', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'rgba(255, 255, 255, 0.75)', margin: 0 }}>
               The Service Life Prediction Engine projects structural degradation over 10, 25, and 50 year horizons. Utilizing Fickian chloride diffusion mathematics and square root time carbonation kinetics, the engine determines when environmental degradation fronts will reach rebar depth, triggering active corrosion.
             </p>
@@ -191,7 +191,7 @@ const ServiceLife: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <GlowCard borderRadius={12} style={{ padding: '1.5rem' }}>
                 <div style={{ display: 'flex', gap: '24px' }}>
@@ -229,7 +229,7 @@ const ServiceLife: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <div>
                 <h4 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>How does the system predict concrete service life under marine exposure?</h4>

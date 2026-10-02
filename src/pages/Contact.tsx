@@ -23,7 +23,7 @@ const organizationSchema = {
 
 const Contact: React.FC = () => {
   useSEO({
-    title: 'Contact OUANTUM | Get in Touch with Our Team',
+    title: 'Contact | Ouantum',
     description:
       'Contact OUANTUM to discuss platform integration, structural auditing requirements, or enterprise deployments. Get in touch with our team in Chennai.',
     keywords:
@@ -123,7 +123,8 @@ const Contact: React.FC = () => {
             <motion.div className="hero-right-content hero-right">
               <h1
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-geist)',
+                  fontWeight: 200,
                   fontSize: 'clamp(2.5rem, 6vw, 4rem)',
                   lineHeight: 1.1,
                   marginBottom: '2rem',
@@ -277,7 +278,7 @@ const Contact: React.FC = () => {
                 <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
                   <CheckCircle2 size={48} color="#ffffff" />
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', color: '#fff', marginBottom: '1.5rem', textTransform: 'uppercase' }}>
+                <h3 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', color: '#fff', marginBottom: '1.5rem', textTransform: 'uppercase' }}>
                   Enquiry Sent
                 </h3>
                 <p style={{
@@ -347,30 +348,30 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         placeholder="Your full name"
                         style={{
-                          background: 'rgba(15, 12, 10, 0.85)',
-                          border: errors.name ? '1px solid #ff4d4d' : '1px solid rgba(248, 156, 82, 0.35)',
+                          background: 'rgba(10, 10, 10, 0.85)',
+                          border: errors.name ? '1px solid #ff4d4d' : '1px solid rgba(255, 255, 255, 0.2)',
                           borderRadius: '8px',
                           padding: '0.75rem 1rem',
                           color: '#fff',
                           fontSize: '0.9rem',
                           fontFamily: 'var(--font-main)',
                           outline: 'none',
-                          boxShadow: errors.name ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)',
+                          boxShadow: errors.name ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
                           backdropFilter: 'blur(12px)',
                           transition: 'all 0.25s ease',
                         }}
                         onFocus={(e) => {
                           if (!errors.name) {
-                            e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.85)';
-                            e.currentTarget.style.boxShadow = '0 0 25px rgba(248, 156, 82, 0.3), inset 0 0 15px rgba(248, 156, 82, 0.15)';
-                            e.currentTarget.style.background = 'rgba(22, 17, 14, 0.95)';
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                            e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
+                            e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
                           }
                         }}
                         onBlur={(e) => {
                           if (!errors.name) {
-                            e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.35)';
-                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)';
-                            e.currentTarget.style.background = 'rgba(15, 12, 10, 0.85)';
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
+                            e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
                           }
                         }}
                       />
@@ -390,30 +391,30 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         placeholder="you@example.com"
                         style={{
-                          background: 'rgba(15, 12, 10, 0.85)',
-                          border: errors.email ? '1px solid #ff4d4d' : '1px solid rgba(248, 156, 82, 0.35)',
+                          background: 'rgba(10, 10, 10, 0.85)',
+                          border: errors.email ? '1px solid #ff4d4d' : '1px solid rgba(255, 255, 255, 0.2)',
                           borderRadius: '8px',
                           padding: '0.75rem 1rem',
                           color: '#fff',
                           fontSize: '0.9rem',
                           fontFamily: 'var(--font-main)',
                           outline: 'none',
-                          boxShadow: errors.email ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)',
+                          boxShadow: errors.email ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
                           backdropFilter: 'blur(12px)',
                           transition: 'all 0.25s ease',
                         }}
                         onFocus={(e) => {
                           if (!errors.email) {
-                            e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.85)';
-                            e.currentTarget.style.boxShadow = '0 0 25px rgba(248, 156, 82, 0.3), inset 0 0 15px rgba(248, 156, 82, 0.15)';
-                            e.currentTarget.style.background = 'rgba(22, 17, 14, 0.95)';
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                            e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
+                            e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
                           }
                         }}
                         onBlur={(e) => {
                           if (!errors.email) {
-                            e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.35)';
-                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)';
-                            e.currentTarget.style.background = 'rgba(15, 12, 10, 0.85)';
+                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
+                            e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
                           }
                         }}
                       />
@@ -434,27 +435,27 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       placeholder="Your company name"
                       style={{
-                        background: 'rgba(15, 12, 10, 0.85)',
-                        border: '1px solid rgba(248, 156, 82, 0.35)',
+                        background: 'rgba(10, 10, 10, 0.85)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         borderRadius: '8px',
                         padding: '0.75rem 1rem',
                         color: '#fff',
                         fontSize: '0.9rem',
                         fontFamily: 'var(--font-main)',
                         outline: 'none',
-                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)',
+                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
                         backdropFilter: 'blur(12px)',
                         transition: 'all 0.25s ease',
                       }}
                       onFocus={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.85)';
-                        e.currentTarget.style.boxShadow = '0 0 25px rgba(248, 156, 82, 0.3), inset 0 0 15px rgba(248, 156, 82, 0.15)';
-                        e.currentTarget.style.background = 'rgba(22, 17, 14, 0.95)';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                        e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
+                        e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
                       }}
                       onBlur={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.35)';
-                        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)';
-                        e.currentTarget.style.background = 'rgba(15, 12, 10, 0.85)';
+                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
+                        e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
                       }}
                     />
                   </div>
@@ -472,8 +473,8 @@ const Contact: React.FC = () => {
                       onChange={handleChange}
                       placeholder="Please describe your project or platform inquiry..."
                       style={{
-                        background: 'rgba(15, 12, 10, 0.85)',
-                        border: errors.message ? '1px solid #ff4d4d' : '1px solid rgba(248, 156, 82, 0.35)',
+                        background: 'rgba(10, 10, 10, 0.85)',
+                        border: errors.message ? '1px solid #ff4d4d' : '1px solid rgba(255, 255, 255, 0.2)',
                         borderRadius: '8px',
                         padding: '0.75rem 1rem',
                         color: '#fff',
@@ -481,22 +482,22 @@ const Contact: React.FC = () => {
                         fontFamily: 'var(--font-main)',
                         outline: 'none',
                         resize: 'vertical',
-                        boxShadow: errors.message ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)',
+                        boxShadow: errors.message ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
                         backdropFilter: 'blur(12px)',
                         transition: 'all 0.25s ease',
                       }}
                       onFocus={(e) => {
                         if (!errors.message) {
-                          e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.85)';
-                          e.currentTarget.style.boxShadow = '0 0 25px rgba(248, 156, 82, 0.3), inset 0 0 15px rgba(248, 156, 82, 0.15)';
-                          e.currentTarget.style.background = 'rgba(22, 17, 14, 0.95)';
+                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
+                          e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
+                          e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
                         }
                       }}
                       onBlur={(e) => {
                         if (!errors.message) {
-                          e.currentTarget.style.borderColor = 'rgba(248, 156, 82, 0.35)';
-                          e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05)';
-                          e.currentTarget.style.background = 'rgba(15, 12, 10, 0.85)';
+                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                          e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
+                          e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
                         }
                       }}
                     />

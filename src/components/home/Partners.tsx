@@ -31,7 +31,7 @@ const partners = [
 
 const Partners = () => {
   return (
-    <section id="partners" style={{ background: '#000000', padding: '120px 0', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+    <section id="partners" style={{ background: '#000000', padding: '120px 0' }}>
       <div className="container">
 
         {/* Header */}
@@ -41,7 +41,12 @@ const Partners = () => {
           style={{ marginBottom: '4rem' }}
         >
           <div style={{ position: 'relative', display: 'inline-block', margin: '0' }}>
-            <h2 className="section-title" style={{ position: 'relative', zIndex: 1 }}>
+            <h2 className="section-title" style={{
+              fontFamily: 'var(--font-geist)',
+              fontWeight: 200,
+              position: 'relative',
+              zIndex: 1,
+            }}>
               Domain & Technology<br />Partners
             </h2>
           </div>
@@ -79,7 +84,8 @@ const Partners = () => {
 
                   {/* Partner name */}
                   <h3 style={{
-                    fontFamily: 'var(--font-adieu)',
+                    fontFamily: 'var(--font-geist)',
+                    fontWeight: 200,
                     fontSize: 'clamp(1rem, 1.8vw, 1.3rem)',
                     color: '#fff',
                     lineHeight: 1.45,

@@ -7,7 +7,7 @@ import useSEO from '../hooks/useSEO';
 
 const SystemStatus: React.FC = () => {
   useSEO({
-    title: 'System Status | OUANTUM UI Component States',
+    title: 'System Status | Ouantum',
     description:
       'Preview of deterministic UI feedback states used across the OUANTUM platform, loading, success, error, and empty states for field data ingestion and processing.',
     keywords: 'OUANTUM system status, UI states, loading screen, error screen, field data ingestion',
@@ -40,7 +40,7 @@ const SystemStatus: React.FC = () => {
           >
             UI COMPONENTS
           </span>
-          <h1 style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, color: '#fff' }}>
+          <h1 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, color: '#fff' }}>
             SYSTEM FEEDBACK STATES
           </h1>
           <p
@@ -61,11 +61,11 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Loading state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.9rem',
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                fontSize: '1.1rem',
                 color: '#fff',
                 marginBottom: '1.5rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                 paddingBottom: '0.5rem',
               }}
             >
@@ -77,11 +77,11 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Success state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.9rem',
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                fontSize: '1.1rem',
                 color: '#fff',
                 marginBottom: '1.5rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                 paddingBottom: '0.5rem',
               }}
             >
@@ -93,11 +93,11 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Error state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.9rem',
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                fontSize: '1.1rem',
                 color: '#fff',
                 marginBottom: '1.5rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                 paddingBottom: '0.5rem',
               }}
             >
@@ -109,11 +109,11 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Empty state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.9rem',
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                fontSize: '1.1rem',
                 color: '#fff',
                 marginBottom: '1.5rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                 paddingBottom: '0.5rem',
               }}
             >

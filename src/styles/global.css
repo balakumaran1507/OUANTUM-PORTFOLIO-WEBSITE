@@ -67,13 +67,25 @@ input[type="search"]:not(.chatbot-input),
 textarea,
 select,
 .glow-input {
-  background: rgba(15, 12, 10, 0.85);
-  border: 1px solid rgba(248, 156, 82, 0.35);
+  background: rgba(10, 10, 10, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   color: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1), inset 0 0 10px rgba(248, 156, 82, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(12px);
   transition: all 0.25s ease-in-out;
+}
+
+input[type="text"]:not(.chatbot-input)::placeholder,
+input[type="email"]:not(.chatbot-input)::placeholder,
+input[type="tel"]:not(.chatbot-input)::placeholder,
+input[type="password"]:not(.chatbot-input)::placeholder,
+input[type="number"]:not(.chatbot-input)::placeholder,
+input[type="search"]:not(.chatbot-input)::placeholder,
+textarea::placeholder,
+select::placeholder,
+.glow-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
 input[type="text"]:not(.chatbot-input):hover,
@@ -85,8 +97,8 @@ input[type="search"]:not(.chatbot-input):hover,
 textarea:hover,
 select:hover,
 .glow-input:hover {
-  border-color: rgba(248, 156, 82, 0.6);
-  box-shadow: 0 0 18px rgba(248, 156, 82, 0.2), inset 0 0 12px rgba(248, 156, 82, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.08), inset 0 0 12px rgba(255, 255, 255, 0.04);
 }
 
 input[type="text"]:not(.chatbot-input):focus,
@@ -98,9 +110,9 @@ input[type="search"]:not(.chatbot-input):focus,
 textarea:focus,
 select:focus,
 .glow-input:focus {
-  border-color: rgba(248, 156, 82, 0.85) !important;
-  box-shadow: 0 0 25px rgba(248, 156, 82, 0.3), inset 0 0 15px rgba(248, 156, 82, 0.15) !important;
-  background: rgba(22, 17, 14, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06) !important;
+  background: rgba(18, 18, 18, 0.95) !important;
   outline: none !important;
 }
 
@@ -181,8 +193,8 @@ a[class*="cta"] {
 }
 
 h1 {
-  font-family: var(--font-title);
-  font-weight: 400;
+  font-family: var(--font-geist);
+  font-weight: 200;
   font-size: clamp(2.5rem, 10vw, 8rem);
   line-height: 0.95;
   text-transform: none;
@@ -191,8 +203,8 @@ h1 {
 }
 
 h2 {
-  font-family: var(--font-title);
-  font-weight: 400;
+  font-family: var(--font-geist);
+  font-weight: 200;
   font-size: clamp(1.75rem, 6vw, 4rem);
   line-height: 1.1;
   text-transform: none;
@@ -201,11 +213,20 @@ h2 {
 }
 
 h3 {
-  font-family: var(--font-title);
+  font-family: var(--font-geist);
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  font-weight: 400;
+  font-weight: 200;
   text-transform: none;
   text-align: left;
+}
+
+/* Home Page Hero Section Title Exemption - Preserves brand title strictly */
+#hero h1,
+.hero #hero h1,
+section.hero h1,
+.hero-content h1 {
+  font-family: var(--font-brand) !important;
+  font-weight: 400 !important;
 }
 
 section {
@@ -228,6 +249,7 @@ section {
 .text-gradient {
   background: linear-gradient(180deg, #fff 0%, #666 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -237,13 +259,13 @@ section {
   width: 100%;
   background: #000000;
   padding: 120px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: none;
 }
 
 .activities-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-geist) !important;
   font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 400;
+  font-weight: 200 !important;
   text-align: left;
   color: #fff;
   margin-bottom: 100px;
@@ -253,7 +275,7 @@ section {
 
 .activities-list {
   width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
 }
 
 .activity-row {
@@ -261,7 +283,7 @@ section {
   grid-template-columns: 2fr 1fr 1fr;
   align-items: center;
   padding: 2.5rem 5vw;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
   transition: all 0.4s var(--transition-smooth);
   cursor: pointer;
   background: transparent;
@@ -536,12 +558,12 @@ section {
 
 .mobile-menu a {
   font-family: var(--font-brand);
-  font-size: 2.5rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   color: var(--text-primary);
   display: block;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  padding-bottom: 1rem;
+  border-bottom: none;
+  padding-bottom: 0.5rem;
 }
 
 /* Hero Mobile Overrides */
@@ -663,7 +685,7 @@ section {
 }
 
 .footer-bottom-bar {
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  border-top: none;
   padding-top: 40px;
   padding-bottom: 20px;
   display: flex;
@@ -681,9 +703,7 @@ section {
 }
 
 .footer-separator {
-  width: 1px;
-  height: 10px;
-  background: rgba(0, 0, 0, 0.1);
+  display: none;
 }
 
 .footer-legal-links {
@@ -1726,7 +1746,7 @@ section {
   justify-content: space-between;
   align-items: center;
   padding-top: 4rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-top: none;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.3);
@@ -1736,7 +1756,7 @@ section {
 .footer-industrial {
   background: #000000;
   padding: 120px 0 60px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
   position: relative;
   overflow: hidden;
 }
@@ -2385,7 +2405,7 @@ section {
 .about-card-title {
   font-family: var(--font-adieu);
   font-size: 1.3rem;
-  fontWeight: 400;
+  font-weight: 400;
   color: #fff;
   margin-bottom: 0.75rem;
   line-height: 1.2;
@@ -2480,9 +2500,9 @@ section {
 }
 
 .equipment-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-geist) !important;
   font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 400;
+  font-weight: 200 !important;
   color: #fff;
   line-height: 0.9;
   text-transform: none;
@@ -2827,9 +2847,9 @@ section {
 }
 
 .section-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-geist) !important;
   font-size: clamp(3rem, 8vw, 7rem);
-  font-weight: 400;
+  font-weight: 200 !important;
   color: #fff;
   line-height: 0.9;
   text-transform: none;
@@ -3328,12 +3348,24 @@ section {
     overflow-y: auto !important;
   }
 
-  .mobile-menu a {
-    font-size: 1.1rem !important;
-    padding-bottom: 0.75rem !important;
-    letter-spacing: 0.05em !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
-    margin-bottom: 0.5rem !important;
+  .mobile-menu a:not(.mobile-submenu-link),
+  .mobile-menu .mobile-dropdown-trigger {
+    font-family: var(--font-brand) !important;
+    font-size: 0.88rem !important;
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+    letter-spacing: 0.06em !important;
+    border-bottom: none !important;
+    margin-bottom: 0.35rem !important;
+    text-transform: uppercase !important;
+  }
+
+  .mobile-menu .mobile-submenu-link {
+    font-size: inherit !important;
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.25rem !important;
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
   }
 
   /* Hero Mobile Fixes */
@@ -3812,7 +3844,7 @@ section {
 
   /* ── Footer Mobile ── */
   .footer-industrial {
-    padding: 48px 0 32px !important;
+    padding: 40px 0 96px !important; /* Bottom padding keeps content clear of floating chatbot button */
   }
 
   /* Container gets proper mobile padding */
@@ -3820,65 +3852,96 @@ section {
     padding: 0 1.25rem !important;
   }
 
-  /* Brand title: scale down for mobile, more breathing room */
+  /* Brand title: scale down for mobile, compact breathing room */
   .footer-brand-title {
-    margin-bottom: 32px !important;
+    margin-bottom: 28px !important;
     padding-top: 0 !important;
   }
 
   .footer-brand-title h2 {
-    font-size: clamp(2.8rem, 14vw, 5rem) !important;
+    font-size: clamp(2.2rem, 12vw, 4rem) !important;
     line-height: 0.9 !important;
     letter-spacing: -0.03em !important;
   }
 
-  /* Nav columns: 2-column grid on mobile (not single column) */
+  /* Nav columns: perfectly balanced 2-column grid on mobile */
   .footer-nav-grid {
     display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 2rem 1.5rem !important;
+    grid-template-columns: 1.15fr 1fr !important;
+    gap: 1.5rem 1rem !important;
     text-align: left !important;
-    margin-bottom: 40px !important;
+    margin-bottom: 32px !important;
     justify-content: unset !important;
+  }
+
+  /* Column 1 spans full height on left (Navigation - 6 items) */
+  .footer-nav-col:nth-child(1) {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 3 !important;
+  }
+
+  /* Column 2 sits top right (Connect - 4 items) */
+  .footer-nav-col:nth-child(2) {
+    grid-column: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
+  }
+
+  /* Column 3 sits bottom right under Connect (Research - 2 items) */
+  .footer-nav-col:nth-child(3) {
+    grid-column: 2 / 3 !important;
+    grid-row: 2 / 3 !important;
+    margin-top: 0.4rem !important;
   }
 
   /* Each column: left-aligned, good spacing */
   .footer-nav-col {
     align-items: flex-start !important;
-    gap: 0.8rem !important;
+    gap: 0.65rem !important;
   }
 
   /* Column label */
   .footer-col-label {
-    font-size: 0.65rem !important;
-    letter-spacing: 0.18em !important;
-    margin-bottom: 0.25rem !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 0.35rem !important;
+    color: rgba(255, 255, 255, 0.45) !important;
   }
 
-  /* Larger touch targets for links */
+  /* Crisp monospace links with clean touch targets */
   .footer-nav-link {
-    font-size: 0.8rem !important;
-    letter-spacing: 0.08em !important;
-    padding: 4px 0 !important;
-    min-height: 36px !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.76rem !important;
+    letter-spacing: 0.04em !important;
+    padding: 3px 0 !important;
+    min-height: 28px !important;
     display: flex !important;
     align-items: center !important;
-    opacity: 0.75 !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
   }
 
-  /* Address row: smaller text, tighter margin */
+  .footer-nav-link:hover {
+    color: #ffffff !important;
+  }
+
+  /* Address row: centered, clean monospace, proper margin */
   .footer-address-row {
     text-align: center !important;
-    margin-bottom: 32px !important;
+    margin-bottom: 24px !important;
     padding: 0 0.5rem !important;
   }
 
   .footer-address-row p {
-    font-size: 0.72rem !important;
-    letter-spacing: 0.06em !important;
-    line-height: 2 !important;
-    color: rgba(255, 255, 255, 0.45) !important;
+    font-family: var(--font-mono) !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.05em !important;
+    line-height: 1.7 !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
   }
 
   /* Bottom bar: stack everything centered */
@@ -3886,9 +3949,9 @@ section {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 1rem !important;
-    padding-top: 24px !important;
-    padding-bottom: 12px !important;
+    gap: 0.85rem !important;
+    padding-top: 18px !important;
+    padding-bottom: 0 !important;
   }
 
   /* Group copyright + legal together */
@@ -3896,7 +3959,7 @@ section {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 0.6rem !important;
+    gap: 0.5rem !important;
   }
 
   .footer-separator {
@@ -3909,18 +3972,26 @@ section {
   }
 
   .footer-legal-links .footer-nav-link {
-    font-size: 0.72rem !important;
+    font-size: 0.7rem !important;
     min-height: unset !important;
     padding: 2px 0 !important;
+    color: rgba(255, 255, 255, 0.45) !important;
   }
 
   .footer-copyright {
+    font-family: var(--font-mono) !important;
     font-size: 0.65rem !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    letter-spacing: 0.08em !important;
   }
 
   .iso-badge {
+    font-family: var(--font-mono) !important;
     font-size: 0.62rem !important;
-    padding: 0.35rem 0.7rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 0.35rem 0.75rem !important;
+    border-radius: 4px !important;
   }
 
   /* Homepage Hero Image — show on mobile as background, behind content */
@@ -3947,22 +4018,21 @@ section {
     font-size: 1.25rem !important;
   }
 
-  /* Footer: single column at very small sizes */
-  .footer-nav-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1.5rem !important;
+  .section-title,
+  .services-main-title,
+  .equipment-title,
+  .activities-title,
+  .about-team-heading,
+  .about-partners-heading,
+  .subpage-wrapper .hero h1,
+  .subpage-wrapper section > h2,
+  section:not(#hero) .section-title {
+    font-size: clamp(2.4rem, 11.5vw, 3.8rem) !important;
+    line-height: 0.95 !important;
   }
 
   .footer-brand-title h2 {
-    font-size: clamp(2.2rem, 16vw, 3.5rem) !important;
-  }
-
-  .footer-nav-link {
-    font-size: 0.78rem !important;
-  }
-
-  .footer-address-row p {
-    font-size: 0.68rem !important;
+    font-size: clamp(2rem, 14vw, 3rem) !important;
   }
 
   .hero-tech-label {
@@ -4120,9 +4190,20 @@ section {
     display: none !important;
   }
 
-  /* Typography Adjustments */
-  .section-title {
-    font-size: clamp(1.8rem, 8vw, 3.5rem) !important;
+  /* Typography Adjustments — Increased Section Title Size for Mobile */
+  .section-title,
+  .services-main-title,
+  .equipment-title,
+  .activities-title,
+  .about-team-heading,
+  .about-partners-heading,
+  .subpage-wrapper .hero h1,
+  .subpage-wrapper section > h2,
+  section:not(#hero) .section-title {
+    font-size: clamp(2.6rem, 11vw, 4.2rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.01em !important;
+    word-break: break-word !important;
   }
 
   /* Difference Section Mobile Fixes */
@@ -4139,18 +4220,18 @@ section {
     min-height: auto !important;
   }
 
-  /* Chatbot Mobile View (Bottom Sheet) */
+  /* Chatbot Mobile View (Medium Size Floating UX with Sharp Corners) */
   .chatbot-window {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    height: 85vh !important;
-    max-height: 85vh !important;
-    bottom: 0 !important;
-    right: 0 !important;
-    border-radius: 24px 24px 0 0 !important;
-    border-bottom: none !important;
-    border-left: none !important;
-    border-right: none !important;
+    width: calc(100vw - 32px) !important;
+    max-width: 360px !important;
+    height: 500px !important;
+    max-height: 62vh !important;
+    bottom: 16px !important;
+    right: 16px !important;
+    left: auto !important;
+    border-radius: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85) !important;
   }
 
 
@@ -4268,8 +4349,9 @@ section {
 }
 
 .about-team-heading {
-  font-family: var(--font-adieu);
+  font-family: var(--font-geist) !important;
   font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 200 !important;
   color: #fff;
   letter-spacing: -0.01em;
   line-height: 0.9;
@@ -4278,8 +4360,7 @@ section {
 }
 
 .about-team-rule {
-  height: 1px;
-  background: rgba(0, 0, 0, 0.08);
+  display: none !important;
 }
 
 /* Team grid — 3 columns desktop */
@@ -4289,17 +4370,24 @@ section {
   gap: 2rem;
 }
 
-/* Individual card */
+/* Individual card wrapper & card */
+.about-team-card-wrapper {
+  position: relative;
+  height: 78vh;
+  min-height: 600px;
+  max-height: 860px;
+  width: 100%;
+}
+
 .about-team-card {
   position: relative;
   cursor: pointer;
   overflow: hidden;
   background: #000000;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
-  height: 78vh;
-  min-height: 600px;
-  max-height: 860px;
+  border: none !important;
+  border-radius: 0px !important;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 /* Portrait layer */
@@ -4308,8 +4396,7 @@ section {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 88px;
-  /* FOOTER_H */
+  bottom: 0;
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
@@ -4360,10 +4447,13 @@ section {
   bottom: 88px;
   /* FOOTER_H */
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-  background: #000000;
+  background: rgba(6, 6, 6, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   display: grid;
   grid-template-columns: 110px 1fr;
   overflow: hidden;
+  border-radius: 0px;
 }
 
 .about-team-bio-photo-col {
@@ -4379,14 +4469,14 @@ section {
   width: 100%;
   aspect-ratio: 3/4;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0px;
   border: none;
   background: #000000;
   flex-shrink: 0;
 }
 
 .about-team-bio-thumb .about-team-portrait-img {
-  border-radius: 12px;
+  border-radius: 0px;
 }
 
 .about-team-bio-thumb-placeholder {
@@ -4396,7 +4486,7 @@ section {
   align-items: center;
   justify-content: center;
   background: #000000;
-  border-radius: 12px;
+  border-radius: 0px;
 }
 
 .about-team-profile-label {
@@ -4480,33 +4570,58 @@ section {
   color: #ffffff;
 }
 
-/* Footer bar */
+/* Footer bar — seamless glass blur overlay merging into the portrait */
 .about-team-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #000000;
-  padding: 1.25rem 1.5rem;
+  padding: 4.5rem 1.5rem 1.4rem 1.5rem;
   z-index: 20;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 0.35rem;
   box-sizing: border-box;
+  background: transparent;
+  border-top: none !important;
+  pointer-events: auto;
+}
+
+.about-team-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.96) 0%,
+    rgba(0, 0, 0, 0.90) 28%,
+    rgba(0, 0, 0, 0.72) 48%,
+    rgba(0, 0, 0, 0.45) 68%,
+    rgba(0, 0, 0, 0.18) 84%,
+    rgba(0, 0, 0, 0.04) 94%,
+    transparent 100%
+  );
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  -webkit-mask-image: linear-gradient(to top, #000000 50%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
+  mask-image: linear-gradient(to top, #000000 50%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
 }
 
 .about-team-footer-role {
-  font-family: var(--font-mono);
-  font-size: clamp(0.5rem, 0.75vw, 0.62rem);
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.4);
-  text-transform: uppercase;
-  font-weight: 700;
+  font-family: var(--font-geist), sans-serif !important;
+  font-weight: 200 !important;
+  font-size: clamp(0.44rem, 0.58vw, 0.52rem);
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: none !important;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-font-smoothing: antialiased;
 }
 
 .about-team-footer-name {
@@ -4531,8 +4646,9 @@ section {
 }
 
 .about-partners-heading {
-  font-family: var(--font-adieu);
+  font-family: var(--font-geist) !important;
   font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 200 !important;
   color: #fff;
   letter-spacing: -0.01em;
   line-height: 0.9;
@@ -4601,6 +4717,7 @@ section {
     gap: 1.5rem;
   }
 
+  .about-team-card-wrapper,
   .about-team-card {
     height: 65vh;
     min-height: 480px;
@@ -4657,6 +4774,7 @@ section {
   }
 
   /* Cards: full width, sensible height */
+  .about-team-card-wrapper,
   .about-team-card {
     height: 520px;
     min-height: 480px;
@@ -4664,7 +4782,7 @@ section {
   }
 
   .about-team-portrait {
-    bottom: 76px;
+    bottom: 0;
   }
 
   /* On mobile the bio panel overlay fills area above footer */
@@ -4720,7 +4838,11 @@ section {
   }
 
   .about-team-footer-role {
-    font-size: 0.55rem;
+    font-family: var(--font-geist), sans-serif !important;
+    font-weight: 200 !important;
+    font-size: 0.44rem;
+    letter-spacing: 0.04em;
+    text-transform: none !important;
   }
 
   .about-team-footer-name {
@@ -4970,12 +5092,27 @@ section {
 
 /* GLOBAL TYPOGRAPHY CASING, ALIGNMENT, & FONT OVERRIDES */
 .subpage-wrapper .hero h1,
-.subpage-wrapper section > h2 {
-  font-family: var(--font-adieu) !important;
-  font-size: clamp(3rem, 8vw, 7rem) !important;
-  line-height: 0.9 !important;
+.subpage-wrapper section > h2,
+.subpage-wrapper h1,
+.subpage-wrapper h2,
+.subpage-wrapper h3,
+section:not(#hero) h1,
+section:not(#hero) h2,
+section:not(#hero) h3,
+.section-header h1,
+.section-header h2,
+.section-header h3,
+.services-main-title {
+  font-family: var(--font-geist) !important;
+  font-weight: 200 !important;
   text-transform: none !important;
   text-align: left !important;
+}
+
+.subpage-wrapper .hero h1,
+.subpage-wrapper section > h2 {
+  font-size: clamp(3rem, 8vw, 7rem) !important;
+  line-height: 0.9 !important;
 }
 
 .subpage-wrapper h2 {
@@ -4996,17 +5133,20 @@ section {
 /* FORCE NAVBAR & FOOTER WORDINGS TO ADIEU FONT */
 .desktop-nav a,
 .mobile-menu a,
+.mobile-menu .mobile-dropdown-trigger,
 .header-actions button,
 .mobile-menu button,
+.footer-main-text {
+  font-family: var(--font-brand) !important;
+}
+
 .footer-col-label,
 .footer-nav-link,
 .footer-address-row p,
 .footer-copyright,
 .footer-legal-links a,
-.footer-main-text,
-.footer-industrial,
 .iso-badge {
-  font-family: var(--font-brand) !important;
+  font-family: var(--font-mono) !important;
 }
 
 /* SUBPAGE HERO VERTICAL LAYOUT & GAPPING ADJUSTMENTS */
@@ -5108,8 +5248,6 @@ section {
 /* Light / White Background Sections — Word Hover turns text PURE BLACK (#000000) */
 .light-bg .word-hover-span:hover,
 .light-theme .word-hover-span:hover,
-.difference .word-hover-span:hover,
-#difference .word-hover-span:hover,
 [style*="background: #f5f5f7"] .word-hover-span:hover,
 [style*="background:#f5f5f7"] .word-hover-span:hover,
 [style*="background: white"] .word-hover-span:hover,
@@ -5135,5 +5273,165 @@ html {
   perspective: 1000px;
 }
 
+/* ==========================================================================
+   STRICT TYPOGRAPHY ENFORCEMENT:
+   Except the home page hero section, every other title across all sections
+   and pages must be in thin Geist font.
+   ========================================================================== */
+h1:not(#hero h1):not(.hero-content h1),
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.equipment-title,
+.activities-title,
+.about-team-heading,
+.about-partners-heading,
+.services-main-title {
+  font-family: var(--font-geist) !important;
+  font-weight: 200 !important;
+}
 
+#hero h1,
+.hero #hero h1,
+section.hero h1,
+#hero .hero-content h1 {
+  font-family: var(--font-brand) !important;
+  font-weight: 400 !important;
+}
+
+/* ==========================================================================
+   REMOVE ALL DIVIDER LINES IN THE SITE
+   ========================================================================== */
+hr,
+.divider,
+.rule,
+.separator,
+.footer-separator,
+.about-team-rule,
+.section-divider,
+[class*="divider"],
+[class*="-rule"],
+[class*="-separator"] {
+  display: none !important;
+  border: none !important;
+  background: none !important;
+  height: 0 !important;
+}
+
+section,
+.section,
+.section-header,
+.subpage-wrapper section,
+.activities-section,
+.activities-list,
+.activity-row,
+.footer-industrial,
+.footer-bottom-bar,
+.footer-bottom-row,
+.footer-v2,
+.footer-top-row,
+.status-ticker,
+.about-stats,
+.difference-card-wrapper,
+.about-partners-section,
+.about-content-outer,
+.about-team-tap-close,
+.subpage-wrapper div,
+.subpage-wrapper h2,
+.card-header-technical,
+.region-row,
+.equipment-item,
+.equipment-list-container {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* ==========================================================================
+   MOBILE SECTION TITLE SIZING (INCREASED PROMINENCE ON MOBILE)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .section-title,
+  .services-main-title,
+  .equipment-title,
+  .activities-title,
+  .about-team-heading,
+  .about-partners-heading,
+  .subpage-wrapper .hero h1,
+  .subpage-wrapper section > h2,
+  .subpage-wrapper .section-title,
+  section:not(#hero) .section-title,
+  section:not(#hero) > .section-header > h2,
+  section:not(#hero) > .container > .section-header > h2,
+  section:not(#hero) .section-header h2 {
+    font-size: clamp(2.75rem, 11.5vw, 4.2rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.01em !important;
+    word-break: break-word !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title,
+  .services-main-title,
+  .equipment-title,
+  .activities-title,
+  .about-team-heading,
+  .about-partners-heading,
+  .subpage-wrapper .hero h1,
+  .subpage-wrapper section > h2,
+  .subpage-wrapper .section-title,
+  section:not(#hero) .section-title,
+  section:not(#hero) > .section-header > h2,
+  section:not(#hero) > .container > .section-header > h2,
+  section:not(#hero) .section-header h2 {
+    font-size: clamp(2.5rem, 12vw, 3.8rem) !important;
+    line-height: 0.95 !important;
+    letter-spacing: -0.01em !important;
+    word-break: break-word !important;
+  }
+}
+
+/* ==========================================================================
+   SHARP CARD CORNERS (SITE-WIDE)
+   Ensures every card across the site has sharp corners (0px border-radius)
+   ========================================================================== */
+.glow-card-container,
+.brutalist-card,
+.activity-card,
+.sector-module,
+.blog-main-card,
+.blog-post-item,
+.cooperation-card,
+.cooperation-card-wrapper > div,
+.difference-card-wrapper > div,
+.equipment-display,
+.spec-overlay,
+.project-card-v2,
+.contact-info-item,
+.geography-regions-card,
+.geography-globe-card,
+.contact-info-block > div,
+.about-nested-card,
+.equipment-item,
+.equipment-display-panel,
+.equipment-overlay-card,
+.equipment-stat-card,
+.service-card,
+.services-card-wrapper,
+.featured-project-card,
+.project-card,
+.contact-card,
+[class*="-card"],
+[class*="card-"],
+.card {
+  border-radius: 0px !important;
+}
+
+.glow-card-container svg rect {
+  rx: 0 !important;
+  ry: 0 !important;
+}
 

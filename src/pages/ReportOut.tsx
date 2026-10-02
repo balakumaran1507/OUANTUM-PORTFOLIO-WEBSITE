@@ -3,9 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
 import GlowCard from '../components/GlowCard';
+import useSEO from '../hooks/useSEO';
 
 const ReportOut: React.FC = () => {
   const navigate = useNavigate();
+
+  useSEO({
+    title: 'Report Out | Ouantum',
+    description: 'Government-grade compliance reporting generated same day from civil inspection data.',
+    canonicalPath: '/how-it-works/report-out',
+  });
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -46,7 +53,7 @@ const ReportOut: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '3rem', marginBottom: '3rem' }}
+          style={{ paddingBottom: '3rem', marginBottom: '3rem' }}
         >
           <span style={{
             fontFamily: 'var(--font-mono)', fontSize: '0.72rem',
@@ -56,9 +63,9 @@ const ReportOut: React.FC = () => {
             STEP 03 · GOVERNMENT FORMAT · SAME DAY
           </span>
           <h1 style={{
-            fontFamily: 'var(--font-adieu)',
+            fontFamily: 'var(--font-geist)',
             fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            fontWeight: 400, lineHeight: 1, color: '#fff',
+            fontWeight: 200, lineHeight: 1, color: '#fff',
             margin: '0 0 1.5rem 0', letterSpacing: '0.02em',
           }}>
             REPORT OUT
@@ -77,7 +84,7 @@ const ReportOut: React.FC = () => {
           initial={{ opacity: 0, scale: 0.92, x: -40, y: 240 }}
           animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ marginBottom: '4rem', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}
+          style={{ marginBottom: '4rem', borderRadius: '0px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           <img
             src="/assets/images/47766f42-6372-4a45-8a66-6043acfde415.png"

@@ -17,7 +17,7 @@ const organizationSchema = {
 
 const Capabilities: React.FC = () => {
   useSEO({
-    title: 'Core Capabilities | AI Civil Infrastructure Quality Assurance | OUANTUM',
+    title: 'Capabilities | Ouantum',
     description:
       'Explore OUANTUM\'s core capabilities: deterministic AI non-destructive testing (NDT), IS code-compliance auditing, multi-model AI consensus, and structural service life prediction.',
     keywords:
@@ -94,7 +94,8 @@ const Capabilities: React.FC = () => {
             >
               <h1
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-geist)',
+                  fontWeight: 200,
                   fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
                   lineHeight: 1.1,
                   marginBottom: '2rem',
@@ -252,11 +253,11 @@ const Capabilities: React.FC = () => {
           <section aria-label="What we change in the world">
             <h2
               style={{
-                fontFamily: 'var(--font-adieu)',
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
                 fontSize: '1.8rem',
                 color: '#fff',
                 marginBottom: '2rem',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                 paddingBottom: '1rem',
               }}
             >
@@ -264,13 +265,13 @@ const Capabilities: React.FC = () => {
             </h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '3rem' }}>
               <div>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', color: '#fff', fontSize: '1.1rem', marginBottom: '1.1rem' }}>
+                <h3 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, color: '#fff', fontSize: '1.25rem', marginBottom: '1.1rem' }}>
                   Eliminating Data Tampering & Transcriber Fraud
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.65)', marginBottom: '1.5rem' }}>
                   Traditionally, structural test readings are hand-written, easily manipulated, or incorrectly averaged to meet specifications. OUANTUM seals the audit loop. Data captured on-site is cryptographically secured, validated, and directly submitted.
                 </p>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', color: '#fff', fontSize: '1.1rem', marginBottom: '1.1rem' }}>
+                <h3 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, color: '#fff', fontSize: '1.25rem', marginBottom: '1.1rem' }}>
                   Reducing Cycle Times From Weeks To Minutes
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.65)' }}>
@@ -279,13 +280,13 @@ const Capabilities: React.FC = () => {
               </div>
 
               <div>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', color: '#fff', fontSize: '1.1rem', marginBottom: '1.1rem' }}>
+                <h3 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, color: '#fff', fontSize: '1.25rem', marginBottom: '1.1rem' }}>
                   Democratizing Deterministic Verification
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.65)', marginBottom: '1.5rem' }}>
                   We empower municipalities, engineering consultants, housing boards, and contractors with access to deterministic structural health metrics. This structural transparency ensures safe infrastructure, preventing catastrophic structural failure and protecting lives.
                 </p>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', color: '#fff', fontSize: '1.1rem', marginBottom: '1.1rem' }}>
+                <h3 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, color: '#fff', fontSize: '1.25rem', marginBottom: '1.1rem' }}>
                   Preserving Resources
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.65)' }}>

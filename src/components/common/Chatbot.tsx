@@ -77,14 +77,14 @@ const Chatbot: React.FC = () => {
   // Adjust mobile mascot scale, X-axis, Y-axis, max-width, height, and margin directly here (separately for mobile view users)
   const mobileMascotScale = 1.0;
   const mobileMascotX = 0; // in pixels
-  const mobileMascotY = -1; // in pixels
-  const mobileMascotMaxWidth = '10px';
-  const mobileMascotHeight = '270px'; // reduced height for mobile view users
-  const mobileMascotMargin = '0.5rem auto 0.8rem auto'; // reduced spacing for mobile view users
+  const mobileMascotY = 0; // in pixels
+  const mobileMascotMaxWidth = '60px';
+  const mobileMascotHeight = '60px'; // clean compact height for mobile medium chatbox
+  const mobileMascotMargin = '0.4rem auto 0.6rem auto'; // compact spacing
 
   // Adjust chatbar window width & max-width separately for desktop and mobile view users
   const desktopChatbarMaxWidth = '380px';
-  const mobileChatbarMaxWidth = 'calc(90vw - 2rem)';
+  const mobileChatbarMaxWidth = 'min(360px, calc(100vw - 32px))';
 
   const logoScale = isMobile ? mobileLogoScale : desktopLogoScale;
   const logoX = isMobile ? mobileLogoX : desktopLogoX;
@@ -199,10 +199,10 @@ const Chatbot: React.FC = () => {
         onClick={handleOpen}
         style={{
           position: 'fixed',
-          bottom: '2rem',
-          right: '2rem',
-          width: '60px',
-          height: '60px',
+          bottom: isMobile ? '1.25rem' : '2rem',
+          right: isMobile ? '1.25rem' : '2rem',
+          width: isMobile ? '52px' : '60px',
+          height: isMobile ? '52px' : '60px',
           borderRadius: '50%',
           background: '#eee',
           display: 'flex',
@@ -238,14 +238,15 @@ const Chatbot: React.FC = () => {
             transition={{ type: 'spring', stiffness: 300, damping: 28 }}
             style={{
               position: 'fixed',
-              bottom: '2rem',
-              right: '2rem',
-              width: '380px',
+              bottom: isMobile ? '16px' : '2rem',
+              right: isMobile ? '16px' : '2rem',
+              width: isMobile ? 'calc(100vw - 32px)' : '380px',
               maxWidth: chatbarMaxWidth,
-              height: '700px',
-              maxHeight: '85vh',
-              borderRadius: isMobile ? '24px 24px 0 0' : '20px',
-              boxShadow: '0 24px 48px rgba(0, 0, 0, 0.5), 0 0 30px rgba(248, 156, 82, 0.15)',
+              height: isMobile ? '500px' : '700px',
+              maxHeight: isMobile ? '62vh' : '85vh',
+              borderRadius: 0,
+              boxShadow: '0 24px 48px rgba(0, 0, 0, 0.6)',
+              border: '1px solid rgba(255, 255, 255, 0.12)',
               display: 'flex',
               flexDirection: 'column',
               zIndex: 99999,
@@ -253,19 +254,19 @@ const Chatbot: React.FC = () => {
             }}
           >
             <GlowCard
-              borderRadius={isMobile ? 24 : 20}
+              borderRadius={0}
               style={{
                 height: '100%',
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                background: '#050403',
+                background: '#000000',
               }}
             >
               {/* Header */}
               <div style={{
-                padding: '1.25rem 1.5rem',
+                padding: isMobile ? '0.85rem 1.1rem' : '1.25rem 1.5rem',
                 borderBottom: 'none',
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -315,7 +316,7 @@ const Chatbot: React.FC = () => {
                   flex: 1,
                   minHeight: 0,
                   overflowY: 'auto',
-                  padding: '1.25rem 1.25rem 2.5rem 1.25rem',
+                  padding: isMobile ? '0.85rem 0.85rem 1.5rem 0.85rem' : '1.25rem 1.25rem 2.5rem 1.25rem',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: '0.75rem',
@@ -343,7 +344,7 @@ const Chatbot: React.FC = () => {
                 {/* Welcome */}
                 <div style={{
                   alignSelf: 'flex-start',
-                  background: 'rgba(20, 16, 12, 0.75)',
+                  background: 'rgba(0, 0, 0, 0.75)',
                   color: '#fff',
                   padding: '0.875rem 1.125rem',
                   borderRadius: '14px',
@@ -351,7 +352,7 @@ const Chatbot: React.FC = () => {
                   maxWidth: '88%',
                   lineHeight: '1.6',
                   whiteSpace: 'pre-wrap',
-                  border: '1px solid rgba(248, 156, 82, 0.25)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                   backdropFilter: 'blur(8px)',
                 }}>
                   {WELCOME_MESSAGE}
@@ -366,14 +367,15 @@ const Chatbot: React.FC = () => {
                         onClick={() => sendMessage(q.value)}
                         style={{
                           background: 'rgba(255, 255, 255, 0.03)',
-                          border: '1px solid rgba(248, 156, 82, 0.25)',
+                          border: '1px solid rgba(255, 255, 255, 0.12)',
                           borderRadius: '6px',
                           color: 'rgba(255, 255, 255, 0.7)',
                           padding: '0.55rem 0.875rem',
-                          fontFamily: 'var(--font-mono)',
-                          fontSize: '0.72rem',
-                          letterSpacing: '0.08em',
-                          textTransform: 'uppercase',
+                          fontFamily: 'var(--font-geist)',
+                          fontWeight: 200,
+                          fontSize: '0.82rem',
+                          letterSpacing: '0.01em',
+                          textTransform: 'none',
                           textAlign: 'left',
                           cursor: 'pointer',
                           transition: 'all 0.15s ease',
@@ -382,13 +384,13 @@ const Chatbot: React.FC = () => {
                         }}
                         onMouseEnter={e => {
                           const el = e.currentTarget;
-                          el.style.borderColor = 'rgba(248, 156, 82, 0.6)';
+                          el.style.borderColor = 'rgba(255, 255, 255, 0.35)';
                           el.style.color = '#fff';
-                          el.style.background = 'rgba(248, 156, 82, 0.12)';
+                          el.style.background = 'rgba(255, 255, 255, 0.08)';
                         }}
                         onMouseLeave={e => {
                           const el = e.currentTarget;
-                          el.style.borderColor = 'rgba(248, 156, 82, 0.25)';
+                          el.style.borderColor = 'rgba(255, 255, 255, 0.12)';
                           el.style.color = 'rgba(255, 255, 255, 0.7)';
                           el.style.background = 'rgba(255, 255, 255, 0.03)';
                         }}
@@ -404,8 +406,8 @@ const Chatbot: React.FC = () => {
                   <div key={i} style={{
                     alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
                     background: m.role === 'user'
-                      ? 'linear-gradient(135deg, #e07e3c 0%, #b85c28 100%)'
-                      : 'rgba(20, 16, 12, 0.75)',
+                      ? 'rgba(255, 255, 255, 0.12)'
+                      : 'rgba(0, 0, 0, 0.75)',
                     color: '#fff',
                     padding: '0.875rem 1.125rem',
                     borderRadius: '14px',
@@ -414,20 +416,16 @@ const Chatbot: React.FC = () => {
                     maxWidth: '88%',
                     lineHeight: '1.6',
                     whiteSpace: 'pre-wrap',
-                    border: m.role === 'user'
-                      ? '1px solid rgba(248, 156, 82, 0.5)'
-                      : '1px solid rgba(248, 156, 82, 0.25)',
-                    boxShadow: m.role === 'user'
-                      ? '0 2px 12px rgba(248, 156, 82, 0.3)'
-                      : 'none',
-                    backdropFilter: m.role === 'assistant' ? 'blur(8px)' : 'none',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    boxShadow: 'none',
+                    backdropFilter: 'blur(8px)',
                   }}>
                     {m.content}
                   </div>
                 ))}
 
                 {isLoading && (
-                  <div style={{ alignSelf: 'flex-start', color: 'rgba(248, 156, 82, 0.8)', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
+                  <div style={{ alignSelf: 'flex-start', color: 'rgba(255, 255, 255, 0.4)', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
                     Analyzing...
                   </div>
                 )}
@@ -435,7 +433,7 @@ const Chatbot: React.FC = () => {
 
               {/* Input */}
               <div style={{
-                padding: '1rem 1.25rem 1.25rem 1.25rem',
+                padding: isMobile ? '0.75rem 0.85rem 0.85rem 0.85rem' : '1rem 1.25rem 1.25rem 1.25rem',
                 borderTop: 'none',
                 background: 'transparent',
                 flexShrink: 0,
@@ -445,12 +443,12 @@ const Chatbot: React.FC = () => {
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
-                  background: 'rgba(15, 12, 10, 0.75)',
+                  background: 'rgba(0, 0, 0, 0.8)',
                   backdropFilter: 'blur(12px)',
                   borderRadius: '30px',
-                  padding: '1rem 1.25rem 1rem 1.5rem',
-                  border: '1px solid rgba(248, 156, 82, 0.35)',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1)',
+                  padding: isMobile ? '0.65rem 0.85rem 0.65rem 1rem' : '1rem 1.25rem 1rem 1.5rem',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
                 }}>
                   <input
                     type="text"
@@ -477,9 +475,9 @@ const Chatbot: React.FC = () => {
                     disabled={isLoading || !input.trim()}
                     style={{
                       background: input.trim()
-                        ? 'linear-gradient(135deg, #f89c52 0%, #c97a3d 100%)'
+                        ? 'rgba(255, 255, 255, 0.15)'
                         : 'transparent',
-                      border: 'none',
+                      border: input.trim() ? '1px solid rgba(255, 255, 255, 0.2)' : 'none',
                       color: input.trim() ? '#fff' : 'rgba(255, 255, 255, 0.25)',
                       cursor: input.trim() ? 'pointer' : 'default',
                       display: 'flex',
@@ -488,7 +486,7 @@ const Chatbot: React.FC = () => {
                       width: '32px',
                       height: '32px',
                       borderRadius: '50%',
-                      boxShadow: input.trim() ? '0 0 12px rgba(248, 156, 82, 0.4)' : 'none',
+                      boxShadow: 'none',
                       transition: 'all 0.15s ease',
                       flexShrink: 0,
                     }}
@@ -496,6 +494,7 @@ const Chatbot: React.FC = () => {
                     <Send size={15} />
                   </button>
                 </div>
+
               </div>
             </GlowCard>
           </motion.div>

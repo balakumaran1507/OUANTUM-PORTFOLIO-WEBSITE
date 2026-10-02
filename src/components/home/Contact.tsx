@@ -19,7 +19,12 @@ const Contact: React.FC = () => {
           className="contact-header"
         >
           <div style={{ position: 'relative', display: 'inline-block', margin: '0' }}>
-            <h2 className="section-title" style={{ position: 'relative', zIndex: 1 }}>
+            <h2 className="section-title" style={{
+              fontFamily: 'var(--font-geist)',
+              fontWeight: 200,
+              position: 'relative',
+              zIndex: 1,
+            }}>
               Secure Your<br />Infrastructure
             </h2>
           </div>

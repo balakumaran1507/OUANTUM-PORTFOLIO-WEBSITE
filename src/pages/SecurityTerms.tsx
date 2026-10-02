@@ -15,7 +15,7 @@ const organizationSchema = {
 
 const SecurityTerms: React.FC = () => {
   useSEO({
-    title: 'Security Terms | OUANTUM Platform Liability & Encryption',
+    title: 'Security Terms | Ouantum',
     description:
       'OUANTUM security terms covering platform utilization, multi-model liability framework, TLS 1.3 encryption, and 99.9% uptime SLA for civil infrastructure AI quality assurance.',
     keywords:

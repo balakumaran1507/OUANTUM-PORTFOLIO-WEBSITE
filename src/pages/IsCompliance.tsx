@@ -13,7 +13,7 @@ const IsCompliance: React.FC = () => {
   }, []);
 
   useSEO({
-    title: 'IS Code Compliance Engine | BIS Structural Standards Verification | OUANTUM AI',
+    title: 'IS Code Compliance | Ouantum',
     description: 'Automated codal checking under IS 456, IS 383, IS 1786, and IS 2386. Verifies concrete mix, rebar yield, and aggregate grading against BIS standards.',
     canonicalPath: '/capabilities/is-code-compliance',
   });
@@ -57,7 +57,7 @@ const IsCompliance: React.FC = () => {
         </motion.button>
 
         {/* Hero Section */}
-        <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '3rem', marginBottom: '3rem' }}>
+        <div style={{ paddingBottom: '3rem', marginBottom: '3rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,9 +75,9 @@ const IsCompliance: React.FC = () => {
               VERIFICATION · ENGINE NODE 02
             </span>
             <h1 style={{
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-geist)',
               fontSize: 'clamp(3rem, 8vw, 7rem)',
-              fontWeight: 400,
+              fontWeight: 200,
               lineHeight: 0.9,
               color: '#ffffff',
               margin: '0 0 1.5rem 0',
@@ -106,7 +106,7 @@ const IsCompliance: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '1.25rem', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'rgba(255, 255, 255, 0.75)', margin: 0 }}>
               The IS Code Compliance Engine digitizes Indian Standard civil engineering codes into deterministic rule sets. Every material test result, concrete mix proportion, rebar grade, and structural dimension logged in OUANTUM is automatically evaluated against the exact formulas and threshold tables published by the Bureau of Indian Standards (BIS).
             </p>
@@ -195,7 +195,7 @@ const IsCompliance: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <GlowCard borderRadius={12} style={{ padding: '1.5rem' }}>
                 <div style={{ display: 'flex', gap: '24px' }}>
@@ -233,7 +233,7 @@ const IsCompliance: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <div>
                 <h4 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>What Indian Standards (IS Codes) are supported by OUANTUM's validation engine?</h4>

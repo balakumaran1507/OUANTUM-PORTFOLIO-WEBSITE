@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
+import GlowCard from '../components/GlowCard';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -15,7 +16,7 @@ const organizationSchema = {
 
 const CaseStudies: React.FC = () => {
   useSEO({
-    title: 'Case Studies | OUANTUM, AI QA in Action at Scale',
+    title: 'Case Studies | Ouantum',
     description:
       'Explore how OUANTUM has transformed quality assurance for NHAI bridge audits, Amaravati Capital City, coastal infrastructure, and Indian Standard code compliance at scale.',
     keywords:
@@ -91,9 +92,9 @@ const CaseStudies: React.FC = () => {
           </span>
           <h1
             style={{
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-geist)',
               fontSize: 'clamp(3rem, 7vw, 5rem)',
-              fontWeight: 400,
+              fontWeight: 200,
               color: '#fff',
             }}
           >
@@ -110,87 +111,89 @@ const CaseStudies: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="animated-silver-bg"
             style={{
-              display: 'flex',
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              borderRadius: '24px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              overflow: 'hidden',
               marginBottom: '4rem',
-              minHeight: '450px',
             }}
           >
-            {/* Left Text Content */}
-            <div className="case-study-featured-content">
-              <span
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.15em',
-                  color: 'rgba(255, 255, 255, 0.4)',
-                  textTransform: 'uppercase',
-                  marginBottom: '1.5rem',
-                  display: 'block',
-                }}
-              >
-                AUTHOR: {featuredCaseStudy.author}
-              </span>
-              <h2
-                style={{
-                  fontFamily: 'var(--font-adieu)',
-                  fontSize: 'clamp(2rem, 4vw, 3rem)',
-                  lineHeight: 1.1,
-                  color: '#fff',
-                  marginBottom: '1.5rem',
-                }}
-              >
-                {featuredCaseStudy.title}
-              </h2>
-              <p
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.9rem',
-                  lineHeight: 1.8,
-                  color: 'rgba(255, 255, 255, 0.6)',
-                  marginBottom: '3rem',
-                  maxWidth: '90%',
-                }}
-              >
-                {featuredCaseStudy.description}
-              </p>
-              <a
-                href={featuredCaseStudy.link}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  color: '#fff',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.8rem',
-                  letterSpacing: '0.1em',
-                  textDecoration: 'none',
-                  fontWeight: 'bold',
-                  opacity: 0.8,
-                  transition: 'opacity 0.2s',
-                }}
-                onMouseOver={(e) => (e.currentTarget.style.opacity = '1')}
-                onMouseOut={(e) => (e.currentTarget.style.opacity = '0.8')}
-                aria-label={`Read more about: ${featuredCaseStudy.title}`}
-              >
-                READ MORE <ArrowUpRight size={16} aria-hidden="true" />
-              </a>
-            </div>
+            <GlowCard
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                overflow: 'hidden',
+                minHeight: '450px',
+              }}
+            >
+              {/* Left Text Content */}
+              <div className="case-study-featured-content">
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.15em',
+                    color: 'rgba(255, 255, 255, 0.4)',
+                    textTransform: 'uppercase',
+                    marginBottom: '1.5rem',
+                    display: 'block',
+                  }}
+                >
+                  AUTHOR: {featuredCaseStudy.author}
+                </span>
+                <h2
+                  style={{
+                    fontFamily: 'var(--font-adieu)',
+                    fontSize: 'clamp(2rem, 4vw, 3rem)',
+                    lineHeight: 1.1,
+                    color: '#fff',
+                    marginBottom: '1.5rem',
+                  }}
+                >
+                  {featuredCaseStudy.title}
+                </h2>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.9rem',
+                    lineHeight: 1.8,
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    marginBottom: '3rem',
+                    maxWidth: '90%',
+                  }}
+                >
+                  {featuredCaseStudy.description}
+                </p>
+                <a
+                  href={featuredCaseStudy.link}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    color: '#fff',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: '0.8rem',
+                    letterSpacing: '0.1em',
+                    textDecoration: 'none',
+                    fontWeight: 'bold',
+                    opacity: 0.8,
+                    transition: 'opacity 0.2s',
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.opacity = '1')}
+                  onMouseOut={(e) => (e.currentTarget.style.opacity = '0.8')}
+                  aria-label={`Read more about: ${featuredCaseStudy.title}`}
+                >
+                  READ MORE <ArrowUpRight size={16} aria-hidden="true" />
+                </a>
+              </div>
 
-            {/* Right Image */}
-            <div className="case-study-featured-image">
-              <img
-                src={featuredCaseStudy.image}
-                alt={featuredCaseStudy.imageAlt}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
-            </div>
+              {/* Right Image */}
+              <div className="case-study-featured-image">
+                <img
+                  src={featuredCaseStudy.image}
+                  alt={featuredCaseStudy.imageAlt}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+            </GlowCard>
           </motion.div>
         </article>
 
@@ -210,93 +213,94 @@ const CaseStudies: React.FC = () => {
                   animate={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: idx * 0.15 }}
-                  className="animated-silver-bg"
-                  style={{
-                    borderRadius: '20px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                  }}
+                  style={{ height: '100%' }}
                 >
-                  {/* Card Image */}
-                  <div style={{ height: '240px', width: '100%', overflow: 'hidden' }}>
-                    <img
-                      src={study.image}
-                      alt={study.imageAlt}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
-                  </div>
-
-                  {/* Card Content */}
-                  <div
+                  <GlowCard
                     style={{
-                      padding: '2.5rem',
+                      overflow: 'hidden',
                       display: 'flex',
                       flexDirection: 'column',
-                      flex: 1,
+                      height: '100%',
                     }}
                   >
-                    <span
+                    {/* Card Image */}
+                    <div style={{ height: '240px', width: '100%', overflow: 'hidden' }}>
+                      <img
+                        src={study.image}
+                        alt={study.imageAlt}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                    </div>
+
+                    {/* Card Content */}
+                    <div
                       style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.7rem',
-                        letterSpacing: '0.15em',
-                        color: 'rgba(255, 255, 255, 0.4)',
-                        textTransform: 'uppercase',
-                        marginBottom: '1rem',
-                        display: 'block',
-                      }}
-                    >
-                      AUTHOR: {study.author}
-                    </span>
-                    <h3
-                      style={{
-                        fontFamily: 'var(--font-adieu)',
-                        fontSize: '1.5rem',
-                        lineHeight: 1.2,
-                        color: '#fff',
-                        marginBottom: '1rem',
-                      }}
-                    >
-                      {study.title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.85rem',
-                        lineHeight: 1.7,
-                        color: 'rgba(255, 255, 255, 0.5)',
-                        marginBottom: '2.5rem',
+                        padding: '2.5rem',
+                        display: 'flex',
+                        flexDirection: 'column',
                         flex: 1,
                       }}
                     >
-                      {study.description}
-                    </p>
-                    <a
-                      href={study.link}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        color: '#fff',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.8rem',
-                        letterSpacing: '0.1em',
-                        textDecoration: 'none',
-                        fontWeight: 'bold',
-                        marginTop: 'auto',
-                        opacity: 0.8,
-                        transition: 'opacity 0.2s',
-                      }}
-                      onMouseOver={(e) => (e.currentTarget.style.opacity = '1')}
-                      onMouseOut={(e) => (e.currentTarget.style.opacity = '0.8')}
-                      aria-label={`Read more about: ${study.title}`}
-                    >
-                      READ MORE <ArrowUpRight size={16} aria-hidden="true" />
-                    </a>
-                  </div>
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.7rem',
+                          letterSpacing: '0.15em',
+                          color: 'rgba(255, 255, 255, 0.4)',
+                          textTransform: 'uppercase',
+                          marginBottom: '1rem',
+                          display: 'block',
+                        }}
+                      >
+                        AUTHOR: {study.author}
+                      </span>
+                      <h3
+                        style={{
+                          fontFamily: 'var(--font-adieu)',
+                          fontSize: '1.5rem',
+                          lineHeight: 1.2,
+                          color: '#fff',
+                          marginBottom: '1rem',
+                        }}
+                      >
+                        {study.title}
+                      </h3>
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.85rem',
+                          lineHeight: 1.7,
+                          color: 'rgba(255, 255, 255, 0.5)',
+                          marginBottom: '2.5rem',
+                          flex: 1,
+                        }}
+                      >
+                        {study.description}
+                      </p>
+                      <a
+                        href={study.link}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '0.5rem',
+                          color: '#fff',
+                          fontFamily: 'var(--font-mono)',
+                          fontSize: '0.8rem',
+                          letterSpacing: '0.1em',
+                          textDecoration: 'none',
+                          fontWeight: 'bold',
+                          marginTop: 'auto',
+                          opacity: 0.8,
+                          transition: 'opacity 0.2s',
+                        }}
+                        onMouseOver={(e) => (e.currentTarget.style.opacity = '1')}
+                        onMouseOut={(e) => (e.currentTarget.style.opacity = '0.8')}
+                        aria-label={`Read more about: ${study.title}`}
+                      >
+                        READ MORE <ArrowUpRight size={16} aria-hidden="true" />
+                      </a>
+                    </div>
+                  </GlowCard>
                 </motion.div>
               </article>
             ))}

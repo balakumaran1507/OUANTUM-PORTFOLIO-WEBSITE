@@ -13,7 +13,7 @@ const Consensus: React.FC = () => {
   }, []);
 
   useSEO({
-    title: 'Multi-Model Consensus Engine | AI Structural Validation | OUANTUM AI',
+    title: 'Consensus Engine | Ouantum',
     description: 'Triple-model safety verification for concrete QA. Code Specialist, Safety Analyst, and Pattern Intelligence models reach consensus on civil integrity.',
     canonicalPath: '/capabilities/multi-model-consensus',
   });
@@ -57,7 +57,7 @@ const Consensus: React.FC = () => {
         </motion.button>
 
         {/* Hero Section */}
-        <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '3rem', marginBottom: '3rem' }}>
+        <div style={{ paddingBottom: '3rem', marginBottom: '3rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,9 +75,9 @@ const Consensus: React.FC = () => {
               AI ENGINE · ENGINE NODE 03
             </span>
             <h1 style={{
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-geist)',
               fontSize: 'clamp(3rem, 8vw, 7rem)',
-              fontWeight: 400,
+              fontWeight: 200,
               lineHeight: 0.9,
               color: '#ffffff',
               margin: '0 0 1.5rem 0',
@@ -106,7 +106,7 @@ const Consensus: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '1.25rem', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
             <p style={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'rgba(255, 255, 255, 0.75)', margin: 0 }}>
               To ensure maximum safety and credibility, OUANTUM employs a Multi-Model Consensus Validation Engine. No verdict is confirmed on a structural element by a single algorithm; instead, three specialized, independent AI models evaluate the data. Only when they reach a unified consensus is the element signed off, minimizing false alarms and critical misses.
             </p>
@@ -191,7 +191,7 @@ const Consensus: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               <GlowCard borderRadius={12} style={{ padding: '1.5rem' }}>
                 <div style={{ display: 'flex', gap: '24px' }}>
@@ -229,7 +229,7 @@ const Consensus: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45 }}
           >
-            <h2 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.25rem', marginBottom: '2rem', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
+            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               <div>
                 <h4 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>What is the benefit of a three-model consensus for civil engineering audits?</h4>

@@ -40,7 +40,7 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const Blog: React.FC = () => {
   useSEO({
-    title: 'Knowledge Centre | OUANTUM, Resources & Insights',
+    title: 'Blog | Ouantum',
     description:
       'The OUANTUM Knowledge Centre provides practical resources, technical guidance, and industry insights related to civil infrastructure quality assurance.',
     keywords:
@@ -84,7 +84,8 @@ const Blog: React.FC = () => {
             <motion.div className="hero-right-content hero-right">
               <h1
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-geist)',
+                  fontWeight: 200,
                   fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
                   lineHeight: 1.1,
                   marginBottom: '2rem',
@@ -228,12 +229,12 @@ const Blog: React.FC = () => {
                           <h2
                             className="blog-card-title"
                             style={{
-                              fontFamily: 'var(--font-adieu)',
+                              fontFamily: 'var(--font-geist)',
                               fontSize: '1.25rem',
                               lineHeight: 1.3,
                               color: '#fff',
                               marginBottom: '1rem',
-                              fontWeight: 400,
+                              fontWeight: 200,
                             }}
                           >
                             {post.title}
@@ -264,7 +265,6 @@ const Blog: React.FC = () => {
                               display: 'flex',
                               justifyContent: 'space-between',
                               alignItems: 'center',
-                              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
                               paddingTop: '1.25rem',
                               gap: '0.75rem',
                               flexWrap: 'wrap',

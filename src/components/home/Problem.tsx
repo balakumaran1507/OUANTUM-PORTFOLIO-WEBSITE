@@ -69,7 +69,13 @@ const Problem = () => {
         {/* Header */}
         <div style={{ marginBottom: '5rem', textAlign: 'left' }}>
           <div style={{ position: 'relative', display: 'inline-block', margin: '0' }}>
-            <h2 className="section-title" style={{ marginBottom: '1.5rem', position: 'relative', zIndex: 1 }}>
+            <h2 className="section-title" style={{
+              fontFamily: 'var(--font-geist)',
+              fontWeight: 200,
+              marginBottom: '1.5rem',
+              position: 'relative',
+              zIndex: 1,
+            }}>
               The Problem
             </h2>
           </div>

@@ -85,7 +85,12 @@ const Services: React.FC = () => {
           <div>
             <h2
               className="section-title services-main-title"
-              style={{ color: '#111111', marginBottom: '0.75rem' }}
+              style={{
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                color: '#111111',
+                marginBottom: '0.75rem',
+              }}
             >
               Core<br />Capabilities
             </h2>
@@ -156,7 +161,7 @@ const Services: React.FC = () => {
         </motion.div>
 
         {/* Big single card */}
-        <div className="services-card-wrapper" style={{ position: 'relative', width: '100%', height: '520px', borderRadius: '24px', overflow: 'hidden' }}>
+        <div className="services-card-wrapper" style={{ position: 'relative', width: '100%', height: '520px', borderRadius: '0px', overflow: 'hidden' }}>
           <AnimatePresence mode="popLayout" custom={direction} initial={false}>
             <motion.div
               key={item.id}
@@ -223,9 +228,9 @@ const Services: React.FC = () => {
                 >
                   <h3
                     style={{
-                      fontFamily: 'var(--font-adieu)',
+                      fontFamily: 'var(--font-geist)',
                       fontSize: 'clamp(1.25rem, 2.5vw, 1.8rem)',
-                      fontWeight: 400,
+                      fontWeight: 200,
                       color: '#ffffff',
                       lineHeight: 1.2,
                       marginBottom: '1rem',

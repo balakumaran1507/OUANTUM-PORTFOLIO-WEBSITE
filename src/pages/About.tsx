@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { User } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
 import GlowCard from '../components/GlowCard';
 import ScrollReveal from '../components/common/ScrollReveal';
@@ -32,32 +31,39 @@ const organizationSchema = {
 
 const team = [
   {
-    role: 'PRESIDENT',
+    role: 'President',
     name: 'Balakumaran D',
     image: '/assets/images/Balakumaran_CEO_Profile_Pic.png',
     initials: 'BD',
     bio: 'Balakumaran is the Founder & CEO of Cybercom and Etherence. He stands as the backbone of the entire AI systems at OUANTUM, shaping the core architectures and resolving complex technical issues that remain unsolved by others.\n\nHe leads the product engineering teams to ensure that all platforms maintain high standards of deterministic quality assurance and structural validation.\nReach him at +91 7695827158.',
   },
   {
-    role: 'CHIEF EXECUTIVE OFFICER',
+    role: 'Chief Executive Officer',
     name: 'Rahul',
     image: '/assets/images/rahul.jpeg',
     initials: 'RA',
     bio: 'Rahul is the CEO of OUANTUM and the one who had the initial idea of implementing AI in industrial domains. He leads the commercial and strategic direction of OUANTUM, shaping the go-to-market across the globe.\n\nHis focus is on delivering reliable same-day outcomes for every client.\nReach him at +91 861 080 5559.',
   },
   {
-    role: 'CHIEF MARKETING OFFICER',
-    name: 'Raghu',
-    image: '/assets/images/raghu.png',
-    initials: 'RG',
-    bio: 'Raghu handles the legal framework and compliance structures that underpin OUANTUM\'s government-grade report generation. He also contributes to the AI pipeline, ensuring every automated output is legally defensible and technically sound.\n\nHis dual role bridges the gap between engineering precision and regulatory compliance.',
+    role: 'Chief Technology Officer',
+    name: 'Guru Prasanth',
+    image: '/assets/images/guru.png',
+    initials: 'GP',
+    bio: 'Guru Prasanth serves as Chief Technology Officer at OUANTUM, architecting the deep-tech infrastructure, computer vision models, and consensus verification pipelines.\n\nHe spearheads the engineering team in translating complex non-destructive testing (NDT) physics and IS compliance standards into high-throughput, deterministic AI systems.',
   },
   {
-    role: 'CHIEF FINANCIAL OFFICER',
+    role: 'Chief Financial Officer',
     name: 'Sabari Raja',
     image: '/assets/images/sabari.jpeg',
     initials: 'SR',
     bio: 'Sabari Raja is the Founder & CEO of Zapsters. Sabari is the frontline interface between OUANTUM and every civil engineering firm we serve. He qualifies projects, maps client pain to our capability stack, and ensures the right team is in the room before a single rupee changes hands.\n\nIf you are evaluating OUANTUM for your next project, Sabari is your first call.',
+  },
+  {
+    role: 'Vice President',
+    name: 'Raghu',
+    image: '/assets/images/raghu.png',
+    initials: 'RG',
+    bio: 'Raghu serves as Vice President at OUANTUM, overseeing operational strategy, government compliance, and strategic enterprise initiatives. He bridges technical engineering precision with regulatory defensibility to ensure every automated assessment stands up to municipal and government audits.\n\nHis leadership drives cross-functional execution across OUANTUM\'s expanding footprint in India\'s critical infrastructure.',
   },
 ];
 
@@ -72,260 +78,126 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
       animate={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
-      onClick={() => {
-        if (!expanded) setExpanded(true);
-      }}
-      className={`about-team-card ${expanded ? 'is-expanded' : ''}`}
-      role="button"
-      tabIndex={0}
-      aria-expanded={expanded}
-      aria-label={`${member.name}, ${member.role}, click to view biography`}
-      onKeyDown={(e) => e.key === 'Enter' && setExpanded(v => !v)}
+      className="about-team-card-wrapper"
     >
-      {/* ── PORTRAIT ── */}
-      <div
-        className="about-team-portrait"
-        style={{ transform: expanded ? 'translateY(-100%)' : 'translateY(0)' }}
-        aria-hidden="true"
-      >
-        {member.image && !imgError ? (
-          <img
-            src={member.image}
-            alt={`${member.name}, ${member.role} at OUANTUM`}
-            onError={() => setImgError(true)}
-            className="about-team-portrait-img"
-            loading="lazy"
-          />
-        ) : (
-          <div className="about-team-initials-bg">
-            <span className="about-team-initials">{member.initials}</span>
-          </div>
-        )}
-        <div className="about-team-tap-hint">{expanded ? 'CLOSE' : 'TAP FOR BIO'}</div>
-      </div>
-
-      {/* ── BIO PANEL ── */}
-      <div
-        className="about-team-bio-panel"
-        style={{
-          transform: expanded ? 'translateY(0)' : 'translateY(110%)',
-          opacity: expanded ? 1 : 0,
-          visibility: expanded ? 'visible' : 'hidden',
-          pointerEvents: expanded ? 'auto' : 'none',
+      <GlowCard
+        className={`about-team-card ${expanded ? 'is-expanded' : ''}`}
+        role="button"
+        tabIndex={0}
+        aria-expanded={expanded}
+        aria-label={`${member.name}, ${member.role}, click to view biography`}
+        onClick={() => {
+          if (!expanded) setExpanded(true);
         }}
-        onClick={(e) => {
-          // Stop propagation so scrolling or interacting with bio text doesn't trigger card click
-          e.stopPropagation();
-        }}
+        onKeyDown={(e) => e.key === 'Enter' && setExpanded((v) => !v)}
       >
-        {/* LEFT, passport photo */}
-        <div className="about-team-bio-photo-col">
-          <div className="about-team-bio-thumb">
-            {member.image && !imgError ? (
-              <img
-                src={member.image}
-                alt={`Portrait of ${member.name}`}
-                className="about-team-portrait-img"
-                loading="lazy"
-              />
-            ) : (
-              <div className="about-team-bio-thumb-placeholder">
-                <span>{member.initials}</span>
-              </div>
-            )}
-          </div>
+        {/* ── PORTRAIT ── */}
+        <div
+          className="about-team-portrait"
+          style={{ transform: expanded ? 'translateY(-100%)' : 'translateY(0)' }}
+          aria-hidden="true"
+        >
+          {member.image && !imgError ? (
+            <img
+              src={member.image}
+              alt={`${member.name}, ${member.role} at OUANTUM`}
+              onError={() => setImgError(true)}
+              className="about-team-portrait-img"
+              loading="lazy"
+            />
+          ) : (
+            <div className="about-team-initials-bg">
+              <span className="about-team-initials">{member.initials}</span>
+            </div>
+          )}
+          <div className="about-team-tap-hint">{expanded ? 'CLOSE' : 'TAP FOR BIO'}</div>
         </div>
 
-        {/* RIGHT, bio text */}
-        <div className="about-team-bio-text-col">
-          <div className="about-team-bio-top-bar">
-            <p className="about-team-bio-header">BIOGRAPHY</p>
+        {/* ── BIO PANEL ── */}
+        <div
+          className="about-team-bio-panel"
+          style={{
+            transform: expanded ? 'translateY(0)' : 'translateY(110%)',
+            opacity: expanded ? 1 : 0,
+            visibility: expanded ? 'visible' : 'hidden',
+            pointerEvents: expanded ? 'auto' : 'none',
+          }}
+          onClick={(e) => {
+            // Stop propagation so scrolling or interacting with bio text doesn't trigger card click
+            e.stopPropagation();
+          }}
+        >
+          {/* LEFT, passport photo */}
+          <div className="about-team-bio-photo-col">
+            <div className="about-team-bio-thumb">
+              {member.image && !imgError ? (
+                <img
+                  src={member.image}
+                  alt={`Portrait of ${member.name}`}
+                  className="about-team-portrait-img"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="about-team-bio-thumb-placeholder">
+                  <span>{member.initials}</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* RIGHT, bio text */}
+          <div className="about-team-bio-text-col">
+            <div className="about-team-bio-top-bar">
+              <p className="about-team-bio-header">BIOGRAPHY</p>
+              <button
+                type="button"
+                className="about-team-bio-close-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setExpanded(false);
+                }}
+                aria-label="Close biography"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="about-team-bio-paragraphs">
+              {member.bio.split('\n\n').map((para, i) => (
+                <p key={i} className="about-team-bio-para">{para}</p>
+              ))}
+            </div>
             <button
               type="button"
-              className="about-team-bio-close-btn"
+              className="about-team-tap-close"
               onClick={(e) => {
                 e.stopPropagation();
                 setExpanded(false);
               }}
-              aria-label="Close biography"
             >
-              ✕
+              TAP TO CLOSE ↑
             </button>
           </div>
-          <div className="about-team-bio-paragraphs">
-            {member.bio.split('\n\n').map((para, i) => (
-              <p key={i} className="about-team-bio-para">{para}</p>
-            ))}
-          </div>
-          <button
-            type="button"
-            className="about-team-tap-close"
-            onClick={(e) => {
-              e.stopPropagation();
-              setExpanded(false);
-            }}
-          >
-            TAP TO CLOSE ↑
-          </button>
         </div>
-      </div>
 
-      {/* ── FOOTER ── */}
-      <div
-        className="about-team-footer"
-        onClick={(e) => {
-          e.stopPropagation();
-          setExpanded(v => !v);
-        }}
-      >
-        <p className="about-team-footer-role">{member.role}</p>
-        <h3 className="about-team-footer-name">{member.name}</h3>
-      </div>
+        {/* ── FOOTER ── */}
+        <div
+          className="about-team-footer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setExpanded((v) => !v);
+          }}
+        >
+          <p className="about-team-footer-role">{member.role}</p>
+          <h3 className="about-team-footer-name">{member.name}</h3>
+        </div>
+      </GlowCard>
     </motion.div>
-  );
-};
-
-const aiEngineersList = [
-  { name: 'G Sai Varun', role: 'AI Engineer' },
-  { name: 'Karthik Unnikrishnan', role: 'AI Engineer' },
-  { name: 'Vaishnavi Somarouthu', role: 'AI Engineer' },
-  { name: 'Keerthana S', role: 'AI Engineer' },
-  { name: 'Sujith B', role: 'AI Engineer' },
-  { name: 'Kumaran M', role: 'AI Engineer' },
-  { name: 'Adithya CH', role: 'AI Engineer' },
-  { name: 'Gopinath K', role: 'AI Engineer' },
-  { name: 'Shravan Balakrishnan', role: 'AI Engineer' },
-  { name: 'R Vishnu Nandhan', role: 'AI Engineer' },
-  { name: 'Aishwarya S', role: 'AI Engineer' },
-  { name: 'Sushmitha K', role: 'AI Engineer' },
-  { name: 'Sai Viswa Teja', role: 'AI Engineer' },
-  { name: 'Rithish', role: 'AI Engineer' },
-  { name: 'Mohammad Adhil', role: 'AI Engineer' },
-  { name: 'Harshitha S S', role: 'AI Engineer' },
-  { name: 'Nishitha lochan', role: 'AI Engineer' },
-  { name: 'Jagatharani', role: 'AI Engineer' },
-  { name: 'Bharadhan MD', role: 'AI Engineer' },
-  { name: 'Jaiya Nandhana SR', role: 'AI Engineer' },
-  { name: 'Haritha K', role: 'AI Engineer' },
-  { name: 'B.Yazhshree', role: 'AI Engineer' },
-  { name: 'R.sowmiya', role: 'AI Engineer' },
-  { name: 'Srisivashankar S', role: 'AI Engineer' },
-  { name: 'Deepika L', role: 'AI Engineer' },
-  { name: 'Hanumanthraa.R.C', role: 'AI Engineer' },
-  { name: 'Harini.E', role: 'AI Engineer' },
-];
-
-const dataEngineersList = [
-  { name: 'Shree Dharani', role: 'Data Engineer' },
-  { name: 'Aarthi P', role: 'Data Engineer' },
-  { name: 'Vikranth B', role: 'Data Engineer' },
-  { name: 'Aarthi E', role: 'Data Engineer' },
-  { name: 'Aathithyan VM', role: 'Data Engineer' },
-  { name: 'Rithika R', role: 'Data Engineer' },
-  { name: 'Rishika R', role: 'Data Engineer' },
-  { name: 'Jeevasree S K', role: 'Data Engineer' },
-  { name: 'Sheika fathima k', role: 'Data Engineer' },
-];
-
-const fullStackDevelopersList = [
-  { name: 'Vignesh Selvaa K S', role: 'Team Lead' },
-  { name: 'Thamesh S', role: 'Fullstack Developer' },
-  { name: 'Barath P', role: 'Fullstack Developer' },
-  { name: 'Vijay T', role: 'Fullstack Developer' },
-  { name: 'Hafil Asfak H', role: 'Fullstack Developer' },
-  { name: 'Sai Guru.R', role: 'Fullstack Developer' },
-];
-
-const EngineerCard = ({ member }: { member: { name: string; role: string } }) => (
-  <GlowCard borderRadius={14} style={{ padding: '0.85rem 1.1rem' }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', width: '100%' }}>
-      <div
-        style={{
-          width: '38px',
-          height: '38px',
-          borderRadius: '10px',
-          background: '#000000',
-          border: '1px solid rgba(255,255,255,0.18)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
-      >
-        <User size={19} color="#ffffff" />
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap', minWidth: 0 }}>
-        <span style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.9rem', fontWeight: 600, color: '#ffffff', letterSpacing: '0.01em' }}>
-          {member.name}
-        </span>
-        <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: '0.8rem' }}>•</span>
-        <span style={{ fontFamily: 'var(--font-main)', fontSize: '0.82rem', color: 'rgba(255,255,255,0.6)' }}>
-          {member.role}
-        </span>
-      </div>
-    </div>
-  </GlowCard>
-);
-
-const EngineerGridSection = ({
-  members,
-  title,
-  eyebrow,
-}: {
-  members: { name: string; role: string }[];
-  title: string;
-  eyebrow: string;
-}) => {
-  return (
-    <section className="about-engineers-section" aria-label={`${title} team`} style={{ marginBottom: '80px' }}>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="about-team-eyebrow"
-      >
-        {eyebrow}
-      </motion.p>
-
-      <motion.h2
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="about-team-heading"
-      >
-        {title}
-      </motion.h2>
-
-      <div className="about-team-rule" aria-hidden="true" />
-
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1.25rem',
-          marginTop: '2rem',
-        }}
-      >
-        {members.map((member, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: (i % 6) * 0.04 }}
-          >
-            <EngineerCard member={member} />
-          </motion.div>
-        ))}
-      </div>
-    </section>
   );
 };
 
 const About: React.FC = () => {
   useSEO({
-    title: 'About OUANTUM | Team, Mission & Partner Ecosystem',
+    title: 'About | Ouantum',
     description:
       'Meet the core team behind OUANTUM, civil engineers, AI specialists, and structural auditors building deterministic quality assurance for India\'s critical infrastructure.',
     keywords:
@@ -362,7 +234,8 @@ const About: React.FC = () => {
             <motion.div className="hero-right-content hero-right">
               <h1
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-geist)',
+                  fontWeight: 200,
                   fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
                   lineHeight: 1.1,
                   marginBottom: '2rem',
@@ -608,27 +481,6 @@ const About: React.FC = () => {
               ))}
             </div>
           </section>
-
-          {/* AI ENGINEERS GRID */}
-          <EngineerGridSection
-            members={aiEngineersList}
-            title="AI Engineers"
-            eyebrow="THE ENGINEERS"
-          />
-
-          {/* DATA ENGINEERS GRID */}
-          <EngineerGridSection
-            members={dataEngineersList}
-            title="Data Engineers"
-            eyebrow="THE ENGINEERS"
-          />
-
-          {/* FULL STACK DEVELOPERS GRID */}
-          <EngineerGridSection
-            members={fullStackDevelopersList}
-            title="Full Stack Developers"
-            eyebrow="THE DEVELOPERS"
-          />
 
           {/* PARTNER ECOSYSTEM */}
           <section className="about-partners-section" aria-label="Partner ecosystem" style={{ marginBottom: '40px' }}>
