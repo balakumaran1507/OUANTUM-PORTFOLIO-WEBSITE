@@ -10,38 +10,39 @@ import GlowCard from '../components/GlowCard';
 const TECHNICAL_SPECIFICATIONS = [
   {
     category: 'NDT & SENSOR INGESTION MODALITIES',
+    title: 'Engineering Data & Inspection',
     specs: [
-      { key: 'Acoustic & Impact Testing', value: 'Ultrasonic Pulse Velocity (UPV) · Impact-Echo · Acoustic Emission' },
-      { key: 'Electromagnetic & Radar', value: 'Ground Penetrating Radar (GPR) · Electrical / Surface Resistivity' },
-      { key: 'Corrosion & Surface Evaluation', value: 'Half-Cell Potential · Rebound Hammer · Infrared Thermography' },
-      { key: 'Spatial & Remote Sensing', value: 'High-Density LiDAR · Drone Photogrammetry · Visual Inspection' },
+      { key: 'Project Records', value: 'NDT, sensor readings and field observations' },
+      { key: 'Observations & Context', value: 'Visual inspection, drones, LiDAR and thermography' },
+      { key: 'Traceability', value: 'Test records, equipment details and inspection history' },
+      { key: 'Supported Methods', value: 'UPV, Rebound Hammer, GPR and resistivity' },
     ],
   },
   {
     category: 'BIM & SPATIAL DIGITAL TWIN',
+    title: 'BIM & Digital Twin Intelligence',
     specs: [
-      { key: 'Model Interoperability', value: 'OpenBIM IFC (2x3, 4) · Autodesk Revit (RVT) · 2D DWG / DXF' },
-      { key: 'Spatial Contextualization', value: 'Element-level test point alignment on structural 3D geometry' },
-      { key: 'Digital Thread Continuity', value: 'Physical Asset → Digital Model → Engineering Data → Intelligence' },
-      { key: 'Inspection History', value: 'Time-series telemetry linked directly to BIM building elements' },
+      { key: 'Model Interoperability', value: '2D CAD, 3D BIM and IFC interoperability' },
+      { key: 'As-Built Documentation', value: 'Existing-building documentation and model development' },
+      { key: 'Spatial Contextualization', value: 'Spatially linked tests, defects and asset history' },
     ],
   },
   {
     category: 'QA/QC & COMPLIANCE MATRIX',
+    title: 'QA/QC & Engineering Compliance',
     specs: [
-      { key: 'Non-Destructive Norms', value: 'IS 13311 (Part 1 & 2) · ASTM C597 / C805 · BS EN 12504' },
-      { key: 'Structural Baselines', value: 'IS 456:2000 Plain and Reinforced Concrete Guidelines' },
-      { key: 'Durability Specifications', value: 'SP 34 Detailing · IRC:112 Concrete Road & Bridge Codes' },
-      { key: 'Quality Workflows', value: 'Non-conformity tracking · Photo evidence logs · Verified signoffs' },
+      { key: 'Quality Assurance', value: 'Inspection checklists and quality verification' },
+      { key: 'Issue Management', value: 'Non-conformity, corrective actions and approvals' },
+      { key: 'Audit & Compliance', value: 'Standards-linked evidence and structured audit reports' },
     ],
   },
   {
     category: 'AI & PLATFORM ECOSYSTEM',
+    title: 'AI & Project Intelligence',
     specs: [
-      { key: 'Intelligence Engine', value: 'Cross-source reasoning · Pattern detection · Anomaly identification' },
-      { key: 'Document Intelligence', value: 'Automated test extraction · Standards mapping · Structured reports' },
-      { key: 'Two-Tier Architecture', value: 'Platform Foundation (Orgs/Users/Devices) + Project Execution Layer' },
-      { key: 'Field Operations', value: 'Full offline telemetry buffer with zero-knowledge cloud synchronization' },
+      { key: 'Intelligence Engine', value: 'AI-assisted document extraction and engineering analysis' },
+      { key: 'Project Execution', value: 'Project dashboards, budget estimation and schedule tracking' },
+      { key: 'Reporting & Analytics', value: 'Risk indicators, analytics and automated report generation' },
     ],
   },
 ];
@@ -452,90 +453,7 @@ const OX1: React.FC = () => {
       {/* Main Content Sections */}
       <div className="container" style={{ paddingTop: '5rem' }}>
 
-        {/* ── KEY PERFORMANCE METRICS ── */}
-        <section
-          aria-label="OX1 Performance Metrics"
-          style={{
-            paddingBottom: '6rem',
-          }}
-        >
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: '1.5rem',
-            }}
-          >
-            {[
-              {
-                stat: '100%',
-                label: 'Deterministic Compliance',
-                desc: 'Zero black-box approximations. Pure codified standards.',
-              },
-              {
-                stat: '0.02 mm',
-                label: 'Surface Optical Precision',
-                desc: 'Sub-millimeter crack depth and boundary resolution.',
-              },
-              {
-                stat: '< 2.4 s',
-                label: 'Certified Dispatch',
-                desc: 'Instant verified PDF audit delivery to stakeholders.',
-              },
-              {
-                stat: '0%',
-                label: 'Transcription Fraud',
-                desc: 'Cryptographic SHA-256 seal prevents field tampering.',
-              },
-            ].map((metric, i) => (
-              <GlowCard
-                key={i}
-                style={{
-                  padding: '2.25rem 1.75rem',
-                }}
-              >
-                <div>
-                  <h3
-                    style={{
-                      fontFamily: 'var(--font-geist)',
-                      fontWeight: 200,
-                      fontSize: 'clamp(2.5rem, 5vw, 3.5rem)',
-                      lineHeight: 1,
-                      color: '#ffffff',
-                      marginBottom: '0.75rem',
-                    }}
-                  >
-                    {metric.stat}
-                  </h3>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.75rem',
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255, 255, 255, 0.75)',
-                      display: 'block',
-                      marginBottom: '0.75rem',
-                    }}
-                  >
-                    {metric.label}
-                  </span>
-                </div>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-main)',
-                    fontSize: '0.85rem',
-                    lineHeight: 1.6,
-                    color: 'rgba(255, 255, 255, 0.45)',
-                    margin: 0,
-                  }}
-                >
-                  {metric.desc}
-                </p>
-              </GlowCard>
-            ))}
-          </div>
-        </section>
+
 
         {/* ── THE DIGITAL THREAD ── */}
         <section
@@ -568,7 +486,7 @@ const OX1: React.FC = () => {
             >
               A unified digital thread replacing fragmented engineering silos:{' '}
               <strong style={{ color: '#ffffff', fontWeight: 500 }}>
-                Collect → Connect → Contextualize → Understand → Act.
+                
               </strong>
             </p>
           </div>
@@ -585,27 +503,27 @@ const OX1: React.FC = () => {
               {
                 step: '01',
                 title: 'Collect',
-                desc: 'Multi-sensor ingestion from UPV, Rebound Hammer, GPR, and resistivity on-site.',
+                desc: 'Capture engineering data across the project lifecycle: NDT, site inspections, QA/QC, documents, drawings, sensors, devices, and field observations.',
               },
               {
                 step: '02',
                 title: 'Connect',
-                desc: 'Unifies field data into a verified project record with operator, device, and timestamp IDs.',
+                desc: 'Unify projects, teams, engineering software, test records, budgets, schedules, and evidence within a centralized project workspace.',
               },
               {
                 step: '03',
                 title: 'Contextualize',
-                desc: 'Anchors test coordinates directly onto 2D drawings and 3D BIM structural elements.',
+                desc: 'Connect engineering data to 2D drawings, BIM models, structural elements, Digital Twins, project locations, and asset histories.',
               },
               {
                 step: '04',
-                title: 'Understand',
-                desc: 'Deterministic SonReb correlation and AI pattern analysis for structural degradation.',
+                title: 'Analyze',
+                desc: 'Apply engineering calculations, AI-assisted inspection, NDT correlations, QA/QC validation, risk analysis, progress tracking, and cost analytics.',
               },
               {
                 step: '05',
                 title: 'Act',
-                desc: 'Instant certified audit generation and automated non-conformity dispatch.',
+                desc: 'Generate structured reports, compliance records, dashboards, budget insights, project alerts, and actionable recommendations for informed decisions.',
               },
             ].map((item, idx) => (
               <GlowCard
@@ -971,24 +889,44 @@ const OX1: React.FC = () => {
           >
             {[
               {
-                title: 'NDT & Sensor Ingestion',
-                desc: 'Direct multi-sensor ingestion across UPV, Rebound Hammer, GPR, Impact-Echo, Half-Cell, and Resistivity.',
-                points: ['Calibrated SonReb correlation', 'Deterministic IS/ASTM standard mapping', 'Offline edge buffer (20,000+ readings)'],
+                title: 'Engineering Data Intelligence',
+                subtitle: 'NDT · Sensors · Inspection · Monitoring',
+                desc: 'Collect and unify field-testing results, sensor measurements, inspection records, site photographs, and structural observations in a centralized project data layer.',
+                points: [
+                  'UPV, Rebound Hammer, GPR, Impact-Echo and resistivity',
+                  'Georeferenced observations and equipment records',
+                  'Historical test data and structural condition tracking'
+                ],
               },
               {
-                title: 'BIM as Project Context',
-                desc: 'Anchors test coordinates, sensor arrays, and inspection photos directly onto 2D CAD and 3D BIM elements.',
-                points: ['Physical to digital twin alignment', 'Element-level inspection history', 'Sub-millimeter spatial coordinate precision'],
+                title: 'BIM & Digital Twin Intelligence',
+                subtitle: '2D CAD · 3D BIM · Asset Context',
+                desc: 'Connect inspection findings and engineering records to building drawings, 3D BIM elements, and digital asset representations to establish spatial context.',
+                points: [
+                  'Existing-building documentation and 2D-to-3D workflows',
+                  'Element-level inspection history and issue mapping',
+                  'Asset information linked to project records'
+                ],
               },
               {
-                title: 'Structured QA/QC Workflows',
-                desc: 'Replaces paper checklists with structured, evidence-backed digital observation and signoff workflows.',
-                points: ['Geotagged photographic evidence', 'Closed-loop corrective action tracking', 'Automated compliance exports'],
+                title: 'QA/QC & Compliance Intelligence',
+                subtitle: 'Quality Assurance · Quality Control · Standards',
+                desc: 'Digitize quality inspections, verification procedures, non-conformities, corrective actions, and approval records through traceable, evidence-backed workflows.',
+                points: [
+                  'Digital checklists and inspection sign-offs',
+                  'Standards-based validation and quality tracking',
+                  'Non-conformance management and audit-ready reports'
+                ],
               },
               {
-                title: 'AI Intelligence Layer',
-                desc: 'Ambient intelligence for cross-source reasoning, defect pattern detection, and document extraction.',
-                points: ['Deterministic standards validation', 'Cross-source historical comparison', 'Predictive degradation models'],
+                title: 'AI & Project Intelligence',
+                subtitle: 'Analytics · Project Management · Reporting',
+                desc: 'Transform engineering, quality, cost, schedule, and document data into actionable project insights using AI-assisted analysis, unified dashboards, and structured reporting.',
+                points: [
+                  'Computer vision and document intelligence',
+                  'Budget estimation, cost tracking and schedule monitoring',
+                  'Project analytics, risk indicators and automated reporting'
+                ],
               },
             ].map((card, cIdx) => (
               <GlowCard
@@ -1004,11 +942,25 @@ const OX1: React.FC = () => {
                       fontWeight: 300,
                       fontSize: '1.5rem',
                       color: '#ffffff',
-                      marginBottom: '1rem',
+                      marginBottom: card.subtitle ? '0.5rem' : '1rem',
                     }}
                   >
                     {card.title}
                   </h3>
+                  {card.subtitle && (
+                    <span
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontSize: '0.75rem',
+                        letterSpacing: '0.08em',
+                        color: 'rgba(255, 255, 255, 0.45)',
+                        display: 'block',
+                        marginBottom: '1rem',
+                      }}
+                    >
+                      {card.subtitle}
+                    </span>
+                  )}
                   <p
                     style={{
                       fontFamily: 'var(--font-main)',
@@ -1078,35 +1030,46 @@ const OX1: React.FC = () => {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
               gap: '1.5rem',
             }}
           >
             {[
               {
                 role: 'Civil & Structural Engineers',
-                benefit: 'Deterministic Standards Verification',
-                desc: 'Instant SonReb correlation, crack profiling, and automated IS 456 / ASTM compliance checking.',
+                benefit: 'STRUCTURAL ASSESSMENT & ENGINEERING',
+                desc: 'Evaluate structural condition through connected testing data, engineering observations, and standards-based assessment.',
+                points: ['NDT result correlation and structural assessment', 'Crack and defect documentation', 'Engineering evidence and technical reports'],
               },
               {
                 role: 'QA/QC & Inspection Teams',
-                benefit: 'Paperless Audit Trails',
-                desc: 'Standardized checklists, geotagged evidence logs, and real-time non-conformity tracking.',
+                benefit: 'QUALITY CONTROL & COMPLIANCE',
+                desc: 'Standardize inspections and quality records through traceable digital workflows.',
+                points: ['Digital checklists and inspection evidence', 'Non-conformance and corrective action tracking', 'Quality documentation and audit trails'],
               },
               {
-                role: 'NDT Testing Specialists',
-                benefit: 'Direct Hardware Sync',
-                desc: 'Direct sensor streaming into the certified edge buffer, eliminating clipboard errors.',
+                role: 'NDT & Testing Specialists',
+                benefit: 'TESTING DATA & SENSOR INTEGRATION',
+                desc: 'Consolidate non-destructive testing results and field measurements into structured project records.',
+                points: ['UPV, Rebound Hammer, GPR and resistivity', 'Test locations, equipment and measurement records', 'Comparative analysis and test reporting'],
+              },
+              {
+                role: 'BIM & Digital Engineering Teams',
+                benefit: 'BIM COORDINATION & DIGITAL TWINS',
+                desc: 'Connect engineering observations and asset information to digital building representations.',
+                points: ['Existing-building 2D documentation and 3D BIM', 'Element-level inspection and issue mapping', 'Digital Twin data and asset history'],
               },
               {
                 role: 'Project Managers & EPCs',
-                benefit: 'Project Velocity & Punchlists',
-                desc: 'Structural heatmaps, bottleneck alerts, and same-day certified report dispatch.',
+                benefit: 'PROJECT DELIVERY & COST INTELLIGENCE',
+                desc: 'Connect project execution, costs, schedules, and quality status in one management environment.',
+                points: ['Budget estimation and cost tracking', 'Schedule, task and resource monitoring', 'Project dashboards, risks and progress reports'],
               },
               {
                 role: 'Infrastructure Asset Owners',
-                benefit: 'Permanent Digital Twin',
-                desc: 'Lifecycle health indices, deterioration models, and cryptographic audit records.',
+                benefit: 'ASSET LIFECYCLE & CONDITION MONITORING',
+                desc: 'Maintain a structured view of infrastructure condition, maintenance needs, and historical engineering records.',
+                points: ['Asset condition and inspection history', 'Maintenance issues and risk indicators', 'Lifecycle records and portfolio-level reporting'],
               },
             ].map((item, sIdx) => (
               <GlowCard
@@ -1146,11 +1109,27 @@ const OX1: React.FC = () => {
                       fontSize: '0.86rem',
                       lineHeight: 1.6,
                       color: 'rgba(255, 255, 255, 0.45)',
-                      margin: 0,
+                      marginBottom: '1.5rem',
                     }}
                   >
                     {item.desc}
                   </p>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '1.25rem' }}>
+                  {item.points.map((pt, pIdx) => (
+                    <div key={pIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.6)', marginTop: '0.45rem' }} />
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-main)',
+                          fontSize: '0.8rem',
+                          color: 'rgba(255, 255, 255, 0.75)',
+                        }}
+                      >
+                        {pt}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </GlowCard>
             ))}
@@ -1172,11 +1151,23 @@ const OX1: React.FC = () => {
                 fontFamily: 'var(--font-geist)',
                 fontWeight: 200,
                 color: '#ffffff',
-                marginBottom: '0',
+                marginBottom: '1rem',
               }}
             >
-              Technical Specifications
+              One Intelligence Layer for Infrastructure
             </h2>
+            <p
+              style={{
+                fontFamily: 'var(--font-main)',
+                fontSize: '1rem',
+                lineHeight: 1.7,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '720px',
+                margin: 0,
+              }}
+            >
+              Connect engineering data, digital assets, quality workflows and project decisions in one environment.
+            </p>
           </div>
 
           <div
@@ -1200,12 +1191,23 @@ const OX1: React.FC = () => {
                       fontSize: '0.78rem',
                       letterSpacing: '0.15em',
                       textTransform: 'uppercase',
-                      color: '#ffffff',
-                      margin: 0,
+                      color: 'rgba(255, 255, 255, 0.45)',
+                      margin: '0 0 0.5rem 0',
                     }}
                   >
                     {group.category}
                   </h3>
+                  <h4
+                    style={{
+                      fontFamily: 'var(--font-geist)',
+                      fontWeight: 300,
+                      fontSize: '1.35rem',
+                      color: '#ffffff',
+                      margin: 0,
+                    }}
+                  >
+                    {group.title}
+                  </h4>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     {group.specs.map((item, sIdx) => (
@@ -1241,6 +1243,78 @@ const OX1: React.FC = () => {
                     ))}
                   </div>
                 </div>
+              </GlowCard>
+            ))}
+          </div>
+
+          {/* ── BEYOND ENGINEERING DATA ── */}
+          <div style={{ marginTop: '5rem', marginBottom: '2.5rem' }}>
+            <h2
+              className="section-title"
+              style={{
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                color: '#ffffff',
+                marginBottom: '0',
+              }}
+            >
+              Beyond Engineering Data
+            </h2>
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '1.5rem',
+            }}
+          >
+            {[
+              {
+                title: 'Cost & Budget Intelligence',
+                desc: 'Estimation, cost breakdowns, expenditure tracking and budget variance.',
+              },
+              {
+                title: 'Project Management',
+                desc: 'Tasks, schedules, milestones, resources, progress and issue tracking.',
+              },
+              {
+                title: 'Reporting & Documentation',
+                desc: 'Structured engineering reports, evidence records, document management and review workflows.',
+              },
+              {
+                title: 'Asset Lifecycle Intelligence',
+                desc: 'Asset histories, condition records, maintenance planning and portfolio visibility.',
+              },
+            ].map((feature, fIdx) => (
+              <GlowCard
+                key={fIdx}
+                style={{
+                  padding: '2rem 1.5rem',
+                }}
+              >
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-geist)',
+                    fontWeight: 300,
+                    fontSize: '1.25rem',
+                    color: '#ffffff',
+                    marginBottom: '0.75rem',
+                    marginTop: 0,
+                  }}
+                >
+                  {feature.title}
+                </h4>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-main)',
+                    fontSize: '0.86rem',
+                    lineHeight: 1.6,
+                    color: 'rgba(255, 255, 255, 0.45)',
+                    margin: 0,
+                  }}
+                >
+                  {feature.desc}
+                </p>
               </GlowCard>
             ))}
           </div>
