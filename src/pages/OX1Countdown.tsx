@@ -24,7 +24,7 @@ const OX1Countdown: React.FC = () => {
   useSEO({
     title: 'OX1 Countdown | Ouantum',
     description: 'Live countdown to OX1 launch on October 10th at 6:00 PM.',
-    canonicalPath: '/ox1-countdown',
+    canonicalPath: '/',
   });
 
   const [timeLeft, setTimeLeft] = useState(() => Math.max(0, TARGET_TIMESTAMP - Date.now()));

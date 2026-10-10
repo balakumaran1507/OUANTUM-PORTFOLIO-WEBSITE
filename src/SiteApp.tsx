@@ -28,7 +28,6 @@ const FieldDataIn = lazy(() => import('./pages/FieldDataIn'))
 const AiAnalysis = lazy(() => import('./pages/AiAnalysis'))
 const ReportOut = lazy(() => import('./pages/ReportOut'))
 const OX1 = lazy(() => import('./pages/OX1'))
-const OX1Countdown = lazy(() => import('./pages/OX1Countdown'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function GlobalWordHover() {
@@ -120,9 +119,6 @@ function GlobalWordHover() {
 }
 
 function AppContent() {
-  const location = useLocation();
-  const isCountdown = location.pathname.includes('countdown');
-
   return (
     <div className="app-wrapper">
       <Header />
@@ -153,13 +149,11 @@ function AppContent() {
           <Route path="/how-it-works/report-out" element={<ReportOut />} />
           <Route path="/ox1" element={<OX1 />} />
           <Route path="/ox-1" element={<OX1 />} />
-          <Route path="/ox1-countdown" element={<OX1Countdown />} />
-          <Route path="/ox1/countdown" element={<OX1Countdown />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-      {!isCountdown && <Footer />}
-      {!isCountdown && <Chatbot />}
+      <Footer />
+      <Chatbot />
     </div>
   );
 }

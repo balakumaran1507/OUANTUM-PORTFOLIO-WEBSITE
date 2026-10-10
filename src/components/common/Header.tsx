@@ -125,11 +125,6 @@ const Header: React.FC = () => {
           subtitle: 'Autonomous QA Station',
           href: '/ox1',
         },
-        {
-          title: 'OX1 Countdown',
-          subtitle: 'Launch Countdown Timer',
-          href: '/ox1-countdown',
-        },
       ],
     },
     { name: 'Contact Us', href: '/contact' },
