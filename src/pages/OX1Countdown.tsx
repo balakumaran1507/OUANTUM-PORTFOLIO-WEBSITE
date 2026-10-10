@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useSEO from '../hooks/useSEO';
 
-// Target: October 10, 2026 at 6:00 PM IST
-const TARGET_TIMESTAMP = new Date('2026-10-10T18:00:00+05:30').getTime();
+import { LAUNCH_TIMESTAMP as TARGET_TIMESTAMP } from '../config/launch';
 
 // Countdown scale, X-axis offset, Y-axis offset, image brightness, sunlight intensity, and blur
 export const COUNTDOWN_CONFIG = {
