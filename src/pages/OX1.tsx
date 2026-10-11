@@ -209,7 +209,7 @@ const OX1: React.FC = () => {
   useSEO({
     title: 'OX1 | Ouantum',
     description:
-      'OX1 is OUANTUM’s flagship autonomous hardware & AI intelligence unit for deterministic civil infrastructure non-destructive testing and instant certified compliance.',
+      'OX1 is OUANTUM’s unified intelligence layer for construction. It connects NDT data, inspection records and 3D BIM, and automates calculations, interpretation and reporting. Live in beta.',
     canonicalPath: '/ox1',
   });
 
@@ -1314,6 +1314,97 @@ const OX1: React.FC = () => {
                   }}
                 >
                   {feature.desc}
+                </p>
+              </GlowCard>
+            ))}
+          </div>
+        </section>
+
+        {/* ── OX1 IN THE FIELD ── */}
+        <section aria-label="OX1 In The Field" style={{ paddingBottom: '5rem' }}>
+          <div style={{ marginBottom: '2.5rem' }}>
+            <h2
+              className="section-title"
+              style={{
+                fontFamily: 'var(--font-geist)',
+                fontWeight: 200,
+                color: '#ffffff',
+                marginBottom: '1rem',
+              }}
+            >
+              OX1 In The Field
+            </h2>
+            <p
+              style={{
+                fontFamily: 'var(--font-main)',
+                fontSize: '0.96rem',
+                lineHeight: 1.7,
+                color: 'rgba(255, 255, 255, 0.55)',
+                maxWidth: '640px',
+                margin: 0,
+              }}
+            >
+              OX1 is a unified intelligence layer that brings AI technology to the construction industry. It is live in beta with early clients, who came to us before we began any formal sales effort.
+            </p>
+          </div>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1.5rem',
+            }}
+          >
+            {[
+              {
+                label: 'STATUS',
+                title: 'Live in beta, 3 early clients',
+                desc: 'Two clients are on paid plans and one is in a pilot. We estimate OX1 can cut up to 70-80% of the manual calculation and interpretation effort in testing-heavy workflows.',
+              },
+              {
+                label: 'USE CASE',
+                title: 'NDT data linked to BIM',
+                desc: 'For one client, OX1 connects non-destructive testing data to the BIM model. Teams view and examine test points remotely on a virtual representation of the structure, monitor progress, assign tasks, and get fast calculations and interpretation that account for the factors influencing the results.',
+              },
+              {
+                label: 'AI STACK',
+                title: 'Built with Claude',
+                desc: 'OX1 uses the Claude API for data analysis and report generation, and our engineers use Claude to write and debug code. Engineers keep final review and sign-off on every result.',
+              },
+            ].map((item, i) => (
+              <GlowCard key={i} style={{ padding: '2rem 1.5rem' }}>
+                <div
+                  style={{
+                    fontFamily: 'var(--font-adieu)',
+                    fontSize: '0.7rem',
+                    letterSpacing: '0.12em',
+                    color: 'rgba(255, 255, 255, 0.45)',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {item.label}
+                </div>
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-geist)',
+                    fontWeight: 300,
+                    fontSize: '1.25rem',
+                    color: '#ffffff',
+                    marginBottom: '0.75rem',
+                    marginTop: 0,
+                  }}
+                >
+                  {item.title}
+                </h4>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-main)',
+                    fontSize: '0.86rem',
+                    lineHeight: 1.6,
+                    color: 'rgba(255, 255, 255, 0.45)',
+                    margin: 0,
+                  }}
+                >
+                  {item.desc}
                 </p>
               </GlowCard>
             ))}

@@ -57,7 +57,7 @@ const Home: React.FC = () => {
   useSEO({
     title: 'Ouantum',
     description:
-      'OUANTUM is the AI platform built for civil infrastructure quality assurance, monitoring, and structural auditing. Field data in. Government-grade reports out. Same day.',
+      'OUANTUM builds AI for civil construction quality assurance, monitoring and structural auditing. OX1, our unified intelligence layer, connects NDT, inspection and BIM data into decision-ready reports.',
     keywords:
       'AI quality assurance, civil engineering AI, structural auditing, NDT analysis, SonReb correlation, IS code compliance, TPQM, construction QA, India infrastructure AI, OUANTUM',
     canonicalPath: '/',
