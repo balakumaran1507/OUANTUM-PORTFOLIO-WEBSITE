@@ -18,9 +18,9 @@ const CaseStudies: React.FC = () => {
   useSEO({
     title: 'Case Studies | Ouantum',
     description:
-      'Explore how OUANTUM has transformed quality assurance for NHAI bridge audits, Amaravati Capital City, coastal infrastructure, and Indian Standard code compliance at scale.',
+      'Technical perspectives from the OUANTUM team on AI-assisted quality assurance, NDT analysis, structural auditing and Indian Standard code compliance.',
     keywords:
-      'OUANTUM case studies, NHAI bridge audit AI, Amaravati capital city QA, SonReb NDT case study, IS 456 compliance automation, TPQM India, structural audit case study',
+      'OUANTUM technical articles, AI structural audit, SonReb NDT, IS 456 compliance automation, TPQM India, construction QA',
     canonicalPath: '/case-studies',
     jsonLd: [organizationSchema],
   });
@@ -44,7 +44,7 @@ const CaseStudies: React.FC = () => {
       author: 'RAHUL',
       title: 'Validating the 30-Year Coastal Expansion',
       description:
-        'See how the OUANTUM engine redefines structural scaling, removing manual bottlenecks with co-packaged AI models to unlock 50x faster reporting.',
+        'See how the OUANTUM engine redefines structural scaling, removing manual bottlenecks with co-packaged AI models to speed up reporting.',
       image: '/assets/images/bg1.jpg',
       imageAlt: 'Coastal infrastructure expansion project, structural validation using OUANTUM AI platform',
       link: '#',

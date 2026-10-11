@@ -12,8 +12,8 @@ const projects = [
     category: 'GOVERNMENT INFRASTRUCTURE · AP, INDIA',
     location: 'AP, INDIA',
     year: 'ONGOING',
-    status: 'ADVISORY',
-    scope: 'AP HIGH COURT · 4,000 RESIDENTIAL UNITS · 45-STOREY INTEGRATED SECRETARIAT. TPQM WORK BY OUR DOMAIN ADVISOR ER. KALAIMONY (IIT MADRAS CUBE): THE METHODOLOGY BEHIND OUR REPORT GENERATION ENGINE.',
+    status: 'ADVISOR PROJECT',
+    scope: 'AP HIGH COURT · 4,000 RESIDENTIAL UNITS · 45-STOREY INTEGRATED SECRETARIAT. ADVISOR-LED TPQM WORK BY ER. KALAIMONY (IIT MADRAS CUBE), WHERE OUR TEAM LEARNED THE METHODOLOGY BEHIND OUR REPORT GENERATION ENGINE.',
     featured: true,
   },
   {
@@ -23,8 +23,8 @@ const projects = [
     category: 'HOUSING BOARD · CHENNAI',
     location: 'CHENNAI, INDIA',
     year: 'ONGOING',
-    status: 'ADVISORY',
-    scope: 'THIRD-PARTY QUALITY MONITORING ACROSS MULTIPLE HOUSING PROJECTS. FIELD WORKFLOW AND GOVERNMENT REPORTING FORMAT USED AS THE OPERATIONAL TEMPLATE FOR THE OUANTUM PLATFORM.',
+    status: 'ADVISOR PROJECT',
+    scope: 'ADVISOR-LED THIRD-PARTY QUALITY MONITORING ACROSS MULTIPLE HOUSING PROJECTS. ITS FIELD WORKFLOW AND GOVERNMENT REPORTING FORMAT INFORMED THE TEMPLATES IN THE OUANTUM PLATFORM.',
     featured: false,
   },
   {
@@ -34,8 +34,8 @@ const projects = [
     category: 'ADB FUNDED · VALLAM & KARAIKUDI',
     location: 'VALLAM & KARAIKUDI',
     year: '2023',
-    status: 'VALIDATED',
-    scope: '1,869 HOUSING UNITS ACROSS 32 BLOCKS. ADB-FUNDED PROJECT. MULTI-STAGE QA PROCESS DOCUMENTED AND ENCODED INTO THE OUANTUM COMPLIANCE ENGINE.',
+    status: 'ADVISOR PROJECT',
+    scope: 'ADVISOR-LED PROJECT: 1,869 HOUSING UNITS ACROSS 32 BLOCKS, ADB-FUNDED. ITS MULTI-STAGE QA PROCESS WAS DOCUMENTED AND ENCODED INTO THE OUANTUM COMPLIANCE ENGINE.',
     featured: false,
   },
   {
@@ -45,8 +45,8 @@ const projects = [
     category: 'EDUCATION INFRASTRUCTURE · PAN-INDIA',
     location: 'PAN-INDIA',
     year: '2023',
-    status: 'VALIDATED',
-    scope: 'NPCCL SCHOOL PROJECTS ACROSS KERALA, KARNATAKA & MADHYA PRADESH. FOUR-STAGE QA MONITORING PROTOCOL: NOW EMBEDDED AS A DEFAULT WORKFLOW TEMPLATE IN THE PLATFORM.',
+    status: 'ADVISOR PROJECT',
+    scope: 'ADVISOR-LED NPCCL SCHOOL PROJECTS ACROSS KERALA, KARNATAKA & MADHYA PRADESH. ITS FOUR-STAGE QA MONITORING PROTOCOL INFORMED A DEFAULT WORKFLOW TEMPLATE IN THE PLATFORM.',
     featured: false,
   },
 ];
@@ -70,10 +70,10 @@ const Projects: React.FC = () => {
           className="section-header"
         >
           <h2 className="section-title">
-            Where It's Been Tested
+            Where We Learned
           </h2>
           <p className="section-subtitle">
-            Real infrastructure projects managed by our domain advisory partner, the field reality that shaped every decision in the OUANTUM platform.
+            Real infrastructure projects led by our domain advisors, where our team supported the early stages to learn field QA practice and develop our software and AI. These are advisor-led projects, not OUANTUM client deployments.
           </p>
         </motion.div>
 

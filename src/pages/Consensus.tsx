@@ -124,7 +124,7 @@ const Consensus: React.FC = () => {
               <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.85rem', margin: 0, letterSpacing: '0.05em' }}>REGIONAL & GEOGRAPHIC CONTEXT (INDIA)</h3>
             </div>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>
-              Large-scale urban infrastructure works, such as the Chennai Metro Rail (CMRL), Bangalore Metro (Namma Metro), and capital infrastructure developments in Amaravati, require rigid third-party quality monitoring (TPQM). The Multi-Model Consensus Engine ensures that engineering audits are backed by AI consensus validation, satisfying independent consultant requirements and government safety standards in India.
+              Large-scale urban infrastructure works, such as metro rail and capital-region developments, require rigid third-party quality monitoring (TPQM). The Multi-Model Consensus Engine ensures that engineering audits are backed by AI consensus validation, satisfying independent consultant requirements and government safety standards in India.
             </p>
           </motion.section>
 

@@ -124,7 +124,7 @@ const IsCompliance: React.FC = () => {
               <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.85rem', margin: 0, letterSpacing: '0.05em' }}>REGIONAL & GEOGRAPHIC CONTEXT (INDIA)</h3>
             </div>
             <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>
-              Quality control (QC) compliance in civil infrastructure projects across India (including Chennai Outer Ring Road, TNHB housing schemes, and Amaravati government infrastructure complexes) must adhere to regional Public Works Department (PWD) specifications and National Building Code (NBC) guidelines. The engine automates auditing for concrete mix proportions (IS 456), reinforcement yield strength (IS 1786), and aggregate grading (IS 383) across Indian building zones.
+              Quality control (QC) compliance in civil infrastructure projects across India, such as public housing schemes and capital-region developments, must adhere to regional Public Works Department (PWD) specifications and National Building Code (NBC) guidelines. The engine automates auditing for concrete mix proportions (IS 456), reinforcement yield strength (IS 1786), and aggregate grading (IS 383) across Indian building zones.
             </p>
           </motion.section>
 

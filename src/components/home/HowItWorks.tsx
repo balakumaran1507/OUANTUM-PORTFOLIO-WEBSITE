@@ -44,7 +44,7 @@ const steps = [
     num: '03',
     title: 'REPORT OUT',
     sub: 'GOVERNMENT-FORMAT · SAME DAY',
-    description: 'Full government-format PDF auto-generated. Ready for senior engineer review and digital sign-off within the hour. Amaravati format. TNHB format. ADB format. Auto-selected.',
+    description: 'Full government-format PDF auto-generated. Ready for senior engineer review and digital sign-off within the hour. Layouts modelled on Amaravati, TNHB and ADB formats, auto-selected.',
     image: '/assets/images/47766f42-6372-4a45-8a66-6043acfde415.png',
     avatar: '/assets/images/ox1_avatar/3.png',
     anim: { x: 45, y: 25, scale: 0.78 },

@@ -102,7 +102,7 @@ const ReportOut: React.FC = () => {
             },
             {
               label: 'GOVERNMENT FORMAT OUTPUT',
-              body: 'Reports are auto-formatted to match the submission standard required by the relevant authority. Amaravati Capital Region format, TNHB format, and ADB infrastructure assessment format are auto-selected based on the project jurisdiction.',
+              body: 'Reports are auto-formatted to follow the submission standard of the relevant authority. Layouts modelled on the Amaravati Capital Region, TNHB and ADB infrastructure assessment formats are auto-selected based on the project jurisdiction.',
             },
             {
               label: 'DIGITAL SIGN OFF',

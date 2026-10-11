@@ -243,7 +243,7 @@ const Capabilities: React.FC = () => {
                   COMPLIANCE REPORT GENERATION
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.65)' }}>
-                  A secure, digital audit document is compiled automatically. Instantly ready in standardized layouts recognized by government entities (TNHB, PMAY, ADB), allowing immediate structural compliance sign-off.
+                  A secure, digital audit document is compiled automatically. Instantly ready in standardized layouts modelled on formats used for TNHB, PMAY and ADB-funded projects, ready for engineer review and sign-off.
                 </p>
               </div>
             </div>
