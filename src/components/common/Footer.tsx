@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FOUNDING_DATE_LABEL, MSME_CERTIFICATE_URL, UDYAM_NUMBER } from '../../config/company';
 
 const Footer: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -77,6 +78,9 @@ const Footer: React.FC = () => {
           <p>
             25, Silambu St, Padmanabha Nagar, Choolaimedu, Chennai, Tamil Nadu 600094
           </p>
+          <p>
+            Founded {FOUNDING_DATE_LABEL} · MSME (Udyam) registered: {UDYAM_NUMBER}
+          </p>
         </div>
 
         {/* Bottom bar */}
@@ -88,6 +92,7 @@ const Footer: React.FC = () => {
             <div className="footer-legal-links">
               <Link to="/privacy" className="footer-nav-link">Privacy Policy</Link>
               <Link to="/security" className="footer-nav-link">Security & Terms</Link>
+              <a href={MSME_CERTIFICATE_URL} target="_blank" rel="noopener noreferrer" className="footer-nav-link">MSME Registration (PDF)</a>
             </div>
           </div>
           <span className="iso-badge">

@@ -4,6 +4,13 @@ import { motion } from 'framer-motion';
 import useSEO from '../hooks/useSEO';
 import GlowCard from '../components/GlowCard';
 import ScrollReveal from '../components/common/ScrollReveal';
+import {
+  FOUNDING_DATE_LABEL,
+  LINKEDIN,
+  MSME_CERTIFICATE_URL,
+  UDYAM_NUMBER,
+  organizationPeopleSchema,
+} from '../config/company';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -13,32 +20,21 @@ const organizationSchema = {
   name: 'OUANTUM',
   url: BASE_URL,
   sameAs: ['https://www.linkedin.com/company/ouantum/'],
-  founders: [
-    {
-      '@type': 'Person',
-      name: 'Balakumaran D',
-      jobTitle: 'President',
-      description: 'Built OUANTUM with a vision to transform manual QA into a single efficient workflow.',
-    },
-    {
-      '@type': 'Person',
-      name: 'Rahul',
-      jobTitle: 'Chief Executive Officer',
-      description: 'Leads commercial and strategic direction, shaping go-to-market across government infrastructure projects.',
-    },
-  ],
+  ...organizationPeopleSchema,
 };
 
 const team = [
   {
-    role: 'President',
+    role: 'President & Director',
+    linkedin: LINKEDIN.balakumaran,
     name: 'Balakumaran D',
     image: '/assets/images/Balakumaran_CEO_Profile_Pic.png',
     initials: 'BD',
     bio: 'Balakumaran is the Founder & CEO of Cybercom and Etherence. He stands as the backbone of the entire AI systems at OUANTUM, shaping the core architectures and resolving complex technical issues that remain unsolved by others.\n\nHe leads the product engineering teams to ensure that all platforms maintain high standards of deterministic quality assurance and structural validation.\nReach him at +91 7695827158.',
   },
   {
-    role: 'Chief Executive Officer',
+    role: 'CEO & Director',
+    linkedin: LINKEDIN.rahul,
     name: 'Rahul',
     image: '/assets/images/rahul.jpeg',
     initials: 'RA',
@@ -46,13 +42,15 @@ const team = [
   },
   {
     role: 'Chief Technology Officer',
+    linkedin: LINKEDIN.guru,
     name: 'Guru Prasanth',
     image: '/assets/images/guru.png',
     initials: 'GP',
     bio: 'Guru Prasanth serves as Chief Technology Officer at OUANTUM, architecting the deep-tech infrastructure, computer vision models, and consensus verification pipelines.\n\nHe spearheads the engineering team in translating complex non-destructive testing (NDT) physics and IS compliance standards into high-throughput, deterministic AI systems.',
   },
   {
-    role: 'Chief Financial Officer',
+    role: 'CFO & Director',
+    linkedin: LINKEDIN.sabari,
     name: 'Sabari Raja',
     image: '/assets/images/sabari.jpeg',
     initials: 'SR',
@@ -60,6 +58,7 @@ const team = [
   },
   {
     role: 'Vice President',
+    linkedin: LINKEDIN.raghu,
     name: 'Raghu',
     image: '/assets/images/raghu.png',
     initials: 'RG',
@@ -91,6 +90,20 @@ const TeamCard = ({ member, index }: { member: typeof team[0]; index: number }) 
         }}
         onKeyDown={(e) => e.key === 'Enter' && setExpanded((v) => !v)}
       >
+        <a
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="about-team-linkedin"
+          aria-label={`${member.name} on LinkedIn`}
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.stopPropagation()}
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+          </svg>
+        </a>
+
         {/* ── PORTRAIT ── */}
         <div
           className="about-team-portrait"
@@ -283,6 +296,53 @@ const About: React.FC = () => {
             >
               The organisation works to improve how infrastructure projects are inspected, monitored, and documented by providing practical digital tools that support engineering teams, consultants, contractors, and public sector organisations throughout the quality assurance process.
             </ScrollReveal>
+          </section>
+
+          {/* COMPANY REGISTRATION */}
+          <section style={{ marginBottom: '80px' }} aria-label="Company Registration">
+            <h2 className="about-team-heading">Company Registration</h2>
+            <div className="about-team-rule" aria-hidden="true" />
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '1.5rem',
+                marginBottom: '2rem',
+              }}
+            >
+              {[
+                { label: 'FOUNDED', value: FOUNDING_DATE_LABEL },
+                { label: 'REGISTERED AS', value: 'MSME (Udyam), Micro Enterprise' },
+                { label: 'UDYAM REGISTRATION NO.', value: UDYAM_NUMBER },
+                { label: 'REGISTERED OFFICE', value: 'Chennai, Tamil Nadu, India' },
+              ].map((item) => (
+                <GlowCard key={item.label} style={{ padding: '1.5rem' }}>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-adieu)',
+                      fontSize: '0.7rem',
+                      letterSpacing: '0.12em',
+                      color: 'rgba(255, 255, 255, 0.45)',
+                      marginBottom: '0.75rem',
+                    }}
+                  >
+                    {item.label}
+                  </div>
+                  <div style={{ fontFamily: 'var(--font-main)', fontSize: '1rem', lineHeight: 1.5, color: '#ffffff' }}>
+                    {item.value}
+                  </div>
+                </GlowCard>
+              ))}
+            </div>
+            <a
+              href={MSME_CERTIFICATE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-nav-link"
+              style={{ fontFamily: 'var(--font-main)', fontSize: '0.95rem', textDecoration: 'underline' }}
+            >
+              View MSME registration certificate (PDF)
+            </a>
           </section>
 
           {/* OUR EXPERTISE */}

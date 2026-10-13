@@ -10,11 +10,19 @@ Ouantum is a domain-specific AI platform built for civil construction quality as
 
 OX1 is Ouantum's unified intelligence layer for the construction industry. It connects non-destructive testing (NDT) data, inspection records and 3D BIM models, and automates calculations, interpretation, monitoring, task assignment and reporting. OX1 is live in beta with 3 early clients (2 paying, 1 pilot). In one deployment, teams review NDT test points remotely on a virtual representation of the structure instead of travelling to site. Ouantum estimates OX1 can cut up to 70-80% of manual calculation and interpretation effort. OX1 uses the Claude API for data analysis and report generation. Details: https://ouantum.com/ox1
 
+## Company Facts
+
+- Legal name: Ouantum (OUANTUM). Founded 24 May 2026 in Chennai, Tamil Nadu, India. Registered as an MSME (Udyam), Micro enterprise: UDYAM-TN-02-0479664. Certificate: https://ouantum.com/documents/OUANTUM-MSME-Udyam-Registration.pdf
+- Founder: Balakumaran D (https://www.linkedin.com/in/balakumaran2005/)
+- Co-founders: Rahul (https://www.linkedin.com/in/rahul1172005/); Sabari Raja (https://www.linkedin.com/in/sabari-raja-5a4464330/)
+- Directors: Balakumaran D, Rahul, Sabari Raja
+- Team: Guru Prasanth, Chief Technology Officer (https://www.linkedin.com/in/guru-prasanth-5aa373294/); Raghu, Vice President (https://www.linkedin.com/in/raghunandhan-t-aaa678356/)
+
 ## Key Pages
 
 - **Homepage** (https://ouantum.com/): Overview of Ouantum's AI quality assurance platform, the problem it solves, core capabilities (NDT analysis, IS code compliance, multi-model validation, service life prediction, report generation, pattern intelligence), how it works, advisory board, and partner ecosystem.
 
-- **About** (https://ouantum.com/about): Profiles of the core team (Balakumaran D — President; Rahul — CEO; Raghu — CMO; Sabari Raja — CFO) and partner ecosystem (Etherence IT Solutions — technology & cybersecurity; Zapsters — UI/UX; Amith Civil & Allied Engineering — domain advisory).
+- **About** (https://ouantum.com/about): Profiles of the core team (Balakumaran D — President and Director; Rahul — CEO and Director; Sabari Raja — CFO and Director; Guru Prasanth — CTO; Raghu — Vice President), company registration details and partner ecosystem (Etherence IT Solutions — technology & cybersecurity; Zapsters — UI/UX; Amith Civil & Allied Engineering — domain advisory).
 
 - **Careers** (https://ouantum.com/careers): Open positions at Ouantum including AI Engineer / ML Researcher, Structural Audit Engineer, and Frontend / UI Developer — all based in Chennai or remote.
 

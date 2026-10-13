@@ -7,6 +7,7 @@ import Difference from '../components/home/Difference';
 import Partners from '../components/home/Partners';
 import Contact from '../components/home/Contact';
 import useSEO from '../hooks/useSEO';
+import { organizationPeopleSchema } from '../config/company';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -47,10 +48,7 @@ const organizationSchema = {
     availableLanguage: ['English', 'Tamil'],
   },
   sameAs: ['https://www.linkedin.com/company/ouantum/'],
-  founders: [
-    { '@type': 'Person', name: 'Balakumaran D', jobTitle: 'President' },
-    { '@type': 'Person', name: 'Rahul', jobTitle: 'Chief Executive Officer' },
-  ],
+  ...organizationPeopleSchema,
 };
 
 const Home: React.FC = () => {
