@@ -22,7 +22,7 @@ OX1 is Ouantum's unified intelligence layer for the construction industry. It co
 
 - **Homepage** (https://ouantum.com/): Overview of Ouantum's AI quality assurance platform, the problem it solves, core capabilities (NDT analysis, IS code compliance, multi-model validation, service life prediction, report generation, pattern intelligence), how it works, advisory board, and partner ecosystem.
 
-- **About** (https://ouantum.com/about): Profiles of the core team (Balakumaran D — President and Director; Rahul — CEO and Director; Sabari Raja — CFO and Director; Guru Prasanth — CTO; Raghu — Vice President), company registration details and partner ecosystem (Etherence IT Solutions — technology & cybersecurity; Zapsters — UI/UX; Amith Civil & Allied Engineering — domain advisory).
+- **About** (https://ouantum.com/about): Profiles of the core team (Balakumaran D — Director and Founder; Rahul — CEO and Director; Sabari Raja — CFO and Director; Guru Prasanth — CTO; Raghu — Vice President), company registration details and partner ecosystem (Etherence IT Solutions — technology & cybersecurity; Zapsters — UI/UX; Amith Civil & Allied Engineering — domain advisory).
 
 - **Careers** (https://ouantum.com/careers): Open positions at Ouantum including AI Engineer / ML Researcher, Structural Audit Engineer, and Frontend / UI Developer — all based in Chennai or remote.
 

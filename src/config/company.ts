@@ -24,7 +24,7 @@ export const organizationPeopleSchema = {
   foundingDate: FOUNDING_DATE_ISO,
   identifier: { '@type': 'PropertyValue', propertyID: 'Udyam Registration Number', value: UDYAM_NUMBER },
   founder: [
-    person('Balakumaran D', 'Founder and Director', LINKEDIN.balakumaran),
+    person('Balakumaran D', 'Director and Founder', LINKEDIN.balakumaran),
     person('Rahul', 'Co-Founder and Director', LINKEDIN.rahul),
     person('Sabari Raja', 'Co-Founder and Director', LINKEDIN.sabari),
   ],

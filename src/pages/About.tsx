@@ -25,7 +25,7 @@ const organizationSchema = {
 
 const team = [
   {
-    role: 'President & Director',
+    role: 'Director & Founder',
     linkedin: LINKEDIN.balakumaran,
     name: 'Balakumaran D',
     image: '/assets/images/Balakumaran_CEO_Profile_Pic.png',
