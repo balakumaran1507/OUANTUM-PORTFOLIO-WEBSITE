@@ -12,7 +12,7 @@ OX1 is Ouantum's unified intelligence layer for the construction industry. It co
 
 ## Company Facts
 
-- Legal name: Ouantum (OUANTUM). Founded 24 May 2026 in Chennai, Tamil Nadu, India. Registered as an MSME (Udyam), Micro enterprise: UDYAM-TN-02-0479664. Certificate: https://ouantum.com/documents/OUANTUM-MSME-Udyam-Registration.pdf
+- Legal name: Ouantum (OUANTUM). Founded 23 May 2026 in Chennai, Tamil Nadu, India. Registered as an MSME (Udyam), Micro enterprise: UDYAM-TN-02-0479664. Certificate: https://ouantum.com/documents/OUANTUM-MSME-Udyam-Registration.pdf
 - Founder: Balakumaran D (https://www.linkedin.com/in/balakumaran2005/)
 - Co-founders: Rahul (https://www.linkedin.com/in/rahul1172005/); Sabari Raja (https://www.linkedin.com/in/sabari-raja-5a4464330/)
 - Directors: Balakumaran D, Rahul, Sabari Raja

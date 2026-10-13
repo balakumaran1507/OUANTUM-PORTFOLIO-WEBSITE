@@ -1,5 +1,5 @@
-export const FOUNDING_DATE_ISO = '2026-05-24';
-export const FOUNDING_DATE_LABEL = '24 May 2026';
+export const FOUNDING_DATE_ISO = '2026-05-23';
+export const FOUNDING_DATE_LABEL = '23 May 2026';
 export const UDYAM_NUMBER = 'UDYAM-TN-02-0479664';
 export const MSME_CERTIFICATE_URL = '/documents/OUANTUM-MSME-Udyam-Registration.pdf';
 
