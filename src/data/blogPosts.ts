@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
     date: 'June 5, 2026',
     datePublished: '2026-06-05T09:00:00+05:30',
     author: 'BALAKUMARAN D',
-    authorRole: 'Founder',
+    authorRole: 'Director',
     excerpt:
       'AI identifies defects, design conflicts, and quality issues before they become expensive problems. Through computer vision, predictive analytics, and real-time monitoring, AI enables project teams to take corrective action immediately.',
     coverImage: '/assets/images/blog_images/mixboard-image (2).png',
@@ -279,7 +279,7 @@ export const blogPosts: BlogPost[] = [
     date: 'March 20, 2026',
     datePublished: '2026-03-20T09:00:00+05:30',
     author: 'BALAKUMARAN D',
-    authorRole: 'Founder',
+    authorRole: 'Director',
     excerpt:
       'BIM improves construction quality control by providing a centralized digital representation of project specifications, geometry, and construction requirements, enabling teams to detect design conflicts and verify compliance.',
     coverImage: '/assets/images/blog_images/mixboard-image (6).png',
@@ -486,7 +486,7 @@ export const blogPosts: BlogPost[] = [
     date: 'January 2, 2026',
     datePublished: '2026-01-02T09:00:00+05:30',
     author: 'BALAKUMARAN D',
-    authorRole: 'Founder',
+    authorRole: 'Director',
     excerpt:
       'AI reduces construction delays by analyzing schedules, resource availability, weather conditions, and project performance data to identify potential risks before they impact timelines, enabling proactive project management.',
     coverImage: '/assets/images/blog_images/mixboard-image (10).png',
