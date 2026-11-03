@@ -1,258 +1,565 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, ShieldCheck, CheckCircle2, ChevronRight, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronDown, ArrowRight } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
-import GlowCard from '../components/GlowCard';
 
 const Consensus: React.FC = () => {
-  const navigate = useNavigate();
+  const [selectedCase, setSelectedCase] = useState<number>(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   useSEO({
-    title: 'Consensus Engine | Ouantum',
-    description: 'Triple-model safety verification for concrete QA. Code Specialist, Safety Analyst, and Pattern Intelligence models reach consensus on civil integrity.',
+    title: 'Multi-Model Consensus Engine 2.0 | OUANTUM Capabilities',
+    description:
+      'Tri-model AI consensus cross-verifying non-destructive SonReb, ultrasonic pulse velocity, and physical core crushing under IS 516.',
     canonicalPath: '/capabilities/multi-model-consensus',
   });
 
+  const cases = [
+    {
+      id: 'CASE-01',
+      title: 'Metro Pier 42 (M45 Concrete)',
+      agreement: '99.4% Multi-Model Consensus',
+      status: 'VERIFIED COMPLIANT',
+      model1: 'Empirical SonReb: 46.2 MPa (In-Situ Est.)',
+      model2: 'Core Crushing IS 516: 47.1 MPa (Lab True)',
+      model3: 'Safety & Defect Classifier: Zero Void / Anomaly',
+      variance: '±1.9% Inter-Model Spread',
+      codeLog:
+        '>> INGEST: Model_1 (SonReb NDT telemetry) -> 46.2 MPa\n>> INGEST: Model_2 (Core compression ASTM C42 / IS 516) -> 47.1 MPa\n>> INGEST: Model_3 (Acoustic attenuation & velocity spectrum) -> PASS\n>> RECONCILE: Weighted Bayesian voting applied\n>> CONSENSUS SCORE: 99.4% agreement -> Confirmed M45 structural sign-off approved.',
+    },
+    {
+      id: 'CASE-02',
+      title: 'Viaduct Segment Deck S-08 (M50 Concrete)',
+      agreement: '98.8% Multi-Model Consensus',
+      status: 'VERIFIED COMPLIANT',
+      model1: 'Empirical SonReb: 52.4 MPa (In-Situ Est.)',
+      model2: 'Core Crushing IS 516: 53.0 MPa (Lab True)',
+      model3: 'Safety & Defect Classifier: High Matrix Density',
+      variance: '±1.1% Inter-Model Spread',
+      codeLog:
+        '>> INGEST: Model_1 (Prestressed box girder NDT scan) -> 52.4 MPa\n>> INGEST: Model_2 (Cylinder test breaks n=6) -> 53.0 MPa\n>> INGEST: Model_3 (Cross-element velocity homogeneity) -> EXCELLENT\n>> RECONCILE: Zero standard deviation conflict found\n>> CONSENSUS SCORE: 98.8% agreement -> Milestone payment certification unlocked.',
+    },
+    {
+      id: 'CASE-03',
+      title: 'Abutment Wall A-04 (M35 Suspect Zone)',
+      agreement: 'Discrepancy Detected (Re-Test Triggered)',
+      status: 'OUTLIER FLAGGED (CARBONATION OVERRIDE)',
+      model1: 'Empirical SonReb: 41.2 MPa (Artificially high due to carbonated surface crust)',
+      model2: 'Core Crushing IS 516: 31.8 MPa (True Core Low Density)',
+      model3: 'Safety & Defect Classifier: High Acoustic Damping Anomaly',
+      variance: '±29.5% Inter-Model Conflict',
+      codeLog:
+        '>> WARNING: Model_1 and Model_2 diverge by > 15% (Threshold exceeded)\n>> DETECT: Model_3 identifies anomalous acoustic attenuation at depth 80mm\n>> RESOLUTION: Carbonation surface hardness bias identified\n>> VERDICT: Automatic non-destructive result rejection -> Core test authoritative.\n>> ACTION: Remedial pressure grouting protocol dispatched.',
+    },
+  ];
+
+  const current = cases[selectedCase];
+
+  const subModels = [
+    {
+      title: 'Triangulated Bayesian Solver',
+      image: '/assets/images/buildings/sub-buildings/sub-building-9.png',
+      imageAlt: 'Bayesian probability consensus across multi-modal sensor arrays',
+      description:
+        'Executes multi-hypothesis Bayesian probability synthesis across in-situ NDT readings, lab core crushing values, and acoustic attenuation curves to derive confirmed consensus.',
+      specs: [
+        { text: 'Tri-model weighted evidence scoring across testing modalities' },
+        { text: 'Inter-model variance threshold verification (Δ ≤ 12% acceptable envelope)' },
+        { text: 'Automatic conflict flagging when empirical and lab destructive tests diverge' },
+        { text: 'Cryptographic sign-off hash for every synthesized batch verdict' },
+      ],
+    },
+    {
+      title: 'Core-to-NDT Site Calibrator',
+      image: '/assets/images/buildings/building-10.png',
+      imageAlt: 'Destructive core crushing calibration against non-destructive ultrasonic tests',
+      description:
+        'Directly ingests laboratory core crushing results under IS 516 / ASTM C42 to automatically fine-tune site-specific SonReb polynomial coefficients for active quarry sources.',
+      specs: [
+        { text: 'Core test ingestion compliant with IS 516:2021 compression norms' },
+        { text: 'Slenderness ratio (h/d) and rebar inclusion geometric corrections' },
+        { text: 'Automated coefficient tuning for local batch quarry geology' },
+        { text: 'True in-situ characteristic compressive strength confirmation' },
+      ],
+    },
+    {
+      title: 'Carbonation Crust & Bias Detector',
+      image: '/assets/images/buildings/building-12.png',
+      imageAlt: 'Detection of surface carbonation crusts to eliminate false rebound hammer passes',
+      description:
+        'Identifies artificially high rebound hammer readings caused by surface carbonation in humid tropical zones, protecting owners from hazardous false passes.',
+      specs: [
+        { text: 'Compares surface hardness index against internal ultrasonic pulse velocity' },
+        { text: 'Flags discordant batches where outer hardness conceals inner porosity' },
+        { text: 'Automatic override rejecting misleading non-destructive test numbers' },
+        { text: 'Dispatches targeted core extraction recommendations for suspect zones' },
+      ],
+    },
+    {
+      title: 'TPQM Immutable Dossier Builder',
+      image: '/assets/images/buildings/building-4.png',
+      imageAlt: 'Tamper-evident third-party quality monitoring digital dossier creation',
+      description:
+        'Compiles audit-ready Third-Party Quality Monitoring documentation with full mathematical logs and cryptographic verification seals for NHAI and state PWDs.',
+      specs: [
+        { text: 'Automated TPQM reporting matching Indian government audit standards' },
+        { text: 'Raw calculation audit trail with mathematical step-by-step logs' },
+        { text: 'Tamper-proof evidence encapsulation with SHA-256 digital seals' },
+        { text: 'Multi-party digital sign-off workflow for concessionaire and engineer' },
+      ],
+    },
+  ];
+
+  const benchmarks = [
+    { value: '99.4%', label: 'Consensus Agreement', sub: 'Across 400+ audited structures' },
+    { value: 'Zero', label: 'False Passes', sub: 'Multi-sensor conflict override' },
+    { value: '±1.5%', label: 'Inter-Model Spread', sub: 'On calibrated batch sets' },
+    { value: '100%', label: 'Arbitration Defense', sub: 'Immutable mathematical proofs' },
+  ];
+
+  const faqs = [
+    {
+      q: 'How does Multi-Model Consensus eliminate arbitration disputes in civil projects?',
+      a: 'In traditional construction audits, disputes frequently arise when non-destructive hammer readings contradict destructive core tests. OUANTUM runs three independent validation engines (Empirical SonReb, Direct Core Calibration under IS 516, and Acoustic Anomaly Modeling). The consensus engine uses Bayesian evidence synthesis to reconcile differences, generating an immutable technical audit report both concessionaires and government reviewers trust.',
+    },
+    {
+      q: 'What happens when NDT results and core crushing tests disagree?',
+      a: 'The engine flags the discrepancy immediately. If surface rebound shows high strength but core crushing shows low strength, the system detects surface carbonation bias (common in humid Indian coastal areas) and overrides the rebound value, preventing false passes.',
+    },
+    {
+      q: 'Can the consensus engine calibrate itself directly from site-specific core breaks?',
+      a: 'Yes. When destructive core specimens are broken in accordance with IS 516 / ASTM C42, their load-deflection telemetry is fed into the engine to automatically tune localized SonReb polynomial coefficients for that specific batch and quarry source.',
+    },
+    {
+      q: 'Is the consensus audit accepted by National Highway Authority of India (NHAI)?',
+      a: 'Yes. The multi-model report conforms to TPQM requirements, providing mathematical proof of testing reliability with zero manual data massaging.',
+    },
+  ];
+
   return (
-    <div className="subpage-wrapper" style={{
-      background: '#000000',
-      color: '#ffffff',
-      minHeight: '100vh',
-      fontFamily: 'var(--font-main)',
-      paddingTop: '140px',
-      paddingBottom: '100px'
-    }}>
-      <div className="container">
-        
-        {/* Back Button */}
-        <motion.button
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          onClick={() => navigate('/#activities')}
+    <main className="cxm-page" style={{ paddingTop: 0 }} aria-label="Multi-Model Consensus Engine">
+      <style>{`
+        .cxm-page .ic-hero-section h1,
+        .cxm-page .ic-hero-headline,
+        .cxm-page .ic-hero-headline span {
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: block !important;
+          font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          font-weight: 400 !important;
+          color: #111111 !important;
+          letter-spacing: -0.03em !important;
+          line-height: 1.05 !important;
+          -webkit-text-fill-color: #111111 !important;
+          -webkit-text-stroke: 0px transparent !important;
+        }
+      `}</style>
+
+            {/* =========================================================================
+          1. HERO SECTION (2-Column Layout matching Solution Detail)
+          ========================================================================= */}
+      <section
+        style={{
+          padding: 'clamp(48px, 6vw, 76px) 16px 40px',
+          background: '#ffffff',
+        }}
+      >
+        <div
           style={{
-            background: 'none',
-            border: 'none',
-            color: 'rgba(255, 255, 255, 0.5)',
-            display: 'inline-flex',
+            maxWidth: '1440px',
+            margin: '0 auto',
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '40px',
             alignItems: 'center',
-            gap: '8px',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.8rem',
-            letterSpacing: '0.05em',
-            cursor: 'pointer',
-            padding: '8px 0',
-            marginBottom: '3rem',
-            transition: 'color 0.2s',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.5)')}
         >
-          <ArrowLeft size={16} /> BACK TO CAPABILITIES
-        </motion.button>
-
-        {/* Hero Section */}
-        <div style={{ paddingBottom: '3rem', marginBottom: '3rem' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="hero-tech-label" style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.8rem',
-              color: '#999',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              display: 'block',
-              marginBottom: '1rem'
-            }}>
-              AI ENGINE · ENGINE NODE 03
-            </span>
-            <h1 style={{
-              fontFamily: 'var(--font-geist)',
-              fontSize: 'clamp(3rem, 8vw, 7rem)',
-              fontWeight: 200,
-              lineHeight: 0.9,
-              color: '#ffffff',
-              margin: '0 0 1.5rem 0',
-            }}>
-              Multi-Model Consensus
+          <div>
+            <h1
+              style={{
+                fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)',
+                fontWeight: 400,
+                lineHeight: 1.12,
+                color: '#111111',
+                letterSpacing: '-0.025em',
+                margin: '0 0 16px 0',
+              }}
+            >
+              Tri-Model AI Consensus for Zero-Defect Structural Verification
             </h1>
-            <p style={{
-              fontFamily: 'var(--font-main)',
-              fontSize: 'clamp(1.2rem, 2.2vw, 1.45rem)',
-              color: 'rgba(255, 255, 255, 0.6)',
-              margin: 0,
-              lineHeight: 1.65,
-              maxWidth: '800px',
-            }}>
-              Triple Validation AI Consensus Engine for Structural Integrity Decisions
-            </p>
-          </motion.div>
-        </div>
 
-        {/* Content */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-          
-          {/* Overview */}
-          <motion.section
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '1.25rem', paddingBottom: '0.5rem' }}>OVERVIEW SUMMARY</h2>
-            <p style={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'rgba(255, 255, 255, 0.75)', margin: 0 }}>
-              To ensure maximum safety and credibility, OUANTUM employs a Multi-Model Consensus Validation Engine. No verdict is confirmed on a structural element by a single algorithm; instead, three specialized, independent AI models evaluate the data. Only when they reach a unified consensus is the element signed off, minimizing false alarms and critical misses.
+            <p
+              style={{
+                fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
+                lineHeight: 1.6,
+                color: '#4b5563',
+                margin: '0 0 28px 0',
+              }}
+            >
+              Bayesian consensus cross-verifying non-destructive SonReb telemetry, destructive core crushing (IS 516), and acoustic damping to guarantee zero false passes and resolve contractor-client disputes.
             </p>
-          </motion.section>
 
-          {/* Geographic Context (GEO) */}
-          <motion.section
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            style={{ paddingLeft: '0', margin: '0.5rem 0' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.75rem', color: '#ffffff' }}>
-              <MapPin size={16} />
-              <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.85rem', margin: 0, letterSpacing: '0.05em' }}>REGIONAL & GEOGRAPHIC CONTEXT (INDIA)</h3>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '12px',
+                alignItems: 'center',
+              }}
+            >
+              <a
+                href="#case-simulator"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '13px 26px',
+                  borderRadius: 0,
+                  background: '#111111',
+                  color: '#ffffff',
+                  fontSize: '0.925rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
+                Explore Consensus Cases
+                <ArrowRight size={16} />
+              </a>
+              <Link
+                to="/contact?subject=Consensus%20Engine%20Deployment"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '13px 24px',
+                  borderRadius: 0,
+                  background: '#ffffff',
+                  color: '#111111',
+                  border: '1px solid #111111',
+                  fontSize: '0.925rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
+                Schedule Site Demonstration
+              </Link>
             </div>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>
-              Large-scale urban infrastructure works, such as the Chennai Metro Rail (CMRL), Bangalore Metro (Namma Metro), and capital infrastructure developments in Amaravati, require rigid third-party quality monitoring (TPQM). The Multi-Model Consensus Engine ensures that engineering audits are backed by AI consensus validation, satisfying independent consultant requirements and government safety standards in India.
-            </p>
-          </motion.section>
-
-          {/* Grid: Standards & Benefits */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem' }}>
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <GlowCard borderRadius={16} style={{ padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
-                  <BookOpen size={20} color="#ffffff" />
-                  <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.9rem', margin: 0, letterSpacing: '0.05em' }}>IS CODE STANDARDS</h3>
-                </div>
-                <ul style={{ padding: 0, margin: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <li style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.65)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                    <ChevronRight size={14} style={{ marginTop: '3px', flexShrink: 0 }} />
-                    <span>IS 456 (Section 4): Structural design and durability safety factors.</span>
-                  </li>
-                  <li style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.65)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                    <ChevronRight size={14} style={{ marginTop: '3px', flexShrink: 0 }} />
-                    <span>IS 13311: Correlation of NDT values and structural loading safety margins.</span>
-                  </li>
-                  <li style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.65)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                    <ChevronRight size={14} style={{ marginTop: '3px', flexShrink: 0 }} />
-                    <span>ISO 9001 (Section 8.2.4): Monitoring and measurement of product compliance.</span>
-                  </li>
-                </ul>
-              </GlowCard>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <GlowCard borderRadius={16} style={{ padding: '2rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
-                  <ShieldCheck size={20} color="#ffffff" />
-                  <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.9rem', margin: 0, letterSpacing: '0.05em' }}>KEY BENEFITS</h3>
-                </div>
-                <ul style={{ padding: 0, margin: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <li style={{ fontSize: '0.9rem', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.75)', display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <CheckCircle2 size={16} color="#ffffff" style={{ marginTop: '2px', flexShrink: 0 }} />
-                    <span>Virtually eliminates false-positive failures due to minor sensor noise or calibration drift.</span>
-                  </li>
-                  <li style={{ fontSize: '0.9rem', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.75)', display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <CheckCircle2 size={16} color="#ffffff" style={{ marginTop: '2px', flexShrink: 0 }} />
-                    <span>Ensures senior engineers only review critical discrepancies where models disagree.</span>
-                  </li>
-                  <li style={{ fontSize: '0.9rem', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.75)', display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <CheckCircle2 size={16} color="#ffffff" style={{ marginTop: '2px', flexShrink: 0 }} />
-                    <span>Provides clear explainability logs for every decision, citing code references and safety margins.</span>
-                  </li>
-                </ul>
-              </GlowCard>
-            </motion.div>
           </div>
 
-          {/* Process Flow */}
-          <motion.section
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+          {/* Hero Visual Card (Matching site card styling) */}
+          <div
+            style={{
+              position: 'relative',
+              borderRadius: 0,
+              overflow: 'hidden',
+              background: '#f4f3ec',
+              aspectRatio: '16 / 10',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+            }}
           >
-            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem' }}>PIPELINE FLOW</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <GlowCard borderRadius={12} style={{ padding: '1.5rem' }}>
-                <div style={{ display: 'flex', gap: '24px' }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 'bold', color: 'rgba(255, 255, 255, 0.25)', width: '40px', flexShrink: 0 }}>01</div>
-                  <div>
-                    <h4 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.95rem', margin: '0 0 0.5rem 0', textTransform: 'uppercase' }}>Model A Analysis: IS Code Specialist</h4>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Reviews data strictly against deterministic code requirements and physical threshold values defined by Bureau of Indian Standards.</p>
-                  </div>
-                </div>
-              </GlowCard>
-              <GlowCard borderRadius={12} style={{ padding: '1.5rem' }}>
-                <div style={{ display: 'flex', gap: '24px' }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 'bold', color: 'rgba(255, 255, 255, 0.25)', width: '40px', flexShrink: 0 }}>02</div>
-                  <div>
-                    <h4 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.95rem', margin: '0 0 0.5rem 0', textTransform: 'uppercase' }}>Model B Analysis: Structural Safety Analyst</h4>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Evaluates the reading relative to structural safety margins, surrounding load bearing concrete zones, and failure mode risks.</p>
-                  </div>
-                </div>
-              </GlowCard>
-              <GlowCard borderRadius={12} style={{ padding: '1.5rem' }}>
-                <div style={{ display: 'flex', gap: '24px' }}>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 'bold', color: 'rgba(255, 255, 255, 0.25)', width: '40px', flexShrink: 0 }}>03</div>
-                  <div>
-                    <h4 style={{ fontFamily: 'var(--font-adieu)', fontSize: '0.95rem', margin: '0 0 0.5rem 0', textTransform: 'uppercase' }}>Model C Analysis: Pattern Intelligence</h4>
-                    <p style={{ fontSize: '0.9rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Cross references current test readings with historical trends from the same material supplier, contractor team, and batch history.</p>
-                  </div>
-                </div>
-              </GlowCard>
-            </div>
-          </motion.section>
-
-          {/* FAQs */}
-          <motion.section
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-          >
-            <h2 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', marginBottom: '2rem', paddingBottom: '0.5rem', textTransform: 'uppercase' }}>ENGINEERING FAQ LOG</h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>What is the benefit of a three-model consensus for civil engineering audits?</h4>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Instead of relying on a single AI model, OUANTUM runs three specialized neural networks (IS Code Specialist, Structural Safety Analyst, and Pattern Intelligence). If one model detects an anomaly (e.g. concrete strength drops near column-beam junctions) while others report pass, the verdict is flagged for senior engineer sign-off. This prevents false passes and ensures regulatory compliance.</p>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>How does the Pattern Intelligence model cross-reference contractor history?</h4>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Model C tracks performance patterns of specific batching plants, sand quarries, and subcontracting agencies across India. If a particular contractor consistently yields borderline results on concrete cube tests (IS 516), the system increases audit sensitivity for their next concrete pours.</p>
-              </div>
-              <div>
-                <h4 style={{ fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, margin: '0 0 0.5rem 0' }}>Does the AI system make the final design decision?</h4>
-                <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>No. In accordance with strict engineering compliance, the AI operates as an intelligent advisor. It flags anomalies, computes compliance percentages, and generates draft government-grade reports, but the final certification and sign-off remain with the registered senior structural engineer.</p>
-              </div>
-            </div>
-          </motion.section>
-
+            <img
+              src="/assets/images/buildings/building-5.png"
+              alt="Multi-model structural consensus and zero-defect validation"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </div>
         </div>
+      </section>
+
+      <div className="cxm-container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 16px' }}>
+        {/* ── 2. Editorial Manifesto Narrative ── */}
+        <section style={{ background: '#f4f3ec', border: '1px solid rgba(0, 0, 0, 0.07)', borderRadius: 0, padding: 'clamp(36px, 5vw, 56px)', marginBottom: '48px' }} aria-label="Purpose-Built Statement">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="cxm-manifesto-lead">
+              Single-method inspection creates endless arbitration disputes between contractors and authorities.{' '}
+              <span className="cxm-highlight-chip">Consensus AI</span> is built to be exceptional at one thing: multi-model validation that guarantees zero false passes.
+            </div>
+
+            <p className="cxm-manifesto-subtext">
+              Built by our civil structural AI team to cross-verify non-destructive SonReb telemetry, laboratory core crushing under IS 516, and acoustic damping anomaly models. When testing methods diverge, the system isolates the physical cause (such as coastal carbonation bias) and enforces the authoritative ground truth.
+            </p>
+
+            <p className="cxm-manifesto-faded">
+              <span className="cxm-highlight-chip">Consensus 2.0</span> achieves <strong>99.4% agreement</strong> across multi-model validation sets, eliminates subjective data manipulation, and delivers <strong>mathematically indisputable compliance sign-offs</strong>.
+            </p>
+          </motion.div>
+        </section>
+
+        {/* ── 3. Model Suite Architecture Breakdown (Clean Grid with Unique Building Images) ── */}
+        <section style={{ marginBottom: '56px' }} aria-label="Consensus Architecture">
+          <div style={{ marginBottom: '32px' }}>
+            <h2
+              style={{
+                fontSize: 'clamp(2rem, 3.6vw, 2.8rem)',
+                fontWeight: 400,
+                color: '#111111',
+                lineHeight: 1.15,
+                margin: 0,
+              }}
+            >
+              Introducing the Consensus 2.0 Sub-Model Suite
+            </h2>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '56px' }}>
+            {subModels.map((model) => (
+              <motion.div
+                key={model.title}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                  gap: '40px',
+                  alignItems: 'center',
+                }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Left Side: Title and Building Image */}
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <h3
+                    style={{
+                      fontSize: 'clamp(1.4rem, 2.2vw, 1.85rem)',
+                      fontWeight: 500,
+                      color: '#111111',
+                      letterSpacing: '-0.015em',
+                      margin: '0 0 16px 0',
+                    }}
+                  >
+                    {model.title}
+                  </h3>
+
+                  {/* Building Image with Sharp Corners */}
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '240px',
+                      borderRadius: 0,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <img
+                      src={model.image}
+                      alt={model.imageAlt}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block',
+                        borderRadius: 0,
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {/* Right Side: Description and Specifications without divided lines */}
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <p
+                    style={{
+                      fontSize: '1.025rem',
+                      lineHeight: 1.65,
+                      color: '#374151',
+                      margin: '0 0 24px 0',
+                    }}
+                  >
+                    {model.description}
+                  </p>
+
+                  <div
+                    style={{
+                      fontSize: '0.75rem',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: '#111111',
+                      fontWeight: 700,
+                      marginBottom: '12px',
+                    }}
+                  >
+                    SPECIFICATION
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                    {model.specs.map((spec, sIdx) => (
+                      <div
+                        key={sIdx}
+                        style={{
+                          display: 'flex',
+                          gap: '12px',
+                          alignItems: 'baseline',
+                          padding: '4px 0',
+                          fontSize: '0.925rem',
+                          lineHeight: 1.5,
+                          color: '#374151',
+                        }}
+                      >
+                        <span
+                          style={{
+                            width: '5px',
+                            height: '5px',
+                            borderRadius: '50%',
+                            backgroundColor: '#111111',
+                            display: 'inline-block',
+                            flexShrink: 0,
+                            transform: 'translateY(-2px)',
+                          }}
+                        />
+                        <span>{spec.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 4. Interactive Consensus Case Simulator ── */}
+        <section id="case-simulator" style={{ background: '#f4f3ec', border: '1px solid rgba(0, 0, 0, 0.07)', borderRadius: 0, padding: 'clamp(32px, 5vw, 56px)', marginBottom: '48px' }} aria-label="Consensus Case Simulator">
+          <div style={{ marginBottom: '2rem' }}>
+            <div className="cxm-eyebrow">INTERACTIVE BAYESIAN RECONCILIATION</div>
+            <h2 className="cxm-suite-title" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)' }}>
+              Live Multi-Model Case Study Sandbox
+            </h2>
+          </div>
+
+          <div className="cxm-sim-tabs">
+            {cases.map((c, idx) => (
+              <button
+                key={c.id}
+                type="button"
+                className={`cxm-sim-tab-btn ${selectedCase === idx ? 'active' : ''}`}
+                onClick={() => setSelectedCase(idx)}
+              >
+                {c.title}
+              </button>
+            ))}
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '16px',
+              marginBottom: '2rem',
+            }}
+          >
+            <div style={{ background: '#ffffff', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(0,0,0,0.06)' }}>
+              <div style={{ fontSize: '0.75rem', fontFamily: 'var(--ic-font-mono)', color: '#6a7282', textTransform: 'uppercase' }}>
+                Consensus Score
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: 700, color: '#111111', marginTop: '6px' }}>
+                {current.agreement}
+              </div>
+            </div>
+
+            <div style={{ background: '#ffffff', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(0,0,0,0.06)' }}>
+              <div style={{ fontSize: '0.75rem', fontFamily: 'var(--ic-font-mono)', color: '#6a7282', textTransform: 'uppercase' }}>
+                Inter-Model Variance
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: 700, color: '#111111', marginTop: '6px' }}>
+                {current.variance}
+              </div>
+            </div>
+
+            <div style={{ background: '#ffffff', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(0,0,0,0.06)' }}>
+              <div style={{ fontSize: '0.75rem', fontFamily: 'var(--ic-font-mono)', color: '#6a7282', textTransform: 'uppercase' }}>
+                Model 1 vs Model 2
+              </div>
+              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#374151', marginTop: '6px', lineHeight: 1.4 }}>
+                {current.model1}
+                <br />
+                {current.model2}
+              </div>
+            </div>
+
+            <div style={{ background: '#ffffff', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(0,0,0,0.06)' }}>
+              <div style={{ fontSize: '0.75rem', fontFamily: 'var(--ic-font-mono)', color: '#6a7282', textTransform: 'uppercase' }}>
+                Reconciled Status
+              </div>
+              <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#008138', marginTop: '6px' }}>
+                {current.status}
+              </div>
+            </div>
+          </div>
+
+          <div className="cxm-sim-console">
+            <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{current.codeLog}</pre>
+          </div>
+        </section>
+
+        {/* ── 5. Technical Benchmarks Strip ── */}
+        <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px', marginBottom: '48px' }} aria-label="Consensus Benchmarks">
+          {benchmarks.map((b, idx) => (
+            <motion.div
+              key={idx}
+              style={{ background: '#f4f3ec', border: '1px solid rgba(0, 0, 0, 0.07)', borderRadius: 0, padding: '28px 24px', textAlign: 'center' }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+            >
+              <div className="cxm-benchmark-val">{b.value}</div>
+              <div className="cxm-benchmark-label">{b.label}</div>
+              <div className="cxm-benchmark-sub">{b.sub}</div>
+            </motion.div>
+          ))}
+        </section>
+
+        {/* ── 6. Technical FAQ Accordion ── */}
+        <section className="cxm-faq-section" aria-label="Consensus FAQs">
+          <div style={{ marginBottom: '2.5rem' }}>
+            <div className="cxm-eyebrow">ARBITRATION ELIMINATION &amp; METHODOLOGY</div>
+            <h2 className="cxm-suite-title" style={{ fontSize: 'clamp(2rem, 3.5vw, 2.8rem)' }}>
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <div className="cxm-faq-list">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="cxm-faq-item">
+                <button
+                  type="button"
+                  className="cxm-faq-question"
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  aria-expanded={openFaq === idx}
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    size={18}
+                    style={{
+                      transform: openFaq === idx ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.25s ease',
+                      flexShrink: 0,
+                    }}
+                  />
+                </button>
+                {openFaq === idx && <div className="cxm-faq-answer">{faq.a}</div>}
+              </div>
+            ))}
+          </div>
+        </section>
+
 
       </div>
-    </div>
+    </main>
   );
 };
 
 export default Consensus;
-
-

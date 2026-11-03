@@ -31,7 +31,7 @@ const EmptyScreen: React.FC<EmptyScreenProps> = ({
         <Database size={56} />
       </div>
       <h3 style={{ 
-        fontFamily: 'var(--font-adieu)', 
+        fontFamily: 'var(--font-title)', 
         fontSize: '1.5rem', 
         color: 'rgba(255, 255, 255, 0.7)', 
         marginBottom: '1rem',

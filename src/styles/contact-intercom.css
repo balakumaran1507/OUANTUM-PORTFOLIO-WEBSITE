@@ -1,0 +1,527 @@
+/* Intercom Contact Sales Design System for OUANTUM */
+/* Clean Pure White Section Background & Zero Divider Lines */
+
+.ic-contact-page {
+  background-color: #ffffff;
+  color: #111111;
+  min-height: 100vh;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding: 32px 16px 80px;
+  position: relative;
+  overflow-x: hidden;
+  border: none !important;
+}
+
+.ic-contact-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Split Screen (50/50 Grid with Footer-aligned Margins) ── */
+.ic-contact-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  width: 100%;
+  position: relative;
+  background-color: transparent;
+  border: none !important;
+  align-items: stretch;
+}
+
+/* ── Left Column: Image Background from buildings folder & Floating White Card ── */
+.ic-contact-left-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 48px);
+  background-color: #f4f3ec;
+  background-image: url('/assets/images/buildings/building-12.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  min-height: 600px;
+}
+
+/* Floating Card inside Left Column - Crisp White Card with Sharp Corners */
+.ic-contact-card {
+  position: relative;
+  background-color: #ffffff !important;
+  max-width: 480px;
+  width: 100%;
+  padding: clamp(32px, 4.5vw, 48px) clamp(24px, 3.5vw, 36px);
+  border-radius: 0 !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12) !important;
+  z-index: 2;
+  text-align: left;
+}
+
+/* Left Card Typography */
+.ic-contact-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.85rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: #111111;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.25rem 0;
+  text-align: left;
+}
+
+.ic-contact-desc {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4a5565;
+  text-align: left;
+  margin: 0;
+  max-width: 100%;
+}
+
+.ic-contact-eyebrow {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6a7282;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ── 3x4 Enterprise Logo Grid ── */
+.ic-contact-logos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem 1.25rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.ic-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #4a5565;
+  letter-spacing: -0.01em;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.ic-logo-item:hover {
+  opacity: 1;
+  color: #111111;
+  transform: translateY(-1px);
+}
+
+.ic-logo-item svg {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+/* ── Right Column: Pure White & Zero Divider Lines ── */
+.ic-contact-right-col {
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(32px, 4vw, 56px) clamp(24px, 3.5vw, 44px);
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 0;
+}
+
+.ic-form-wrapper {
+  width: 100%;
+  max-width: 460px;
+  position: relative;
+}
+
+/* Form Labels */
+.ic-field-label {
+  display: block;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 0.5rem;
+}
+
+.ic-field-label span.req {
+  color: #111111;
+  margin-left: 2px;
+}
+
+/* Inputs & Dropdowns */
+input.ic-input,
+select.ic-select,
+textarea.ic-textarea,
+.ic-input,
+.ic-select,
+.ic-textarea {
+  width: 100%;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0 !important;
+  padding: 13px 14px;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  outline: none;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  box-sizing: border-box;
+}
+
+input.ic-input::placeholder,
+textarea.ic-textarea::placeholder,
+.ic-input::placeholder,
+.ic-textarea::placeholder {
+  color: #8c95a6 !important;
+  -webkit-text-fill-color: #8c95a6 !important;
+  font-weight: 400;
+}
+
+.ic-input:focus,
+.ic-select:focus,
+.ic-textarea:focus {
+  border-color: #111111 !important;
+  background-color: #ffffff !important;
+}
+
+.ic-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m6%209%206%206%206-6%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.ic-field-group {
+  margin-bottom: 1.5rem;
+}
+
+.ic-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.ic-field-error {
+  color: #e40014;
+  font-size: 0.75rem;
+  margin-top: 5px;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Primary Action Buttons */
+.ic-btn-submit {
+  width: 100%;
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #111111 !important;
+  border-radius: 0 !important;
+  padding: 14px 24px;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: none !important;
+}
+
+.ic-btn-submit:hover:not(:disabled) {
+  background-color: #2a2a2a !important;
+}
+
+.ic-btn-submit:disabled {
+  background-color: #9ca3af !important;
+  border-color: #9ca3af !important;
+  cursor: not-allowed;
+}
+
+.ic-btn-back {
+  background-color: transparent !important;
+  color: #111111 !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0 !important;
+  padding: 14px 20px;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: none !important;
+}
+
+.ic-btn-back:hover {
+  background-color: #f3f4f6 !important;
+  border-color: #111111 !important;
+}
+
+.ic-form-btn-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+}
+
+/* Legal text */
+.ic-legal-text {
+  font-size: 0.775rem;
+  line-height: 1.5;
+  color: #6a7282;
+  margin-top: 1.25rem;
+  text-align: left;
+}
+
+.ic-legal-text a {
+  color: #111111 !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* Step Footer Indicator (No border-top divided lines) */
+.ic-step-footer {
+  margin-top: 3.5rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: none !important;
+}
+
+.ic-step-label {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #4a5565;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Interactive Option Pills in Step 3 */
+.ic-pill-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.ic-pill-option {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0 !important;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #111111;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.ic-pill-option:hover {
+  border-color: #111111;
+  background-color: #f9fafb;
+}
+
+.ic-pill-option.active {
+  background-color: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+/* Confirmation Card */
+.ic-success-card {
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.ic-success-icon {
+  width: 56px;
+  height: 56px;
+  background-color: #111111;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.ic-success-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.85rem;
+  font-weight: 400;
+  color: #111111;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.ic-success-body {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #4a5565;
+  margin-bottom: 2rem;
+}
+
+.ic-direct-box {
+  background-color: #ffffff;
+  border: none !important;
+  padding: 1.5rem 0;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.ic-direct-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a7282;
+  margin-bottom: 0.75rem;
+}
+
+.ic-direct-link {
+  display: block;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111 !important;
+  text-decoration: none !important;
+  margin-bottom: 0.4rem;
+}
+
+.ic-direct-link:hover {
+  text-decoration: underline !important;
+}
+
+/* ── Seamless Bottom Quick Access Strip (Pure White & Zero Divided Lines) ── */
+.ic-contact-quick-strip {
+  background-color: #ffffff;
+  padding: 3.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  border: none !important;
+}
+
+.ic-quick-card {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  border: none !important;
+}
+
+.ic-quick-label {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6a7282;
+  margin-bottom: 0.75rem;
+}
+
+.ic-quick-val {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111111;
+  line-height: 1.5;
+}
+
+.ic-quick-val a {
+  color: #111111 !important;
+  text-decoration: none !important;
+}
+
+.ic-quick-val a:hover {
+  text-decoration: underline !important;
+}
+
+/* ── Responsive Rules ── */
+@media (max-width: 960px) {
+  .ic-contact-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    min-height: auto;
+  }
+
+  .ic-contact-left-col {
+    padding: 3rem 1.5rem;
+    min-height: 520px;
+  }
+
+  .ic-contact-right-col {
+    padding: 3.5rem 1.5rem;
+  }
+
+  .ic-contact-card {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .ic-contact-logos {
+    gap: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .ic-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ic-contact-logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ic-contact-left-col {
+    padding: 2rem 1rem;
+    min-height: 380px;
+  }
+
+  .ic-contact-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .ic-contact-right-col {
+    padding: 2.25rem 1rem;
+  }
+
+  .ic-contact-title {
+    font-size: 1.75rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .ic-input,
+  .ic-select,
+  .ic-textarea {
+    font-size: 16px !important;
+  }
+}

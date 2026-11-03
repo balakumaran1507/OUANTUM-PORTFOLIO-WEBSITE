@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'President',
     excerpt:
       'AI identifies defects, design conflicts, and quality issues before they become expensive problems. Through computer vision, predictive analytics, and real-time monitoring, AI enables project teams to take corrective action immediately.',
-    coverImage: '/assets/images/blog_images/mixboard-image (2).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-1.png',
     coverImageAlt: 'Amaravati project showing AI defect detection in action',
     tags: ['AI', 'rework', 'construction costs', 'quality assurance', 'computer vision'],
     takeaways: [
@@ -98,7 +98,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'Every hour spent on AI-powered quality monitoring during construction can save 10 to 100 hours of rework after completion.',
+        text: 'Every hour spent on AI-powered quality monitoring during construction can save ==10 to 100 hours of rework== after completion.',
       },
     ],
   },
@@ -113,7 +113,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CEO',
     excerpt:
       'The return on investment of AI-powered QA comes from reduced rework, improved productivity, faster inspections, and lower operational costs. Organizations implementing AI-driven QA often experience fewer project delays and better resource utilization.',
-    coverImage: '/assets/images/blog_images/mixboard-image (3).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-2.png',
     coverImageAlt: 'Engineer reviewing AI-generated quality assurance report',
     tags: ['ROI', 'quality assurance', 'AI', 'construction productivity'],
     takeaways: [
@@ -156,7 +156,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'AI quality assurance is not a technology cost, it is a risk mitigation investment with a measurable, compounding return.',
+        text: 'AI quality assurance is not a technology cost, it is a ==risk mitigation investment== with a measurable, compounding return.',
       },
     ],
   },
@@ -173,7 +173,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CMO',
     excerpt:
       'AI improves infrastructure asset management by continuously monitoring asset conditions, predicting maintenance needs, and supporting lifecycle planning using sensor data, computer vision, and predictive analytics.',
-    coverImage: '/assets/images/blog_images/mixboard-image (4).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-3.png',
     coverImageAlt: 'Kendriya Vidyalaya infrastructure asset monitoring',
     tags: ['asset management', 'infrastructure', 'AI', 'lifecycle planning'],
     takeaways: [
@@ -228,7 +228,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CFO',
     excerpt:
       'Technologies transforming infrastructure maintenance include AI, digital twins, IoT sensors, drones, robotics, and predictive analytics, providing real-time insights that reduce downtime and optimize maintenance budgets.',
-    coverImage: '/assets/images/blog_images/mixboard-image (5).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-4.png',
     coverImageAlt: 'Drone inspecting infrastructure for maintenance assessment',
     tags: ['infrastructure', 'maintenance technology', 'drones', 'IoT', 'digital twins'],
     takeaways: [
@@ -282,7 +282,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'President',
     excerpt:
       'BIM improves construction quality control by providing a centralized digital representation of project specifications, geometry, and construction requirements, enabling teams to detect design conflicts and verify compliance.',
-    coverImage: '/assets/images/blog_images/mixboard-image (6).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-5.png',
     coverImageAlt: 'BIM model being used for construction project pipelines',
     tags: ['BIM', 'quality control', 'construction', 'clash detection'],
     takeaways: [
@@ -336,7 +336,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CEO',
     excerpt:
       'BIM offers significant benefits for large infrastructure including improved collaboration, enhanced project visualization, reduced design conflicts, and better lifecycle management throughout the asset lifespan.',
-    coverImage: '/assets/images/blog_images/mixboard-image (7).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-6.png',
     coverImageAlt: 'Large infrastructure BIM model displayed in a project review meeting',
     tags: ['BIM', 'infrastructure', 'lifecycle management', 'collaboration'],
     takeaways: [
@@ -389,7 +389,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CMO',
     excerpt:
       'AI can detect many structural defects more consistently and efficiently than manual inspections by analyzing images, videos, and sensor data with advanced machine learning models trained on thousands of real defect examples.',
-    coverImage: '/assets/images/blog_images/mixboard-image (8).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-7.png',
     coverImageAlt: 'AI system analyzing structural defect in a concrete beam',
     tags: ['structural defects', 'AI detection', 'manual inspection', 'accuracy'],
     takeaways: [
@@ -425,7 +425,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'A skilled engineer seeing the 300th element of a site visit is not performing at the same standard as the first. AI is.',
+        text: 'A skilled engineer seeing the 300th element of a site visit is not performing at the same standard as the first. ==AI is.==',
       },
     ],
   },
@@ -440,7 +440,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CFO',
     excerpt:
       'AI improves structural health monitoring by continuously analyzing data from sensors, cameras, and monitoring systems, identifying patterns associated with deterioration and generating alerts when abnormal conditions are detected.',
-    coverImage: '/assets/images/blog_images/mixboard-image (9).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-8.png',
     coverImageAlt: 'Structural health monitoring sensors installed on a concrete structure at PMAY site',
     tags: ['structural health monitoring', 'SHM', 'AI', 'sensors', 'anomaly detection'],
     takeaways: [
@@ -489,7 +489,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'President',
     excerpt:
       'AI reduces construction delays by analyzing schedules, resource availability, weather conditions, and project performance data to identify potential risks before they impact timelines, enabling proactive project management.',
-    coverImage: '/assets/images/blog_images/mixboard-image (10).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-9.png',
     coverImageAlt: 'TNHB site with AI-powered construction delay prediction dashboard',
     tags: ['construction delays', 'AI', 'schedule optimization', 'risk management'],
     takeaways: [
@@ -540,7 +540,7 @@ export const blogPosts: BlogPost[] = [
     authorRole: 'CEO',
     excerpt:
       'AI-powered construction project management uses artificial intelligence to support planning, scheduling, budgeting, resource allocation, risk management, and progress tracking for better project efficiency and outcomes.',
-    coverImage: '/assets/images/blog_images/mixboard-image (11).png',
+    coverImage: '/assets/images/buildings/sub-buildings/sub-building-1.png',
     coverImageAlt: 'Construction project manager reviewing AI-powered project management dashboard',
     tags: ['project management', 'AI', 'construction', 'planning', 'scheduling'],
     takeaways: [
@@ -572,7 +572,7 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: 'quote',
-        text: 'AI-powered project management does not make decisions, it ensures project managers have the right information to make better decisions, faster.',
+        text: 'AI-powered project management does not make decisions, it ensures project managers have ==the right information to make better decisions, faster==.',
       },
     ],
   },

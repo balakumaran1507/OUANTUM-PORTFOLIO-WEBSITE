@@ -91,7 +91,7 @@ const Blog: React.FC = () => {
             >
               <div>
                 <div style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.65rem',
                   letterSpacing: '0.12em',
                   color: 'rgba(255, 255, 255, 0.5)',
@@ -113,7 +113,7 @@ const Blog: React.FC = () => {
                   color: 'rgba(255, 255, 255, 0.55)',
                   marginTop: '1.5rem',
                   fontSize: '0.85rem',
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   lineHeight: 1.6,
                 }}>
                   {featuredPost.excerpt}
@@ -128,7 +128,7 @@ const Blog: React.FC = () => {
                     background: 'rgba(255, 255, 255, 0.3)',
                   }} />
                   <span style={{
-                    fontFamily: 'var(--font-adieu)',
+                    fontFamily: 'var(--font-title)',
                     fontSize: '0.6rem',
                     letterSpacing: '0.1em',
                     color: 'rgba(255, 255, 255, 0.5)',
@@ -178,7 +178,7 @@ const Blog: React.FC = () => {
                       <span style={{
                         fontSize: '0.6rem',
                         opacity: 0.5,
-                        fontFamily: 'var(--font-adieu)',
+                        fontFamily: 'var(--font-title)',
                         color: '#ffffff',
                       }}>
                         {post.date}
@@ -186,7 +186,7 @@ const Blog: React.FC = () => {
                       <span style={{
                         fontSize: '0.5rem',
                         opacity: 0.35,
-                        fontFamily: 'var(--font-adieu)',
+                        fontFamily: 'var(--font-title)',
                         letterSpacing: '0.1em',
                         color: '#ffffff',
                       }}>
@@ -211,7 +211,7 @@ const Blog: React.FC = () => {
                       color: 'rgba(255, 255, 255, 0.55)',
                       lineHeight: 1.55,
                       flex: 1,
-                      fontFamily: 'var(--font-adieu)',
+                      fontFamily: 'var(--font-title)',
                     }}>
                       {post.excerpt}
                     </p>
@@ -224,7 +224,7 @@ const Blog: React.FC = () => {
                       alignItems: 'center',
                     }}>
                       <span style={{
-                        fontFamily: 'var(--font-adieu)',
+                        fontFamily: 'var(--font-title)',
                         fontSize: '0.55rem',
                         letterSpacing: '0.1em',
                         opacity: 0.5,
@@ -281,7 +281,7 @@ const Blog: React.FC = () => {
             <span style={{
               fontSize: '0.7rem',
               letterSpacing: '0.2em',
-              fontFamily: 'var(--font-adieu)',
+              fontFamily: 'var(--font-title)',
               color: '#fff',
               textTransform: 'uppercase',
             }}>

@@ -32,7 +32,7 @@ const ErrorScreen: React.FC<ErrorScreenProps> = ({
         <AlertTriangle size={56} />
       </div>
       <h3 style={{ 
-        fontFamily: 'var(--font-adieu)', 
+        fontFamily: 'var(--font-title)', 
         fontSize: '1.5rem', 
         color: '#fff', 
         marginBottom: '1rem',

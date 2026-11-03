@@ -219,6 +219,7 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
               playsInline
               preload="auto"
               onEnded={finishLoading}
+              onError={finishLoading}
               className="loader-video-element"
               style={{
                 willChange: 'transform',

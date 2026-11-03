@@ -195,7 +195,7 @@ const Hero: React.FC = () => {
                   }
                 }}
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.74rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -228,7 +228,7 @@ const Hero: React.FC = () => {
               <Link
                 to="/contact"
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.74rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -345,7 +345,7 @@ const Hero: React.FC = () => {
 
               {/* Left Column - Form */}
               <div style={{ padding: '40px', background: '#000000' }}>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Send us a message</h3>
+                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Send us a message</h3>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)', marginBottom: '30px' }}>Fill out the form below and we'll get back to you.</p>
 
                 {isSuccess ? (
@@ -448,7 +448,7 @@ const Hero: React.FC = () => {
                         border: 'none',
                         padding: '16px',
                         borderRadius: '8px',
-                        fontFamily: 'var(--font-adieu)',
+                        fontFamily: 'var(--font-title)',
                         cursor: isSubmitting ? 'not-allowed' : 'pointer',
                         display: 'flex',
                         alignItems: 'center',
@@ -476,7 +476,7 @@ const Hero: React.FC = () => {
 
               {/* Right Column - Direct Links */}
               <div style={{ padding: '40px', background: '#000000', display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Direct Contact</h3>
+                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Direct Contact</h3>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)', marginBottom: '30px' }}>Or reach out to us instantly via these channels.</p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1, justifyContent: 'center' }}>
@@ -495,7 +495,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>WhatsApp</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>WhatsApp</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>Instant response</div>
                     </div>
                   </a>
@@ -515,7 +515,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>Phone Call</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>Phone Call</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>+91 76958 27158</div>
                     </div>
                   </a>
@@ -535,7 +535,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>Email</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>Email</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>contact@ouantum.com</div>
                     </div>
                   </a>
@@ -555,7 +555,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>LinkedIn</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>LinkedIn</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>Connect professionally</div>
                     </div>
                   </a>
