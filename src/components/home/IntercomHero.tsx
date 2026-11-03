@@ -88,15 +88,16 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
     const isMobile = containerWidth < 768;
 
     // Card dimensions proportionally calibrated for mobile while preserving the exact desktop look and center alignment
-    const cardWidth = isMobile ? 165 : 220;
-    const cardHeight = isMobile ? 230 : 310;
+    const cardWidth = isMobile ? 150 : 220;
+    const cardHeight = isMobile ? 210 : 310;
 
     // Pitch: tightly overlapping cards (shingled stack) ensuring zero gaps and solid physical emergence
-    // On mobile, pitch = 34 maintains dense shingling so center cards overlap continuously without any gap opening
-    const pitch = isMobile ? 34 : 68;
+    // On mobile, pitch = 28 maintains dense shingling so center cards overlap continuously (>= 52px overlap) without any gap opening
+    const pitch = isMobile ? 28 : 68;
     const totalLength = LEFT_STREAM_CARDS.length * pitch;
     const centerX = containerWidth / 2;
-    const halfW = Math.max(containerWidth / 2, 400);
+    // halfW controls the curvature radius: on mobile it scales proportionally to mobile viewport half-width
+    const halfW = isMobile ? Math.max(containerWidth / 2, 175) : Math.max(containerWidth / 2, 400);
 
     // Inertia & Auto-scroll update
     if (!isDraggingRef.current) {
@@ -138,11 +139,11 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
 
       // Center cards scale smoothly
-      const scale = (isMobile ? 0.76 : 0.64) + (isMobile ? 0.36 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
+      const scale = (isMobile ? 0.72 : 0.64) + (isMobile ? 0.40 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: positive for left side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
-      const rotateY = -clampedU * (isMobile ? 30 : 34);
+      const rotateY = -clampedU * (isMobile ? 32 : 34);
 
       // Parabolic vertical dip in center
       const y = -Math.pow(Math.min(absU, 1.4), 1.8) * (isMobile ? 8 : 12);
@@ -184,11 +185,11 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
 
       // 3D Concave Cylinder Arc Math:
       const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
-      const scale = (isMobile ? 0.76 : 0.64) + (isMobile ? 0.36 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
+      const scale = (isMobile ? 0.72 : 0.64) + (isMobile ? 0.40 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: negative for right side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
-      const rotateY = -clampedU * (isMobile ? 30 : 34);
+      const rotateY = -clampedU * (isMobile ? 32 : 34);
 
       const y = -Math.pow(Math.min(absU, 1.4), 1.8) * (isMobile ? 8 : 12);
       // zIndex + 1 on right stream eliminates 3D z-fighting when center cards overlap
