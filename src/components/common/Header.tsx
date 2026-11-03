@@ -230,6 +230,7 @@ const Header: React.FC<HeaderProps> = ({
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [openSection, setOpenSection] = useState<string | null>(null);
   const [navbarHeight, setNavbarHeight] = useState(104);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   // Keep mobile menu accurately positioned right beneath the navbar (measuring only the bar, never the drawer)
@@ -249,9 +250,27 @@ const Header: React.FC<HeaderProps> = ({
     setOpenSection(null);
   }, [location.pathname]);
 
-  // Recalculate navbar height when banner toggles
+  // Continuously track navbar height and scroll status
   useEffect(() => {
     updateNavbarHeight();
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    let observer: ResizeObserver | null = null;
+    if (navBarContainerRef.current && typeof ResizeObserver !== 'undefined') {
+      observer = new ResizeObserver(() => {
+        updateNavbarHeight();
+      });
+      observer.observe(navBarContainerRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (observer) observer.disconnect();
+    };
   }, [showBanner]);
 
   // Sync navbar height and automatically close mobile menu when switching to desktop view (> 1024px)
@@ -267,22 +286,25 @@ const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Prevent background scrolling when mobile menu is open (matching Intercom & Fin.ai)
+  // Prevent background scrolling and hide chatbot overlay when mobile menu is open (matching Intercom & Fin.ai)
   useEffect(() => {
     if (isMenuOpen) {
       updateNavbarHeight();
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
       document.body.style.touchAction = 'none';
+      document.body.classList.add('mobile-nav-open');
     } else {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       document.body.style.touchAction = '';
+      document.body.classList.remove('mobile-nav-open');
     }
     return () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       document.body.style.touchAction = '';
+      document.body.classList.remove('mobile-nav-open');
     };
   }, [isMenuOpen]);
 
@@ -326,18 +348,23 @@ const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header
-      ref={headerRef}
-      className="ic-header"
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        backgroundColor: '#ffffff',
-        border: 'none',
-        boxShadow: 'none',
-      }}
-    >
+    <>
+      <header
+        ref={headerRef}
+        className="ic-header"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
+          zIndex: 100000,
+          backgroundColor: '#ffffff',
+          border: 'none',
+          boxShadow: isScrolled ? '0 1px 0 rgba(0, 0, 0, 0.08)' : 'none',
+          transition: 'box-shadow 0.2s ease',
+        }}
+      >
       <style>{`
         .ic-header-inner {
           max-width: 1440px;
@@ -409,6 +436,14 @@ const Header: React.FC<HeaderProps> = ({
           }
         }
 
+        /* Cleanly hide chatbot when mobile menu is open to prevent UI overlap */
+        body.mobile-nav-open .chatbot-container,
+        body.mobile-nav-open .ic-chatbot-fab,
+        body.mobile-nav-open button[aria-label="Open Chatbot"],
+        body.mobile-nav-open button[aria-label="Close Chatbot"] {
+          display: none !important;
+        }
+
         /* Responsive Breakpoints matching Intercom & Fin.ai */
         @media (max-width: 1024px) {
           .ic-desktop-nav {
@@ -470,7 +505,16 @@ const Header: React.FC<HeaderProps> = ({
         }
       `}</style>
 
-      <div ref={navBarContainerRef} className="ic-header-bar-wrapper" style={{ width: '100%', position: 'relative' }}>
+      <div
+        ref={navBarContainerRef}
+        className="ic-header-bar-wrapper"
+        style={{
+          width: '100%',
+          position: 'relative',
+          backgroundColor: '#ffffff',
+          zIndex: 100002,
+        }}
+      >
       {/* Top Iridescent Announcement Banner */}
       {showBanner && (
         <div
@@ -1021,7 +1065,7 @@ const Header: React.FC<HeaderProps> = ({
             maxHeight: `calc(100dvh - ${navbarHeight}px)`,
             overscrollBehavior: 'contain',
             backgroundColor: '#ffffff',
-            zIndex: 99999,
+            zIndex: 100001,
             overflowY: 'auto',
             WebkitOverflowScrolling: 'touch',
             touchAction: 'pan-y',
@@ -1358,7 +1402,18 @@ const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
       )}
-    </header>
+      </header>
+      <div
+        className="ic-header-spacer"
+        style={{
+          height: `${navbarHeight}px`,
+          width: '100%',
+          flexShrink: 0,
+          pointerEvents: 'none',
+        }}
+        aria-hidden="true"
+      />
+    </>
   );
 };
 
