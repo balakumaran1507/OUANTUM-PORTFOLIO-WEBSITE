@@ -63,6 +63,7 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
     hasFinishedRef.current = true;
 
     if (overlayRef.current) {
+      document.body.classList.remove('loader-active');
       gsap.to(overlayRef.current, {
         yPercent: -100,
         duration: 0.8,
@@ -72,14 +73,23 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
           sessionStorage.setItem('quantum_loader_played', 'true');
           document.body.style.overflow = 'unset';
           document.documentElement.style.overflow = 'unset';
+          document.body.classList.remove('loader-active');
         },
       });
+    } else {
+      document.body.classList.remove('loader-active');
     }
   };
 
   // 2. Setup locking and video play execution
   useEffect(() => {
-    if (!shouldPlay) return;
+    if (!shouldPlay) {
+      document.body.classList.remove('loader-active');
+      return;
+    }
+
+    // Mark body as loader active to completely hide navbar while video plays
+    document.body.classList.add('loader-active');
 
     // Save original overflow styles
     const originalBodyOverflow = document.body.style.overflow;
@@ -106,6 +116,7 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
+      document.body.classList.remove('loader-active');
       document.body.style.overflow = originalBodyOverflow || 'unset';
       document.documentElement.style.overflow = originalHtmlOverflow || 'unset';
     };
@@ -199,7 +210,7 @@ const LoaderOverlay: React.FC<LoaderOverlayProps> = ({
         style={{
           position: 'fixed',
           inset: 0,
-          zIndex: 99999,
+          zIndex: 999999,
           backgroundColor: '#000000',
           pointerEvents: 'none',
           display: 'flex',

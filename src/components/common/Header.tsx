@@ -444,6 +444,15 @@ const Header: React.FC<HeaderProps> = ({
           display: none !important;
         }
 
+        /* Completely hide navbar and spacer while the loader video is playing */
+        body.loader-active .ic-header,
+        body.loader-active .ic-header-spacer {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
+        }
+
         /* Responsive Breakpoints matching Intercom & Fin.ai */
         @media (max-width: 1024px) {
           .ic-desktop-nav {

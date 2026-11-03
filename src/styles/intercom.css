@@ -656,6 +656,14 @@ section.hero h1,
 /* ==========================================================================
    NAVBAR & HEADER TYPOGRAPHY - CLEAN, SHORT, ELEGANT
    ========================================================================== */
+body.loader-active .ic-header,
+body.loader-active .ic-header-spacer {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
 .ic-header {
   background-color: #ffffff !important;
   border-bottom: none !important;
