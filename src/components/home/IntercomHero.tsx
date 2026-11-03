@@ -87,14 +87,17 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
     const containerWidth = container.clientWidth || window.innerWidth;
     const isMobile = containerWidth < 768;
 
-    const cardWidth = isMobile ? 160 : 220;
-    const cardHeight = isMobile ? 220 : 310;
+    const cardWidth = isMobile ? 170 : 220;
+    const cardHeight = isMobile ? 240 : 310;
 
     // Pitch: tightly overlapping cards (shingled stack) ensuring zero gaps and solid physical emergence
-    const pitch = isMobile ? 55 : 68;
+    const pitch = isMobile ? 38 : 58;
     const totalLength = LEFT_STREAM_CARDS.length * pitch;
     const centerX = containerWidth / 2;
-    const halfW = Math.max(containerWidth / 2, 400);
+    const halfW = Math.max(containerWidth / 2, isMobile ? 300 : 400);
+
+    // Continuous center bridge overlap: guarantees left and right streams interlock seamlessly across the center with zero gap
+    const centerOverlap = isMobile ? 28 : 18;
 
     // Inertia & Auto-scroll update
     if (!isDraggingRef.current) {
@@ -118,8 +121,8 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
 
       // Distance from center along the left track (starts at 0 so card is in center before split)
       const dist = (i * pitch + currentOffset) % totalLength;
-      // Position to the left of center (negative X)
-      const x = -dist;
+      // Position to the left of center (negative X) with center overlap offset
+      const x = -dist + centerOverlap;
 
       const u = x / halfW; // negative value (0 at center, -1.0 at left screen edge)
       const absU = Math.min(Math.abs(u), 1.8);
@@ -132,15 +135,16 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       card.style.display = 'block';
 
       // 3D Concave Cylinder Arc Math:
-      // Center cards recede (-200px), side cards come forward (+60px)
-      const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
+      // Center cards recede (-110px on mobile, -200px on desktop)
+      const maxZ = isMobile ? -110 : -200;
+      const z = maxZ * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
 
-      // Center cards scale smoothly from 0.64 to 1.12 at edges
-      const scale = (isMobile ? 0.70 : 0.64) + (isMobile ? 0.38 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
+      // Center cards scale smoothly
+      const scale = (isMobile ? 0.80 : 0.64) + (isMobile ? 0.30 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: positive for left side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
-      const rotateY = -clampedU * (isMobile ? 26 : 34);
+      const rotateY = -clampedU * (isMobile ? 24 : 34);
 
       // Parabolic vertical dip in center
       const y = -Math.pow(Math.min(absU, 1.4), 1.8) * (isMobile ? 6 : 12);
@@ -166,10 +170,10 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       const card = rightCardRefs.current[j];
       if (!card) continue;
 
-      // Distance from center along the right track (starts at 0 so card is in center before split)
-      const dist = (j * pitch + currentOffset) % totalLength;
-      // Position to the right of center (positive X)
-      const x = dist;
+      // Distance from center along the right track with half-pitch phase shift to prevent concurrent gap opening
+      const dist = (j * pitch + currentOffset + pitch * 0.5) % totalLength;
+      // Position to the right of center (positive X) with center overlap offset
+      const x = dist - centerOverlap;
 
       const u = x / halfW; // positive value (0 at center, +1.0 at right screen edge)
       const absU = Math.min(Math.abs(u), 1.8);
@@ -181,15 +185,17 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       card.style.display = 'block';
 
       // 3D Concave Cylinder Arc Math:
-      const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
-      const scale = (isMobile ? 0.70 : 0.64) + (isMobile ? 0.38 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
+      const maxZ = isMobile ? -110 : -200;
+      const z = maxZ * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
+      const scale = (isMobile ? 0.80 : 0.64) + (isMobile ? 0.30 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: negative for right side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
-      const rotateY = -clampedU * (isMobile ? 26 : 34);
+      const rotateY = -clampedU * (isMobile ? 24 : 34);
 
       const y = -Math.pow(Math.min(absU, 1.4), 1.8) * (isMobile ? 6 : 12);
-      const zIndex = Math.round(absU * 100) + 2;
+      // Offset zIndex slightly (+3) at center to eliminate any 3D z-fighting between overlapping cards
+      const zIndex = Math.round(absU * 100) + 3;
 
       // 100% SOLID at center: instant, solid, zero transparent-to-solid fading
       // Fade out only at the far outer horizon when exiting the viewport
