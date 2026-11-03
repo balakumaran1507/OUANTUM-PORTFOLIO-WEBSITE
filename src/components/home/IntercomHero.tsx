@@ -85,13 +85,15 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerWidth = container.clientWidth || window.innerWidth;
+    const isMobile = containerWidth < 768;
 
-    // Unified card dimensions matching desktop view exactly across all viewports
-    const cardWidth = 220;
-    const cardHeight = 310;
+    // Card dimensions proportionally calibrated for mobile while preserving the exact desktop look and center alignment
+    const cardWidth = isMobile ? 165 : 220;
+    const cardHeight = isMobile ? 230 : 310;
 
     // Pitch: tightly overlapping cards (shingled stack) ensuring zero gaps and solid physical emergence
-    const pitch = 68;
+    // On mobile, pitch = 34 maintains dense shingling so center cards overlap continuously without any gap opening
+    const pitch = isMobile ? 34 : 68;
     const totalLength = LEFT_STREAM_CARDS.length * pitch;
     const centerX = containerWidth / 2;
     const halfW = Math.max(containerWidth / 2, 400);
@@ -135,15 +137,15 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       // Center cards recede (-200px), side cards come forward (+60px)
       const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
 
-      // Center cards scale smoothly from 0.64 to 1.12 at edges
-      const scale = 0.64 + 0.48 * Math.pow(Math.min(absU, 1.4), 1.4);
+      // Center cards scale smoothly
+      const scale = (isMobile ? 0.76 : 0.64) + (isMobile ? 0.36 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: positive for left side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
-      const rotateY = -clampedU * 34;
+      const rotateY = -clampedU * (isMobile ? 30 : 34);
 
       // Parabolic vertical dip in center
-      const y = -Math.pow(Math.min(absU, 1.4), 1.8) * 12;
+      const y = -Math.pow(Math.min(absU, 1.4), 1.8) * (isMobile ? 8 : 12);
 
       // Layering: outer foreground cards layer on top of center recessed cards (zIndex >= 2)
       const zIndex = Math.round(absU * 100) + 2;
@@ -182,14 +184,15 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
 
       // 3D Concave Cylinder Arc Math:
       const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
-      const scale = 0.64 + 0.48 * Math.pow(Math.min(absU, 1.4), 1.4);
+      const scale = (isMobile ? 0.76 : 0.64) + (isMobile ? 0.36 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: negative for right side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
-      const rotateY = -clampedU * 34;
+      const rotateY = -clampedU * (isMobile ? 30 : 34);
 
-      const y = -Math.pow(Math.min(absU, 1.4), 1.8) * 12;
-      const zIndex = Math.round(absU * 100) + 2;
+      const y = -Math.pow(Math.min(absU, 1.4), 1.8) * (isMobile ? 8 : 12);
+      // zIndex + 1 on right stream eliminates 3D z-fighting when center cards overlap
+      const zIndex = Math.round(absU * 100) + 3;
 
       // 100% SOLID at center: instant, solid, zero transparent-to-solid fading
       // Fade out only at the far outer horizon when exiting the viewport
