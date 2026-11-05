@@ -64,26 +64,15 @@ export interface IntercomHeroProps {
 // Helper to detect if user is on a low/slow network connection
 const checkIsLowNetwork = (): boolean => {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
+  // Strictly offline
   if ('onLine' in navigator && !navigator.onLine) return true;
   const nav = navigator as any;
   const conn = nav.connection || nav.mozConnection || nav.webkitConnection;
   if (conn) {
+    // User explicitly enabled Data Saver on mobile
     if (conn.saveData === true) return true;
-    const type = conn.effectiveType;
-    if (type === 'slow-2g' || type === '2g' || type === '3g') return true;
-    if (typeof conn.downlink === 'number' && conn.downlink > 0 && conn.downlink < 1.5) return true;
-    if (typeof conn.rtt === 'number' && conn.rtt > 500) return true;
-  }
-  try {
-    const navEntries = performance.getEntriesByType('navigation');
-    if (navEntries && navEntries.length > 0) {
-      const entry = navEntries[0] as PerformanceNavigationTiming;
-      const ttfb = entry.responseStart - entry.requestStart;
-      const duration = entry.responseEnd - entry.fetchStart;
-      if (ttfb > 1200 || duration > 2500) return true;
-    }
-  } catch {
-    // Ignore performance API errors if unsupported
+    // Explicit slow-2g cellular network only
+    if (conn.effectiveType === 'slow-2g') return true;
   }
   return false;
 };
@@ -236,10 +225,8 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       card.style.opacity = `${opacity}`;
     }
 
-    // On low network, keep cards displayed statically without continuous looping unless interacting
-    if (!isLowNetworkRef.current || isDraggingRef.current || Math.abs(velocityRef.current) > 0.05) {
-      animFrameRef.current = requestAnimationFrame(updateCardTransforms);
-    }
+    // Keep animation loop running smoothly at the exact original motion speed
+    animFrameRef.current = requestAnimationFrame(updateCardTransforms);
   }, []);
 
   useEffect(() => {
