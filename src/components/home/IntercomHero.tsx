@@ -64,16 +64,24 @@ export interface IntercomHeroProps {
 // Helper to detect if user is on a low/slow network connection
 const checkIsLowNetwork = (): boolean => {
   if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
-  // Strictly offline
+  // 1. Offline (no active network connection)
   if ('onLine' in navigator && !navigator.onLine) return true;
+
   const nav = navigator as any;
   const conn = nav.connection || nav.mozConnection || nav.webkitConnection;
   if (conn) {
-    // User explicitly enabled Data Saver on mobile
+    // 2. User explicitly enabled Data Saver (metered / low-bandwidth mode)
     if (conn.saveData === true) return true;
-    // Explicit slow-2g cellular network only
-    if (conn.effectiveType === 'slow-2g') return true;
+
+    // 3. Explicit low network cellular tiers (slow-2g or 2g / DevTools Slow 3G)
+    if (conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g') return true;
+
+    // 4. Low network bandwidth (downlink <= 0.4 Mbps or high RTT >= 1800ms)
+    if (typeof conn.downlink === 'number' && conn.downlink > 0 && conn.downlink <= 0.4) return true;
+    if (typeof conn.rtt === 'number' && conn.rtt >= 1800) return true;
   }
+
+  // Under normal network (4G, 5G, Wi-Fi, broadband), strictly returns false to never interfere with motion speed
   return false;
 };
 
