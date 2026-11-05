@@ -61,6 +61,33 @@ export interface IntercomHeroProps {
   speed?: number;
 }
 
+// Helper to detect if user is on a low/slow network connection
+const checkIsLowNetwork = (): boolean => {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
+  if ('onLine' in navigator && !navigator.onLine) return true;
+  const nav = navigator as any;
+  const conn = nav.connection || nav.mozConnection || nav.webkitConnection;
+  if (conn) {
+    if (conn.saveData === true) return true;
+    const type = conn.effectiveType;
+    if (type === 'slow-2g' || type === '2g' || type === '3g') return true;
+    if (typeof conn.downlink === 'number' && conn.downlink > 0 && conn.downlink < 1.5) return true;
+    if (typeof conn.rtt === 'number' && conn.rtt > 500) return true;
+  }
+  try {
+    const navEntries = performance.getEntriesByType('navigation');
+    if (navEntries && navEntries.length > 0) {
+      const entry = navEntries[0] as PerformanceNavigationTiming;
+      const ttfb = entry.responseStart - entry.requestStart;
+      const duration = entry.responseEnd - entry.fetchStart;
+      if (ttfb > 1200 || duration > 2500) return true;
+    }
+  } catch {
+    // Ignore performance API errors if unsupported
+  }
+  return false;
+};
+
 const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPEED }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const leftCardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -76,6 +103,7 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
   const lastDragTimeRef = useRef<number>(0);
   const lastDragXRef = useRef<number>(0);
   const isHoveredRef = useRef<boolean>(false);
+  const isLowNetworkRef = useRef<boolean>(false);
 
   const [promptValue, setPromptValue] = useState('');
 
@@ -99,12 +127,12 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
     // halfW controls the curvature radius: on mobile it scales proportionally to mobile viewport half-width
     const halfW = isMobile ? Math.max(containerWidth / 2, 175) : Math.max(containerWidth / 2, 400);
 
-    // Inertia & Auto-scroll update
+    // Inertia & Auto-scroll update: when network is low, do not advance motion (display statically)
     if (!isDraggingRef.current) {
       if (Math.abs(velocityRef.current) > 0.05) {
         offsetRef.current += velocityRef.current;
         velocityRef.current *= 0.95; // Friction decay
-      } else {
+      } else if (!isLowNetworkRef.current) {
         // Continuous outward marquee flow powered by speed parameter
         const currentSpeed = speedRef.current;
         const baseSpeed = (isHoveredRef.current ? 0.45 : 1.1) * currentSpeed;
@@ -208,13 +236,50 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
       card.style.opacity = `${opacity}`;
     }
 
-    animFrameRef.current = requestAnimationFrame(updateCardTransforms);
+    // On low network, keep cards displayed statically without continuous looping unless interacting
+    if (!isLowNetworkRef.current || isDraggingRef.current || Math.abs(velocityRef.current) > 0.05) {
+      animFrameRef.current = requestAnimationFrame(updateCardTransforms);
+    }
   }, []);
 
   useEffect(() => {
+    isLowNetworkRef.current = checkIsLowNetwork();
     animFrameRef.current = requestAnimationFrame(updateCardTransforms);
+
+    const updateNetworkStatus = () => {
+      const wasLow = isLowNetworkRef.current;
+      const isLow = checkIsLowNetwork();
+      isLowNetworkRef.current = isLow;
+
+      // Resume motion if network condition improves from low to normal
+      if (wasLow && !isLow) {
+        if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+        animFrameRef.current = requestAnimationFrame(updateCardTransforms);
+      }
+    };
+
+    const handleResize = () => {
+      updateCardTransforms();
+    };
+
+    const nav = typeof navigator !== 'undefined' ? (navigator as any) : null;
+    const conn = nav ? nav.connection || nav.mozConnection || nav.webkitConnection : null;
+
+    if (conn && typeof conn.addEventListener === 'function') {
+      conn.addEventListener('change', updateNetworkStatus);
+    }
+    window.addEventListener('online', updateNetworkStatus);
+    window.addEventListener('offline', updateNetworkStatus);
+    window.addEventListener('resize', handleResize);
+
     return () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      if (conn && typeof conn.removeEventListener === 'function') {
+        conn.removeEventListener('change', updateNetworkStatus);
+      }
+      window.removeEventListener('online', updateNetworkStatus);
+      window.removeEventListener('offline', updateNetworkStatus);
+      window.removeEventListener('resize', handleResize);
     };
   }, [updateCardTransforms]);
 
@@ -229,6 +294,8 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPE
     if (containerRef.current) {
       containerRef.current.style.cursor = 'grabbing';
     }
+    if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+    animFrameRef.current = requestAnimationFrame(updateCardTransforms);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
