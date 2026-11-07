@@ -28,13 +28,53 @@ const organizationSchema = {
   ],
 };
 
-interface TeamMember {
+export interface ImageTransformConfig {
+  /** Horizontal shift in pixels or CSS unit (e.g. 0, 10, -5, '10px', '5%') */
+  x?: number | string;
+  /** Vertical shift in pixels or CSS unit (e.g. 0, 10, -10, '15px') */
+  y?: number | string;
+  /** Zoom/scale multiplier (e.g. 1.0 = 100%, 1.1 = 110%, 0.95 = 95%) */
+  scale?: number | string;
+  /** Object-fit mode: 'cover' (fill card, crop overflow) or 'contain' (display 100% full image without cropping) */
+  fit?: 'cover' | 'contain';
+  /** CSS object-position (e.g. 'top center', 'bottom center', 'center') */
+  position?: string;
+}
+
+export interface TeamMember {
   role: string;
   name: string;
   image: string;
   bio: string;
   fullBio: string;
+  /** Desktop image transform parameters (viewport > 768px) */
+  desktop?: ImageTransformConfig;
+  /** Mobile image transform parameters (viewport <= 768px) */
+  mobile?: ImageTransformConfig;
+  /** Flat fallback aliases for quick edits */
+  desktopX?: number | string;
+  desktopY?: number | string;
+  desktopScale?: number | string;
+  mobileX?: number | string;
+  mobileY?: number | string;
+  mobileScale?: number | string;
+  fit?: 'cover' | 'contain';
+  position?: string;
 }
+
+const toCssUnit = (val: number | string | undefined, defaultVal = '0px'): string => {
+  if (val === undefined || val === null || val === '') return defaultVal;
+  if (typeof val === 'number') return `${val}px`;
+  const s = String(val).trim();
+  if (!s) return defaultVal;
+  if (/^-?\d+(\.\d+)?$/.test(s)) return `${s}px`;
+  return s;
+};
+
+const toCssScale = (val: number | string | undefined, defaultVal: number | string = 1): number | string => {
+  if (val === undefined || val === null || val === '') return defaultVal;
+  return val;
+};
 
 const team: TeamMember[] = [
   {
@@ -44,6 +84,9 @@ const team: TeamMember[] = [
     bio: 'Balakumaran stands as the architectural backbone of AI systems at OUANTUM, resolving complex non-destructive testing physics, sensor telemetry, and deterministic consensus algorithms.',
     fullBio:
       'Balakumaran founded Cybercom and Etherence before conceptualizing OUANTUM as the unified intelligence platform for civil infrastructure. Combining deep expertise in hardware-level signal acquisition, non-destructive testing physics, and deterministic consensus mathematics, he leads the architecture of the OX1 operating system. Under his technical leadership, OUANTUM codified Indian and international civil structural codes into programmatic, zero-trust verification engines that eliminate contractor disputes across major public infrastructure corridors.',
+    // Leadership card photo framing parameters
+    desktop: { x: 0, y: 0, scale: 1.0 },
+    mobile: { x: 0, y: 0, scale: 1.0 },
   },
   {
     role: 'Chief Executive Officer & Co-founder',
@@ -52,6 +95,9 @@ const team: TeamMember[] = [
     bio: 'Rahul leads the commercial and strategic direction of OUANTUM, pioneering deterministic AI deployment across national highway corridors, metro viaducts, and capital megaprojects with guaranteed same-day delivery.',
     fullBio:
       'Rahul spearheads OUANTUM’s enterprise expansion, go-to-market execution, and strategic alliances with national infrastructure authorities, premier EPC concessionaires, and Third-Party Quality Monitoring (TPQM) agencies. Dedicated to eradicating subjective test logs and fraudulent quality assertions in public works, Rahul has scaled OUANTUM’s field footprint across more than 140 highway and viaduct packages nationwide, guaranteeing deterministic same-day audit turnaround.',
+    // Leadership card photo framing parameters
+    desktop: { x: 0, y: 0, scale: 1.0 },
+    mobile: { x: 0, y: 0, scale: 1.0 },
   },
   {
     role: 'Chief Technology Officer',
@@ -60,6 +106,9 @@ const team: TeamMember[] = [
     bio: 'Guru Prasanth architects deep-tech infrastructure, computer vision pipelines, and multi-model consensus verification algorithms, translating IS 456 and IS 13311 into high-throughput deterministic code.',
     fullBio:
       'Guru Prasanth leads the deep-tech engineering and AI research organization at OUANTUM. He architects the multi-model consensus verification pipeline, acoustic wave inversion algorithms, and computer vision crack characterization engines. He oversees the real-time embedded systems operating on the OX1 edge hardware, ensuring sub-second inference latency directly on active construction sites without requiring persistent cloud connectivity.',
+    // Leadership card photo framing parameters
+    desktop: { x: 0, y: 0, scale: 1.0 },
+    mobile: { x: 0, y: 0, scale: 1.0 },
   },
   {
     role: 'Chief Financial Officer',
@@ -68,6 +117,9 @@ const team: TeamMember[] = [
     bio: 'Founder & CEO of Zapsters. Sabari qualifies institutional capital, bridges EPC client requirements with our capability stack, and oversees platform capitalization for rapid national rollout.',
     fullBio:
       'Sabari Raja brings extensive entrepreneurial experience as the Founder & CEO of Zapsters. At OUANTUM, Sabari directs fiscal architecture, institutional capital allocation, and enterprise underwriting for multi-crore infrastructure audit agreements. His structured financial models and deployment frameworks ensure seamless operational scalability as OUANTUM accelerates nationwide corridor adoption.',
+    // Leadership card photo framing parameters
+    desktop: { x: 0, y: 0, scale: 1.0 },
+    mobile: { x: 0, y: 0, scale: 1.0 },
   },
   {
     role: 'Vice President, Operational Strategy',
@@ -76,6 +128,9 @@ const team: TeamMember[] = [
     bio: 'Raghunandhan oversees operational strategy, government compliance, and municipal enterprise initiatives, ensuring every automated audit stands up to strict scrutiny from government bodies and TPQM agencies.',
     fullBio:
       'Raghunandhan directs operational deployment frameworks, government compliance audits, and field engineering protocol compliance across state highway departments, municipal corporations, and national EPC sites. With deep knowledge of public procurement workflows and TPQM audit guidelines, he ensures that every cryptographic audit report generated by OUANTUM stands up to institutional and legal cross-examination.',
+    // Leadership card photo framing parameters
+    desktop: { x: 0, y: 0, scale: 1.0 },
+    mobile: { x: 0, y: 0, scale: 1.0 },
   },
   {
     role: 'Sales Head',
@@ -84,6 +139,9 @@ const team: TeamMember[] = [
     bio: 'Saravanan leads enterprise sales, client partnerships, and commercial expansion at OUANTUM, scaling automated QA/QC and structural audit deployment across national infrastructure developers.',
     fullBio:
       'Saravanan spearheads commercial expansion, client acquisition, and institutional sales across public and private infrastructure sectors. Driving the adoption of OUANTUM’s OX1 platform among concessionaires, EPC contractors, and state authorities, he structures enterprise partnerships that deliver automated, tamper-proof quality compliance and significant lifecycle savings across highway, metro, and bridge corridors.',
+    // Leadership card photo framing parameters (full image display without cropping)
+    desktop: { x: 0, y: 0, scale: 1.0, fit: 'contain', position: 'bottom center' },
+    mobile: { x: 0, y: 0, scale: 1.0, fit: 'contain', position: 'bottom center' },
   },
 ];
 
@@ -220,7 +278,7 @@ const About: React.FC = () => {
           borderBottom: 'none',
         }}
       >
-        
+
         {/* Hero Central Content (Headline, Subtitle, Buttons) positioned cleanly in front */}
         <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2, textAlign: 'center' }}>
           {/* Iconic Headline */}
@@ -357,7 +415,7 @@ const About: React.FC = () => {
         </div>
       </section>
 
-            {/* =========================================================================
+      {/* =========================================================================
           2. OUR VISION SECTION (White Background, Card Background in Cream Shade)
           ========================================================================= */}
       <section
@@ -537,6 +595,33 @@ const About: React.FC = () => {
           </div>
 
           {/* Leaders Grid (Matching Fin.ai Reference Image Layout) */}
+          <style>{`
+            .leader-img-wrapper {
+              --leader-curr-x: var(--leader-x-desk, 0px);
+              --leader-curr-y: var(--leader-y-desk, 0px);
+              --leader-curr-scale: var(--leader-scale-desk, 1);
+              --leader-curr-fit: var(--leader-fit-desk, cover);
+              --leader-curr-pos: var(--leader-pos-desk, top center);
+            }
+            .leader-card-portrait {
+              width: 100%;
+              height: 100%;
+              object-fit: var(--leader-curr-fit, cover) !important;
+              object-position: var(--leader-curr-pos, top center) !important;
+              transform: translate(var(--leader-curr-x), var(--leader-curr-y)) scale(var(--leader-curr-scale));
+              transform-origin: var(--leader-curr-pos, top center);
+              transition: transform 0.25s ease-out;
+            }
+            @media (max-width: 768px) {
+              .leader-img-wrapper {
+                --leader-curr-x: var(--leader-x-mob, var(--leader-x-desk, 0px));
+                --leader-curr-y: var(--leader-y-mob, var(--leader-y-desk, 0px));
+                --leader-curr-scale: var(--leader-scale-mob, var(--leader-scale-desk, 1));
+                --leader-curr-fit: var(--leader-fit-mob, var(--leader-fit-desk, cover));
+                --leader-curr-pos: var(--leader-pos-mob, var(--leader-pos-desk, top center));
+              }
+            }
+          `}</style>
           <div
             style={{
               display: 'grid',
@@ -544,120 +629,146 @@ const About: React.FC = () => {
               gap: '36px 28px',
             }}
           >
-            {team.map((member, i) => (
-              <div
-                key={i}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  background: 'transparent',
-                }}
-              >
-                {/* Rectangular Image Box in Given Color Shade, Sharp Corners, No Margin Lines Inside */}
+            {team.map((member, i) => {
+              const deskX = toCssUnit(member.desktop?.x ?? member.desktopX, '0px');
+              const deskY = toCssUnit(member.desktop?.y ?? member.desktopY, '0px');
+              const deskScale = toCssScale(member.desktop?.scale ?? member.desktopScale, 1);
+              const deskFit = member.desktop?.fit ?? member.fit ?? 'cover';
+              const deskPos = member.desktop?.position ?? member.position ?? 'top center';
+
+              const mobX = toCssUnit(member.mobile?.x ?? member.mobileX ?? member.desktop?.x ?? member.desktopX, deskX);
+              const mobY = toCssUnit(member.mobile?.y ?? member.mobileY ?? member.desktop?.y ?? member.desktopY, deskY);
+              const mobScale = toCssScale(member.mobile?.scale ?? member.mobileScale ?? member.desktop?.scale ?? member.desktopScale, deskScale);
+              const mobFit = member.mobile?.fit ?? member.fit ?? member.desktop?.fit ?? deskFit;
+              const mobPos = member.mobile?.position ?? member.position ?? member.desktop?.position ?? deskPos;
+
+              return (
                 <div
+                  key={i}
                   style={{
-                    width: '100%',
-                    height: '310px',
-                    background: '#eae6dc',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    borderRadius: 0,
-                    marginBottom: '18px',
                     display: 'flex',
-                    alignItems: 'flex-end',
-                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    background: 'transparent',
                   }}
                 >
-                  {/* Portrait photo */}
-                  <img
-                    src={member.image}
-                    alt={member.name}
+                  {/* Rectangular Image Box in Given Color Shade, Sharp Corners, No Margin Lines Inside */}
+                  <div
+                    className="leader-img-wrapper"
                     style={{
                       width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'top center',
-                      mixBlendMode: 'multiply',
-                      filter: 'grayscale(100%) contrast(105%)',
-                      display: 'block',
-                    }}
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                </div>
-
-                {/* Content Details Below Image Box (Matching Reference Screenshot) */}
-                <div>
-                  <h3
-                    className="about-card-title"
-                    style={{
-                      fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                      fontSize: '1.5rem',
-                      fontWeight: 400,
-                      color: '#111111',
-                      letterSpacing: '-0.02em',
-                      margin: '0 0 4px 0',
-                      lineHeight: 1.2,
+                      height: '310px',
+                      background: '#eae6dc',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      borderRadius: 0,
+                      marginBottom: '18px',
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      justifyContent: 'center',
+                      ['--leader-x-desk' as string]: deskX,
+                      ['--leader-y-desk' as string]: deskY,
+                      ['--leader-scale-desk' as string]: String(deskScale),
+                      ['--leader-fit-desk' as string]: deskFit,
+                      ['--leader-pos-desk' as string]: deskPos,
+                      ['--leader-x-mob' as string]: mobX,
+                      ['--leader-y-mob' as string]: mobY,
+                      ['--leader-scale-mob' as string]: String(mobScale),
+                      ['--leader-fit-mob' as string]: mobFit,
+                      ['--leader-pos-mob' as string]: mobPos,
                     }}
                   >
-                    {member.name}
-                  </h3>
-                  <div
-                    style={{
-                      fontFamily: 'var(--ic-font-sans)',
-                      fontSize: '0.8rem',
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.04em',
-                      color: '#6a7282',
-                      marginBottom: '14px',
-                    }}
-                  >
-                    {member.role}
+                    {/* Portrait photo */}
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="leader-card-portrait"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: deskFit as any,
+                        objectPosition: deskPos,
+                        mixBlendMode: 'multiply',
+                        filter: 'grayscale(100%) contrast(105%)',
+                        display: 'block',
+                      }}
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      }}
+                    />
                   </div>
 
-                  <p
-                    style={{
-                      fontFamily: 'var(--ic-font-sans)',
-                      fontSize: '0.9rem',
-                      lineHeight: 1.6,
-                      color: '#515151',
-                      margin: '0 0 16px 0',
-                    }}
-                  >
-                    {member.bio}
-                  </p>
-
-                  {/* Underlined 'More' trigger button */}
+                  {/* Content Details Below Image Box (Matching Reference Screenshot) */}
                   <div>
-                    <button
-                      id={`leader-more-${i}`}
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedLeader(member);
-                      }}
+                    <h3
+                      className="about-card-title"
                       style={{
-                        background: 'none',
-                        border: 'none',
-                        padding: '4px 0',
-                        fontFamily: 'var(--ic-font-sans)',
-                        fontSize: '0.925rem',
-                        fontWeight: 500,
+                        fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                        fontSize: '1.5rem',
+                        fontWeight: 400,
                         color: '#111111',
-                        textDecoration: 'underline',
-                        textUnderlineOffset: '3px',
-                        cursor: 'pointer',
-                        display: 'inline-block',
+                        letterSpacing: '-0.02em',
+                        margin: '0 0 4px 0',
+                        lineHeight: 1.2,
                       }}
                     >
-                      More
-                    </button>
+                      {member.name}
+                    </h3>
+                    <div
+                      style={{
+                        fontFamily: 'var(--ic-font-sans)',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                        color: '#6a7282',
+                        marginBottom: '14px',
+                      }}
+                    >
+                      {member.role}
+                    </div>
+
+                    <p
+                      style={{
+                        fontFamily: 'var(--ic-font-sans)',
+                        fontSize: '0.9rem',
+                        lineHeight: 1.6,
+                        color: '#515151',
+                        margin: '0 0 16px 0',
+                      }}
+                    >
+                      {member.bio}
+                    </p>
+
+                    {/* Underlined 'More' trigger button */}
+                    <div>
+                      <button
+                        id={`leader-more-${i}`}
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedLeader(member);
+                        }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          padding: '4px 0',
+                          fontFamily: 'var(--ic-font-sans)',
+                          fontSize: '0.925rem',
+                          fontWeight: 500,
+                          color: '#111111',
+                          textDecoration: 'underline',
+                          textUnderlineOffset: '3px',
+                          cursor: 'pointer',
+                          display: 'inline-block',
+                        }}
+                      >
+                        More
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
