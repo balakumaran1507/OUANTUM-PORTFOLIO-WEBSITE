@@ -34,26 +34,50 @@ const Hero: React.FC = () => {
   const heroImageX = isMobile ? heroImageXMobile : heroImageXDesktop;
   const heroImageY = isMobile ? heroImageYMobile : heroImageYDesktop;
 
-  // Adjust direct contact logo configurations (background, scale, X, and Y positions)
+  // Adjust direct contact logo configurations (background, scale, X, and Y positions for desktop & mobile)
   const whatsappLogoBg = 'transparent';
-  const whatsappLogoScale = 1.0;
-  const whatsappLogoX = 0; // in pixels
-  const whatsappLogoY = 0; // in pixels
+  const whatsappLogoScaleDesktop = 1.0;
+  const whatsappLogoXDesktop = 0; // in pixels
+  const whatsappLogoYDesktop = 0; // in pixels
+  const whatsappLogoScaleMobile = 1.0;
+  const whatsappLogoXMobile = 0; // in pixels
+  const whatsappLogoYMobile = 0; // in pixels
+  const whatsappLogoScale = isMobile ? whatsappLogoScaleMobile : whatsappLogoScaleDesktop;
+  const whatsappLogoX = isMobile ? whatsappLogoXMobile : whatsappLogoXDesktop;
+  const whatsappLogoY = isMobile ? whatsappLogoYMobile : whatsappLogoYDesktop;
 
   const callLogoBg = 'transparent';
-  const callLogoScale = 1.0;
-  const callLogoX = 0; // in pixels
-  const callLogoY = 0; // in pixels
+  const callLogoScaleDesktop = 1.0;
+  const callLogoXDesktop = 0; // in pixels
+  const callLogoYDesktop = 0; // in pixels
+  const callLogoScaleMobile = 1.0;
+  const callLogoXMobile = 0; // in pixels
+  const callLogoYMobile = 0; // in pixels
+  const callLogoScale = isMobile ? callLogoScaleMobile : callLogoScaleDesktop;
+  const callLogoX = isMobile ? callLogoXMobile : callLogoXDesktop;
+  const callLogoY = isMobile ? callLogoYMobile : callLogoYDesktop;
 
   const emailLogoBg = 'transparent';
-  const emailLogoScale = 1.0;
-  const emailLogoX = 0; // in pixels
-  const emailLogoY = 0; // in pixels
+  const emailLogoScaleDesktop = 1.0;
+  const emailLogoXDesktop = 0; // in pixels
+  const emailLogoYDesktop = 0; // in pixels
+  const emailLogoScaleMobile = 1.0;
+  const emailLogoXMobile = 0; // in pixels
+  const emailLogoYMobile = 0; // in pixels
+  const emailLogoScale = isMobile ? emailLogoScaleMobile : emailLogoScaleDesktop;
+  const emailLogoX = isMobile ? emailLogoXMobile : emailLogoXDesktop;
+  const emailLogoY = isMobile ? emailLogoYMobile : emailLogoYDesktop;
 
   const linkedinLogoBg = 'transparent';
-  const linkedinLogoScale = 1.0;
-  const linkedinLogoX = 0; // in pixels
-  const linkedinLogoY = 0; // in pixels
+  const linkedinLogoScaleDesktop = 1.0;
+  const linkedinLogoXDesktop = 0; // in pixels
+  const linkedinLogoYDesktop = 0; // in pixels
+  const linkedinLogoScaleMobile = 1.0;
+  const linkedinLogoXMobile = 0; // in pixels
+  const linkedinLogoYMobile = 0; // in pixels
+  const linkedinLogoScale = isMobile ? linkedinLogoScaleMobile : linkedinLogoScaleDesktop;
+  const linkedinLogoX = isMobile ? linkedinLogoXMobile : linkedinLogoXDesktop;
+  const linkedinLogoY = isMobile ? linkedinLogoYMobile : linkedinLogoYDesktop;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
