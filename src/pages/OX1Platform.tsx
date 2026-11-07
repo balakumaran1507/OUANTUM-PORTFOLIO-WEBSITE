@@ -1238,11 +1238,11 @@ const OX1Platform: React.FC = () => {
       laptopYMobile: 0,
       mascot: '/mascot.svg',
       mascotScale: 0.85,
-      mascotX: -100,
+      mascotX: -80,
       mascotY: 65,
       mascotRotate: -30,
-      mascotHoverScale: 0.90,
-      mascotHoverX: -145,
+      mascotHoverScale: 0.70,
+      mascotHoverX: -140,
       mascotHoverY: 65,
       mascotHoverRotate: -30,
       mascotScaleMobile: 0.65,
@@ -1250,7 +1250,7 @@ const OX1Platform: React.FC = () => {
       mascotYMobile: 45,
       mascotRotateMobile: -30,
       mascotHoverScaleMobile: 0.65,
-      mascotHoverXMobile: -100,
+      mascotHoverXMobile: -155,
       mascotHoverYMobile: 45,
       mascotHoverRotateMobile: -30,
     },
@@ -1271,9 +1271,9 @@ const OX1Platform: React.FC = () => {
       mascotX: 0,
       mascotY: 45,
       mascotRotate: 0,
-      mascotHoverScale: 0.85,
+      mascotHoverScale: 0.70,
       mascotHoverX: 0,
-      mascotHoverY: -45,
+      mascotHoverY: -60,
       mascotHoverRotate: 0,
       mascotScaleMobile: 0.65,
       mascotXMobile: 0,
@@ -1281,7 +1281,7 @@ const OX1Platform: React.FC = () => {
       mascotRotateMobile: 0,
       mascotHoverScaleMobile: 0.65,
       mascotHoverXMobile: 0,
-      mascotHoverYMobile: -15,
+      mascotHoverYMobile: -95,
       mascotHoverRotateMobile: 0,
     },
     {
@@ -1301,7 +1301,7 @@ const OX1Platform: React.FC = () => {
       mascotX: 80,
       mascotY: 65,
       mascotRotate: 30,
-      mascotHoverScale: 0.85,
+      mascotHoverScale: 0.70,
       mascotHoverX: 140,
       mascotHoverY: 65,
       mascotHoverRotate: 30,
@@ -1310,7 +1310,7 @@ const OX1Platform: React.FC = () => {
       mascotYMobile: 45,
       mascotRotateMobile: 30,
       mascotHoverScaleMobile: 0.65,
-      mascotHoverXMobile: 95,
+      mascotHoverXMobile: 160,
       mascotHoverYMobile: 45,
       mascotHoverRotateMobile: 40,
     },
@@ -1372,7 +1372,8 @@ const OX1Platform: React.FC = () => {
       >
         {/* Confident Fin.ai Display Headline */}
         <h1
-          style={{ textAlign: 'center',
+          style={{
+            textAlign: 'center',
             fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
             fontSize: 'clamp(2.75rem, 6vw, 5.25rem)',
             fontWeight: 600,
@@ -1498,7 +1499,8 @@ const OX1Platform: React.FC = () => {
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
           <div style={{ maxWidth: '840px', margin: '0 auto 64px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', sans-serif",
                 fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
                 fontWeight: 600,
@@ -1714,7 +1716,8 @@ const OX1Platform: React.FC = () => {
           {/* Top Editorial Narrative (Like Image 2) */}
           <div style={{ maxWidth: '860px', margin: '0 auto 48px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
                 fontSize: 'clamp(2.3rem, 4.5vw, 3.8rem)',
                 fontWeight: 500,
@@ -1774,7 +1777,7 @@ const OX1Platform: React.FC = () => {
               );
             })}
 
-                      </div>
+          </div>
 
           {/* Bottom 4 Horizontal Interactive Navigation Tabs (Exact layout from Image 2) */}
           <div
@@ -1848,7 +1851,8 @@ const OX1Platform: React.FC = () => {
       >
         <div style={{ maxWidth: '860px', margin: '0 auto 60px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h2
-            style={{ textAlign: 'center',
+            style={{
+              textAlign: 'center',
               fontFamily: "'Saans', sans-serif",
               fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
               fontWeight: 600,
@@ -2126,7 +2130,8 @@ const OX1Platform: React.FC = () => {
           {/* Section Heading */}
           <div style={{ maxWidth: '820px', margin: '0 auto 72px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
                 fontSize: 'clamp(2.1rem, 4vw, 3.4rem)',
                 fontWeight: 600,
@@ -2154,61 +2159,69 @@ const OX1Platform: React.FC = () => {
                   display: 'grid',
                   gridTemplateColumns: isMobile ? '1fr' : 'minmax(280px, 330px) 1fr',
                   gap: isMobile ? '36px' : '64px',
-                  alignItems: 'start',
                   position: 'relative',
                 }}
               >
-                {/* Sticky Left Sidebar: Only 10 Module Titles, Indicator like before (solid active button with Arrow), no stroke effect, no divided lines */}
+                {/* Left Column Track: Stretches full height of right side content */}
                 <div
                   style={{
-                    position: isMobile ? 'relative' : 'sticky',
-                    top: isMobile ? '0' : '96px',
-                    zIndex: 10,
-                    backgroundColor: '#ffffff',
-                    alignSelf: 'start',
-                    display: 'flex',
-                    flexDirection: isMobile ? 'row' : 'column',
-                    gap: isMobile ? '8px' : '6px',
-                    overflowX: isMobile ? 'auto' : 'visible',
-                    whiteSpace: isMobile ? 'nowrap' : 'normal',
-                    padding: isMobile ? '8px 0' : '0',
+                    position: 'relative',
+                    height: isMobile ? 'auto' : '100%',
                   }}
                 >
-                  {CORE_MODULES.map((m) => {
-                    const isSelected = activeModuleId === m.id;
-                    return (
-                      <button
-                        key={m.id}
-                        onClick={() => handleSelectModule(m.id)}
-                        style={{
-                          width: isMobile ? 'auto' : '100%',
-                          flexShrink: 0,
-                          whiteSpace: 'nowrap',
-                          textAlign: 'left',
-                          padding: '13px 18px',
-                          border: 'none',
-                          borderRadius: '0px',
-                          backgroundColor: isSelected ? '#111111' : 'transparent',
-                          color: isSelected ? '#ffffff' : '#4a5565',
-                          fontWeight: isSelected ? 600 : 500,
-                          fontSize: '0.925rem',
-                          fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          transition: 'all 0.18s ease',
-                        }}
-                      >
-                        <span>
-                          {m.number}. {m.title}
-                        </span>
-                        {isSelected && (
-                          <ArrowRight size={15} color="#ffffff" style={{ flexShrink: 0, marginLeft: '10px' }} />
-                        )}
-                      </button>
-                    );
-                  })}
+                  {/* Sticky Left Sidebar: Stays fixed until the user scrolls till the end of the right side part */}
+                  <div
+                    style={{
+                      position: isMobile ? 'relative' : 'sticky',
+                      top: isMobile ? '0' : '100px',
+                      zIndex: 10,
+                      backgroundColor: '#ffffff',
+                      display: 'flex',
+                      flexDirection: isMobile ? 'row' : 'column',
+                      gap: isMobile ? '8px' : '6px',
+                      overflowX: isMobile ? 'auto' : 'visible',
+                      whiteSpace: isMobile ? 'nowrap' : 'normal',
+                      padding: isMobile ? '8px 0' : '0',
+                      maxHeight: isMobile ? 'none' : 'calc(100vh - 120px)',
+                      overflowY: isMobile ? 'visible' : 'auto',
+                    }}
+                  >
+                    {CORE_MODULES.map((m) => {
+                      const isSelected = activeModuleId === m.id;
+                      return (
+                        <button
+                          key={m.id}
+                          onClick={() => handleSelectModule(m.id)}
+                          style={{
+                            width: isMobile ? 'auto' : '100%',
+                            flexShrink: 0,
+                            whiteSpace: 'nowrap',
+                            textAlign: 'left',
+                            padding: '13px 18px',
+                            border: 'none',
+                            borderRadius: '0px',
+                            backgroundColor: isSelected ? '#111111' : 'transparent',
+                            color: isSelected ? '#ffffff' : '#4a5565',
+                            fontWeight: isSelected ? 600 : 500,
+                            fontSize: '0.925rem',
+                            fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            transition: 'all 0.18s ease',
+                          }}
+                        >
+                          <span>
+                            {m.number}. {m.title}
+                          </span>
+                          {isSelected && (
+                            <ArrowRight size={15} color="#ffffff" style={{ flexShrink: 0, marginLeft: '10px' }} />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
 
                 {/* Right Side: Rich Expanded Selected Module Content (Image on Top without Box, Substantial Content Below, Matching Card Styles) */}
@@ -2566,7 +2579,8 @@ const OX1Platform: React.FC = () => {
           {/* Section Heading */}
           <div style={{ maxWidth: '840px', margin: '0 auto 64px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', sans-serif",
                 fontSize: 'clamp(2.1rem, 4vw, 3.4rem)',
                 fontWeight: 600,
@@ -2589,75 +2603,84 @@ const OX1Platform: React.FC = () => {
               display: 'grid',
               gridTemplateColumns: isMobile ? '1fr' : 'minmax(260px, 310px) 1fr',
               gap: isMobile ? '32px' : '48px',
-              alignItems: 'start',
+              position: 'relative',
             }}
           >
-            {/* Left Column: Only Card Titles */}
+            {/* Left Column Track: Stretches full height of right side content */}
             <div
               style={{
-                position: isMobile ? 'relative' : 'sticky',
-                top: isMobile ? '0' : '96px',
-                display: 'flex',
-                flexDirection: isMobile ? 'row' : 'column',
-                gap: '8px',
-                overflowX: isMobile ? 'auto' : 'visible',
-                paddingBottom: isMobile ? '8px' : '0',
-                alignSelf: 'start',
+                position: 'relative',
+                height: isMobile ? 'auto' : '100%',
               }}
             >
-              {LIFECYCLE_STAGES.map((stg, idx) => {
-                const isSelected = activeLifecycleStage === idx;
-                return (
-                  <button
-                    key={stg.number}
-                    onClick={() => {
-                      setActiveLifecycleStage(idx);
-                      setLifecycleProgress(0);
-                    }}
-                    style={{
-                      width: isMobile ? 'auto' : '100%',
-                      flexShrink: 0,
-                      whiteSpace: 'nowrap',
-                      textAlign: 'left',
-                      padding: '13px 18px',
-                      border: 'none',
-                      borderRadius: '0px',
-                      backgroundColor: isSelected ? '#111111' : 'transparent',
-                      color: isSelected ? '#ffffff' : '#4a5565',
-                      fontWeight: isSelected ? 600 : 500,
-                      fontSize: '0.925rem',
-                      fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      transition: 'all 0.18s ease',
-                    }}
-                  >
-                    <span>
-                      {stg.number}. {stg.title}
-                    </span>
-                    {isSelected && (
-                      <ArrowRight size={15} color="#ffffff" style={{ flexShrink: 0, marginLeft: '10px' }} />
-                    )}
-                    {/* 10-second progressive line inside the active sidebar item */}
-                    {isSelected && (
-                      <div
-                        style={{
-                          position: 'absolute',
-                          bottom: 0,
-                          left: 0,
-                          height: '2px',
-                          backgroundColor: 'rgba(255, 255, 255, 0.75)',
-                          width: `${Math.min(100, Math.max(0, lifecycleProgress * 100))}%`,
-                        }}
-                      />
-                    )}
-                  </button>
-                );
-              })}
+              {/* Left Column: Only Card Titles */}
+              <div
+                style={{
+                  position: isMobile ? 'relative' : 'sticky',
+                  top: isMobile ? '0' : '100px',
+                  display: 'flex',
+                  flexDirection: isMobile ? 'row' : 'column',
+                  gap: '8px',
+                  overflowX: isMobile ? 'auto' : 'visible',
+                  paddingBottom: isMobile ? '8px' : '0',
+                  maxHeight: isMobile ? 'none' : 'calc(100vh - 120px)',
+                  overflowY: isMobile ? 'visible' : 'auto',
+                }}
+              >
+                {LIFECYCLE_STAGES.map((stg, idx) => {
+                  const isSelected = activeLifecycleStage === idx;
+                  return (
+                    <button
+                      key={stg.number}
+                      onClick={() => {
+                        setActiveLifecycleStage(idx);
+                        setLifecycleProgress(0);
+                      }}
+                      style={{
+                        width: isMobile ? 'auto' : '100%',
+                        flexShrink: 0,
+                        whiteSpace: 'nowrap',
+                        textAlign: 'left',
+                        padding: '13px 18px',
+                        border: 'none',
+                        borderRadius: '0px',
+                        backgroundColor: isSelected ? '#111111' : 'transparent',
+                        color: isSelected ? '#ffffff' : '#4a5565',
+                        fontWeight: isSelected ? 600 : 500,
+                        fontSize: '0.925rem',
+                        fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        transition: 'all 0.18s ease',
+                      }}
+                    >
+                      <span>
+                        {stg.number}. {stg.title}
+                      </span>
+                      {isSelected && (
+                        <ArrowRight size={15} color="#ffffff" style={{ flexShrink: 0, marginLeft: '10px' }} />
+                      )}
+                      {/* 10-second progressive line inside the active sidebar item */}
+                      {isSelected && (
+                        <div
+                          style={{
+                            position: 'absolute',
+                            bottom: 0,
+                            left: 0,
+                            height: '2px',
+                            backgroundColor: 'rgba(255, 255, 255, 0.75)',
+                            width: `${Math.min(100, Math.max(0, lifecycleProgress * 100))}%`,
+                          }}
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Right Column: Interactive Lifecycle Loop Diagram + Selected Stage Detail */}
@@ -2827,22 +2850,22 @@ const OX1Platform: React.FC = () => {
                                 stg.labelPos === 'right'
                                   ? stg.x + 28
                                   : stg.labelPos === 'left'
-                                  ? stg.x - 28
-                                  : stg.x
+                                    ? stg.x - 28
+                                    : stg.x
                               }
                               y={
                                 stg.labelPos === 'top'
                                   ? stg.y - 30
                                   : stg.labelPos === 'bottom'
-                                  ? stg.y + 36
-                                  : stg.y + 4
+                                    ? stg.y + 36
+                                    : stg.y + 4
                               }
                               textAnchor={
                                 stg.labelPos === 'right'
                                   ? 'start'
                                   : stg.labelPos === 'left'
-                                  ? 'end'
-                                  : 'middle'
+                                    ? 'end'
+                                    : 'middle'
                               }
                               fontSize="12.5"
                               fontWeight={isCurrentActive ? '700' : '600'}
@@ -2940,7 +2963,8 @@ const OX1Platform: React.FC = () => {
         <div style={{ maxWidth: '1440px', margin: '0 auto' }}>
           <div style={{ maxWidth: '820px', margin: '0 auto 64px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', sans-serif",
                 fontSize: 'clamp(2.1rem, 4vw, 3.4rem)',
                 fontWeight: 600,
@@ -3039,7 +3063,8 @@ const OX1Platform: React.FC = () => {
           {/* Top Editorial Narrative */}
           <div style={{ maxWidth: '860px', margin: '0 auto 48px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
                 fontSize: 'clamp(2.3rem, 4.5vw, 3.8rem)',
                 fontWeight: 600,
@@ -3186,7 +3211,8 @@ const OX1Platform: React.FC = () => {
         <div style={{ maxWidth: '1380px', margin: '0 auto' }}>
           <div style={{ maxWidth: '860px', margin: '0 auto 64px', textAlign: 'center' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', sans-serif",
                 fontSize: 'clamp(2.3rem, 4.2vw, 3.6rem)',
                 fontWeight: 600,
@@ -3549,7 +3575,8 @@ const OX1Platform: React.FC = () => {
         <div style={{ maxWidth: '1440px', margin: '0 auto', width: '100%' }}>
           <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '60px' }}>
             <h2
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', sans-serif",
                 fontSize: 'clamp(2.1rem, 4vw, 3.2rem)',
                 fontWeight: 600,
@@ -3672,7 +3699,8 @@ const OX1Platform: React.FC = () => {
           >
             <h2
               className="ox1-cta-headline why-cta-headline"
-              style={{ textAlign: 'center',
+              style={{
+                textAlign: 'center',
                 fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
                 fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)',
                 fontWeight: 600,
