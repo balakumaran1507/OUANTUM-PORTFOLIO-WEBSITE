@@ -3,6 +3,46 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
+import DualArchMarquee from '../components/why-choose/DualArchMarquee';
+
+// =========================================================================
+// HERO SECTION DUAL ARCH MARQUEE CONFIGURATION (DESKTOP)
+// Tune card scale, spacing/gap between cards, axis positions, and speed here:
+// =========================================================================
+export const DUAL_ARCH_HERO_PARAMS = {
+  /** Card Scale Multiplier: easily increase or decrease image card dimensions (1.0 = normal, 1.15 = +15%, 1.35 = +35%) */
+  cardScale: 1.15,
+  /** Base Card Width on Desktop (pixels) */
+  cardWidth: 92,
+  /** Base Card Height on Desktop (pixels) */
+  cardHeight: 92,
+
+  /** Card Spacing Multiplier: increase to widen the gap between cards along the arch (e.g. 1.35 = wide gap, 1.7 = extra wide gap) */
+  cardSpacing: 1.2,
+  /** Additional angular gap between cards in degrees (default: 0) */
+  cardGap: 1,
+
+  /** Horizontal (X-Axis) Offset: positive moves arches inward toward center, negative moves outward */
+  axisXOffset: -60,
+  /** Vertical (Y-Axis) Offset: positive shifts arches downward, negative shifts upward */
+  axisYOffset: 0,
+
+  /** Independent Left Arch horizontal offset (pixels) */
+  leftArchXOffset: 0,
+  /** Independent Right Arch horizontal offset (pixels) */
+  rightArchXOffset: 0,
+  /** Independent Left Arch vertical offset (pixels) */
+  leftArchYOffset: 0,
+  /** Independent Right Arch vertical offset (pixels) */
+  rightArchYOffset: 0,
+
+  /** Inward reach / bow depth of arch apex from screen edge in pixels (default: 285) */
+  inwardReach: 285,
+  /** Speed of upward infinite marquee motion */
+  speed: 0.38,
+  /** Completely hide and disable the marquee in mobile view (< 768px) */
+  hideOnMobile: true,
+};
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -268,7 +308,11 @@ const WhyChooseOuantum: React.FC = () => {
           margin-left: auto !important;
           margin-right: auto !important;
         }
+        html body .why-ouantum-page .why-hero-section .why-hero-title,
+        html body .why-hero-title,
+        .why-ouantum-page h1,
         .why-ouantum-page h2,
+        .why-ouantum-page .why-hero-title,
         .why-ouantum-page .why-section-title {
           text-align: center !important;
           margin-left: auto !important;
@@ -296,122 +340,176 @@ const WhyChooseOuantum: React.FC = () => {
           font-weight: 500 !important;
           text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6) !important;
         }
+        @media (max-width: 767px) {
+          .dual-arch-marquee-container {
+            display: none !important;
+          }
+          .why-hero-center-content {
+            margin: 0 auto !important;
+            text-align: center !important;
+            align-items: center !important;
+            width: 100% !important;
+          }
+          html body .why-hero-title,
+          .why-hero-title {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 100% !important;
+            display: block !important;
+          }
+        }
       `}</style>
 
-      {/* ── 1. Hero Section (2-Column Layout) ── */}
+      {/* ── 1. Hero Section (Framed by Left and Right Upward Moving Arch Marquees) ── */}
       <section
+        className="why-section why-hero-section"
         style={{
-          padding: 'clamp(48px, 6vw, 76px) 16px 40px',
+          position: 'relative',
+          minHeight: 'clamp(580px, 82vh, 760px)',
+          padding: 'clamp(64px, 8vw, 96px) 24px 64px',
           background: '#ffffff',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          borderBottom: 'none',
         }}
       >
+        {/* Left and Right Arch Marquees with customizable gap, scale, axis positions, and mobile hiding */}
+        <DualArchMarquee {...DUAL_ARCH_HERO_PARAMS} />
+
+        {/* Central Content Cleanly Nestled Between the Two Arches */}
         <div
+          className="why-hero-center-content"
           style={{
-            maxWidth: '1440px',
+            maxWidth: '740px',
             margin: '0 auto',
             width: '100%',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '40px',
+            position: 'relative',
+            zIndex: 10,
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
+            pointerEvents: 'auto',
           }}
         >
-          <div style={{ textAlign: 'left' }}>
-            <h1
-              style={{
-                fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)',
-                fontWeight: 400,
-                lineHeight: 1.12,
-                color: '#111111',
-                letterSpacing: '-0.025em',
-                margin: '0 0 16px 0',
-                textAlign: 'left',
-              }}
-            >
-              Why Premier Infrastructure Teams Choose OUANTUM
-            </h1>
-
-            <p
-              style={{
-                fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
-                lineHeight: 1.6,
-                color: '#4b5563',
-                margin: '0 0 28px 0',
-                textAlign: 'left',
-              }}
-            >
-              Civil infrastructure quality assurance is not a spreadsheet problem — it is a multi-variable contextual physics challenge. Premier EPC concessionaires, consultants, and TPQM authorities trust OUANTUM to eliminate test tampering, payment disputes, and 28-day curing delays.
-            </p>
-
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '12px',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-              }}
-            >
-              <Link
-                to="/contact?subject=Technical%20Audit%20Request"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 26px',
-                  borderRadius: 0,
-                  background: '#111111',
-                  color: '#ffffff',
-                  fontSize: '0.925rem',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                }}
-              >
-                Schedule Technical Audit
-                <ArrowRight size={16} />
-              </Link>
-              <Link
-                to="/products/ox1"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '13px 24px',
-                  borderRadius: 0,
-                  background: '#ffffff',
-                  color: '#111111',
-                  border: '1px solid #111111',
-                  fontSize: '0.925rem',
-                  fontWeight: 600,
-                  textDecoration: 'none',
-                }}
-              >
-                Meet OX1 Platform
-              </Link>
-            </div>
-          </div>
-
-          {/* Hero Visual Card */}
-          <div
+          <span
+            className="why-eyebrow"
             style={{
-              position: 'relative',
-              borderRadius: 0,
-              overflow: 'hidden',
-              background: '#f4f3ec',
-              aspectRatio: '16 / 10',
-              border: '1px solid rgba(0, 0, 0, 0.08)',
+              fontSize: '0.8125rem',
+              fontFamily: 'var(--ic-font-mono)',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: '#6a7282',
+              display: 'inline-block',
+              margin: '0 auto 16px',
             }}
           >
-            <img
-              src="/assets/images/buildings/building-7.png"
-              alt="Why Choose OUANTUM Civil Infrastructure Intelligence Platform"
+            Deterministic Quality Assurance Platform
+          </span>
+
+          <h1
+            className="why-hero-title"
+            style={{
+              fontSize: 'clamp(2.1rem, 4.2vw, 3.5rem)',
+              fontWeight: 400,
+              lineHeight: 1.12,
+              color: '#111111',
+              letterSpacing: '-0.025em',
+              margin: '0 auto 18px',
+              textAlign: 'center',
+              width: '100%',
+              display: 'block',
+              fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            }}
+          >
+            Why Premier Infrastructure Teams Choose OUANTUM
+          </h1>
+
+          <p
+            className="why-hero-subtext"
+            style={{
+              fontSize: 'clamp(1rem, 1.25vw, 1.125rem)',
+              lineHeight: 1.65,
+              color: '#4b5563',
+              margin: '0 auto 32px',
+              textAlign: 'center',
+              maxWidth: '660px',
+            }}
+          >
+            Civil infrastructure quality assurance is not a spreadsheet problem — it is a multi-variable contextual physics challenge. Premier EPC concessionaires, consultants, and TPQM authorities trust OUANTUM to eliminate test tampering, payment disputes, and 28-day curing delays.
+          </p>
+
+          {/* Action CTAs */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '12px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '28px',
+            }}
+          >
+            <Link
+              to="/contact?subject=Technical%20Audit%20Request"
               style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                display: 'block',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '14px 28px',
+                borderRadius: '0px',
+                background: '#111111',
+                color: '#ffffff',
+                fontSize: '0.925rem',
+                fontWeight: 600,
+                textDecoration: 'none',
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.12)',
               }}
-            />
+            >
+              Schedule Technical Audit
+              <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/products/ox1"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '14px 26px',
+                borderRadius: '0px',
+                background: '#ffffff',
+                color: '#111111',
+                border: '1px solid #111111',
+                fontSize: '0.925rem',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              Meet OX1 Platform
+            </Link>
+          </div>
+
+          {/* Key Assurance Tags */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '8px 20px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '0.8125rem',
+              color: '#6a7282',
+              fontFamily: 'var(--ic-font-mono)',
+            }}
+          >
+            <span>• 100% Codified IS Standards</span>
+            <span>• Sub-4-Hour Same-Day Verification</span>
+            <span>• Cryptographic Audit Defense</span>
           </div>
         </div>
       </section>

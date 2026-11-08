@@ -48,7 +48,7 @@ tspan {
 
 
 /* Global Titles: Saans Font matching Intercom text-heading-3 */
-h1,
+h1:not(.ox1-hero-main-title):not(.ox1-hero-center-content-desktop h1),
 h2,
 h3,
 h4,
@@ -73,6 +73,25 @@ h6,
   -webkit-text-fill-color: #111111 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* OX1 HERO MAIN TITLE — MANDATORY CENTER ALIGNMENT & ZERO WHITE STROKE */
+.ox1-hero-main-title,
+.ox1-hero-main-title span,
+.ox1-platform-page #overview h1,
+.ox1-platform-page #overview h1 span,
+.ox1-hero-center-content-desktop h1,
+.ox1-hero-center-content-desktop h1 span {
+  text-align: center !important;
+  text-align-last: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  -webkit-text-fill-color: #111111 !important;
+  paint-order: normal !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .careers-cta-headline,
@@ -5276,9 +5295,9 @@ section {
 .subpage-wrapper h1:not(.ic-hero-headline),
 .subpage-wrapper h2:not(.ic-hero-headline),
 .subpage-wrapper h3,
-:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section) h1,
-:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section) h2,
-:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section) h3,
+:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section):not(.why-hero-section) h1,
+:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section):not(.why-hero-section) h2,
+:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section):not(.why-hero-section) h3,
 .section-header h1,
 .section-header h2,
 .section-header h3,
@@ -5668,8 +5687,15 @@ section,
 .ox1-platform-page section h1,
 .ox1-platform-page section h2,
 .ox1-platform-page #overview h1,
+.ox1-platform-page .ox1-hero-main-title,
+.ox1-hero-main-title,
 .ox1-section-title {
   text-align: center !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  text-stroke: 0px transparent !important;
+  -webkit-text-fill-color: #111111 !important;
+  paint-order: normal !important;
 }
 
 /* ==========================================================================

@@ -52,25 +52,6 @@ const RIGHT_STREAM_CARDS = [...RIGHT_BASE, ...RIGHT_BASE];
 // Configurable Speed Parameter: Increase this number to speed up the entire marquee
 export const DEFAULT_MARQUEE_SPEED = 1.8;
 
-// =========================================================================
-// HOMEPAGE HERO SECTION CYLINDER MARQUEE PARAMETERS (X, Y Axis & Scale)
-// Adjust these parameters directly to shift and scale for Desktop and Mobile
-// =========================================================================
-export const HERO_MARQUEE_CONFIG = {
-  // Desktop parameters (screen width >= 768px)
-  desktop: {
-    x: 0,        // X-axis translation in pixels (e.g. -20 to shift left, +20 to shift right)
-    y: 0,        // Y-axis translation in pixels (e.g. -15 to shift up, +15 to shift down)
-    scale: 1.0,  // Scale multiplier (e.g. 1.0 = 100%, 1.1 = 110%, 0.9 = 90%)
-  },
-  // Mobile parameters (screen width < 768px)
-  mobile: {
-    x: 0,        // X-axis translation in pixels (e.g. -20 to shift left, +20 to shift right)
-    y: 0,        // Y-axis translation in pixels (e.g. -15 to shift up, +15 to shift down)
-    scale: 1.0,  // Scale multiplier (e.g. 1.0 = 100%, 1.1 = 110%, 0.9 = 90%)
-  },
-};
-
 export interface IntercomHeroProps {
   /**
    * Speed multiplier for the entire marquee.
@@ -78,20 +59,6 @@ export interface IntercomHeroProps {
    * or decrease for slower movement.
    */
   speed?: number;
-
-  /** Desktop X-axis translation in pixels (default: 0) */
-  desktopX?: number;
-  /** Desktop Y-axis translation in pixels (default: 0) */
-  desktopY?: number;
-  /** Desktop scale multiplier (default: 1.0) */
-  desktopScale?: number;
-
-  /** Mobile X-axis translation in pixels (default: 0) */
-  mobileX?: number;
-  /** Mobile Y-axis translation in pixels (default: 0) */
-  mobileY?: number;
-  /** Mobile scale multiplier (default: 1.0) */
-  mobileScale?: number;
 }
 
 // Helper to detect if user is on a low/slow network connection
@@ -118,41 +85,7 @@ const checkIsLowNetwork = (): boolean => {
   return false;
 };
 
-const IntercomHero: React.FC<IntercomHeroProps> = ({
-  speed = DEFAULT_MARQUEE_SPEED,
-  desktopX = HERO_MARQUEE_CONFIG.desktop.x,
-  desktopY = HERO_MARQUEE_CONFIG.desktop.y,
-  desktopScale = HERO_MARQUEE_CONFIG.desktop.scale,
-  mobileX = HERO_MARQUEE_CONFIG.mobile.x,
-  mobileY = HERO_MARQUEE_CONFIG.mobile.y,
-  mobileScale = HERO_MARQUEE_CONFIG.mobile.scale,
-}) => {
-  // Quick parameters for direct in-component inspection & adjustment
-  const marqueeScaleDesktop = desktopScale;
-  const marqueeXDesktop = desktopX; // in pixels
-  const marqueeYDesktop = desktopY; // in pixels
-
-  const marqueeScaleMobile = mobileScale;
-  const marqueeXMobile = mobileX; // in pixels
-  const marqueeYMobile = mobileY; // in pixels
-
-  const paramsRef = useRef({
-    marqueeScaleDesktop,
-    marqueeXDesktop,
-    marqueeYDesktop,
-    marqueeScaleMobile,
-    marqueeXMobile,
-    marqueeYMobile,
-  });
-
-  paramsRef.current = {
-    marqueeScaleDesktop,
-    marqueeXDesktop,
-    marqueeYDesktop,
-    marqueeScaleMobile,
-    marqueeXMobile,
-    marqueeYMobile,
-  };
+const IntercomHero: React.FC<IntercomHeroProps> = ({ speed = DEFAULT_MARQUEE_SPEED }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const leftCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const rightCardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -178,18 +111,6 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({
     const container = containerRef.current;
     const containerWidth = container.clientWidth || window.innerWidth;
     const isMobile = containerWidth < 768;
-    const {
-      marqueeScaleDesktop: dScale,
-      marqueeXDesktop: dX,
-      marqueeYDesktop: dY,
-      marqueeScaleMobile: mScale,
-      marqueeXMobile: mX,
-      marqueeYMobile: mY,
-    } = paramsRef.current;
-
-    const currentX = isMobile ? mX : dX;
-    const currentY = isMobile ? mY : dY;
-    const currentScale = isMobile ? mScale : dScale;
 
     // Card dimensions proportionally calibrated for mobile while preserving the exact desktop look and center alignment
     const cardWidth = isMobile ? 150 : 220;
@@ -243,7 +164,7 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({
       const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
 
       // Center cards scale smoothly
-      const scale = ((isMobile ? 0.72 : 0.64) + (isMobile ? 0.40 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4)) * currentScale;
+      const scale = (isMobile ? 0.72 : 0.64) + (isMobile ? 0.40 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: positive for left side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
@@ -259,12 +180,11 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({
       // Fade out only at the far outer horizon when exiting the viewport
       const opacity = Math.max(0, Math.min(1, 1 - (absU - 1.45) * 4));
 
-      const screenX = centerX + x - cardWidth / 2 + currentX;
-      const cardY = y + currentY;
+      const screenX = centerX + x - cardWidth / 2;
 
       card.style.width = `${cardWidth}px`;
       card.style.height = `${cardHeight}px`;
-      card.style.transform = `translate3d(${screenX}px, calc(-50% + ${cardY}px), ${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+      card.style.transform = `translate3d(${screenX}px, calc(-50% + ${y}px), ${z}px) rotateY(${rotateY}deg) scale(${scale})`;
       card.style.zIndex = `${zIndex}`;
       card.style.opacity = `${opacity}`;
     }
@@ -290,7 +210,7 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({
 
       // 3D Concave Cylinder Arc Math:
       const z = -200 * (1 - Math.pow(Math.min(absU, 1.4), 1.3));
-      const scale = ((isMobile ? 0.72 : 0.64) + (isMobile ? 0.40 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4)) * currentScale;
+      const scale = (isMobile ? 0.72 : 0.64) + (isMobile ? 0.40 : 0.48) * Math.pow(Math.min(absU, 1.4), 1.4);
 
       // Rotation around Y-axis (facing inwards towards center: negative for right side)
       const clampedU = Math.max(-1.3, Math.min(1.3, u));
@@ -304,12 +224,11 @@ const IntercomHero: React.FC<IntercomHeroProps> = ({
       // Fade out only at the far outer horizon when exiting the viewport
       const opacity = Math.max(0, Math.min(1, 1 - (absU - 1.45) * 4));
 
-      const screenX = centerX + x - cardWidth / 2 + currentX;
-      const cardY = y + currentY;
+      const screenX = centerX + x - cardWidth / 2;
 
       card.style.width = `${cardWidth}px`;
       card.style.height = `${cardHeight}px`;
-      card.style.transform = `translate3d(${screenX}px, calc(-50% + ${cardY}px), ${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+      card.style.transform = `translate3d(${screenX}px, calc(-50% + ${y}px), ${z}px) rotateY(${rotateY}deg) scale(${scale})`;
       card.style.zIndex = `${zIndex}`;
       card.style.opacity = `${opacity}`;
     }

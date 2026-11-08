@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AsciiImageLayer from '../components/common/AsciiImageLayer';
 import GlowCard from '../components/GlowCard';
+import OX1PerspectiveRoomHero from '../components/products/OX1PerspectiveRoomHero';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -1359,132 +1360,18 @@ const OX1Platform: React.FC = () => {
         lineHeight: 1.55,
       }}
     >
-      {/* ── SECTION 01: HERO (FIN.AI SIGNATURE COMPOSITION) ── */}
+      {/* ── SECTION 01: 3D PERSPECTIVE ROOM HERO (MATCHING REFERENCE DESIGN ON DESKTOP) ── */}
       <section
         id="overview"
         style={{
-          padding: '90px 24px 70px',
-          maxWidth: '1440px',
-          margin: '0 auto',
-          textAlign: 'center',
+          width: '100%',
           backgroundColor: '#ffffff',
+          position: 'relative',
+          overflow: 'hidden',
+          padding: 0,
         }}
       >
-        {/* Confident Fin.ai Display Headline */}
-        <h1
-          style={{
-            textAlign: 'center',
-            fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-            fontSize: 'clamp(2.75rem, 6vw, 5.25rem)',
-            fontWeight: 600,
-            color: '#111111',
-            lineHeight: 1.05,
-            letterSpacing: '-0.035em',
-            maxWidth: '1120px',
-            margin: '0 auto 24px',
-          }}
-        >
-          The Intelligence Layer for the Built Environment.
-        </h1>
-
-        {/* Supporting Text */}
-        <p
-          style={{
-            fontSize: 'clamp(1.15rem, 2vw, 1.4rem)',
-            color: '#4a5565',
-            lineHeight: 1.55,
-            maxWidth: '840px',
-            margin: '0 auto 16px',
-            fontWeight: 400,
-          }}
-        >
-          One integrated platform connecting engineering, infrastructure, project operations, and artificial intelligence.
-        </p>
-
-        {/* Supporting Statement */}
-        <p
-          style={{
-            fontSize: '1rem',
-            color: '#6a7282',
-            maxWidth: '760px',
-            margin: '0 auto 36px',
-            lineHeight: 1.6,
-          }}
-        >
-          From project management and quality control to NDT, BIM, monitoring, and intelligent reporting, OX1 brings engineering information together.
-        </p>
-
-        {/* Fin.ai Style Pill CTAs */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '14px',
-            flexWrap: 'wrap',
-            marginBottom: '64px',
-          }}
-        >
-          <a
-            href="#capabilities"
-            style={{
-              backgroundColor: '#111111',
-              color: '#ffffff',
-              fontSize: '0.95rem',
-              fontWeight: 600,
-              padding: '14px 34px',
-              borderRadius: '9999px',
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.12)',
-              transition: 'background-color 0.2s ease',
-            }}
-          >
-            Explore OX1 <ArrowRight size={16} />
-          </a>
-          <Link
-            to="/demo"
-            style={{
-              backgroundColor: '#ffffff',
-              color: '#111111',
-              fontSize: '0.95rem',
-              fontWeight: 600,
-              padding: '14px 32px',
-              borderRadius: '9999px',
-              border: '1px solid rgba(0, 0, 0, 0.16)',
-              textDecoration: 'none',
-              transition: 'border-color 0.2s ease',
-            }}
-          >
-            Request a Demo
-          </Link>
-        </div>
-
-        {/* OX1 Platform Live Dashboard Showcase */}
-        <div
-          style={{
-            maxWidth: '1360px',
-            margin: '0 auto',
-            borderRadius: '0px',
-            border: '1px solid rgba(0, 0, 0, 0.08)',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.06)',
-            backgroundColor: '#ffffff',
-            overflow: 'hidden',
-          }}
-        >
-          <img
-            src="/assets/images/ox1-dashboard-hero.jpg"
-            alt="OUANTUM OX1 Platform Intelligence Dashboard"
-            style={{
-              width: '100%',
-              height: 'auto',
-              display: 'block',
-              borderRadius: '0px',
-            }}
-          />
-        </div>
+        <OX1PerspectiveRoomHero />
       </section>
 
       {/* ── SECTION 02: FIN.AI SIGNATURE 3-STEP WORKFLOW ── */}
