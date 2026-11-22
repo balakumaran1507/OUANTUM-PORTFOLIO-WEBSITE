@@ -1,0 +1,2102 @@
+@import './intercom-fonts.css';
+
+/* Intercom Design System for OUANTUM - Clean White & Segoe UI Edition */
+
+:root {
+  --ic-bg: #ffffff;
+  --ic-bg-canvas: #ffffff;
+  --ic-bg-chalk: #ffffff;
+  --ic-card: #ffffff;
+  --ic-text: #111111;
+  --ic-text-secondary: #4a5565;
+  --ic-text-muted: #6a7282;
+  --ic-blue: #111111;
+  --ic-blue-hover: #2a2a2a;
+  --ic-blue-light: #f4f4f5;
+  --ic-orange: #111111;
+  --ic-green: #111111;
+  --ic-border: transparent;
+  --ic-border-strong: transparent;
+  --ic-font-sans: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ic-font-serif: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ic-font-title: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ic-font-mono: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Navbar Logo Alignment & Scale Parameters */
+  --nav-logo-x: 0px;
+  --nav-logo-y: 0px;
+  --nav-logo-scale: 1;
+
+  /* Navbar Logo Alignment & Scale Parameters (Separate Mobile under 768px) */
+  --nav-logo-mobile-x: 0px;
+  --nav-logo-mobile-y: 0px;
+  --nav-logo-mobile-scale: 1;
+
+  /* Navbar Navigation Links Alignment & Scale Parameters */
+  --nav-links-x: 0px;
+  --nav-links-y: 0px;
+  --nav-links-scale: 1;
+
+  /* Suite Feature Card Images Alignment & Scale Parameters */
+  --suite-card-1-x: 0px;
+  --suite-card-1-y: 0px;
+  --suite-card-1-scale: 1;
+
+  --suite-card-2-x: 0px;
+  --suite-card-2-y: 0px;
+  --suite-card-2-scale: 1;
+
+  --suite-card-3-x: 0px;
+  --suite-card-3-y: 0px;
+  --suite-card-3-scale: 1;
+
+  /* OX1 Construction Schematic ASCII Card Alignment & Scale Parameters */
+  --ox1-ascii-x: 0px;
+  --ox1-ascii-y: 0px;
+  --ox1-ascii-scale: 1;
+
+}
+
+body {
+  background-color: #ffffff !important;
+  color: var(--ic-text) !important;
+  font-family: var(--ic-font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* All Section Titles across the site use Saans font with 1/4 reduced thickness */
+h1:not(.subpage-hero-title):not(.hero-title):not(.ic-hero-headline),
+h2,
+.ic-serif,
+.serif-part,
+.sans-part,
+.section-title,
+.about-team-heading,
+.about-partners-heading,
+.subpage-wrapper h2:not(.deploy-cta-heading):not(.why-cta-headline):not(.careers-cta-headline),
+.ox1-section-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 300;
+  color: inherit;
+  text-shadow: none;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  -webkit-text-stroke: 0.4px #ffffff !important;
+  -webkit-text-stroke-width: 0.4px !important;
+  -webkit-text-fill-color: #111111 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Section Titles specifically matching Intercom's exact text-heading-3 */
+.section-title,
+.ox1-section-title,
+.subpage-section-title,
+section:not(#hero):not(.ic-bottom-cta-section):not(.deploy-cta-section) h2:not(.careers-cta-headline):not(.why-cta-headline):not(.deploy-cta-heading),
+section:not(#hero):not(.ic-bottom-cta-section):not(.deploy-cta-section) .section-title,
+.subpage-wrapper section:not(.deploy-cta-section) h2:not(.careers-cta-headline):not(.why-cta-headline):not(.deploy-cta-heading) {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(1.875rem, 3.5vw, 3.375rem) !important;
+  font-weight: 300 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.05 !important;
+  -webkit-text-stroke: 0.4px #ffffff !important;
+  -webkit-text-stroke-width: 0.4px !important;
+  -webkit-text-fill-color: #111111 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Card & Inner Entity Titles - Clean Solid Typography */
+.about-card-title,
+.subpage-card-title,
+.partner-card-title,
+.subpage-wrapper .about-card-title,
+.subpage-wrapper .subpage-card-title,
+.subpage-wrapper .partner-card-title,
+.subpage-wrapper h3.about-card-title,
+.subpage-wrapper h4.partner-card-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-fill-color: #111111 !important;
+  color: #111111 !important;
+}
+
+@media (min-width: 64rem) {
+
+  .section-title,
+  .ox1-section-title,
+  .subpage-section-title,
+  section:not(#hero):not(.ic-bottom-cta-section) h2 {
+    font-size: 3.375rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.015em !important;
+  }
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+
+  .section-title,
+  .ox1-section-title,
+  .subpage-section-title,
+  section:not(#hero):not(.ic-bottom-cta-section) h2 {
+    font-size: 2.5rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.015em !important;
+  }
+}
+
+@media (max-width: 47.99rem) {
+
+  .section-title,
+  .ox1-section-title,
+  .subpage-section-title,
+  section:not(#hero):not(.ic-bottom-cta-section) h2 {
+    font-size: 1.875rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.015em !important;
+  }
+}
+
+/* ==========================================================================
+   ALL PAGE HERO SECTION TITLES - 0.5/4 INCREASED THICKNESS
+   ========================================================================== */
+.ic-hero-headline,
+.ic-hero-headline span,
+.hero h1,
+#hero h1,
+section.hero h1,
+.hero-content h1,
+.subpage-wrapper .hero h1,
+.subpage-wrapper > section:first-of-type h1,
+.subpage-wrapper > section:first-child h1,
+.subpage-wrapper > section:first-of-type .hero-content h1,
+.hero-title,
+.subpage-hero-title,
+.hero-right-content h1 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400 !important;
+  color: #111111 !important;
+  text-shadow: none !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.05 !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  -webkit-text-fill-color: currentColor !important;
+  paint-order: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+.ic-sans {
+  font-family: var(--ic-font-sans), sans-serif !important;
+}
+
+.ic-mono {
+  font-family: var(--ic-font-sans) !important;
+}
+
+/* Global removal of divided lines and shadow effects per user command */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+}
+
+/* Pill Buttons - Clean, Borderless/Subtle, Zero Shadow */
+.ic-btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background-color: #111111 !important;
+  background: #111111 !important;
+  color: #ffffff !important;
+  font-family: var(--ic-font-sans) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  padding: 10px 20px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+.ic-btn-primary:hover {
+  background-color: #2a2a2a !important;
+  background: #2a2a2a !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.ic-btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  background-color: #f5f5f5 !important;
+  background: #f5f5f5 !important;
+  color: #111111 !important;
+  font-family: var(--ic-font-sans) !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  padding: 10px 20px !important;
+  border-radius: 9999px !important;
+  border: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+.ic-btn-secondary:hover {
+  background-color: #ebebeb !important;
+  background: #ebebeb !important;
+  color: #111111 !important;
+  transform: translateY(-1px);
+}
+
+/* Explicit removal of subheadings above titles (e.g. "OX1 CIVIL AI AGENT", "PLATFORM CAPABILITIES") */
+.ic-badge-tag,
+.hero-tech-label,
+.hero-labels,
+.about-team-rule,
+.about-team-header,
+.about-team-eyebrow,
+.section-eyebrow,
+[class*="eyebrow"],
+.eyebrow {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* User Explicit Request: Remove all square dots entirely */
+.ic-blue-square,
+.ic-orange-square,
+.ic-corner-dot {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Hero Section */
+.ic-hero-section {
+  position: relative;
+  background-color: #ffffff !important;
+  padding: 60px 16px 80px;
+  overflow: hidden;
+  text-align: center;
+  border: none !important;
+}
+
+/* Background Architectural Square-Dot ASCII Skyline (Centered behind Headline & Subtitle) */
+.ic-hero-ascii-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  width: 100%;
+  max-width: 1540px;
+  transition: opacity 0.25s ease;
+}
+
+.ic-hero-ascii-img {
+  width: 100%;
+  max-width: 1440px;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  transform-origin: center center;
+  display: block;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.ic-hero-headline {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(2.6rem, 5.8vw, 5.2rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  margin: 0 auto 1.5rem !important;
+  max-width: 1050px !important;
+  font-weight: 400 !important;
+  color: #111111 !important;
+  text-align: center !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ic-hero-headline span,
+.ic-hero-headline .serif-part,
+.ic-hero-headline .sans-part {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400 !important;
+  color: #111111 !important;
+  display: block;
+  text-align: center !important;
+  margin: 0 auto !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ic-hero-subtext {
+  font-family: var(--ic-font-sans);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--ic-text-secondary);
+  max-width: 720px;
+  margin: 0 auto 2.25rem;
+  font-weight: 300;
+}
+
+/* Flanking photo tiles in Hero */
+.ic-flank-img {
+  position: absolute;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: none !important;
+  border: none !important;
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+.ic-flank-img:hover {
+  transform: scale(1.02);
+}
+
+.ic-flank-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Platform Workspace Card - Clean, Flat, No Shadow, Sharp Corners */
+
+/* Showcase Parallel Row (Reduced Left Image Card + Right Side Slot) */
+.ic-showcase-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  width: 100%;
+}
+
+.ic-showcase-right-slot {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+@media (max-width: 960px) {
+  .ic-showcase-row {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+}
+
+.ic-showcase-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0px !important;
+  overflow: hidden;
+  box-shadow: none !important;
+}
+
+.ic-showcase-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #fafafa;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ic-showcase-tab {
+  padding: 18px 24px;
+  font-size: 1.025rem;
+  font-weight: 500;
+  color: var(--ic-text-muted);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  border-radius: 0px !important;
+}
+
+.ic-showcase-tab.active {
+  color: #111111;
+  background: #ffffff;
+}
+
+/* Three sub-tabs under showcase */
+.ic-subtab-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 24px 28px;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0px !important;
+}
+
+.ic-subtab-card {
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 0px !important;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.ic-subtab-card.active {
+  background: #f8fafc;
+  border-color: rgba(0, 82, 204, 0.4) !important;
+  border-top: 3px solid #0052cc !important;
+}
+
+.ic-subtab-card h4 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ic-subtab-card p {
+  font-size: 0.875rem;
+  color: var(--ic-text-secondary);
+  line-height: 1.5;
+}
+
+@media (max-width: 820px) {
+  .ic-showcase-tabs {
+    grid-template-columns: 1fr;
+  }
+
+  .ic-subtab-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 20px;
+  }
+}
+
+/* Customer Quotes / Testimonial tab system */
+.ic-quote-section {
+  padding: 80px 16px;
+  background-color: #ffffff !important;
+  border: none !important;
+}
+
+.ic-quote-tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.ic-quote-tab-btn {
+  font-family: var(--ic-font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ic-text-muted);
+  padding-bottom: 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ic-quote-tab-btn.active {
+  color: #111111;
+  border-bottom-color: var(--ic-blue);
+}
+
+.ic-quote-highlight,
+.ic-text-highlight {
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  padding: 0.08em 0.35em;
+  border-radius: 0 !important;
+  display: inline;
+  font-weight: 500;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: inherit;
+  transition: all 0.2s ease;
+}
+
+.ic-text-highlight-light {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  padding: 0.08em 0.35em;
+  border-radius: 0 !important;
+  display: inline;
+  font-weight: 600;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: inherit;
+}
+
+/* Floating AI Chat Bubble */
+.ic-floating-chat {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.ic-floating-bubble {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  max-width: 290px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #111111;
+  line-height: 1.4;
+  animation: icFadeIn 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+.ic-floating-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #111111;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ic-floating-btn:hover {
+  transform: scale(1.05);
+}
+
+.ic-floating-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  background-color: #111111;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+}
+
+@keyframes icFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive queries */
+@media (max-width: 992px) {
+  .ic-flank-img {
+    display: none !important;
+  }
+
+  .ic-subtab-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* ==========================================================================
+   NAVBAR & HEADER TYPOGRAPHY - CLEAN, SHORT, ELEGANT
+   ========================================================================== */
+body.loader-active .ic-header,
+body.loader-active .ic-header-spacer {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.ic-header {
+  background-color: #ffffff !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.ic-desktop-nav button,
+.ic-desktop-nav a,
+.ic-nav-link {
+  font-family: var(--ic-font-sans) !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: #111111 !important;
+  padding: 6px 10px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+.ic-desktop-nav button:hover,
+.ic-desktop-nav a:hover,
+.ic-nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  color: #111111 !important;
+}
+
+/* Global hover protection - zero blue or multi-color on hover across the entire site */
+a:hover {
+  color: #111111 !important;
+}
+
+button:hover {
+  color: #111111;
+}
+
+.ic-dropdown-box {
+  background-color: #ffffff !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08) !important;
+}
+
+.ic-dropdown-item-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #111111 !important;
+}
+
+.ic-dropdown-item-sub {
+  font-family: var(--ic-font-sans) !important;
+  font-size: 0.775rem !important;
+  color: #6a7282 !important;
+}
+
+/* ==========================================================================
+   UNIVERSAL THEME FOR EVERY SUBPAGE - PURE WHITE & SEGOE UI
+   ========================================================================== */
+main.subpage-wrapper,
+div.subpage-wrapper,
+.subpage-wrapper {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: var(--ic-text) !important;
+  font-family: var(--ic-font-sans) !important;
+  border: none !important;
+}
+
+/* All headings across subpages */
+.subpage-wrapper h1,
+.subpage-wrapper h2,
+.subpage-wrapper h3,
+.subpage-wrapper h4,
+.subpage-wrapper .section-title,
+.subpage-wrapper .hero-right-content h1 {
+  color: #111111;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.08 !important;
+  border: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Dark Container Headings & Text */
+.dark-section,
+.ic-blog-dark-section,
+.ic-blog-dark-section h1,
+.ic-blog-dark-section h2,
+.ic-blog-dark-section h3,
+.ic-blog-dark-section h4,
+.subpage-wrapper .ic-blog-dark-section h1,
+.subpage-wrapper .ic-blog-dark-section h2,
+.subpage-wrapper .ic-blog-dark-section h3,
+.subpage-wrapper .ic-blog-dark-section h4 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+}
+
+.ic-blog-dark-section button,
+.ic-blog-dark-section .btn-primary,
+.ic-blog-dark-section input[type="submit"] {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+.subpage-wrapper .hero {
+  background: transparent !important;
+  border: none !important;
+}
+
+.subpage-wrapper .hero-description,
+.subpage-wrapper .side-description {
+  color: #4a5565 !important;
+  font-family: var(--ic-font-sans) !important;
+  font-weight: 500 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.6 !important;
+}
+
+.subpage-wrapper .hero-subtext {
+  color: #4a5565 !important;
+  font-family: var(--ic-font-sans) !important;
+  font-size: 1.05rem !important;
+  line-height: 1.7 !important;
+}
+
+/* Subpage Hero Overlay: blend to pure white */
+.subpage-wrapper .overlay-gradient {
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.6) 45%,
+      #ffffff 98%) !important;
+}
+
+/* Cards across all subpages - Flat white, no harsh borders, zero shadows */
+.subpage-wrapper .glow-card-container,
+.glow-card-container {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important;
+  color: #111111 !important;
+  border-radius: 16px !important;
+}
+
+.subpage-wrapper .glow-card-container h2,
+.subpage-wrapper .glow-card-container h3,
+.subpage-wrapper .glow-card-container h4 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400 !important;
+  color: #111111 !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+.subpage-wrapper .glow-card-container p {
+  color: #4a5565 !important;
+}
+
+/* About Page Specific Styles */
+.about-team-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  box-shadow: none !important;
+  border-radius: 16px !important;
+}
+
+.about-team-initials-bg {
+  background: #f5f5f5 !important;
+}
+
+.about-team-initials {
+  color: #111111 !important;
+  opacity: 0.25 !important;
+}
+
+.about-team-tap-hint {
+  color: #6a7282 !important;
+}
+
+.about-team-bio-panel {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+.about-team-bio-header {
+  color: #111111 !important;
+  font-weight: 600 !important;
+}
+
+.about-team-bio-para {
+  color: #4a5565 !important;
+  line-height: 1.65 !important;
+}
+
+.about-team-footer {
+  background: #ffffff !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.about-team-footer-name {
+  color: #111111 !important;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.about-team-footer-role {
+  color: #4a5565 !important;
+}
+
+.about-team-heading {
+  color: #111111 !important;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 400 !important;
+  border: none !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Contact Page Specific Styles */
+.contact-link {
+  color: #111111 !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.contact-label {
+  color: #6a7282 !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.1em !important;
+}
+
+.contact-address {
+  color: #4a5565 !important;
+  line-height: 1.6 !important;
+}
+
+/* Form controls in Contact, Careers, etc. */
+.subpage-wrapper input,
+.subpage-wrapper textarea,
+.subpage-wrapper select {
+  background: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-family: var(--ic-font-sans) !important;
+  box-shadow: none !important;
+}
+
+.subpage-wrapper input:focus,
+.subpage-wrapper textarea:focus,
+.subpage-wrapper select:focus {
+  border-color: #111111 !important;
+  outline: none !important;
+}
+
+.subpage-wrapper input::placeholder,
+.subpage-wrapper textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Remove all divider rules / horizontal borders */
+hr,
+.subpage-wrapper hr,
+.about-team-rule {
+  display: none !important;
+}
+
+/* Section Titles - Saans Font matching Intercom text-heading-3 with 1/4 reduced thickness */
+.ox1-section-title,
+.ox1-approach-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(1.875rem, 3.5vw, 3.375rem) !important;
+  font-weight: 300 !important;
+  color: #111111 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.015em !important;
+  -webkit-text-stroke: 0.4px #ffffff !important;
+  -webkit-text-stroke-width: 0.4px !important;
+  -webkit-text-fill-color: #111111 !important;
+  text-transform: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Leaders Spotlight (fin.ai/careers exact layout) */
+.leaders-spotlight-section {
+  background: #000000 !important;
+  color: #ffffff !important;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(64px, 8vw, 110px) 0 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.leaders-spotlight-section,
+.leaders-spotlight-section *,
+.leaders-spotlight-heading,
+.leaders-spotlight-card,
+.leaders-spotlight-card-name,
+.leaders-spotlight-card-role,
+.leaders-spotlight-card-bio {
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  text-shadow: none !important;
+}
+
+.leaders-spotlight-stage {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(340px, 1.3fr) minmax(320px, 1.15fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: center;
+  min-height: 520px;
+  position: relative;
+  margin-bottom: clamp(48px, 6vw, 72px);
+}
+
+.leaders-spotlight-heading {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(2.25rem, 4.2vw, 3.75rem) !important;
+  font-weight: 400 !important;
+  line-height: 1.08 !important;
+  letter-spacing: -0.025em !important;
+  color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  -webkit-text-fill-color: #ffffff !important;
+  margin: 0 !important;
+  max-width: 440px;
+}
+
+.leaders-spotlight-image-container {
+  position: relative;
+  width: 100%;
+  height: clamp(400px, 45vw, 540px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.leaders-spotlight-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: contrast(1.05) brightness(0.98);
+}
+
+.leaders-spotlight-image-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 45%, rgba(0, 0, 0, 0.4) 75%, #000000 100%),
+              linear-gradient(to top, #000000 0%, transparent 25%),
+              linear-gradient(to bottom, #000000 0%, transparent 15%);
+}
+
+.leaders-spotlight-card {
+  background: rgba(20, 22, 28, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0px !important;
+  padding: clamp(24px, 3vw, 36px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 2;
+}
+
+.leaders-spotlight-card-name {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  margin: 0 0 4px 0;
+}
+
+.leaders-spotlight-card-role {
+  font-family: var(--ic-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 1.25rem;
+}
+
+.leaders-spotlight-card-bio {
+  font-family: var(--ic-font-sans);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #d1d5db;
+  margin: 0 0 1.5rem 0;
+}
+
+.leaders-spotlight-card-feeds-label {
+  font-family: var(--ic-font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 0.5rem;
+}
+
+.leaders-spotlight-card-feeds-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.leaders-spotlight-card-link {
+  font-family: var(--ic-font-sans);
+  font-size: 0.925rem;
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.15s ease;
+}
+
+.leaders-spotlight-card-link:hover {
+  color: #93c5fd;
+}
+
+/* Tab Bar Row */
+.leaders-tabs-container {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(16px, 2.5vw, 32px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+  border-top: none;
+}
+
+.leaders-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.leader-tab-item {
+  flex: 1;
+  min-width: 170px;
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 16px 4px 20px 0;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0.65;
+  position: relative;
+}
+
+.leader-tab-item:hover {
+  opacity: 0.9;
+  border-top-color: rgba(255, 255, 255, 0.45);
+}
+
+.leader-tab-item.active {
+  border-top: 2px solid #ffffff;
+  opacity: 1;
+}
+
+.leader-tab-name {
+  font-family: var(--ic-font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.leader-tab-role {
+  font-family: var(--ic-font-sans);
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.leader-tab-item.active .leader-tab-role {
+  color: #e5e7eb;
+}
+
+@media (max-width: 1024px) {
+  .leaders-spotlight-stage {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .leaders-spotlight-heading {
+    max-width: 100%;
+  }
+  .leaders-spotlight-image-container {
+    height: 420px;
+  }
+}
+
+/* Legal Hub Intercom-style Responsive Layout */
+@media (max-width: 960px) {
+  .legal-sidebar-col {
+    grid-column: span 12 !important;
+    position: static !important;
+    margin-bottom: 24px;
+  }
+  .legal-content-col {
+    grid-column: span 12 !important;
+  }
+}
+
+/* Fin.ai Blog Interactions */
+.fin-featured-card {
+  transition: opacity 0.2s ease;
+}
+.fin-featured-card:hover h2 {
+  color: #111111;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.fin-blog-card {
+  transition: transform 0.2s ease;
+}
+.fin-blog-card:hover h3 {
+  color: #111111;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ─── Intercom Blog Article Layout ─── */
+.ic-blog-article-wrapper {
+  background-color: #faf9f6;
+  color: #111111;
+  min-height: 100vh;
+  overflow: visible !important;
+}
+
+.ic-blog-serif {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.ic-blog-hero-img {
+  width: 100%;
+  height: clamp(320px, 46vw, 560px);
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+}
+
+.ic-blog-grid {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .ic-blog-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .ic-blog-sidebar {
+    display: none !important;
+  }
+}
+
+.ic-blog-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  height: fit-content;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.ic-blog-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.ic-blog-toc-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-family: var(--ic-font-sans);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #6a7282;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.ic-blog-toc-item:hover {
+  color: #111111;
+}
+
+.ic-blog-toc-item.active {
+  color: #111111;
+  font-weight: 600;
+}
+
+.ic-blog-share-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: #111111;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.ic-blog-share-icon-btn:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+  transform: translateY(-2px);
+}
+
+.ic-blog-testimonial-grid {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: #f4f3ec;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 3.5rem 0;
+}
+
+@media (max-width: 768px) {
+  .ic-blog-testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  .ic-blog-testimonial-grid img {
+    height: 240px !important;
+  }
+}
+
+/* Footer 5-Column Responsive System */
+@media (max-width: 1024px) {
+  .ic-footer-cols {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px 16px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .ic-footer-cols {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px 12px !important;
+  }
+}
+
+@media (max-width: 440px) {
+  .ic-footer-cols {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+}
+
+
+/* ==========================================================================
+   UNIFIED SUITE 3-COLUMN FEATURE GRID (Intercom 3-Card Layout)
+   ========================================================================== */
+.ic-suite-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+  width: 100%;
+}
+
+.ic-suite-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ic-suite-image-box {
+  width: 100%;
+  background-color: #f7f6f4;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.ic-suite-image-box:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+.ic-suite-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ic-suite-content {
+  padding-top: 24px;
+}
+
+.ic-suite-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: clamp(1.25rem, 1.6vw, 1.5rem) !important;
+  font-weight: 500 !important;
+  color: #111111 !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em !important;
+  margin: 0 0 12px 0 !important;
+}
+
+.ic-suite-desc {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.9375rem !important;
+  font-weight: 400 !important;
+  color: #555555 !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 900px) {
+  .ic-suite-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+
+/* ==========================================================================
+   OX1 ASCII DESIGN STYLE SCHEMATIC CARD
+   ========================================================================== */
+.ic-ascii-card {
+  background-color: #fafaf9;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  font-family: var(--ic-font-mono);
+  width: 100%;
+}
+
+.ic-ascii-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background-color: #f4f4f3;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.75rem;
+  color: #111111;
+  font-family: var(--ic-font-mono);
+  letter-spacing: 0.02em;
+}
+
+.ic-ascii-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ic-ascii-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 3px 8px;
+  font-family: var(--ic-font-mono);
+  font-size: 0.7rem;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 0;
+}
+
+.ic-ascii-btn.active,
+.ic-ascii-btn:hover {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.ic-ascii-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 280px;
+  background-color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justifyContent: center;
+}
+
+.ic-ascii-grid-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.6;
+}
+
+.ic-ascii-cross {
+  position: absolute;
+  font-family: var(--ic-font-mono);
+  font-size: 11px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.35);
+  font-weight: 700;
+  user-select: none;
+  pointer-events: none;
+}
+.ic-ascii-cross-tl { top: 6px; left: 8px; }
+.ic-ascii-cross-tr { top: 6px; right: 8px; }
+.ic-ascii-cross-bl { bottom: 6px; left: 8px; }
+.ic-ascii-cross-br { bottom: 6px; right: 8px; }
+
+.ic-ascii-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ic-ascii-pre {
+  margin: 0;
+  padding: 10px;
+  font-family: var(--ic-font-mono);
+  font-size: clamp(4.5px, 0.75vw, 6.5px);
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+  color: #111111;
+  white-space: pre;
+  user-select: none;
+  transform-origin: center center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ic-ascii-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background-color: #f4f4f3;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-size: 0.72rem;
+  color: #6b7280;
+  font-family: var(--ic-font-mono);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+/* ==========================================================================
+   LINEAR-STYLE ENTERPRISE CHANGELOG (Full Responsive 2-Column Grid)
+   ========================================================================== */
+
+.ic-changelog-grid {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 1024px) {
+  .ic-changelog-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .ic-changelog-sidebar {
+    display: flex !important;
+    position: relative !important;
+    top: 0 !important;
+    max-height: none !important;
+    width: 100% !important;
+    padding-right: 0 !important;
+    gap: 20px !important;
+    overflow: visible !important;
+  }
+  .ic-changelog-sidebar nav {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+    gap: 8px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ic-changelog-sidebar nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+  }
+  .ic-changelog-sidebar nav::-webkit-scrollbar {
+    display: none !important;
+  }
+  .ic-changelog-sidebar nav > button {
+    flex-shrink: 0 !important;
+    width: auto !important;
+    min-width: 130px !important;
+  }
+}
+
+.ic-changelog-sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 100px;
+  align-self: start;
+  height: fit-content;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-right: 12px;
+}
+
+.ic-changelog-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.ic-changelog-toc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: var(--ic-font-sans);
+  color: #555555;
+  border-radius: 0;
+}
+
+.ic-changelog-toc-btn:hover {
+  background: #f7f6f2;
+  color: #111111;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+.ic-changelog-toc-btn.active {
+  background: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.ic-changelog-toc-btn.active span {
+  color: #ffffff !important;
+}
+
+/* Linear Timeline Track */
+.ic-changelog-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  position: relative;
+  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  padding-left: 40px;
+  margin-left: 12px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ic-changelog-feed {
+    padding-left: 20px;
+    margin-left: 4px;
+    gap: 40px;
+  }
+}
+
+.ic-changelog-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scroll-margin-top: 120px;
+}
+
+/* Node marker on the timeline line */
+.ic-changelog-node {
+  position: absolute;
+  left: -47px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #111111;
+  box-shadow: 0 0 0 3px #ffffff;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .ic-changelog-node {
+    left: -27px;
+  }
+}
+
+.ic-changelog-item:first-child .ic-changelog-node {
+  background: #111111;
+}
+
+/* Release Image Box */
+.ic-changelog-image-box {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #f7f6f4;
+  position: relative;
+  border-radius: 0;
+}
+
+.ic-changelog-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ic-changelog-image-box:hover .ic-changelog-img {
+  transform: scale(1.015);
+}
+
+/* Careers CTA Banner Headline White Color Override */
+.careers-cta-headline,
+.subpage-wrapper .careers-cta-headline,
+.subpage-wrapper section .careers-cta-headline,
+.subpage-wrapper section h2.careers-cta-headline,
+h2.careers-cta-headline {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+}
+
+/* Careers & Deploy CTA Banner Headline Pure Solid White Override */
+.careers-cta-headline,
+.why-cta-headline,
+.deploy-cta-heading,
+.deploy-cta-heading span,
+.subpage-wrapper .careers-cta-headline,
+.subpage-wrapper section .careers-cta-headline,
+.subpage-wrapper section h2.careers-cta-headline,
+h2.careers-cta-headline,
+.subpage-wrapper .deploy-cta-heading,
+.subpage-wrapper section .deploy-cta-heading,
+.subpage-wrapper section h2.deploy-cta-heading,
+h2.deploy-cta-heading,
+.deploy-cta-card h2,
+.deploy-cta-card h2 span,
+.deploy-cta-card .deploy-cta-heading,
+.deploy-cta-card .deploy-cta-heading span {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  text-stroke: 0px transparent !important;
+  font-weight: 500 !important;
+}
+
+
+/* ==========================================================================
+   MOBILE FIRST & INTERCOM-INSPIRED MOBILE RESPONSIVENESS SYSTEM
+   ========================================================================== */
+
+/* 1. Global Viewport & Horizontal Overflow Protection */
+html,
+body {
+  overflow-x: clip !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  margin: 0;
+  padding: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  overflow-x: clip !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 2. Prevent iOS Safari disruptive auto-zoom on input focus */
+@media (max-width: 768px) {
+  input,
+  select,
+  textarea,
+  .ic-input,
+  .ic-select,
+  .ic-textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* 3. Scaled Headings and Typography on Small Screens */
+@media (max-width: 768px) {
+  h1:not(.subpage-hero-title):not(.hero-title):not(.ic-hero-headline),
+  h2,
+  .section-title,
+  .ox1-section-title,
+  .subpage-section-title,
+  .cxm-hero-headline-1,
+  .cxm-hero-headline-2,
+  .hero-title,
+  .subpage-hero-title {
+    font-size: clamp(1.65rem, 6.2vw, 2.35rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.02em !important;
+    word-break: break-word;
+  }
+
+  p,
+  .ic-hero-subtext,
+  .cxm-hero-desc {
+    font-size: 1rem !important;
+    line-height: 1.55 !important;
+  }
+}
+
+/* 4. Multi-Column Grid Stacking for Mobile (< 820px) */
+@media (max-width: 820px) {
+  /* Prevent any multi-column grid from breaking horizontal viewport width */
+  div[style*="minmax(420px"],
+  div[style*="minmax(360px"],
+  div[style*="minmax(320px"],
+  div[style*="minmax(300px"],
+  div[style*="minmax(280px"],
+  div[style*="minmax(260px"],
+  div[style*="minmax(240px"],
+  div[style*="minmax(220px"],
+  div[style*="minmax(200px"] {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* Fin Agent & Showcase Tabs */
+  .ic-showcase-tabs {
+    grid-template-columns: 1fr !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .ic-showcase-tab {
+    padding: 16px 20px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .ic-showcase-row {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  .ic-fin-metrics,
+  .ic-showcase-metrics {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+  .ic-fin-metrics > div > div:first-child,
+  .ic-showcase-metrics > div > div:first-child {
+    font-size: 1.35rem !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .ic-fin-metrics,
+  .ic-showcase-metrics {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* 5. Mobile Button Ergonomics and Touch Targets */
+@media (max-width: 640px) {
+  .cxm-btn-group {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .cxm-btn-group a,
+  .cxm-btn-group button,
+  .ic-btn-primary,
+  .ic-btn-secondary {
+    min-height: 46px !important;
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* Two-column hero button groups stacking */
+  div[style*="display: 'flex'"][style*="gap: '14px'"][style*="flexWrap: 'wrap'"] {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  div[style*="display: 'flex'"][style*="gap: '14px'"][style*="flexWrap: 'wrap'"] a {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* 6. Footer Directory Layout */
+@media (max-width: 1024px) {
+  .ic-footer-cols {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 28px 16px !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .ic-footer-cols {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px 16px !important;
+  }
+  .ic-footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .ic-footer-cols {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* 7. Safe Touch Scrolling for Code, Tables, and Interactive Consoles */
+pre,
+code,
+table,
+.cxm-sim-console,
+.ic-code-block,
+div[style*="overflowY: 'auto'"],
+div[style*="overflowX: 'auto'"] {
+  max-width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 8. Hero Section Mobile Optimization (No overlapping, correct card scale, side margin matching footer) */
+@media (max-width: 768px) {
+  .ic-hero-headline-wrap {
+    margin: 0 auto 12px !important;
+    padding: 0 16px !important;
+  }
+  .ic-hero-headline-wrap h1 {
+    font-size: clamp(1.85rem, 6.2vw, 2.75rem) !important;
+    line-height: 1.1 !important;
+  }
+  .ic-hero-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+  .ic-hero-marquee-container {
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: 280px !important;
+    margin: 4px 0 10px !important;
+    overflow: visible !important;
+  }
+  .ic-hero-card-item {
+    flex-shrink: 0;
+  }
+  .ic-hero-subtitle-wrap {
+    margin: 10px auto 16px !important;
+    padding: 0 16px !important;
+    max-width: 100% !important;
+  }
+  .ic-hero-subtitle-wrap p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+  .ic-hero-prompt-wrap {
+    padding: 0 16px !important;
+    max-width: 100% !important;
+    margin-bottom: 16px !important;
+  }
+  .ic-hero-btn-wrap {
+    padding: 0 16px !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .ic-hero-btn-wrap a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Bottom CTA Heading on Mobile */
+  .ic-bottom-cta-heading {
+    font-size: clamp(1.85rem, 6.5vw, 2.75rem) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.02em !important;
+    padding: 0 16px !important;
+    text-align: center !important;
+  }
+
+  /* Ensure consistent side margin gap matching footer across all pages & sections */
+  section:not(#hero):not(.hero):not(.ic-hero-section):not(.ic-announcement-banner),
+  .cxm-container,
+  .cxm-page,
+  .ic-contact-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+/* ==========================================================================
+   TESTIMONIALS & SHOWCASE MOBILE RESPONSIVENESS & CENTER ALIGNMENT
+   ========================================================================== */
+@media (max-width: 900px) {
+  .ic-quote-tabs {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px 12px !important;
+  }
+  .ic-testimonial-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    text-align: center !important;
+  }
+  .ic-testimonial-left {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .ic-testimonial-logo {
+    text-align: center !important;
+    margin-bottom: 16px !important;
+  }
+  .ic-testimonial-quote {
+    font-size: clamp(1.2rem, 4.5vw, 1.7rem) !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+  }
+  .ic-testimonial-author-card {
+    margin: 0 auto !important;
+    max-width: 320px !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .ic-showcase-metrics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    text-align: center !important;
+    gap: 12px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: 24px !important;
+  }
+  .ic-showcase-metrics > div {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .ic-showcase-metrics > div > div {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ic-showcase-metrics {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+
+/* Resources Mega Dropdown Links */
+.ic-mega-link {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  color: #4a5565 !important;
+  text-decoration: none !important;
+  padding: 3px 6px !important;
+  border-radius: 4px !important;
+  transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease !important;
+  display: block !important;
+}
+
+.ic-mega-link:hover {
+  color: #111111 !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+  transform: translateX(2px) !important;
+}
+
+
+/* Mobile Navigation Drawer Global Styles */
+@media (min-width: 1025px) {
+  .ic-mobile-drawer {
+    display: none !important;
+  }
+}

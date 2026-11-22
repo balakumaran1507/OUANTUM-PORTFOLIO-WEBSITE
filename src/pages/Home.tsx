@@ -1,13 +1,11 @@
 import React from 'react';
-import Hero from '../components/home/Hero';
-import PlatformIntro from '../components/home/PlatformIntro';
-import Problem from '../components/home/Problem';
-import HowItWorks from '../components/home/HowItWorks';
-import Difference from '../components/home/Difference';
-import Partners from '../components/home/Partners';
-import Contact from '../components/home/Contact';
+import IntercomHero from '../components/home/IntercomHero';
+import IntercomShowcase from '../components/home/IntercomShowcase';
+import IntercomFinAgent from '../components/home/IntercomFinAgent';
+import IntercomBento from '../components/home/IntercomBento';
+import IntercomVideoBanner from '../components/home/IntercomVideoBanner';
+import IntercomTestimonials from '../components/home/IntercomTestimonials';
 import useSEO from '../hooks/useSEO';
-import { organizationPeopleSchema } from '../config/company';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -30,7 +28,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'OUANTUM',
   url: BASE_URL,
-  logo: `${BASE_URL}/assets/images/logo.png`,
+  logo: `${BASE_URL}/assets/images/logo_horizontal copy.png`,
   description:
     'OUANTUM is the AI platform built for civil infrastructure quality assurance, monitoring, and structural auditing. Compressing weeks of manual analysis into a single working day.',
   address: {
@@ -48,14 +46,17 @@ const organizationSchema = {
     availableLanguage: ['English', 'Tamil'],
   },
   sameAs: ['https://www.linkedin.com/company/ouantum/'],
-  ...organizationPeopleSchema,
+  founders: [
+    { '@type': 'Person', name: 'Balakumaran D', jobTitle: 'President' },
+    { '@type': 'Person', name: 'Rahul', jobTitle: 'Chief Executive Officer' },
+  ],
 };
 
 const Home: React.FC = () => {
   useSEO({
-    title: 'Ouantum',
+    title: 'OUANTUM | AI and Civil Infrastructure Quality Assurance',
     description:
-      'OUANTUM builds AI for civil construction quality assurance, monitoring and structural auditing. OX1, our unified intelligence layer, connects NDT, inspection and BIM data into decision-ready reports.',
+      'OUANTUM is the first infrastructure intelligence platform with a natively integrated AI engine. Field data in. Government-grade reports out. Same day.',
     keywords:
       'AI quality assurance, civil engineering AI, structural auditing, NDT analysis, SonReb correlation, IS code compliance, TPQM, construction QA, India infrastructure AI, OUANTUM',
     canonicalPath: '/',
@@ -63,14 +64,24 @@ const Home: React.FC = () => {
   });
 
   return (
-    <main id="main-content" aria-label="OUANTUM home page">
-      <Hero />
-      <PlatformIntro />
-      <Problem />
-      <HowItWorks />
-      <Difference />
-      <Partners />
-      <Contact />
+    <main id="main-content" aria-label="OUANTUM home page" style={{ backgroundColor: 'var(--ic-bg)' }}>
+      {/* 1. Hero with 3-line typography, flanking images, and badges */}
+      <IntercomHero />
+
+      {/* 2. Interactive Dual-Tabbed Application Showcase */}
+      <IntercomShowcase />
+
+      {/* 3. OX1 Autonomous Civil Agent (Intercom Fin Section) */}
+      <IntercomFinAgent />
+
+      {/* 5. Platform Bento Capabilities Grid */}
+      <IntercomBento />
+
+      {/* 6. Iridescent Video Keynote Card */}
+      <IntercomVideoBanner />
+
+      {/* 7. Tabbed Customer Quotes with Electric Blue Highlights */}
+      <IntercomTestimonials />
     </main>
   );
 };

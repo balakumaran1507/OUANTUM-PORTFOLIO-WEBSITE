@@ -7,7 +7,7 @@ import { WordHover } from '@/components/common/WordHover';
 
 const Hero: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '', website: '' }); // 'website' is a honeypot field
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -58,39 +58,36 @@ const Hero: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
-    // Honeypot check — bots fill hidden fields, humans don't
-    if (formData.website) return;
 
     setIsSubmitting(true);
 
     try {
-      // Notify via server-side API route — no secrets in client code
-      await fetch('/api/notify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'hero_form',
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-        }),
-      });
+      const tgToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+      const tgChatId = import.meta.env.VITE_TELEGRAM_BOT_TOKEN ? import.meta.env.VITE_TELEGRAM_CHAT_ID : null;
+      const tgChatId2 = import.meta.env.VITE_TELEGRAM_BOT_TOKEN ? import.meta.env.VITE_TELEGRAM_CHAT_ID_2 : null;
+
+      if (tgToken && tgChatId) {
+        const text = `🚨 *New Website Lead (Hero Form)*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n*Message:* ${formData.message || 'N/A'}`;
+
+        const sendTo = (chatId: string) =>
+          fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+          }).catch(() => { });
+
+        await sendTo(tgChatId);
+        if (tgChatId2) await sendTo(tgChatId2);
+      }
 
       setIsSuccess(true);
       setTimeout(() => {
         setIsModalOpen(false);
         setIsSuccess(false);
-        setFormData({ name: '', email: '', phone: '', message: '', website: '' });
+        setFormData({ name: '', email: '', phone: '', message: '' });
       }, 3000);
-    } catch {
-      // Silently succeed — notification is non-critical
-      setIsSuccess(true);
-      setTimeout(() => {
-        setIsModalOpen(false);
-        setIsSuccess(false);
-        setFormData({ name: '', email: '', phone: '', message: '', website: '' });
-      }, 3000);
+    } catch (error) {
+      console.error(error);
     } finally {
       setIsSubmitting(false);
     }
@@ -198,7 +195,7 @@ const Hero: React.FC = () => {
                   }
                 }}
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.74rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -231,7 +228,7 @@ const Hero: React.FC = () => {
               <Link
                 to="/contact"
                 style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.74rem',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -348,7 +345,7 @@ const Hero: React.FC = () => {
 
               {/* Left Column - Form */}
               <div style={{ padding: '40px', background: '#000000' }}>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Send us a message</h3>
+                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Send us a message</h3>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)', marginBottom: '30px' }}>Fill out the form below and we'll get back to you.</p>
 
                 {isSuccess ? (
@@ -357,17 +354,6 @@ const Hero: React.FC = () => {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                    {/* Honeypot — hidden from real users, bots fill it */}
-                    <input
-                      type="text"
-                      name="website"
-                      value={formData.website}
-                      onChange={e => setFormData({ ...formData, website: e.target.value })}
-                      tabIndex={-1}
-                      autoComplete="off"
-                      style={{ display: 'none' }}
-                      aria-hidden="true"
-                    />
                     <input
                       type="text"
                       placeholder="Name"
@@ -462,7 +448,7 @@ const Hero: React.FC = () => {
                         border: 'none',
                         padding: '16px',
                         borderRadius: '8px',
-                        fontFamily: 'var(--font-adieu)',
+                        fontFamily: 'var(--font-title)',
                         cursor: isSubmitting ? 'not-allowed' : 'pointer',
                         display: 'flex',
                         alignItems: 'center',
@@ -490,7 +476,7 @@ const Hero: React.FC = () => {
 
               {/* Right Column - Direct Links */}
               <div style={{ padding: '40px', background: '#000000', display: 'flex', flexDirection: 'column' }}>
-                <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Direct Contact</h3>
+                <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.5rem', marginBottom: '10px', textTransform: 'uppercase' }}>Direct Contact</h3>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.6)', marginBottom: '30px' }}>Or reach out to us instantly via these channels.</p>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', flex: 1, justifyContent: 'center' }}>
@@ -509,7 +495,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>WhatsApp</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>WhatsApp</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>Instant response</div>
                     </div>
                   </a>
@@ -529,7 +515,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>Phone Call</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>Phone Call</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>+91 76958 27158</div>
                     </div>
                   </a>
@@ -549,7 +535,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>Email</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>Email</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>contact@ouantum.com</div>
                     </div>
                   </a>
@@ -569,7 +555,7 @@ const Hero: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.1rem' }}>LinkedIn</div>
+                      <div style={{ fontFamily: 'var(--font-title)', fontSize: '1.1rem' }}>LinkedIn</div>
                       <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.5)', marginTop: '4px' }}>Connect professionally</div>
                     </div>
                   </a>

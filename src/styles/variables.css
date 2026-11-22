@@ -1,28 +1,33 @@
 :root {
-  /* Colors */
-  --bg-primary: #000000;
-  --bg-secondary: #000000;
-  --text-primary: #ffffff;
-  --text-secondary: #aaaaaa;
-  --text-muted: #666666;
+  /* Colors - Pure White Navbar-Matching Palette */
+  --bg-primary: #ffffff;
+  --bg-secondary: #ffffff;
+  --bg-chalk: #ffffff;
+  --bg-white: #ffffff;
+  --text-primary: #111111;
+  --text-secondary: #4a5565;
+  --text-muted: #6a7282;
+  --accent-blue: #111111;
+  --accent-orange: #111111;
   --accent-white: #ffffff;
-  --accent-white-glow: rgba(255, 255, 255, 0.08);
-  --line-color: rgba(255, 255, 255, 0.1);
-  --line-active: #444444;
+  --accent-white-glow: transparent;
+  --line-color: transparent;
+  --line-active: #111111;
 
   /* Glow Card Global Color */
   --glow-card-color: #ffffff;
 
-  /* Fonts */
-  --font-main: 'Inter', sans-serif;
-  --font-mono: 'Inter', sans-serif;
-  --font-adieu: 'Adieu', sans-serif;
-  --font-brand: 'Adieu', sans-serif;
-  --font-geist: 'Geist', sans-serif;
-  --font-title: 'Geist', sans-serif;
+  /* Fonts - Segoe UI for Titles & Saans for Body */
+  --font-main: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-brand: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-geist: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-title: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   /* Spacing */
-  --container-width: 1600px;
+  --container-width: 1440px;
   --section-padding: 60px;
   --header-height: 90px;
 
@@ -33,6 +38,22 @@
   /* Transitions */
   --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-medium: 0.4s var(--transition-smooth);
+
+  /* Navbar Logo Alignment & Scale Parameters */
+  --nav-logo-x: 0px;
+  --nav-logo-y: 0px;
+  --nav-logo-scale: 1;
+
+  /* Navbar Navigation Links Alignment & Scale Parameters */
+  --nav-links-x: 0px;
+  --nav-links-y: 0px;
+  --nav-links-scale: 1;
+
+  /* Hero Section Background ASCII Image Alignment & Scale Parameters */
+  --hero-bg-x: 0px;
+  --hero-bg-y: 30px;
+  --hero-bg-scale: 1.05;
+  --hero-bg-opacity: 0.22;
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useSEO from '../hooks/useSEO';
 
-import { LAUNCH_TIMESTAMP as TARGET_TIMESTAMP } from '../config/launch';
+// Target: October 10, 2026 at 6:00 PM IST
+const TARGET_TIMESTAMP = new Date('2026-10-10T18:00:00+05:30').getTime();
 
 // Countdown scale, X-axis offset, Y-axis offset, image brightness, sunlight intensity, and blur
 export const COUNTDOWN_CONFIG = {
@@ -24,7 +25,7 @@ const OX1Countdown: React.FC = () => {
   useSEO({
     title: 'OX1 Countdown | Ouantum',
     description: 'Live countdown to OX1 launch on October 10th at 6:00 PM.',
-    canonicalPath: '/',
+    canonicalPath: '/ox1-countdown',
   });
 
   const [timeLeft, setTimeLeft] = useState(() => Math.max(0, TARGET_TIMESTAMP - Date.now()));

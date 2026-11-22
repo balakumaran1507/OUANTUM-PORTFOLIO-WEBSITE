@@ -31,7 +31,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
         <CheckCircle size={56} />
       </div>
       <h3 style={{ 
-        fontFamily: 'var(--font-adieu)', 
+        fontFamily: 'var(--font-title)', 
         fontSize: '1.5rem', 
         color: '#fff', 
         marginBottom: '1rem',
@@ -54,7 +54,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
         <button 
           onClick={onAction}
           style={{ 
-            background: '#2563EB', 
+            background: '#111111', 
             color: '#fff', 
             border: 'none',
             padding: '1rem 2rem', 
@@ -64,8 +64,8 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
             cursor: 'pointer',
             transition: 'background 0.3s'
           }}
-          onMouseOver={e => e.currentTarget.style.background = '#1D4ED8'}
-          onMouseOut={e => e.currentTarget.style.background = '#2563EB'}
+          onMouseOver={e => e.currentTarget.style.background = '#2a2a2a'}
+          onMouseOut={e => e.currentTarget.style.background = '#111111'}
         >
           {actionText}
         </button>

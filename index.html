@@ -9,6 +9,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Google Fonts: Geist Variable Font (Weights 100-900) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
+
     <!-- Preload Critical OX1 Architecture Assets for Instant, Synchronous Rendering -->
     <link rel="preload" as="image" href="/assets/images/logo/ouantum-mascot.png" fetchpriority="high" />
     <link rel="preload" as="image" href="/assets/images/logo/ouantum-mascot-2.png" fetchpriority="high" />
@@ -19,12 +24,32 @@
     <link rel="preload" as="image" href="/assets/images/logo/ouantum-arch-4.png" />
 
     <!-- Deferred Non-Critical Analytics -->
-    <script defer src="/analytics.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Google Analytics
+          var gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XVXJYL311Z';
+          document.head.appendChild(gaScript);
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XVXJYL311Z');
 
+          // Microsoft Clarity
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "x3p7v4kzcc");
+        }, 1000);
+      });
+    </script>
 
     <!-- Primary SEO -->
     <title>Ouantum</title>
-    <meta name="description" content="OUANTUM builds AI for civil construction quality assurance, monitoring and structural auditing. OX1, our unified intelligence layer, connects NDT, inspection and BIM data into decision-ready reports." />
+    <meta name="description" content="OUANTUM is the AI platform built for civil construction quality assurance, monitoring, and structural auditing. Field data in. Government-grade reports out. Same day." />
     <meta name="keywords" content="AI quality assurance, civil engineering AI, structural auditing, NDT analysis, SonReb correlation, IS code compliance, TPQM, construction QA, OUANTUM" />
     <meta name="author" content="Balakumaran D, Rahul" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -41,7 +66,7 @@
  
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="OUANTUM | AI-Powered Quality Assurance for Civil Infrastructure" />
-    <meta property="og:description" content="OUANTUM builds AI for civil construction quality assurance, monitoring and structural auditing. OX1, our unified intelligence layer, connects NDT, inspection and BIM data into decision-ready reports." />
+    <meta property="og:description" content="OUANTUM is the AI platform built for civil construction quality assurance, monitoring, and structural auditing. Field data in. Government-grade reports out. Same day." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://ouantum.com/assets/images/og-image.jpg" />
     <meta property="og:url" content="https://ouantum.com" />
@@ -51,7 +76,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="OUANTUM | AI-Powered Quality Assurance for Civil Infrastructure" />
-    <meta name="twitter:description" content="OUANTUM builds AI for civil construction quality assurance, monitoring and structural auditing. OX1, our unified intelligence layer, connects NDT, inspection and BIM data into decision-ready reports." />
+    <meta name="twitter:description" content="OUANTUM is the AI platform built for civil construction quality assurance, monitoring, and structural auditing. Field data in. Government-grade reports out. Same day." />
     <meta name="twitter:image" content="https://ouantum.com/assets/images/og-image.jpg" />
     <meta name="twitter:site" content="@ouantum" />
     <meta name="twitter:creator" content="@ouantum" />
@@ -66,59 +91,11 @@
           "@id": "https://www.ouantum.com/#organization",
           "name": "OUANTUM",
           "url": "https://www.ouantum.com",
-          "logo": "https://www.ouantum.com/assets/images/logo.png",
+          "logo": "https://www.ouantum.com/assets/images/logo_horizontal%20copy.png",
           "description": "OUANTUM is an AI-powered platform for civil engineering quality assurance, structural auditing, infrastructure monitoring, construction analytics, and compliance reporting.",
-          "sameAs": ["https://www.linkedin.com/company/ouantum/"],
-          "foundingDate": "2026-05-23",
-          "identifier": { "@type": "PropertyValue", "propertyID": "Udyam Registration Number", "value": "UDYAM-TN-02-0479664" },
           "founder": [
-            {
-              "@type": "Person",
-              "name": "Balakumaran D",
-              "jobTitle": "Director and Founder",
-              "url": "https://www.linkedin.com/in/balakumaran2005/",
-              "sameAs": [
-                "https://www.linkedin.com/in/balakumaran2005/"
-              ]
-            },
-            {
-              "@type": "Person",
-              "name": "Rahul",
-              "jobTitle": "Co-Founder and Director",
-              "url": "https://www.linkedin.com/in/rahul1172005/",
-              "sameAs": [
-                "https://www.linkedin.com/in/rahul1172005/"
-              ]
-            },
-            {
-              "@type": "Person",
-              "name": "Sabari Raja",
-              "jobTitle": "Co-Founder and Director",
-              "url": "https://www.linkedin.com/in/sabari-raja-5a4464330/",
-              "sameAs": [
-                "https://www.linkedin.com/in/sabari-raja-5a4464330/"
-              ]
-            }
-          ],
-          "employee": [
-            {
-              "@type": "Person",
-              "name": "Guru Prasanth",
-              "jobTitle": "Chief Technology Officer",
-              "url": "https://www.linkedin.com/in/guru-prasanth-5aa373294/",
-              "sameAs": [
-                "https://www.linkedin.com/in/guru-prasanth-5aa373294/"
-              ]
-            },
-            {
-              "@type": "Person",
-              "name": "Raghu",
-              "jobTitle": "Vice President",
-              "url": "https://www.linkedin.com/in/raghunandhan-t-aaa678356/",
-              "sameAs": [
-                "https://www.linkedin.com/in/raghunandhan-t-aaa678356/"
-              ]
-            }
+            { "@type": "Person", "name": "Rahul" },
+            { "@type": "Person", "name": "Balakumaran D" }
           ],
           "knowsAbout": [
             "Artificial Intelligence",
@@ -179,7 +156,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@400;700;900&family=JetBrains+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
     <!-- Preload Critical LCP Assets -->
-    <link rel="preload" as="image" href="/assets/images/logo_horizontal.png" type="image/png">
+    <link rel="preload" as="image" href="/assets/images/logo_horizontal%20copy.png" type="image/png">
     <link rel="preload" as="image" href="/assets/images/0deda3f3-08be-4515-af7b-2e1b6c2d97d8.png" type="image/png">
 
     <!-- Preload Marquee Images -->

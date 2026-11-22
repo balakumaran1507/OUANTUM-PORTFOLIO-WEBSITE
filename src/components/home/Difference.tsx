@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, ArrowDown } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import ScrollReveal from '@/components/common/ScrollReveal'
 
 interface DifferenceItem {
@@ -178,6 +179,28 @@ const Difference = () => {
               </div>
             );
           })}
+        </div>
+
+        <div style={{ marginTop: '48px', display: 'flex', justifyContent: 'flex-start' }}>
+          <Link
+            to="/why-choose-ouantum"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '14px 28px',
+              borderRadius: '9999px',
+              backgroundColor: '#ffffff',
+              color: '#000000',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(255, 255, 255, 0.15)',
+              transition: 'all 0.2s ease',
+            }}
+          >
+            Read the full Why Choose OUANTUM architecture <ArrowUpRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

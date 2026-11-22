@@ -486,9 +486,12 @@ export default function GlowCard({
         position: "relative",
         borderRadius: `${effectiveRadius}px`,
         overflow: "hidden",
-        background: "#000000",
-        transform: "translateY(0px)",
-        transition: "border-color 0.3s ease",
+        background: "var(--ic-card, #ffffff)",
+        border: "1px solid var(--ic-border, rgba(0, 0, 0, 0.08))",
+        boxShadow: isHovered ? "0 12px 32px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.02)" : "0 2px 8px rgba(0, 0, 0, 0.03)",
+        color: "var(--ic-text, #111111)",
+        transform: isHovered ? "translateY(-2px)" : "translateY(0px)",
+        transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
         height: "100%",
         width: "100%",
         display: "flex",
@@ -497,9 +500,10 @@ export default function GlowCard({
         ...style,
       }}
     >
-      {/* ── LAYER 1: BORDER-MARGIN GLOW BLEED (Inner Motion) ── */}
+      {/* ── LAYER 1: BORDER-MARGIN GLOW BLEED ── */}
       <div
         style={{
+          display: 'none',
           position: "absolute",
           inset: 0,
           borderRadius: `${effectiveRadius}px`,
@@ -527,6 +531,7 @@ export default function GlowCard({
       {/* ── LAYER 2: BORDER STROKE (SVG) ── */}
       <svg
         style={{
+          display: 'none',
           position: "absolute",
           inset: 0,
           width: "100%",
@@ -561,9 +566,10 @@ export default function GlowCard({
         />
       </svg>
 
-      {/* ── LAYER 3: MAIN AMBIENT GLOW (Inner Motion: rises and expands) ── */}
+      {/* ── LAYER 3: MAIN AMBIENT GLOW ── */}
       <div
         style={{
+          display: 'none',
           position: "absolute",
           inset: "-50px",
           background: [
@@ -573,15 +579,13 @@ export default function GlowCard({
           filter: "blur(13px)",
           mixBlendMode: "screen",
           pointerEvents: "none",
-          transform: isHovered ? "scale(1.08) translateY(-10px)" : "scale(1) translateY(0px)",
-          opacity: isHovered ? 1.2 : 0.85,
-          transition: "transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.65s ease",
         }}
       />
 
       {/* ── LAYER 4: FILM GRAIN OVERLAY ── */}
       <svg
         style={{
+          display: 'none',
           position: "absolute",
           inset: 0,
           width: "100%",

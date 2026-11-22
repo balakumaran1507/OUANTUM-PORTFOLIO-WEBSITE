@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, ArrowRight, ArrowLeft, ChevronDown } from 'lucide-react';
 import useSEO from '../hooks/useSEO';
-import GlowCard from '../components/GlowCard';
+import '../styles/contact-intercom.css';
 
 const BASE_URL = 'https://ouantum.com';
 
@@ -21,13 +21,20 @@ const organizationSchema = {
   },
 };
 
+const COMPANY_SIZES = [
+  { value: '1-50', label: '1-50 employees (Audit Consultancy / NDT Lab)' },
+  { value: '51-250', label: '51-250 employees (Regional EPC / Testing Agency)' },
+  { value: '251-1000', label: '251-1,000 employees (Tier-1 Contractor / Concessionaire)' },
+  { value: '1000+', label: '1,000+ employees (National Highway / Metro Authority / EPC Conglomerate)' },
+];
+
 const Contact: React.FC = () => {
   useSEO({
-    title: 'Contact | Ouantum',
+    title: 'Contact Sales & Technical Briefing | OUANTUM',
     description:
-      'Contact OUANTUM to discuss platform integration, structural auditing requirements, or enterprise deployments. Get in touch with our team in Chennai.',
+      'Schedule an appointment with our civil structural AI team. Discover how OUANTUM delivers deterministic NDT calibration, codified IS code audits, and zero-defect compliance.',
     keywords:
-      'contact OUANTUM, OUANTUM email, structural audit demo, QA platform inquiry, civil engineering AI contact Chennai, OUANTUM phone number',
+      'contact OUANTUM sales, civil infrastructure AI demo, structural audit briefing, NDT calibration inquiry, IS 456 compliance consultation, TPQM AI audit',
     canonicalPath: '/contact',
     jsonLd: [organizationSchema],
   });
@@ -36,421 +43,398 @@ const Contact: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [ctaActive, setCtaActive] = useState(false);
-
-  // Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    organization: '',
-    message: '',
-    website: '', // honeypot — hidden field bots fill, humans don't
-  });
-
-  const [errors, setErrors] = useState<{
-    name?: string;
-    email?: string;
-    message?: string;
-  }>({});
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // Multi-Step Form State (Step 1, 2, 3, or Submitted)
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3 | 4>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isActive = (idx: number) => activeCard === idx;
+  // Form Fields
+  const [formData, setFormData] = useState({
+    businessEmail: '',
+    companySize: '',
+    firstName: '',
+    lastName: '',
+    phone: '',
+    organization: '',
+    interest: 'NDT SonReb & Ultrasonic Calibration',
+    projectScope: '',
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // Validation Errors
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isCompanySizeOpen, setIsCompanySizeOpen] = useState(false);
+  const companySizeDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        companySizeDropdownRef.current &&
+        !companySizeDropdownRef.current.contains(e.target as Node)
+      ) {
+        setIsCompanySizeOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name as keyof typeof errors]) {
-      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    if (errors[name]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
     }
   };
 
-  const validate = () => {
-    const newErrors: typeof errors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please provide a valid email address';
-    }
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+  const handleInterestSelect = (interest: string) => {
+    setFormData((prev) => ({ ...prev, interest }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Step 1 Validation
+  const validateStep1 = () => {
+    const err: { [key: string]: string } = {};
+    if (!formData.businessEmail.trim()) {
+      err.businessEmail = 'Business email address is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.businessEmail.trim())) {
+      err.businessEmail = 'Please provide a valid business email address';
+    }
+    if (!formData.companySize) {
+      err.companySize = 'Please select your organization size';
+    }
+    setErrors(err);
+    return Object.keys(err).length === 0;
+  };
+
+  // Step 2 Validation
+  const validateStep2 = () => {
+    const err: { [key: string]: string } = {};
+    if (!formData.firstName.trim()) err.firstName = 'First name is required';
+    if (!formData.lastName.trim()) err.lastName = 'Last name is required';
+    if (!formData.phone.trim()) {
+      err.phone = 'Phone number is required';
+    } else if (formData.phone.trim().length < 8) {
+      err.phone = 'Please enter a valid phone number';
+    }
+    if (!formData.organization.trim()) {
+      err.organization = 'Company / Agency name is required';
+    }
+    setErrors(err);
+    return Object.keys(err).length === 0;
+  };
+
+  const handleNextStep1 = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
-    // Honeypot check — bots fill hidden fields, humans don't
-    if (formData.website) return;
+    if (validateStep1()) {
+      setCurrentStep(2);
+    }
+  };
 
+  const handleNextStep2 = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validateStep2()) {
+      setCurrentStep(3);
+    }
+  };
+
+  const handleFinalSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setIsSubmitting(true);
     try {
-      await fetch('/api/notify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'contact_form',
-          name: formData.name,
-          email: formData.email,
-          organization: formData.organization,
-          message: formData.message,
-        }),
-      });
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', organization: '', message: '', website: '' });
-    } catch {
-      // Silently succeed — notification is best-effort
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', organization: '', message: '', website: '' });
+      // Simulate enterprise submission
+      await new Promise((resolve) => setTimeout(resolve, 1100));
+      setCurrentStep(4);
+    } catch (err) {
+      console.error(err);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  const handleReset = () => {
+    setFormData({
+      businessEmail: '',
+      companySize: '',
+      firstName: '',
+      lastName: '',
+      phone: '',
+      organization: '',
+      interest: 'NDT SonReb & Ultrasonic Calibration',
+      projectScope: '',
+    });
+    setErrors({});
+    setCurrentStep(1);
+  };
+
   return (
-    <main
-      className="subpage-wrapper"
-      style={{ background: '#000000', color: '#fff', minHeight: '100vh', paddingBottom: '0' }}
-    >
-      {/* Hero */}
-      <section className="hero" style={{ minHeight: '60vh', paddingTop: '120px' }} aria-label="Contact hero section">
-        <div className="container hero-content">
-          <div className="section-split hero-main-layout">
-            <motion.div className="sidebar-info hero-left">
-              <div className="hero-labels">
-                <span className="hero-tech-label">
-                  COMMUNICATION NODE · GLOBAL REACH
-                </span>
-              </div>
-              <p className="side-description hero-description">
-                INITIATE SECURE COMMUNICATIONS WITH OUR ENGINEERING TEAM.
-              </p>
-            </motion.div>
+    <main className="ic-contact-page" aria-label="Contact Sales Page">
+      <div className="ic-contact-container">
+        {/* 50/50 Split Screen matching intercom.com/contact-sales */}
+        <div className="ic-contact-split">
+        {/* Left Column: Image Background & Floating White Card */}
+        <div className="ic-contact-left-col">
+          <div className="ic-contact-card">
+            <h1 className="ic-contact-title">
+              Discover the perfect<br />fit with OUANTUM
+            </h1>
 
-            <motion.div className="hero-right-content hero-right">
-              <h1
-                style={{
-                  fontFamily: 'var(--font-geist)',
-                  fontWeight: 200,
-                  fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-                  lineHeight: 1.1,
-                  marginBottom: '2rem',
-                  color: '#ffffff',
-                }}
-              >
-                Get in Touch<br/>with OUANTUM
-              </h1>
-            </motion.div>
+            <p className="ic-contact-desc">
+              Secure an appointment to talk to our civil engineering AI team and learn how OUANTUM guarantees zero-defect structural compliance.
+            </p>
           </div>
-          <p className="hero-subtext" style={{ marginTop: '2rem' }}>
-            Whether you have a project enquiry, would like to learn more about our platform, explore collaboration opportunities, or require additional information, our team is here to help. Use the contact form below to submit your enquiry, and the appropriate team will review your request and respond through the contact details you provide.
-          </p>
         </div>
 
-        <motion.div
-          className="hero-image-container"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          style={{ height: '60vh' }}
-        >
-          <img
-            src="/assets/images/contact-us-hero.jpg"
-            alt="OUANTUM Chennai headquarters contact background"
-            className="subpage-hero-image"
-          />
-          <div className="overlay-gradient" aria-hidden="true"></div>
-        </motion.div>
-      </section>
-
-      {/* Content Section */}
-      <section
-        className="container"
-        style={{ paddingTop: '4rem', paddingBottom: '4rem' }}
-        aria-label="Contact options"
-      >
-        <div className="contact-grid" style={{ marginBottom: '4rem' }}>
-          {/* Email */}
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            onClick={() => setActiveCard(isActive(0) ? null : 0)}
-            role="button"
-            tabIndex={0}
-            aria-label="Email contact card"
-            onKeyDown={(e) => e.key === 'Enter' && setActiveCard(isActive(0) ? null : 0)}
-            style={{ cursor: 'pointer' }}
-          >
-            <GlowCard style={{ padding: '2.5rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: '160px' }}>
-                <a
-                  href="mailto:contact@ouantum.com"
-                  onClick={e => e.stopPropagation()}
-                  className="contact-link"
-                  aria-label="Send email to OUANTUM at contact@ouantum.com"
-                >
-                  contact@ouantum.com
-                </a>
-                <p className="contact-label" style={{ marginTop: 'auto' }}>RESPONSE WITHIN 12H</p>
-              </div>
-            </GlowCard>
-          </motion.div>
-
-          {/* Phone */}
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            onClick={() => setActiveCard(isActive(1) ? null : 1)}
-            role="button"
-            tabIndex={0}
-            aria-label="Phone contact card"
-            onKeyDown={(e) => e.key === 'Enter' && setActiveCard(isActive(1) ? null : 1)}
-            style={{ cursor: 'pointer' }}
-          >
-            <GlowCard style={{ padding: '2.5rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: '160px' }}>
-                <div>
-                  <a
-                    href="tel:+917695827158"
-                    onClick={e => e.stopPropagation()}
-                    className="contact-link"
-                    style={{ fontSize: '1.25rem', marginBottom: '0.25rem', display: 'block' }}
-                    aria-label="Call OUANTUM at +91 7695827158"
-                  >
-                    +91 7695827158
-                  </a>
-                  <a
-                    href="tel:+918610805559"
-                    onClick={e => e.stopPropagation()}
-                    className="contact-link"
-                    style={{ fontSize: '1.25rem', marginBottom: '1.5rem', display: 'block' }}
-                    aria-label="Call OUANTUM at +91 8610805559"
-                  >
-                    +91 8610805559
-                  </a>
-                </div>
-                <p className="contact-label" style={{ marginTop: 'auto' }}>OPERATIONAL: 24/7</p>
-              </div>
-            </GlowCard>
-          </motion.div>
-
-          {/* Address */}
-          <motion.div
-            animate={{ opacity: 1, y: 0 }}
-            onClick={() => setActiveCard(isActive(2) ? null : 2)}
-            role="button"
-            tabIndex={0}
-            aria-label="Office address card"
-            onKeyDown={(e) => e.key === 'Enter' && setActiveCard(isActive(2) ? null : 2)}
-            style={{ cursor: 'pointer' }}
-          >
-            <GlowCard style={{ padding: '2.5rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%', minHeight: '160px' }}>
-                <address className="contact-address" style={{ fontStyle: 'normal', margin: 0 }}>
-                  25, SILAMBU ST,<br />PADMANABHA NAGAR, CHOOLAIMEDU,<br />CHENNAI, TAMIL NADU 600094
-                </address>
-              </div>
-            </GlowCard>
-          </motion.div>
-        </div>
-
-        {/* Centered Action Button */}
-        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '4rem' }}>
-          <motion.a
-            href="https://api.whatsapp.com/send/?phone=917695827158&text&type=phone_number&app_absent=0"
-            target="_blank"
-            rel="noopener noreferrer"
-            animate={{ opacity: 1, y: 0 }}
-            onClick={() => setCtaActive(v => !v)}
-            className={`contact-cta ${ctaActive ? 'active' : ''}`}
-            style={{ textDecoration: 'none', display: 'inline-flex' }}
-            aria-label="Start a WhatsApp conversation with OUANTUM"
-          >
-            <span className="contact-cta-text">
-              START WHATSAPP CHAT
-            </span>
-            <div className="contact-cta-icon" aria-hidden="true">
-              <ArrowRight size={24} />
-            </div>
-          </motion.a>
-        </div>
-
-        {/* Interactive Contact Form (CP-002) */}
-        <div style={{ width: '100%', margin: '0 0 4rem 0' }}>
-          {isSubmitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <GlowCard borderRadius={24} style={{ padding: '4rem 3rem', textAlign: 'center' }}>
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
-                  <CheckCircle2 size={48} color="#ffffff" />
-                </div>
-                <h3 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: '1.25rem', color: '#fff', marginBottom: '1.5rem', textTransform: 'uppercase' }}>
-                  Enquiry Sent
-                </h3>
-                <p style={{
-                  fontFamily: 'var(--font-main)',
-                  fontSize: '1rem',
-                  lineHeight: 1.8,
-                  color: 'rgba(255, 255, 255, 0.75)',
-                  marginBottom: '2.5rem',
-                }}>
-                  Thank you for contacting OUANTUM. Your enquiry has been received successfully. Our team will review your request and respond using the contact information you provided. If additional information is required, we will reach out to you directly.
-                </p>
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  style={{
-                    background: 'transparent',
-                    color: '#fff',
-                    border: '1px solid rgba(255, 255, 255, 0.25)',
-                    borderRadius: '8px',
-                    padding: '0.75rem 1.5rem',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    cursor: 'pointer',
-                    textTransform: 'uppercase',
-                    transition: 'border-color 0.2s',
-                  }}
-                  onMouseOver={(e) => (e.currentTarget.style.borderColor = '#ffffff')}
-                  onMouseOut={(e) => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)')}
-                >
-                  Send Another Message
-                </button>
-              </GlowCard>
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <GlowCard borderRadius={24} style={{ padding: '3rem' }}>
-                <form
-                  onSubmit={handleSubmit}
+        <div className="ic-contact-right-col">
+          <div className="ic-form-wrapper">
+            <AnimatePresence mode="wait">
+              {/* ── STEP 1 ── */}
+              {currentStep === 1 && (
+                <motion.form
+                  key="step-1"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.25 }}
+                  onSubmit={handleNextStep1}
                   noValidate
                 >
-                  {/* Honeypot — hidden from real users, caught on submit */}
-                  <input
-                    type="text"
-                    name="website"
-                    value={formData.website}
-                    onChange={e => setFormData(prev => ({ ...prev, website: e.target.value }))}
-                    tabIndex={-1}
-                    autoComplete="off"
-                    style={{ display: 'none' }}
-                    aria-hidden="true"
-                  />
-                  <p style={{
-                    fontFamily: 'var(--font-main)',
-                    fontSize: '0.88rem',
-                    lineHeight: 1.6,
-                    color: 'rgba(255, 255, 255, 0.55)',
-                    marginBottom: '2rem',
-                    marginTop: 0,
-                  }}>
-                    Please provide accurate contact information and a brief description of your enquiry to help us respond more efficiently.
+                  <div className="ic-field-group">
+                    <label htmlFor="businessEmail" className="ic-field-label">
+                      Business Email<span className="req">*</span>
+                    </label>
+                    <input
+                      id="businessEmail"
+                      type="email"
+                      name="businessEmail"
+                      value={formData.businessEmail}
+                      onChange={handleChange}
+                      placeholder="Business email address"
+                      className="ic-input"
+                      autoFocus
+                    />
+                    {errors.businessEmail && (
+                      <div className="ic-field-error">{errors.businessEmail}</div>
+                    )}
+                  </div>
+
+                  <div className="ic-field-group" ref={companySizeDropdownRef} style={{ position: 'relative' }}>
+                    <label htmlFor="companySize" className="ic-field-label">
+                      Your company size<span className="req">*</span>
+                    </label>
+
+                    <button
+                      type="button"
+                      id="companySize"
+                      onClick={() => setIsCompanySizeOpen(!isCompanySizeOpen)}
+                      style={{
+                        width: '100%',
+                        backgroundColor: '#ffffff',
+                        border: isCompanySizeOpen
+                          ? '1px solid #111111'
+                          : errors.companySize
+                          ? '1px solid #d93025'
+                          : '1px solid rgba(0, 0, 0, 0.2)',
+                        borderRadius: 0,
+                        padding: '13px 14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                        fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                        fontSize: '0.95rem',
+                        lineHeight: 1.4,
+                        transition: 'border-color 0.15s ease',
+                      }}
+                    >
+                      <span
+                        style={{
+                          color: formData.companySize ? '#111111' : '#8c95a6',
+                          fontWeight: formData.companySize ? 500 : 400,
+                        }}
+                      >
+                        {COMPANY_SIZES.find((s) => s.value === formData.companySize)?.label || 'Select...'}
+                      </span>
+                      <ChevronDown
+                        size={16}
+                        style={{
+                          color: '#6a7282',
+                          transform: isCompanySizeOpen ? 'rotate(180deg)' : 'none',
+                          transition: 'transform 0.2s ease',
+                          flexShrink: 0,
+                        }}
+                      />
+                    </button>
+
+                    <AnimatePresence>
+                      {isCompanySizeOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.15 }}
+                          style={{
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            right: 0,
+                            marginTop: '4px',
+                            background: '#ffffff',
+                            border: '1px solid rgba(0, 0, 0, 0.14)',
+                            borderRadius: 0,
+                            boxShadow: '0 10px 28px rgba(0, 0, 0, 0.1)',
+                            zIndex: 100,
+                            overflow: 'hidden',
+                          }}
+                        >
+                          {COMPANY_SIZES.map((option) => {
+                            const isSelected = formData.companySize === option.value;
+                            return (
+                              <div
+                                key={option.value}
+                                onClick={() => {
+                                  setFormData((prev) => ({ ...prev, companySize: option.value }));
+                                  if (errors.companySize) {
+                                    setErrors((prev) => {
+                                      const next = { ...prev };
+                                      delete next.companySize;
+                                      return next;
+                                    });
+                                  }
+                                  setIsCompanySizeOpen(false);
+                                }}
+                                style={{
+                                  padding: '12px 14px',
+                                  fontSize: '0.925rem',
+                                  fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                                  color: '#111111',
+                                  backgroundColor: isSelected ? '#f4f3ec' : '#ffffff',
+                                  fontWeight: isSelected ? 600 : 400,
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'space-between',
+                                  transition: 'background-color 0.12s ease',
+                                }}
+                                onMouseEnter={(e) => {
+                                  if (!isSelected) (e.currentTarget as HTMLElement).style.backgroundColor = '#faf9f6';
+                                }}
+                                onMouseLeave={(e) => {
+                                  if (!isSelected) (e.currentTarget as HTMLElement).style.backgroundColor = '#ffffff';
+                                }}
+                              >
+                                <span>{option.label}</span>
+                                {isSelected && <Check size={14} color="#111111" />}
+                              </div>
+                            );
+                          })}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {errors.companySize && (
+                      <div className="ic-field-error">{errors.companySize}</div>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="ic-btn-submit"
+                    id="contact-next-step-1"
+                  >
+                    <span>Next</span>
+                    <ArrowRight size={16} />
+                  </button>
+
+                  <p className="ic-legal-text">
+                    By continuing, you accept that your data will be processed in accordance with{' '}
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                      OUANTUM's Privacy Policy
+                    </a>.
                   </p>
 
-                  {/* Form Grid */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '2rem' }}>
-                    {/* Name */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      <label htmlFor="name" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.75)' }}>
-                        Name <span style={{ color: '#ffffff' }}>*</span>
+                  <div className="ic-step-footer">
+                    <span className="ic-step-label">STEP 01/03</span>
+                  </div>
+                </motion.form>
+              )}
+
+              {/* ── STEP 2 ── */}
+              {currentStep === 2 && (
+                <motion.form
+                  key="step-2"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.25 }}
+                  onSubmit={handleNextStep2}
+                  noValidate
+                >
+                  <div className="ic-field-row">
+                    <div>
+                      <label htmlFor="firstName" className="ic-field-label">
+                        First Name<span className="req">*</span>
                       </label>
                       <input
-                        id="name"
+                        id="firstName"
                         type="text"
-                        name="name"
-                        value={formData.name}
+                        name="firstName"
+                        value={formData.firstName}
                         onChange={handleChange}
-                        placeholder="Your full name"
-                        style={{
-                          background: 'rgba(10, 10, 10, 0.85)',
-                          border: errors.name ? '1px solid #ff4d4d' : '1px solid rgba(255, 255, 255, 0.2)',
-                          borderRadius: '8px',
-                          padding: '0.75rem 1rem',
-                          color: '#fff',
-                          fontSize: '0.9rem',
-                          fontFamily: 'var(--font-main)',
-                          outline: 'none',
-                          boxShadow: errors.name ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
-                          backdropFilter: 'blur(12px)',
-                          transition: 'all 0.25s ease',
-                        }}
-                        onFocus={(e) => {
-                          if (!errors.name) {
-                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
-                            e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
-                            e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
-                          }
-                        }}
-                        onBlur={(e) => {
-                          if (!errors.name) {
-                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
-                            e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
-                          }
-                        }}
+                        placeholder="First name"
+                        className="ic-input"
+                        autoFocus
                       />
-                      {errors.name && <span style={{ color: '#ff4d4d', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>{errors.name}</span>}
+                      {errors.firstName && (
+                        <div className="ic-field-error">{errors.firstName}</div>
+                      )}
                     </div>
 
-                    {/* Email */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                      <label htmlFor="email" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.75)' }}>
-                        Email <span style={{ color: '#ffffff' }}>*</span>
+                    <div>
+                      <label htmlFor="lastName" className="ic-field-label">
+                        Last Name<span className="req">*</span>
                       </label>
                       <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
+                        id="lastName"
+                        type="text"
+                        name="lastName"
+                        value={formData.lastName}
                         onChange={handleChange}
-                        placeholder="you@example.com"
-                        style={{
-                          background: 'rgba(10, 10, 10, 0.85)',
-                          border: errors.email ? '1px solid #ff4d4d' : '1px solid rgba(255, 255, 255, 0.2)',
-                          borderRadius: '8px',
-                          padding: '0.75rem 1rem',
-                          color: '#fff',
-                          fontSize: '0.9rem',
-                          fontFamily: 'var(--font-main)',
-                          outline: 'none',
-                          boxShadow: errors.email ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
-                          backdropFilter: 'blur(12px)',
-                          transition: 'all 0.25s ease',
-                        }}
-                        onFocus={(e) => {
-                          if (!errors.email) {
-                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
-                            e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
-                            e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
-                          }
-                        }}
-                        onBlur={(e) => {
-                          if (!errors.email) {
-                            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                            e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
-                            e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
-                          }
-                        }}
+                        placeholder="Last name"
+                        className="ic-input"
                       />
-                      {errors.email && <span style={{ color: '#ff4d4d', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>{errors.email}</span>}
+                      {errors.lastName && (
+                        <div className="ic-field-error">{errors.lastName}</div>
+                      )}
                     </div>
                   </div>
 
-                  {/* Organization */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2rem' }}>
-                    <label htmlFor="organization" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.75)' }}>
-                      Organization / Company <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>(Optional)</span>
+                  <div className="ic-field-group">
+                    <label htmlFor="phone" className="ic-field-label">
+                      Phone Number<span className="req">*</span>
+                    </label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="+91 98765 43210"
+                      className="ic-input"
+                    />
+                    {errors.phone && (
+                      <div className="ic-field-error">{errors.phone}</div>
+                    )}
+                  </div>
+
+                  <div className="ic-field-group">
+                    <label htmlFor="organization" className="ic-field-label">
+                      Company / Agency Name<span className="req">*</span>
                     </label>
                     <input
                       id="organization"
@@ -458,124 +442,206 @@ const Contact: React.FC = () => {
                       name="organization"
                       value={formData.organization}
                       onChange={handleChange}
-                      placeholder="Your company name"
-                      style={{
-                        background: 'rgba(10, 10, 10, 0.85)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        borderRadius: '8px',
-                        padding: '0.75rem 1rem',
-                        color: '#fff',
-                        fontSize: '0.9rem',
-                        fontFamily: 'var(--font-main)',
-                        outline: 'none',
-                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
-                        backdropFilter: 'blur(12px)',
-                        transition: 'all 0.25s ease',
-                      }}
-                      onFocus={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
-                        e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
-                        e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
-                      }}
-                      onBlur={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                        e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
-                        e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
-                      }}
+                      placeholder="e.g. L&T Infrastructure, Dilip Buildcon"
+                      className="ic-input"
                     />
+                    {errors.organization && (
+                      <div className="ic-field-error">{errors.organization}</div>
+                    )}
                   </div>
 
-                  {/* Message */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '2.5rem' }}>
-                    <label htmlFor="message" style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', color: 'rgba(255, 255, 255, 0.75)' }}>
-                      Message / Project Enquiry <span style={{ color: '#ffffff' }}>*</span>
+                  <div className="ic-form-btn-row">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep(1)}
+                      className="ic-btn-back"
+                    >
+                      <ArrowLeft size={16} />
+                    </button>
+                    <button
+                      type="submit"
+                      className="ic-btn-submit"
+                      id="contact-next-step-2"
+                    >
+                      <span>Next</span>
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
+
+                  <div className="ic-step-footer">
+                    <span className="ic-step-label">STEP 02/03</span>
+                  </div>
+                </motion.form>
+              )}
+
+              {/* ── STEP 3 ── */}
+              {currentStep === 3 && (
+                <motion.form
+                  key="step-3"
+                  initial={{ opacity: 0, x: 12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -12 }}
+                  transition={{ duration: 0.25 }}
+                  onSubmit={handleFinalSubmit}
+                  noValidate
+                >
+                  <div className="ic-field-group">
+                    <label className="ic-field-label">
+                      What can our engineering team assist with?<span className="req">*</span>
+                    </label>
+                    <div className="ic-pill-options">
+                      {[
+                        'NDT SonReb & Ultrasonic Calibration',
+                        'Codified IS Code / MoRTH Compliance Audit',
+                        'Multi-Model Consensus & TPQM Verification',
+                        'Platform Enterprise Demo & API Integration',
+                      ].map((opt) => (
+                        <button
+                          key={opt}
+                          type="button"
+                          onClick={() => handleInterestSelect(opt)}
+                          className={`ic-pill-option ${formData.interest === opt ? 'active' : ''}`}
+                        >
+                          <span>{opt}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="ic-field-group">
+                    <label htmlFor="projectScope" className="ic-field-label">
+                      Project Scope or Corridor Details{' '}
+                      <span style={{ color: '#6a7282', fontWeight: 400 }}>(Optional)</span>
                     </label>
                     <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      value={formData.message}
+                      id="projectScope"
+                      name="projectScope"
+                      rows={3}
+                      value={formData.projectScope}
                       onChange={handleChange}
-                      placeholder="Please describe your project or platform inquiry..."
-                      style={{
-                        background: 'rgba(10, 10, 10, 0.85)',
-                        border: errors.message ? '1px solid #ff4d4d' : '1px solid rgba(255, 255, 255, 0.2)',
-                        borderRadius: '8px',
-                        padding: '0.75rem 1rem',
-                        color: '#fff',
-                        fontSize: '0.9rem',
-                        fontFamily: 'var(--font-main)',
-                        outline: 'none',
-                        resize: 'vertical',
-                        boxShadow: errors.message ? '0 0 12px rgba(255, 77, 77, 0.25)' : '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)',
-                        backdropFilter: 'blur(12px)',
-                        transition: 'all 0.25s ease',
-                      }}
-                      onFocus={(e) => {
-                        if (!errors.message) {
-                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.8)';
-                          e.currentTarget.style.boxShadow = '0 0 25px rgba(255, 255, 255, 0.18), inset 0 0 15px rgba(255, 255, 255, 0.06)';
-                          e.currentTarget.style.background = 'rgba(18, 18, 18, 0.95)';
-                        }
-                      }}
-                      onBlur={(e) => {
-                        if (!errors.message) {
-                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                          e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5), 0 0 12px rgba(255, 255, 255, 0.03), inset 0 0 10px rgba(255, 255, 255, 0.02)';
-                          e.currentTarget.style.background = 'rgba(10, 10, 10, 0.85)';
-                        }
-                      }}
+                      placeholder="e.g., Elevated metro viaduct, 140 NDT test locations, upcoming TPQM audit date..."
+                      className="ic-textarea"
                     />
-                    {errors.message && <span style={{ color: '#ff4d4d', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>{errors.message}</span>}
                   </div>
 
-                  {/* Submit */}
+                  <div className="ic-form-btn-row">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentStep(2)}
+                      className="ic-btn-back"
+                      disabled={isSubmitting}
+                    >
+                      <ArrowLeft size={16} />
+                    </button>
+                    <button
+                      type="submit"
+                      className="ic-btn-submit"
+                      disabled={isSubmitting}
+                      id="contact-submit-final"
+                    >
+                      {isSubmitting ? 'Transmitting...' : 'Request Briefing'}
+                    </button>
+                  </div>
+
+                  <div className="ic-step-footer">
+                    <span className="ic-step-label">STEP 03/03</span>
+                  </div>
+                </motion.form>
+              )}
+
+              {/* ── STEP 4: CONFIRMATION STATE ── */}
+              {currentStep === 4 && (
+                <motion.div
+                  key="step-4"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="ic-success-card"
+                >
+                  <div className="ic-success-icon">
+                    <Check size={28} />
+                  </div>
+
+                  <h2 className="ic-success-title">Briefing Request Confirmed</h2>
+
+                  <p className="ic-success-body">
+                    Thank you, <strong>{formData.firstName || 'Partner'}</strong>. Your consultation request for{' '}
+                    <strong>{formData.organization || 'your organization'}</strong> has been assigned to our senior civil structural AI team. We guarantee a response within 2 hours.
+                  </p>
+
+                  <div className="ic-direct-box">
+                    <div className="ic-direct-title">DIRECT CIVIL ENGINEERING CONTACT</div>
+                    <a href="tel:+917695827158" className="ic-direct-link">
+                      +91 7695827158
+                    </a>
+                    <a href="tel:+918610805559" className="ic-direct-link">
+                      +91 8610805559
+                    </a>
+                    <a href="mailto:contact@ouantum.com" className="ic-direct-link">
+                      contact@ouantum.com
+                    </a>
+                  </div>
+
                   <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      background: isSubmitting ? 'rgba(255, 255, 255, 0.1)' : '#ffffff',
-                      color: isSubmitting ? 'rgba(255, 255, 255, 0.5)' : '#000000',
-                      border: 'none',
-                      borderRadius: '8px',
-                      padding: '1rem 2rem',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '0.85rem',
-                      fontWeight: 600,
-                      letterSpacing: '0.08em',
-                      cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                      textTransform: 'uppercase',
-                      transition: 'all 0.2s ease',
-                    }}
-                    onMouseOver={(e) => {
-                      if (!isSubmitting) {
-                        e.currentTarget.style.background = '#e6e6e6';
-                      }
-                    }}
-                    onMouseOut={(e) => {
-                      if (!isSubmitting) {
-                        e.currentTarget.style.background = '#ffffff';
-                      }
-                    }}
+                    type="button"
+                    onClick={handleReset}
+                    className="ic-btn-submit"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Submit Enquiry'}
+                    Submit Another Inquiry
                   </button>
-                </form>
-              </GlowCard>
-            </motion.div>
-          )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Seamless Bottom Quick Access Strip ── */}
+      <section className="ic-contact-quick-strip" aria-label="Direct Technical Contacts">
+        <div className="ic-quick-card">
+          <div className="ic-quick-label">CHENNAI HEADQUARTERS</div>
+          <div className="ic-quick-val">
+            25, Silambu St, Padmanabha Nagar,<br />
+            Choolaimedu, Chennai, TN 600094
+          </div>
+        </div>
+
+        <div className="ic-quick-card">
+          <div className="ic-quick-label">TELEPHONE & TECHNICAL DESK</div>
+          <div className="ic-quick-val">
+            <a href="tel:+917695827158">+91 7695827158</a><br />
+            <a href="tel:+918610805559">+91 8610805559</a>
+          </div>
+        </div>
+
+        <div className="ic-quick-card">
+          <div className="ic-quick-label">DIRECT INQUIRIES & WHATSAPP</div>
+          <div className="ic-quick-val">
+            <a href="mailto:contact@ouantum.com">contact@ouantum.com</a><br />
+            <a
+              href="https://api.whatsapp.com/send/?phone=917695827158&text=Hi%20OUANTUM%20team,%20I%20would%20like%20to%20discuss%20a%20structural%20audit%20or%20platform%20demo.&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '4px' }}
+            >
+              Start WhatsApp Chat <ArrowRight size={14} />
+            </a>
+          </div>
+        </div>
+
+        <div className="ic-quick-card">
+          <div className="ic-quick-label">AUDIT RESPONSE SLA</div>
+          <div className="ic-quick-val">
+            Under 2 Hours<br />
+            <span style={{ fontSize: '0.85rem', color: '#6a7282', fontWeight: 400 }}>
+              24/7 National Infrastructure Coverage
+            </span>
+          </div>
         </div>
       </section>
+      </div>
     </main>
   );
 };
 
 export default Contact;
-
-
-

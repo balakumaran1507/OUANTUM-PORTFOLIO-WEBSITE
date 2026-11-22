@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useSEO from '../hooks/useSEO';
-
-// Mascot image positioning parameters (scale, x-axis offset, y-axis offset)
-const MASCOT_CONFIG = {
-  scale: 1.10, // Scale factor: 1.0 = 100%, 1.2 = 120%, 0.8 = 80%
-  x: 0,       // X-axis position offset in pixels (e.g. 0, 10, -10)
-  y: 25,       // Y-axis position offset in pixels (e.g. 0, -10, 10)
-};
+import { useSEO } from '../hooks/useSEO';
 
 const NotFound: React.FC = () => {
+  // Mascot Image Positioning & Scaling Configurations
+  const MASCOT_CONFIG = {
+    scale: 1.05,
+    x: 0,
+    y: 0,
+  };
+
   useSEO({
-    title: '404 | Ouantum',
+    title: '404 - Page Not Found | Ouantum',
     description: 'The page you are looking for does not exist or has been moved. Return to the OUANTUM homepage.',
     canonicalPath: '/404',
     noIndex: true,
@@ -19,9 +19,10 @@ const NotFound: React.FC = () => {
 
   return (
     <main
+      className="subpage-wrapper"
       style={{
-        background: '#000000',
-        color: '#ffffff',
+        background: '#ffffff',
+        color: '#111111',
         minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
@@ -30,16 +31,17 @@ const NotFound: React.FC = () => {
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        border: 'none',
       }}
       aria-label="404 page not found"
     >
       {/* Background 404 watermark */}
       <span
         style={{
-          fontFamily: 'var(--font-adieu)',
+          fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
           fontSize: 'clamp(6rem, 20vw, 16rem)',
           fontWeight: 900,
-          color: 'rgba(255, 255, 255, 0.03)',
+          color: 'rgba(0, 0, 0, 0.03)',
           position: 'absolute',
           top: '50%',
           left: '50%',
@@ -66,7 +68,7 @@ const NotFound: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        {/* Centered Mascot Image with scale, x-axis, and y-axis position attributes */}
+        {/* Centered Mascot Image */}
         <div
           style={{
             marginBottom: '1.75rem',
@@ -91,13 +93,13 @@ const NotFound: React.FC = () => {
         {/* Main Heading */}
         <h1
           style={{
-            fontFamily: 'var(--font-geist)',
-            fontWeight: 200,
-            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
-            color: '#ffffff',
+            fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontWeight: 300,
+            fontSize: 'clamp(2rem, 5vw, 2.75rem)',
+            color: '#111111',
             margin: '0 0 1rem 0',
             lineHeight: 1.2,
-            letterSpacing: '-0.01em',
+            letterSpacing: '-0.015em',
           }}
         >
           Page Not Found
@@ -106,9 +108,9 @@ const NotFound: React.FC = () => {
         {/* Description Wording */}
         <p
           style={{
-            fontFamily: 'var(--font-main)',
-            fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-            color: 'rgba(255, 255, 255, 0.65)',
+            fontFamily: 'var(--ic-font-sans)',
+            fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
+            color: '#4a5565',
             marginBottom: '2rem',
             lineHeight: 1.6,
             maxWidth: '460px',
@@ -121,51 +123,24 @@ const NotFound: React.FC = () => {
         <div
           style={{
             display: 'flex',
-            gap: '1rem',
+            gap: '12px',
             flexWrap: 'wrap',
             justifyContent: 'center',
           }}
         >
           <Link
             to="/"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              color: '#000000',
-              background: '#ffffff',
-              padding: '0.85rem 1.75rem',
-              textDecoration: 'none',
-              borderRadius: '8px',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
+            className="ic-btn-primary"
+            style={{ padding: '10px 22px', fontSize: '0.9rem' }}
           >
-            BACK TO HOME
+            Back to Home
           </Link>
           <Link
             to="/contact"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem',
-              color: '#ffffff',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              padding: '0.85rem 1.75rem',
-              textDecoration: 'none',
-              borderRadius: '8px',
-              fontWeight: 600,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}
+            className="ic-btn-secondary"
+            style={{ padding: '10px 22px', fontSize: '0.9rem' }}
           >
-            CONTACT SUPPORT
+            Contact Support
           </Link>
         </div>
       </div>

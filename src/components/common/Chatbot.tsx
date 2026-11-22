@@ -1,9 +1,9 @@
-﻿import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
-import GlowCard from '../GlowCard';
+import { Groq } from 'groq-sdk';
 
-const WELCOME_MESSAGE = `Hey, I'm Sabari, Sales Head at OUANTUM. What kind of project are you working on?`;
+const WELCOME_MESSAGE = `Hey, I'm Oxy at OUANTUM. What kind of project are you working on?`;
 
 const QUICK_PROMPTS = [
   { label: 'What does OUANTUM do?', value: 'What does OUANTUM do?' },
@@ -12,31 +12,40 @@ const QUICK_PROMPTS = [
   { label: 'Talk to the founders', value: 'I want to speak to someone from the OUANTUM team directly.' },
 ];
 
-// Max messages per session — generous for a real sales conversation
-const MAX_MESSAGES = 30;
-// Minimum ms between sends — prevents double-click spam
-const SEND_COOLDOWN_MS = 1200;
+const SYSTEM_PROMPT = `You are Oxy, the AI assistant at OUANTUM. You represent OUANTUM.
+
+OUANTUM is an AI platform for civil construction QA/QC in India. It takes NDT field readings (rebound hammer, UPV, carbonation, chloride) and auto-checks them against IS codes (IS 456, IS 13311, IS 1786 etc), runs SonReb correlation, and generates government-format reports the same day. What used to take 5 to 14 days now takes under 4 hours. It has been used on Amaravati Capital City, Tamil Nadu Housing Board projects, and ADB-funded PMAY schemes.
+
+Founders: Bala (Balakumaran D) built the AI and calculation engine. Rahul handles growth and strategy. Both reachable at +91 7695827158 or +91 861 080 5559.
+
+Your job is to qualify and convert. Ask what project they are on first. Then connect OUANTUM to their exact pain. Push for a call or demo. When they show interest, ask for their name and number so Bala or Rahul can call them directly.
+
+Always end your reply with the contact line: Call or WhatsApp us, +91 7695827158 | +91 861 080 5559
+
+If you do not know something, say "Let me connect you with Bala directly on this, drop your number and he will call you."
+
+Rules: No markdown. No asterisks, no dashes, no numbered lists. Plain text only. Keep replies short, 3 to 5 sentences max. One thought at a time. If someone is abusive, one dry line then move on.`;
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
 // Detect contact details (phone, email, name patterns) in user messages
-const detectLeadInfo = (text: string): boolean => {
+const detectLeadInfo = (text: string): string | null => {
   const hasPhone = /[6-9]\d{9}/.test(text.replace(/\s/g, ''));
   const hasEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/.test(text);
   const hasName = /my name is|i am|i'm|this is/i.test(text);
-  return hasPhone || hasEmail || hasName;
+  if (hasPhone || hasEmail || hasName) return text;
+  return null;
 };
 
 const Chatbot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showGreetingBubble, setShowGreetingBubble] = useState(true);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showQuickPrompts, setShowQuickPrompts] = useState(true);
   const [leadFired, setLeadFired] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [limitReached, setLimitReached] = useState(false);
-  const lastSendTime = useRef<number>(0);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,46 +55,22 @@ const Chatbot: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Adjust desktop logo scale, X-axis position, and Y-axis position directly here
-  const desktopLogoScale = 11.0;
-  const desktopLogoX = -1; // in pixels
-  const desktopLogoY = 2.5; // in pixels
+  // Greeting bubble mascot tuning parameters
+  const greetingMascotScale = 1.0;
+  const greetingMascotX = 0; // in pixels
+  const greetingMascotY = 0; // in pixels
+  const greetingMascotWidth = '54px';
 
-  // Adjust mobile logo scale, X-axis position, and Y-axis position directly here
-  const mobileLogoScale = 11.0;
-  const mobileLogoX = -1; // in pixels
-  const mobileLogoY = 2.5; // in pixels
+  // Greeting bubble close button position
+  const greetingCloseTop = 10; // in pixels from top
+  const greetingCloseRight = 10; // in pixels from right
 
-  // Adjust desktop mascot scale, X-axis, Y-axis, max-width, height, and margin directly here
-  const desktopMascotScale = 2.70;
-  const desktopMascotX = 0; // in pixels
-  const desktopMascotY = -1; // in pixels
-  const desktopMascotMaxWidth = '50px';
-  const desktopMascotHeight = 'auto';
-  const desktopMascotMargin = '1.5rem auto 2rem auto';
+  // Header Logo Height
+  const headerLogoHeight = '32px';
 
-  // Adjust mobile mascot scale, X-axis, Y-axis, max-width, height, and margin directly here (separately for mobile view users)
-  const mobileMascotScale = 1.0;
-  const mobileMascotX = 0; // in pixels
-  const mobileMascotY = 0; // in pixels
-  const mobileMascotMaxWidth = '60px';
-  const mobileMascotHeight = '60px'; // clean compact height for mobile medium chatbox
-  const mobileMascotMargin = '0.4rem auto 0.6rem auto'; // compact spacing
-
-  // Adjust chatbar window width & max-width separately for desktop and mobile view users
-  const desktopChatbarMaxWidth = '380px';
+  // Chat window max width
+  const desktopChatbarMaxWidth = '385px';
   const mobileChatbarMaxWidth = 'min(360px, calc(100vw - 32px))';
-
-  const logoScale = isMobile ? mobileLogoScale : desktopLogoScale;
-  const logoX = isMobile ? mobileLogoX : desktopLogoX;
-  const logoY = isMobile ? mobileLogoY : desktopLogoY;
-
-  const mascotScale = isMobile ? mobileMascotScale : desktopMascotScale;
-  const mascotX = isMobile ? mobileMascotX : desktopMascotX;
-  const mascotY = isMobile ? mobileMascotY : desktopMascotY;
-  const mascotMaxWidth = isMobile ? mobileMascotMaxWidth : desktopMascotMaxWidth;
-  const mascotHeight = isMobile ? mobileMascotHeight : desktopMascotHeight;
-  const mascotMargin = isMobile ? mobileMascotMargin : desktopMascotMargin;
   const chatbarMaxWidth = isMobile ? mobileChatbarMaxWidth : desktopChatbarMaxWidth;
 
   useEffect(() => {
@@ -99,78 +84,67 @@ const Chatbot: React.FC = () => {
 
   const sendMessage = async (userMessage: string) => {
     if (!userMessage.trim() || isLoading) return;
-    if (limitReached) return;
 
-    // Soft rate limit — 1.2s cooldown between sends
-    const now = Date.now();
-    if (now - lastSendTime.current < SEND_COOLDOWN_MS) return;
-    lastSendTime.current = now;
-
-    const newMessages: Message[] = [...messages, { role: 'user', content: userMessage }];
-    setMessages(newMessages);
+    setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
     setInput('');
     setIsLoading(true);
     setShowQuickPrompts(false);
 
-    // Enforce session message cap
-    const userMessageCount = newMessages.filter(m => m.role === 'user').length;
-    if (userMessageCount >= MAX_MESSAGES) {
-      setMessages(prev => [
-        ...prev,
-        { role: 'assistant', content: 'This has been a great conversation! Please call or WhatsApp us directly to continue — +91 7695827158 | +91 861 080 5559' },
-      ]);
-      setLimitReached(true);
-      setIsLoading(false);
-      return;
-    }
-
     try {
-      // Call our server-side API route — API key never touches the browser
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: messages.map(m => ({ role: m.role, content: m.content })),
-          userMessage: userMessage.trim().slice(0, 1000),
-        }),
+      const apiKey = import.meta.env.VITE_GROQ_API_KEY;
+      if (!apiKey) throw new Error('API key not configured.');
+
+      const groq = new Groq({ apiKey, dangerouslyAllowBrowser: true });
+
+      const history = messages.map(m => ({ role: m.role, content: m.content }));
+
+      const completion = await groq.chat.completions.create({
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          ...history,
+          { role: 'user', content: userMessage },
+        ],
+        model: 'llama-3.1-8b-instant',
+        max_tokens: 250,
       });
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json() as { response?: string; error?: string };
-      const responseText = data.response || 'No response.';
-
+      const responseText = completion.choices[0]?.message?.content || 'No response.';
       setMessages(prev => [...prev, { role: 'assistant', content: responseText }]);
 
-      // Notify founders via server-side Telegram proxy
-      const isLead = detectLeadInfo(userMessage);
-      if (isLead && !leadFired) {
-        setLeadFired(true);
-        const fullConvo = newMessages
-          .map(m => `${m.role === 'user' ? '👤' : '🤖'} ${m.content}`)
-          .join('\n\n');
-        fetch('/api/notify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            type: 'chatbot',
-            userMessage,
-            aiResponse: responseText,
-            isLead: true,
-            conversationSnippet: fullConvo.slice(0, 600) + (fullConvo.length > 600 ? '...' : ''),
-          }),
-        }).catch(() => {});
-      } else {
-        fetch('/api/notify', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ type: 'chatbot', userMessage, aiResponse: responseText }),
-        }).catch(() => {});
+      // Silently notify founder via Telegram
+      const tgToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+      const tgChatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+      const tgChatId2 = import.meta.env.VITE_TELEGRAM_CHAT_ID_2;
+      if (tgToken && tgChatId) {
+        const sendTo = (chatId: string, text: string) =>
+          fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'Markdown' }),
+          }).catch(() => { });
+
+        // Standard query notification
+        const tgText = `💬 *OUANTUM Chatbot, New Query*\n\n*Asked:* ${userMessage}\n\n*AI replied:* ${responseText}`;
+        sendTo(tgChatId, tgText);
+        if (tgChatId2) sendTo(tgChatId2, tgText);
+
+        // 🔥 Lead alert, fires once when contact details are detected
+        const leadInfo = detectLeadInfo(userMessage);
+        if (leadInfo && !leadFired) {
+          setLeadFired(true);
+          const fullConvo = [...messages, { role: 'user' as const, content: userMessage }]
+            .map(m => `${m.role === 'user' ? '👤' : '🤖'} ${m.content}`)
+            .join('\n\n');
+          const leadText = `🔥 *HOT LEAD, Contact Details Detected*\n\n*Details shared:* ${leadInfo}\n\n*Full conversation:*\n${fullConvo.slice(0, 600)}${fullConvo.length > 600 ? '...' : ''}`;
+          sendTo(tgChatId, leadText);
+          if (tgChatId2) sendTo(tgChatId2, leadText);
+        }
       }
 
     } catch (error: unknown) {
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: `Sorry, something went wrong. Please try again or reach us directly at +91 7695827158.` },
+        { role: 'assistant', content: `Error: ${error instanceof Error ? error.message : 'Something went wrong.'}` },
       ]);
     } finally {
       setIsLoading(false);
@@ -186,330 +160,506 @@ const Chatbot: React.FC = () => {
 
   const handleOpen = () => {
     setIsOpen(true);
+    setShowGreetingBubble(false);
     setShowQuickPrompts(messages.length === 0);
   };
 
   return (
     <>
-      {/* FAB */}
+      {/* Intercom-style Greeting Bubble */}
+      {!isOpen && !isMobile && showGreetingBubble && (
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.3, delay: 0.8 }}
+          onClick={handleOpen}
+          style={{
+            position: 'fixed',
+            bottom: '2rem',
+            right: '6.25rem',
+            backgroundColor: '#ffffff',
+            borderRadius: '16px',
+            padding: '14px 34px 14px 18px',
+            boxShadow: '0 12px 36px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04)',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            maxWidth: '320px',
+            zIndex: 99998,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '14px',
+          }}
+        >
+          {/* Close button placed properly in top-right with comfortable click area */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowGreetingBubble(false);
+            }}
+            aria-label="Dismiss greeting"
+            title="Dismiss"
+            style={{
+              position: 'absolute',
+              top: `${greetingCloseTop}px`,
+              right: `${greetingCloseRight}px`,
+              width: '24px',
+              height: '24px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              color: '#9ca3af',
+              padding: 0,
+              zIndex: 10,
+              transition: 'background-color 0.15s ease, color 0.15s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.06)';
+              e.currentTarget.style.color = '#111827';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent';
+              e.currentTarget.style.color = '#9ca3af';
+            }}
+          >
+            <X size={14} strokeWidth={2.2} />
+          </button>
+
+          {/* OX1 Mascot Image */}
+          <div
+            style={{
+              width: greetingMascotWidth,
+              flexShrink: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transform: `translate(${greetingMascotX}px, ${greetingMascotY}px) scale(${greetingMascotScale})`,
+              transformOrigin: 'center center',
+            }}
+          >
+            <img
+              src="/assets/images/ox1-mascot-pixel.png"
+              alt="Oxy AI Mascot"
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '70px',
+                objectFit: 'contain',
+                display: 'block',
+                imageRendering: 'pixelated',
+              }}
+            />
+          </div>
+          <div>
+            <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#111111' }}>Hi there</div>
+            <div style={{ fontSize: '0.8rem', color: '#4a5565', marginTop: '2px', lineHeight: 1.4 }}>
+              You are now speaking with Oxy. How can I help?
+            </div>
+            <div style={{ fontSize: '0.7rem', color: '#9ca3af', marginTop: '4px' }}>Oxy • Just now</div>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Intercom-style FAB Launcher Button with OUANTUM Logo */}
       <motion.button
         initial={{ scale: 0 }}
-        animate={{ scale: isOpen ? 0 : 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={handleOpen}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.94 }}
+        onClick={() => {
+          if (isOpen) {
+            setIsOpen(false);
+          } else {
+            handleOpen();
+          }
+        }}
+        aria-label={isOpen ? 'Close chat' : 'Open chat'}
         style={{
           position: 'fixed',
           bottom: isMobile ? '1.25rem' : '2rem',
           right: isMobile ? '1.25rem' : '2rem',
-          width: isMobile ? '52px' : '60px',
-          height: isMobile ? '52px' : '60px',
+          width: isMobile ? '54px' : '60px',
+          height: isMobile ? '54px' : '60px',
           borderRadius: '50%',
-          background: '#eee',
+          backgroundColor: '#000000',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 4px 24px rgba(0, 0, 0, 0.12)',
+          boxShadow: '0 8px 28px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.12)',
           zIndex: 99999,
           cursor: 'pointer',
-          border: 'none',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
           padding: 0,
-          overflow: 'hidden',
+          transition: 'box-shadow 0.2s ease',
         }}
       >
-        <img
-          src="/assets/images/chatbot.jpeg"
-          alt="Chatbot Icon"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover'
-          }}
-        />
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div
+              key="close-icon"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <X size={24} color="#ffffff" strokeWidth={2.4} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="logo-icon"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            >
+              <img
+                src="/assets/images/logo.png"
+                alt="OUANTUM Logo"
+                style={{
+                  width: '30px',
+                  height: '30px',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.button>
 
-      {/* Chat Window */}
+      {/* Intercom-style Chat Window (No Dot Effect, No Divided Lines, Oxy, Ouantum Logo) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             className="chatbot-window"
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.96 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+            exit={{ opacity: 0, y: 20, scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
             style={{
               position: 'fixed',
-              bottom: isMobile ? '16px' : '2rem',
+              bottom: isMobile ? '80px' : '5.5rem',
               right: isMobile ? '16px' : '2rem',
-              width: isMobile ? 'calc(100vw - 32px)' : '380px',
+              width: isMobile ? 'calc(100vw - 32px)' : '385px',
               maxWidth: chatbarMaxWidth,
-              height: isMobile ? '500px' : '700px',
-              maxHeight: isMobile ? '62vh' : '85vh',
-              borderRadius: 0,
-              boxShadow: '0 24px 48px rgba(0, 0, 0, 0.6)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
+              height: isMobile ? '520px' : '680px',
+              maxHeight: isMobile ? '70vh' : '82vh',
+              borderRadius: '20px',
+              backgroundColor: '#ffffff',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
               display: 'flex',
               flexDirection: 'column',
               zIndex: 99999,
               overflow: 'hidden',
             }}
           >
-            <GlowCard
-              borderRadius={0}
+            {/* Header with Prominently Sized OUANTUM Logo */}
+            <div
               style={{
-                height: '100%',
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                background: '#000000',
-              }}
-            >
-              {/* Header */}
-              <div style={{
-                padding: isMobile ? '0.85rem 1.1rem' : '1.25rem 1.5rem',
+                padding: '18px 20px 10px 20px',
                 borderBottom: 'none',
+                backgroundColor: '#ffffff',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                background: 'transparent',
                 flexShrink: 0,
                 zIndex: 10,
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <div style={{
-                    height: '52px',
-                    width: '215px',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    display: 'block',
-                  }}>
-                    <img
-                      src="/assets/images/logo_horizontal.png"
-                      alt="OUANTUM Logo"
-                      style={{
-                        height: '24px',
-                        width: 'auto',
-                        transform: `scale(${logoScale}) translate(${logoX}px, ${logoY}px)`,
-                        transformOrigin: 'left center',
-                        display: 'block',
-                        filter: 'invert(1)'
-                      }}
-                    />
-                  </div>
-
-                  <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1rem', color: '#fff', margin: 0, whiteSpace: 'nowrap' }}></h3>
-                </div>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  style={{ color: 'rgba(255, 255, 255, 0.5)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: '4px', transition: 'color 0.15s ease' }}
-                  onMouseEnter={e => e.currentTarget.style.color = '#fff'}
-                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.5)'}
-                >
-                  <X size={18} />
-                </button>
-              </div>
-
-              {/* Messages */}
-              <div
-                ref={messagesContainerRef}
+              }}
+            >
+              <img
+                src="/assets/images/logo_horizontal copy.png"
+                alt="OUANTUM"
                 style={{
-                  flex: 1,
-                  minHeight: 0,
-                  overflowY: 'auto',
-                  padding: isMobile ? '0.85rem 0.85rem 1.5rem 0.85rem' : '1.25rem 1.25rem 2.5rem 1.25rem',
+                  height: headerLogoHeight,
+                  width: 'auto',
+                  display: 'block',
+                  objectFit: 'contain',
+                }}
+              />
+
+              {/* Close Button */}
+              <button
+                onClick={() => setIsOpen(false)}
+                aria-label="Close chat"
+                style={{
+                  color: '#6b7280',
+                  background: 'rgba(0, 0, 0, 0.04)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '30px',
+                  height: '30px',
+                  cursor: 'pointer',
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: '0.75rem',
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.82rem',
-                  zIndex: 5,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 0,
+                  transition: 'all 0.15s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.08)';
+                  e.currentTarget.style.color = '#111827';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.04)';
+                  e.currentTarget.style.color = '#6b7280';
                 }}
               >
-                {/* Chatbot Mascot Illustration */}
-                <img
-                  src="/assets/images/ox1_avatar/4.png"
-                  alt="Mascot Avatar"
+                <X size={16} strokeWidth={2.2} />
+              </button>
+            </div>
+
+            {/* Messages Body (Clean Seamless Canvas, No Divided Lines) */}
+            <div
+              ref={messagesContainerRef}
+              style={{
+                flex: 1,
+                minHeight: 0,
+                overflowY: 'auto',
+                padding: '6px 20px 16px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                backgroundColor: '#ffffff',
+                fontFamily: 'var(--ic-font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif)',
+                fontSize: '0.86rem',
+              }}
+            >
+              {/* Profile: Logo circle like before + Oxy */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  padding: '4px 0 2px 0',
+                }}
+              >
+                <div
                   style={{
-                    alignSelf: 'center',
-                    margin: mascotMargin,
-                    width: '100%',
-                    maxWidth: mascotMaxWidth,
-                    height: mascotHeight,
-                    objectFit: 'contain',
-                    transform: `scale(${mascotScale}) translate(${mascotX}px, ${mascotY}px)`,
-                    display: 'block',
-                  }}
-                />
-
-                {/* Welcome */}
-                <div style={{
-                  alignSelf: 'flex-start',
-                  background: 'rgba(0, 0, 0, 0.75)',
-                  color: '#fff',
-                  padding: '0.875rem 1.125rem',
-                  borderRadius: '14px',
-                  borderBottomLeftRadius: '4px',
-                  maxWidth: '88%',
-                  lineHeight: '1.6',
-                  whiteSpace: 'pre-wrap',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  backdropFilter: 'blur(8px)',
-                }}>
-                  {WELCOME_MESSAGE}
-                </div>
-
-                {/* Quick Prompts */}
-                {showQuickPrompts && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', marginTop: '0.25rem' }}>
-                    {QUICK_PROMPTS.map((q) => (
-                      <button
-                        key={q.value}
-                        onClick={() => sendMessage(q.value)}
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          border: '1px solid rgba(255, 255, 255, 0.12)',
-                          borderRadius: '6px',
-                          color: 'rgba(255, 255, 255, 0.7)',
-                          padding: '0.55rem 0.875rem',
-                          fontFamily: 'var(--font-geist)',
-                          fontWeight: 200,
-                          fontSize: '0.82rem',
-                          letterSpacing: '0.01em',
-                          textTransform: 'none',
-                          textAlign: 'left',
-                          cursor: 'pointer',
-                          transition: 'all 0.15s ease',
-                          width: '100%',
-                          backdropFilter: 'blur(4px)',
-                        }}
-                        onMouseEnter={e => {
-                          const el = e.currentTarget;
-                          el.style.borderColor = 'rgba(255, 255, 255, 0.35)';
-                          el.style.color = '#fff';
-                          el.style.background = 'rgba(255, 255, 255, 0.08)';
-                        }}
-                        onMouseLeave={e => {
-                          const el = e.currentTarget;
-                          el.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-                          el.style.color = 'rgba(255, 255, 255, 0.7)';
-                          el.style.background = 'rgba(255, 255, 255, 0.03)';
-                        }}
-                      >
-                        {q.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {/* Conversation */}
-                {messages.map((m, i) => (
-                  <div key={i} style={{
-                    alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
-                    background: m.role === 'user'
-                      ? 'rgba(255, 255, 255, 0.12)'
-                      : 'rgba(0, 0, 0, 0.75)',
-                    color: '#fff',
-                    padding: '0.875rem 1.125rem',
-                    borderRadius: '14px',
-                    borderBottomRightRadius: m.role === 'user' ? '4px' : '14px',
-                    borderBottomLeftRadius: m.role === 'assistant' ? '4px' : '14px',
-                    maxWidth: '88%',
-                    lineHeight: '1.6',
-                    whiteSpace: 'pre-wrap',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    boxShadow: 'none',
-                    backdropFilter: 'blur(8px)',
-                  }}>
-                    {m.content}
-                  </div>
-                ))}
-
-                {isLoading && (
-                  <div style={{ alignSelf: 'flex-start', color: 'rgba(255, 255, 255, 0.4)', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>
-                    Analyzing...
-                  </div>
-                )}
-              </div>
-
-              {/* Input */}
-              <div style={{
-                padding: isMobile ? '0.75rem 0.85rem 0.85rem 0.85rem' : '1rem 1.25rem 1.25rem 1.25rem',
-                borderTop: 'none',
-                background: 'transparent',
-                flexShrink: 0,
-                position: 'relative',
-                zIndex: 10,
-              }}>
-                {limitReached ? (
-                  <div style={{
-                    textAlign: 'center',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.75rem',
-                    color: 'rgba(255,255,255,0.5)',
-                    padding: '0.75rem',
-                  }}>
-                    Call us directly: +91 7695827158
-                  </div>
-                ) : (
-                  <div style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: '#000000',
                     display: 'flex',
                     alignItems: 'center',
-                    background: 'rgba(15, 12, 10, 0.75)',
-                    backdropFilter: 'blur(12px)',
-                    borderRadius: '30px',
-                    padding: '1rem 1.25rem 1rem 1.5rem',
-                    border: '1px solid rgba(248, 156, 82, 0.35)',
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(248, 156, 82, 0.1)',
-                  }}>
-                    <input
-                      type="text"
-                      className="chatbot-input"
-                      value={input}
-                      onChange={e => setInput(e.target.value)}
-                      onKeyDown={handleKeyDown}
-                      placeholder="Type a question..."
-                      maxLength={1000}
-                      style={{
-                        flex: 1,
-                        background: 'transparent',
-                        border: 'none',
-                        boxShadow: 'none',
-                        color: '#fff',
-                        fontFamily: 'var(--font-mono)',
-                        fontSize: '0.92rem',
-                        outline: 'none',
-                        padding: 0,
-                      }}
-                      disabled={isLoading}
-                    />
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                  }}
+                >
+                  <img
+                    src="/assets/images/logo.png"
+                    alt="OUANTUM"
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      objectFit: 'contain',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+                <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#111827', letterSpacing: '-0.01em' }}>
+                  Oxy
+                </div>
+              </div>
+
+              {/* Welcome Bubble */}
+              <div
+                style={{
+                  alignSelf: 'flex-start',
+                  backgroundColor: '#ffffff',
+                  color: '#1f2937',
+                  padding: '14px 18px',
+                  borderRadius: '16px',
+                  borderBottomLeftRadius: '4px',
+                  maxWidth: '92%',
+                  lineHeight: 1.55,
+                  fontSize: '0.88rem',
+                  border: '1px solid rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                }}
+              >
+                {WELCOME_MESSAGE}
+              </div>
+
+              {/* Quick Prompts (Clean Cards, No Icons) */}
+              {showQuickPrompts && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px' }}>
+                  {QUICK_PROMPTS.map((q) => (
                     <button
-                      onClick={() => sendMessage(input)}
-                      disabled={isLoading || !input.trim()}
+                      key={q.value}
+                      onClick={() => sendMessage(q.value)}
                       style={{
-                        background: input.trim()
-                          ? 'linear-gradient(135deg, #f89c52 0%, #c97a3d 100%)'
-                          : 'transparent',
-                        border: 'none',
-                        color: input.trim() ? '#fff' : 'rgba(255, 255, 255, 0.25)',
-                        cursor: input.trim() ? 'pointer' : 'default',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        boxShadow: input.trim() ? '0 0 12px rgba(248, 156, 82, 0.4)' : 'none',
+                        background: '#ffffff',
+                        border: '1px solid rgba(0, 0, 0, 0.1)',
+                        borderRadius: '14px',
+                        color: '#1f2937',
+                        padding: '12px 16px',
+                        fontSize: '0.86rem',
+                        fontWeight: 600,
+                        textAlign: 'left',
+                        cursor: 'pointer',
                         transition: 'all 0.15s ease',
-                        flexShrink: 0,
+                        width: '100%',
+                        boxShadow: '0 1px 4px rgba(0, 0, 0, 0.03)',
+                        display: 'block',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#111111';
+                        e.currentTarget.style.backgroundColor = '#f9fafb';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+                        e.currentTarget.style.backgroundColor = '#ffffff';
+                        e.currentTarget.style.transform = 'translateY(0)';
                       }}
                     >
-                      <Send size={15} />
+                      {q.label}
                     </button>
-                  </div>
-                )}
+                  ))}
+                </div>
+              )}
+
+              {/* Conversation Messages */}
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  style={{
+                    alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
+                    backgroundColor: m.role === 'user' ? '#111111' : '#ffffff',
+                    color: m.role === 'user' ? '#ffffff' : '#1f2937',
+                    padding: '12px 16px',
+                    borderRadius: '16px',
+                    borderBottomRightRadius: m.role === 'user' ? '4px' : '16px',
+                    borderBottomLeftRadius: m.role === 'assistant' ? '4px' : '16px',
+                    maxWidth: '86%',
+                    lineHeight: 1.55,
+                    fontSize: '0.86rem',
+                    whiteSpace: 'pre-wrap',
+                    border: m.role === 'user' ? 'none' : '1px solid rgba(0, 0, 0, 0.08)',
+                    boxShadow: m.role === 'user' ? '0 2px 8px rgba(0, 0, 0, 0.12)' : '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  }}
+                >
+                  {m.content}
+                </div>
+              ))}
+
+              {/* Typing / Loading indicator */}
+              {isLoading && (
+                <div
+                  style={{
+                    alignSelf: 'flex-start',
+                    backgroundColor: '#ffffff',
+                    padding: '10px 14px',
+                    borderRadius: '14px',
+                    borderBottomLeftRadius: '4px',
+                    border: '1px solid rgba(0, 0, 0, 0.08)',
+                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      backgroundColor: '#9ca3af',
+                      display: 'inline-block',
+                    }}
+                  />
+                  <span style={{ fontSize: '0.78rem', color: '#6b7280' }}>
+                    Oxy is replying...
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Input Footer (Crisp Black Text & Solid Send Button) */}
+            <div
+              style={{
+                padding: '10px 20px 14px 20px',
+                borderTop: 'none',
+                backgroundColor: '#ffffff',
+                flexShrink: 0,
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: '#f3f4f6',
+                  borderRadius: '26px',
+                  padding: '5px 5px 5px 18px',
+                  border: '1px solid rgba(0, 0, 0, 0.08)',
+                  transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
+                }}
+              >
+                <input
+                  type="text"
+                  className="chatbot-input"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Send a message..."
+                  disabled={isLoading}
+                  style={{
+                    flex: 1,
+                    background: 'transparent',
+                    border: 'none',
+                    outline: 'none',
+                    color: '#111827',
+                    WebkitTextFillColor: '#111827',
+                    fontSize: '0.9rem',
+                    fontWeight: 500,
+                    padding: '8px 0',
+                    fontFamily: 'inherit',
+                  }}
+                />
+                <button
+                  onClick={() => sendMessage(input)}
+                  disabled={isLoading || !input.trim()}
+                  aria-label="Send message"
+                  title="Send"
+                  style={{
+                    backgroundColor: input.trim() ? '#000000' : '#e5e7eb',
+                    color: input.trim() ? '#ffffff' : '#9ca3af',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '34px',
+                    height: '34px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: input.trim() ? 'pointer' : 'default',
+                    transition: 'all 0.18s ease',
+                    flexShrink: 0,
+                    boxShadow: input.trim() ? '0 2px 8px rgba(0, 0, 0, 0.2)' : 'none',
+                  }}
+                >
+                  <Send size={15} strokeWidth={2.4} />
+                </button>
               </div>
-            </GlowCard>
+              <div
+                style={{
+                  marginTop: '8px',
+                  textAlign: 'center',
+                  fontSize: '0.72rem',
+                  color: '#9ca3af',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                Powered by OUANTUM AI
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

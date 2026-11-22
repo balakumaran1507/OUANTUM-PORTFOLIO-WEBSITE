@@ -123,7 +123,7 @@ const Problem = () => {
               }}>
                 <div>
                   <span style={{
-                    fontFamily: 'var(--font-adieu)',
+                    fontFamily: 'var(--font-title)',
                     fontSize: 'clamp(2.5rem, 6vw, 4rem)',
                     fontWeight: 400,
                     lineHeight: 0.9,
@@ -133,7 +133,7 @@ const Problem = () => {
                     {stats[0].value}
                   </span>
                   <span style={{
-                    fontFamily: 'var(--font-adieu)',
+                    fontFamily: 'var(--font-title)',
                     fontSize: '0.8rem',
                     fontWeight: 'bold',
                     letterSpacing: '0.15em',
@@ -170,7 +170,7 @@ const Problem = () => {
             <GlowCard style={{ padding: 'clamp(2rem, 4vw, 3rem)', minHeight: '260px' }}>
               <div>
                 <span style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: 'clamp(2.2rem, 5vw, 3.2rem)',
                   fontWeight: 400,
                   lineHeight: 0.9,
@@ -180,7 +180,7 @@ const Problem = () => {
                   {stats[1].value}
                 </span>
                 <span style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.75rem',
                   fontWeight: 'bold',
                   letterSpacing: '0.15em',
@@ -215,7 +215,7 @@ const Problem = () => {
             <GlowCard style={{ padding: 'clamp(2rem, 4vw, 3rem)', minHeight: '260px' }}>
               <div>
                 <span style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: 'clamp(2.2rem, 5vw, 3.2rem)',
                   fontWeight: 400,
                   lineHeight: 0.9,
@@ -225,7 +225,7 @@ const Problem = () => {
                   {stats[2].value}
                 </span>
                 <span style={{
-                  fontFamily: 'var(--font-adieu)',
+                  fontFamily: 'var(--font-title)',
                   fontSize: '0.75rem',
                   fontWeight: 'bold',
                   letterSpacing: '0.15em',
@@ -267,7 +267,7 @@ const Problem = () => {
         >
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               fontSize: 'clamp(1rem, 2vw, 1.35rem)',
               lineHeight: 1.5,
               maxWidth: '750px',
