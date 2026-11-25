@@ -149,27 +149,9 @@ const team: TeamMember[] = [
 const offices = [
   {
     city: 'Chennai',
-    title: 'Headquarters & Hardware Labs',
-    address: 'Guindy Tech Corridor, Chennai, Tamil Nadu 600032',
-    focus: 'Hardware Edge Prototyping, Acoustic Sensor Physics & Core Platform Engineering',
-  },
-  {
-    city: 'Bengaluru',
-    title: 'AI Research & Cloud Architecture',
-    address: 'Outer Ring Road Tech Park, Bengaluru, Karnataka 560103',
-    focus: 'Multi-Model Consensus Algorithms, 3D Spatial BIM Engines & Computer Vision Pipelines',
-  },
-  {
-    city: 'Mumbai',
-    title: 'Highway & Infrastructure Field Operations',
-    address: 'Bandra Kurla Complex (BKC), Mumbai, Maharashtra 400051',
-    focus: 'National Highway Projects, TPQM Government Liaison & Expressway Deployments',
-  },
-  {
-    city: 'Delhi NCR',
-    title: 'Codal Governance & Standards Hub',
-    address: 'Aerocity Worldmark, New Delhi, Delhi 110037',
-    focus: 'MoRTH, NHAI, CPWD Regulatory Compliance & Enterprise Standards Governance',
+    title: 'Headquarters',
+    address: '25, Silambu St, Padmanabha Nagar, Choolaimedu, Chennai, Tamil Nadu 600094',
+    focus: 'Platform Engineering, Hardware Edge Prototyping & Field Operations',
   },
 ];
 
@@ -883,7 +865,7 @@ const About: React.FC = () => {
                 margin: 0,
               }}
             >
-              Operating from core engineering laboratories and active deployment offices across national transit corridors.
+              Based in Chennai, operating across active infrastructure programmes nationwide.
             </p>
           </div>
 
