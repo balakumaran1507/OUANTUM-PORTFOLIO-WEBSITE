@@ -1,9 +1,25 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
+const ENV_KEYS = [
+  'GROQ_API_KEY',
+  'TELEGRAM_BOT_TOKEN',
+  'TELEGRAM_CHAT_ID',
+  'TELEGRAM_CHAT_ID_2',
+]
+
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+  const env = { ...loadEnv(mode, process.cwd(), ''), ...process.env }
+  const define: Record<string, string> = {}
+  for (const key of ENV_KEYS) {
+    const value = env[`VITE_${key}`] || env[key]
+    define[`import.meta.env.VITE_${key}`] = value ? JSON.stringify(value) : 'undefined'
+  }
+
+  return {
+  define,
   plugins: [react()],
   base: './',
   resolve: {
@@ -34,4 +50,5 @@ export default defineConfig({
       },
     },
   },
+}
 })

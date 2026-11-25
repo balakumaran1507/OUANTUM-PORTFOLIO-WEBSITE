@@ -23,7 +23,7 @@ const About = () => {
           transition={{ duration: 1, delay: 0.2 }}
         >
           <div className="about-text-block">
-            <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.8rem', color: '#fff', marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
+            <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.8rem', color: '#fff', marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
               The Core Mission
             </h3>
             <p style={{ fontFamily: 'var(--font-main)', fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
@@ -35,7 +35,7 @@ const About = () => {
           </div>
 
           <div className="about-text-block">
-            <h3 style={{ fontFamily: 'var(--font-adieu)', fontSize: '1.8rem', color: '#fff', marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
+            <h3 style={{ fontFamily: 'var(--font-title)', fontSize: '1.8rem', color: '#fff', marginBottom: '1.5rem', letterSpacing: '0.02em' }}>
               The Problem We Solve
             </h3>
             <p style={{ fontFamily: 'var(--font-main)', fontSize: '1.2rem', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.8', marginBottom: '1.5rem' }}>

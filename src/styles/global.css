@@ -1,11 +1,173 @@
 @import './variables.css';
+@import './intercom.css';
+@import './cx-models.css';
 
-@font-face {
-  font-family: 'Adieu';
-  src: url('../../public/adieu-regular-maisfontes.36a9/adieu-regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+/* Universal Site-Wide Font Standard: Saans for all text, titles, buttons, cards, and sections */
+*,
+*::before,
+*::after,
+html,
+body,
+#root,
+div,
+p,
+span,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+textarea,
+select,
+label,
+li,
+ul,
+ol,
+table,
+thead,
+tbody,
+tr,
+th,
+td,
+blockquote,
+pre,
+code,
+small,
+strong,
+b,
+em,
+i,
+text,
+tspan {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+
+/* Global Titles: Saans Font matching Intercom text-heading-3 */
+h1:not(.ox1-hero-main-title):not(.ox1-hero-center-content-desktop h1),
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.hero-title,
+.hero-right-content h1,
+.subpage-wrapper h1,
+.subpage-wrapper h2:not(.deploy-cta-heading):not(.why-cta-headline):not(.careers-cta-headline),
+.subpage-wrapper h3,
+.subpage-wrapper h4,
+.about-team-heading,
+.ox1-section-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 300;
+  color: inherit;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  -webkit-text-stroke: 0.4px #ffffff !important;
+  -webkit-text-stroke-width: 0.4px !important;
+  -webkit-text-fill-color: #111111 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* OX1 HERO MAIN TITLE — MANDATORY CENTER ALIGNMENT & ZERO WHITE STROKE */
+.ox1-hero-main-title,
+.ox1-hero-main-title span,
+.ox1-platform-page #overview h1,
+.ox1-platform-page #overview h1 span,
+.ox1-hero-center-content-desktop h1,
+.ox1-hero-center-content-desktop h1 span {
+  text-align: center !important;
+  text-align-last: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  -webkit-text-fill-color: #111111 !important;
+  paint-order: normal !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+.careers-cta-headline,
+.careers-cta-headline span,
+.careers-cta-card h1,
+.careers-cta-card h2,
+.careers-cta-card h2 span,
+.subpage-wrapper .careers-cta-card h2,
+.subpage-wrapper .careers-cta-headline,
+.subpage-wrapper .careers-cta-card h2 span,
+.subpage-wrapper .careers-cta-headline span,
+.why-cta-headline,
+.why-cta-headline span,
+.why-cta-card h1,
+.why-cta-card h2,
+.why-cta-card h2 span,
+.why-cta-card p,
+.why-cta-card p span,
+.subpage-wrapper .why-cta-card h2,
+.subpage-wrapper .why-cta-headline,
+.subpage-wrapper .why-cta-card h2 span,
+.subpage-wrapper .why-cta-headline span,
+.ox1-cta-headline,
+.ox1-cta-headline span,
+.ox1-cta-card h1,
+.ox1-cta-card h2,
+.ox1-cta-card h2 span,
+.ox1-platform-page .ox1-cta-card h2,
+.ox1-platform-page .ox1-cta-headline {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+}
+
+/* OX1 Selectable Tabs: No stroke, transparent default, light grey when selected */
+.ox1-selectable-tab {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.ox1-selectable-tab:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.ox1-selectable-tab.is-selected,
+.ox1-selectable-tab.is-selected:hover {
+  background-color: #eeeeee !important;
+}
+
+.why-cta-card,
+.why-section [class*="-card"],
+.why-choose-page [class*="-card"],
+.why-choose-page div[style*="border-radius"],
+.ic-video-banner-box,
+.ic-video-banner-box>div {
+  border-radius: 0px !important;
+}
+
+/* Global Zero Shadows & Zero Divider Lines */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+}
+
+section,
+.subpage-wrapper section,
+header,
+footer {
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
 * {
@@ -21,7 +183,7 @@ html {
   color: var(--text-primary);
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Make all scrollbars across the entire site completely invisible */
@@ -51,21 +213,48 @@ body {
   font-family: var(--font-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   width: 100%;
   max-width: 100vw;
 }
 
+/* Signature Dark Highlight Box Effect */
+.ic-text-highlight,
+.ic-quote-highlight {
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  padding: 0.08em 0.35em;
+  border-radius: 0 !important;
+  display: inline;
+  font-weight: 500;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: inherit;
+  transition: all 0.2s ease;
+}
+
+.ic-text-highlight-light {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  padding: 0.08em 0.35em;
+  border-radius: 0 !important;
+  display: inline;
+  font-weight: 600;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: inherit;
+}
+
 /* GlowCard Input Effect for form controls across the site */
-input[type="text"]:not(.chatbot-input),
-input[type="email"]:not(.chatbot-input),
-input[type="tel"]:not(.chatbot-input),
-input[type="password"]:not(.chatbot-input),
-input[type="number"]:not(.chatbot-input),
-input[type="search"]:not(.chatbot-input),
-textarea,
-select,
+input[type="text"]:not(.chatbot-input):not(.ic-input),
+input[type="email"]:not(.chatbot-input):not(.ic-input),
+input[type="tel"]:not(.chatbot-input):not(.ic-input),
+input[type="password"]:not(.chatbot-input):not(.ic-input),
+input[type="number"]:not(.chatbot-input):not(.ic-input),
+input[type="search"]:not(.chatbot-input):not(.ic-input),
+textarea:not(.ic-textarea),
+select:not(.ic-select),
 .glow-input {
   background: rgba(10, 10, 10, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -125,6 +314,15 @@ select:focus,
   backdrop-filter: none !important;
   outline: none !important;
   padding: 0 !important;
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+}
+
+.chatbot-input::placeholder,
+.chatbot-window input::placeholder {
+  color: #6b7280 !important;
+  -webkit-text-fill-color: #6b7280 !important;
+  opacity: 1 !important;
 }
 
 .chatbot-input:focus,
@@ -135,6 +333,8 @@ select:focus,
   border: none !important;
   box-shadow: none !important;
   outline: none !important;
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
 }
 
 a {
@@ -150,21 +350,9 @@ ul {
 button,
 [role="button"],
 input[type="submit"],
-input[type="button"],
-.btn,
-.button,
-.cta-button,
-.contact-cta-text,
-.hero-cta,
-a.btn,
-a.button,
-a[class*="btn"],
-a[class*="cta"] {
-  font-family: var(--font-adieu) !important;
-  background: none;
-  border: none;
+input[type="button"] {
+  font-family: var(--font-main) !important;
   cursor: pointer;
-  color: inherit;
 }
 
 .difference-card-wrapper img {
@@ -176,7 +364,7 @@ a[class*="cta"] {
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 16px;
   width: 100%;
 }
 
@@ -185,7 +373,7 @@ a[class*="cta"] {
 .tech-label {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   display: block;
@@ -193,29 +381,30 @@ a[class*="cta"] {
 }
 
 h1 {
-  font-family: var(--font-geist);
-  font-weight: 200;
-  font-size: clamp(2.5rem, 10vw, 8rem);
-  line-height: 0.95;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+h2 {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.15;
   text-transform: none;
   letter-spacing: -0.02em;
   text-align: left;
 }
 
-h2 {
-  font-family: var(--font-geist);
-  font-weight: 200;
-  font-size: clamp(1.75rem, 6vw, 4rem);
-  line-height: 1.1;
-  text-transform: none;
-  letter-spacing: -0.01em;
-  text-align: left;
-}
-
 h3 {
-  font-family: var(--font-geist);
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  font-weight: 200;
+  font-family: var(--font-main);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
   text-transform: none;
   text-align: left;
 }
@@ -225,8 +414,8 @@ h3 {
 .hero #hero h1,
 section.hero h1,
 .hero-content h1 {
-  font-family: var(--font-brand) !important;
-  font-weight: 400 !important;
+  font-family: var(--font-main) !important;
+  font-weight: 700 !important;
 }
 
 section {
@@ -294,7 +483,7 @@ section {
 }
 
 .activity-name {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(1.5rem, 4vw, 3.5rem);
   font-weight: 400;
   color: #fff;
@@ -912,7 +1101,7 @@ section {
 }
 
 .brutalist-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 4.5rem;
   font-weight: 400;
   color: transparent;
@@ -929,7 +1118,7 @@ section {
 }
 
 .stack-item {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 4rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -1110,7 +1299,7 @@ section {
 }
 
 .activity-title-main {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 2rem;
   font-weight: 400;
   line-height: 1.1;
@@ -1282,7 +1471,7 @@ section {
 }
 
 .blog-post-content h3 {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1rem;
   margin-bottom: 0.5rem;
   font-weight: 400;
@@ -1348,7 +1537,7 @@ section {
 
 
 .cooperation-card-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1.3rem;
   font-weight: 400;
   color: #fff;
@@ -1594,7 +1783,7 @@ section {
 }
 
 .project-title-v2 {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1.1rem;
   font-weight: 400;
   color: #fff;
@@ -1669,7 +1858,7 @@ section {
 }
 
 .trigger-text {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-weight: 400;
   font-size: clamp(1.2rem, 3vw, 2rem);
   letter-spacing: 0.1em;
@@ -1762,7 +1951,7 @@ section {
 }
 
 .footer-main-text {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 12vw;
   font-weight: 400;
   line-height: 0.8;
@@ -1947,7 +2136,7 @@ section {
 }
 
 .region-name {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.85rem;
   font-weight: 400;
   color: #fff;
@@ -2143,7 +2332,7 @@ section {
 }
 
 .trigger-text {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 400;
   text-transform: uppercase;
@@ -2152,7 +2341,7 @@ section {
 
 /* Footer centered layout */
 .footer-logo-large {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 400;
   text-transform: uppercase;
@@ -2237,7 +2426,7 @@ section {
 }
 
 .hero-tech-label {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.75rem;
   color: #fff;
   letter-spacing: 0.25em;
@@ -2285,7 +2474,7 @@ section {
   background: #fff;
   color: #000000;
   border-radius: 9999px;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -2370,7 +2559,7 @@ section {
   font-size: clamp(4rem, 8vw, 6rem);
   margin: 0;
   letter-spacing: -0.02em;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
 }
 
 .about-details-card {
@@ -2403,7 +2592,7 @@ section {
 }
 
 .about-card-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1.3rem;
   font-weight: 400;
   color: #fff;
@@ -2421,7 +2610,7 @@ section {
 }
 
 .about-company-vision {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.8rem;
   color: #fff;
   line-height: 1.8;
@@ -2439,7 +2628,7 @@ section {
 }
 
 .about-vision-grid p {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.7rem;
   line-height: 1.8;
   text-transform: uppercase;
@@ -2478,7 +2667,7 @@ section {
 }
 
 .about-tech-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 400;
   color: #fff;
@@ -2558,7 +2747,7 @@ section {
 }
 
 .equipment-item-name {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1rem;
   font-weight: 400;
   color: rgba(255, 255, 255, 0.45);
@@ -2618,7 +2807,7 @@ section {
 }
 
 .equipment-overlay-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1.2rem;
   font-weight: 400;
   color: #fff;
@@ -2670,7 +2859,7 @@ section {
 }
 
 .equipment-stat-value {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 2.5rem;
   font-weight: 400;
   color: #fff;
@@ -2759,7 +2948,7 @@ section {
 }
 
 .service-card-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 2.5rem;
   font-weight: 400;
   line-height: 1.1;
@@ -2939,7 +3128,7 @@ section {
 }
 
 .project-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(2rem, 4vw, 3.5rem);
   color: #fff;
   margin-bottom: 1rem;
@@ -3004,7 +3193,7 @@ section {
 }
 
 .project-card-title {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 1.5rem;
   color: #fff;
   margin-bottom: 0.75rem;
@@ -3038,7 +3227,7 @@ section {
   color: #fff;
   padding: 1.5rem 3.5rem;
   border-radius: 100px;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.85rem;
   display: flex;
   align-items: center;
@@ -3093,7 +3282,7 @@ section {
 
 .contact-link {
   display: block;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(1rem, 2vw, 1.4rem);
   font-weight: 800;
   color: #fff;
@@ -3111,7 +3300,7 @@ section {
 .contact-label {
   color: rgba(255, 255, 255, 0.3);
   font-size: 0.75rem;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   transition: color 0.4s ease;
   margin: 0;
   text-transform: uppercase;
@@ -3125,7 +3314,7 @@ section {
 .contact-address {
   color: #fff;
   font-size: 1rem;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   text-transform: uppercase;
   line-height: 1.7;
   font-weight: 700;
@@ -3162,7 +3351,7 @@ section {
 }
 
 .contact-cta-text {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -3844,7 +4033,8 @@ section {
 
   /* ── Footer Mobile ── */
   .footer-industrial {
-    padding: 40px 0 96px !important; /* Bottom padding keeps content clear of floating chatbot button */
+    padding: 40px 0 96px !important;
+    /* Bottom padding keeps content clear of floating chatbot button */
   }
 
   /* Container gets proper mobile padding */
@@ -4025,7 +4215,7 @@ section {
   .about-team-heading,
   .about-partners-heading,
   .subpage-wrapper .hero h1,
-  .subpage-wrapper section > h2,
+  .subpage-wrapper section>h2,
   section:not(#hero) .section-title {
     font-size: clamp(2.4rem, 11.5vw, 3.8rem) !important;
     line-height: 0.95 !important;
@@ -4140,13 +4330,19 @@ section {
 @media (max-width: 768px) {
 
   /* Text Reduction Utilities */
-  .desktop-only { display: none !important; }
+  .desktop-only {
+    display: none !important;
+  }
 }
+
 @media (min-width: 769px) {
-  .mobile-only { display: none !important; }
+  .mobile-only {
+    display: none !important;
+  }
 }
 
 @media (max-width: 768px) {
+
   /* Global Padding */
   section {
     padding: 60px 0 !important;
@@ -4160,13 +4356,13 @@ section {
     padding: 0 20px;
   }
 
-  /* Prevent horizontal scrolling completely (fixes iOS Safari bug) */
+  /* Prevent horizontal scrolling completely (fixes iOS Safari bug) without breaking position:sticky */
   html,
   body,
   #root,
   .app-wrapper {
     position: relative !important;
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
@@ -4198,7 +4394,7 @@ section {
   .about-team-heading,
   .about-partners-heading,
   .subpage-wrapper .hero h1,
-  .subpage-wrapper section > h2,
+  .subpage-wrapper section>h2,
   section:not(#hero) .section-title {
     font-size: clamp(2.6rem, 11vw, 4.2rem) !important;
     line-height: 0.95 !important;
@@ -4421,7 +4617,7 @@ section {
 
 
 .about-team-initials {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: 6rem;
   color: rgba(0, 0, 0, 0.05);
 }
@@ -4594,16 +4790,14 @@ section {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.96) 0%,
-    rgba(0, 0, 0, 0.90) 28%,
-    rgba(0, 0, 0, 0.72) 48%,
-    rgba(0, 0, 0, 0.45) 68%,
-    rgba(0, 0, 0, 0.18) 84%,
-    rgba(0, 0, 0, 0.04) 94%,
-    transparent 100%
-  );
+  background: linear-gradient(to top,
+      rgba(0, 0, 0, 0.96) 0%,
+      rgba(0, 0, 0, 0.90) 28%,
+      rgba(0, 0, 0, 0.72) 48%,
+      rgba(0, 0, 0, 0.45) 68%,
+      rgba(0, 0, 0, 0.18) 84%,
+      rgba(0, 0, 0, 0.04) 94%,
+      transparent 100%);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   -webkit-mask-image: linear-gradient(to top, #000000 50%, rgba(0, 0, 0, 0.6) 75%, transparent 100%);
@@ -4625,7 +4819,7 @@ section {
 }
 
 .about-team-footer-name {
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-size: clamp(1.1rem, 1.6vw, 1.5rem);
   color: #fff;
   letter-spacing: 0.01em;
@@ -4683,7 +4877,7 @@ section {
   margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
   letter-spacing: 0.1em;
-  font-family: var(--font-adieu);
+  font-family: var(--font-title);
   font-weight: bold;
 }
 
@@ -4813,10 +5007,12 @@ section {
   .about-team-bio-text-col::-webkit-scrollbar {
     width: 4px;
   }
+
   .about-team-bio-text-col::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 2px;
   }
+
   .about-team-bio-text-col::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 2px;
@@ -4928,20 +5124,16 @@ section {
   overflow: hidden;
   margin-top: 2.5rem;
   cursor: default;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #fff 8%,
-    #fff 92%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    #fff 8%,
-    #fff 92%,
-    transparent 100%
-  );
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      #fff 8%,
+      #fff 92%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      #fff 8%,
+      #fff 92%,
+      transparent 100%);
 }
 
 
@@ -4987,22 +5179,22 @@ section {
     min-width: 100% !important;
     display: block;
   }
-  
+
   .telemetry-thead {
     display: none;
   }
-  
+
   .telemetry-tbody {
     display: block;
     width: 100%;
   }
-  
+
   .telemetry-row {
     display: block;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: 1rem 0;
   }
-  
+
   .telemetry-cell {
     display: flex;
     justify-content: space-between;
@@ -5010,7 +5202,7 @@ section {
     padding: 0.75rem 1rem !important;
     text-align: right;
   }
-  
+
   .telemetry-cell::before {
     content: attr(data-label);
     font-family: var(--font-mono);
@@ -5026,6 +5218,7 @@ section {
 .navbar-dropdown-item:hover {
   background: rgba(255, 255, 255, 0.05) !important;
 }
+
 .navbar-dropdown-item:hover .item-arrow {
   transform: translateX(4px);
   opacity: 1 !important;
@@ -5034,7 +5227,8 @@ section {
 /* MetalFx Button wrapper styles */
 .metal-fx-wrapper {
   transition: all 0.3s ease;
-  border-radius: 9999px; /* default to rounded pill shape */
+  border-radius: 9999px;
+  /* default to rounded pill shape */
 }
 
 /* Preset / variant stylings when normalizeHostStyles is true */
@@ -5042,6 +5236,7 @@ section {
   background: #ffffff;
   color: #000000;
 }
+
 .metal-variant-default:hover {
   background: #e5e5e5;
 }
@@ -5051,6 +5246,7 @@ section {
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .metal-variant-outline:hover {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.4);
@@ -5061,6 +5257,7 @@ section {
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .metal-variant-secondary:hover {
   background: #2a2a2a;
 }
@@ -5069,6 +5266,7 @@ section {
   background: transparent;
   color: #ffffff;
 }
+
 .metal-variant-ghost:hover {
   background: rgba(255, 255, 255, 0.05);
 }
@@ -5078,6 +5276,7 @@ section {
   color: #ef4444;
   border: 1px solid rgba(239, 68, 68, 0.2);
 }
+
 .metal-variant-destructive:hover {
   background: rgba(239, 68, 68, 0.2);
 }
@@ -5091,28 +5290,30 @@ section {
 }
 
 /* GLOBAL TYPOGRAPHY CASING, ALIGNMENT, & FONT OVERRIDES */
-.subpage-wrapper .hero h1,
-.subpage-wrapper section > h2,
-.subpage-wrapper h1,
-.subpage-wrapper h2,
+.subpage-wrapper .hero h1:not(.ic-hero-headline),
+.subpage-wrapper section>h2:not(.ic-hero-headline),
+.subpage-wrapper h1:not(.ic-hero-headline),
+.subpage-wrapper h2:not(.ic-hero-headline),
 .subpage-wrapper h3,
-section:not(#hero) h1,
-section:not(#hero) h2,
-section:not(#hero) h3,
+:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section):not(.why-hero-section) h1,
+:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section):not(.why-hero-section) h2,
+:not(.ox1-platform-page)>section:not(#hero):not(.ic-bottom-cta-section):not(.ic-hero-section):not(.why-section):not(.why-hero-section) h3,
 .section-header h1,
 .section-header h2,
 .section-header h3,
 .services-main-title {
-  font-family: var(--font-geist) !important;
-  font-weight: 200 !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 700 !important;
   text-transform: none !important;
   text-align: left !important;
+  color: #111111;
 }
 
 .subpage-wrapper .hero h1,
-.subpage-wrapper section > h2 {
-  font-size: clamp(3rem, 8vw, 7rem) !important;
-  line-height: 0.9 !important;
+.subpage-wrapper section>h2 {
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem) !important;
+  line-height: 1.08 !important;
+  color: #111111 !important;
 }
 
 .subpage-wrapper h2 {
@@ -5120,24 +5321,26 @@ section:not(#hero) h3,
   padding-bottom: 0 !important;
   margin-top: 2.5rem !important;
   margin-bottom: 1.5rem !important;
+  color: #111111 !important;
 }
 
 .subpage-wrapper p,
 .subpage-wrapper li {
-  font-family: var(--font-main) !important;
+  font-family: var(--font-sans) !important;
   text-align: left !important;
-  font-size: clamp(1.2rem, 2.2vw, 1.45rem) !important;
+  font-size: 1.05rem !important;
   line-height: 1.65 !important;
+  color: #4a5565 !important;
 }
 
-/* FORCE NAVBAR & FOOTER WORDINGS TO ADIEU FONT */
+/* FORCE NAVBAR & FOOTER WORDINGS TO SAANS FONT */
 .desktop-nav a,
 .mobile-menu a,
 .mobile-menu .mobile-dropdown-trigger,
 .header-actions button,
 .mobile-menu button,
 .footer-main-text {
-  font-family: var(--font-brand) !important;
+  font-family: var(--font-sans) !important;
 }
 
 .footer-col-label,
@@ -5183,19 +5386,42 @@ section:not(#hero) h3,
 
 .subpage-wrapper .hero-subtext {
   margin-top: 1.5rem !important;
-  font-size: clamp(1.2rem, 2.2vw, 1.45rem) !important;
-  font-family: var(--font-main) !important;
+  font-size: 1.15rem !important;
+  font-family: var(--font-sans) !important;
   text-transform: none !important;
   text-align: left !important;
+  color: #4a5565 !important;
 }
 
-/* ── UNIVERSAL WHITE HEADINGS FOR ALL PAGES ── */
+/* ── UNIVERSAL INTERCOM HEADINGS FOR ALL PAGES ── */
 .subpage-wrapper h1,
 .subpage-wrapper h2,
 .subpage-wrapper h3,
 .subpage-wrapper h4,
 .subpage-wrapper .hero h1 {
+  color: #111111;
+  font-family: var(--font-sans);
+}
+
+.ic-blog-dark-section,
+.ic-blog-dark-section h1,
+.ic-blog-dark-section h2,
+.ic-blog-dark-section h3,
+.ic-blog-dark-section h4,
+.subpage-wrapper .ic-blog-dark-section h1,
+.subpage-wrapper .ic-blog-dark-section h2,
+.subpage-wrapper .ic-blog-dark-section h3,
+.subpage-wrapper .ic-blog-dark-section h4 {
   color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+}
+
+.ic-blog-dark-section button,
+.ic-blog-dark-section .btn-primary,
+.ic-blog-dark-section input[type="submit"] {
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
 }
 
 @media (max-width: 768px) {
@@ -5235,28 +5461,13 @@ section:not(#hero) h3,
 
 /* Performance & Smooth Rendering Optimizations */
 .word-hover-span {
-  display: inline-block;
-  color: inherit;
-  transition: color 0.25s ease;
-  cursor: default;
+  display: inline;
+  color: inherit !important;
+  cursor: inherit;
 }
 
 .word-hover-span:hover {
-  color: #ffffff !important;
-}
-
-/* Light / White Background Sections — Word Hover turns text PURE BLACK (#000000) */
-.light-bg .word-hover-span:hover,
-.light-theme .word-hover-span:hover,
-[style*="background: #f5f5f7"] .word-hover-span:hover,
-[style*="background:#f5f5f7"] .word-hover-span:hover,
-[style*="background: white"] .word-hover-span:hover,
-[style*="background:#ffffff"] .word-hover-span:hover,
-[style*="background: #ffffff"] .word-hover-span:hover,
-[style*="background: rgb(245, 245, 247)"] .word-hover-span:hover,
-[style*="background-color: #f5f5f7"] .word-hover-span:hover,
-[style*="background-color: #ffffff"] .word-hover-span:hover {
-  color: #000000 !important;
+  color: inherit !important;
 }
 
 /* GPU Hardware Acceleration for Smooth 60FPS Scrolling */
@@ -5275,10 +5486,8 @@ html {
 
 /* ==========================================================================
    STRICT TYPOGRAPHY ENFORCEMENT:
-   Except the home page hero section, every other title across all sections
-   and pages must be in thin Geist font.
+   All titles across all pages strictly use Segoe UI with Thin (300) font weight
    ========================================================================== */
-h1:not(#hero h1):not(.hero-content h1),
 h2,
 h3,
 h4,
@@ -5289,17 +5498,50 @@ h6,
 .activities-title,
 .about-team-heading,
 .about-partners-heading,
-.services-main-title {
-  font-family: var(--font-geist) !important;
-  font-weight: 200 !important;
+.services-main-title,
+.ox1-section-title,
+.subpage-wrapper h2,
+.subpage-wrapper h3,
+.subpage-wrapper h4 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  color: inherit;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  -webkit-text-fill-color: currentColor !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==========================================================================
+   ALL PAGE HERO SECTION TITLES - 0.5/4 INCREASED THICKNESS
+   ========================================================================== */
+.ic-hero-headline,
+.ic-hero-headline span,
+.hero h1,
 #hero h1,
-.hero #hero h1,
 section.hero h1,
-#hero .hero-content h1 {
-  font-family: var(--font-brand) !important;
+.hero-content h1,
+.subpage-wrapper .hero h1,
+.subpage-wrapper>section:first-of-type h1,
+.subpage-wrapper>section:first-child h1,
+.subpage-wrapper>section:first-of-type .hero-content h1,
+.hero-title,
+.subpage-hero-title,
+.hero-right-content h1 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   font-weight: 400 !important;
+  color: #111111 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.025em !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  -webkit-text-fill-color: currentColor !important;
+  paint-order: normal !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
 }
 
 /* ==========================================================================
@@ -5353,6 +5595,7 @@ section,
    MOBILE SECTION TITLE SIZING (INCREASED PROMINENCE ON MOBILE)
    ========================================================================== */
 @media (max-width: 768px) {
+
   .section-title,
   .services-main-title,
   .equipment-title,
@@ -5360,11 +5603,11 @@ section,
   .about-team-heading,
   .about-partners-heading,
   .subpage-wrapper .hero h1,
-  .subpage-wrapper section > h2,
+  .subpage-wrapper section>h2,
   .subpage-wrapper .section-title,
   section:not(#hero) .section-title,
-  section:not(#hero) > .section-header > h2,
-  section:not(#hero) > .container > .section-header > h2,
+  section:not(#hero)>.section-header>h2,
+  section:not(#hero)>.container>.section-header>h2,
   section:not(#hero) .section-header h2 {
     font-size: clamp(2.75rem, 11.5vw, 4.2rem) !important;
     line-height: 0.95 !important;
@@ -5374,6 +5617,7 @@ section,
 }
 
 @media (max-width: 480px) {
+
   .section-title,
   .services-main-title,
   .equipment-title,
@@ -5381,11 +5625,11 @@ section,
   .about-team-heading,
   .about-partners-heading,
   .subpage-wrapper .hero h1,
-  .subpage-wrapper section > h2,
+  .subpage-wrapper section>h2,
   .subpage-wrapper .section-title,
   section:not(#hero) .section-title,
-  section:not(#hero) > .section-header > h2,
-  section:not(#hero) > .container > .section-header > h2,
+  section:not(#hero)>.section-header>h2,
+  section:not(#hero)>.container>.section-header>h2,
   section:not(#hero) .section-header h2 {
     font-size: clamp(2.5rem, 12vw, 3.8rem) !important;
     line-height: 0.95 !important;
@@ -5405,15 +5649,15 @@ section,
 .blog-main-card,
 .blog-post-item,
 .cooperation-card,
-.cooperation-card-wrapper > div,
-.difference-card-wrapper > div,
+.cooperation-card-wrapper>div,
+.difference-card-wrapper>div,
 .equipment-display,
 .spec-overlay,
 .project-card-v2,
 .contact-info-item,
 .geography-regions-card,
 .geography-globe-card,
-.contact-info-block > div,
+.contact-info-block>div,
 .about-nested-card,
 .equipment-item,
 .equipment-display-panel,
@@ -5435,3 +5679,74 @@ section,
   ry: 0 !important;
 }
 
+/* ==========================================================================
+   OX1 PLATFORM & PRODUCTS SECTION HEADINGS - MANDATORY CENTER ALIGNMENT
+   ========================================================================== */
+.ox1-platform-page h1,
+.ox1-platform-page h2,
+.ox1-platform-page section h1,
+.ox1-platform-page section h2,
+.ox1-platform-page #overview h1,
+.ox1-platform-page .ox1-hero-main-title,
+.ox1-hero-main-title,
+.ox1-section-title {
+  text-align: center !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  text-stroke: 0px transparent !important;
+  -webkit-text-fill-color: #111111 !important;
+  paint-order: normal !important;
+}
+
+/* ==========================================================================
+   DEPLOY OUANTUM CTA STYLES (SOLID WHITE TEXT, NO FILTERS, CRISP BACKGROUND)
+   ========================================================================== */
+.deploy-cta-section {
+  background: #ffffff !important;
+}
+
+.deploy-cta-card {
+  position: relative !important;
+  overflow: hidden !important;
+  background-image: url('/assets/images/buildings/card_building/image.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  border-radius: 0px !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  text-align: center !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.deploy-cta-heading,
+.deploy-cta-heading span,
+h2.deploy-cta-heading,
+h2.deploy-cta-heading span,
+.deploy-cta-card h2,
+.deploy-cta-card h2 span {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  text-stroke: none !important;
+  font-weight: 500 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85), 0 4px 28px rgba(0, 0, 0, 0.8) !important;
+  text-align: center !important;
+  letter-spacing: -0.02em !important;
+}
+
+.deploy-cta-paragraph,
+.deploy-cta-paragraph span,
+.deploy-cta-card p {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-text-stroke: 0px transparent !important;
+  -webkit-text-stroke-width: 0px !important;
+  text-stroke: none !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85) !important;
+  text-align: center !important;
+}

@@ -85,7 +85,7 @@ const CooperationCard = ({ point, i, pointsLength, progress }: { point: Cooperat
         
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div style={{ display: 'flex', gap: 'clamp(10px, 2vw, 20px)', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'var(--font-adieu)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, lineHeight: 0.9 }}>
+            <span style={{ fontFamily: 'var(--font-title)', fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 800, lineHeight: 0.9 }}>
               {point.id}
             </span>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>

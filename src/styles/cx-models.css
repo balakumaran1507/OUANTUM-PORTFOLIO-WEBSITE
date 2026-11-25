@@ -1,0 +1,587 @@
+/* Fin.ai CX Models Design System for OUANTUM Capabilities */
+/* Harmonized with site-wide Clean White Page Background & #faf9f6 Card Background */
+
+.cxm-page {
+  background-color: #ffffff;
+  color: #111111;
+  min-height: 100vh;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  padding-top: 100px;
+  padding-bottom: 120px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.cxm-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ── Hero Canvas Section (No Separate Card) ── */
+.cxm-hero-card {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4.5rem 1rem 4rem 1rem;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.cxm-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cxm-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Monospace Eyebrow Badge */
+.cxm-eyebrow {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hero 2-Line Headline matching fin.ai/cx-models */
+.cxm-hero-headline-1 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #111111;
+  letter-spacing: -0.025em;
+  margin: 0;
+}
+
+.cxm-hero-headline-2 {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2rem, 4.6vw, 4.1rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #111111;
+  letter-spacing: -0.02em;
+  margin: 0.4rem 0 2rem 0;
+}
+
+/* Action Buttons */
+.cxm-btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cxm-btn-black {
+  background-color: #111111;
+  color: #ffffff !important;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: 0px;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #111111;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cxm-btn-black:hover {
+  background-color: #2a2a2a;
+  transform: translateY(-1px);
+}
+
+.cxm-btn-outline {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  color: #111111 !important;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 13px 28px;
+  border-radius: 0px;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cxm-btn-outline:hover {
+  background-color: #ffffff;
+  border-color: #111111;
+  transform: translateY(-1px);
+}
+
+/* ── Section 2: Editorial Manifesto with Dot Grid ── */
+.cxm-manifesto-card {
+  background-color: transparent;
+  background-image: radial-gradient(rgba(17, 17, 17, 0.08) 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+  border-radius: 0;
+  border: none;
+  border-bottom: none;
+  padding: 4.5rem 0;
+  margin-bottom: 0;
+}
+
+.cxm-manifesto-lead {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.65rem, 3.2vw, 2.75rem);
+  line-height: 1.25;
+  color: #111111;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.25rem;
+}
+
+.cxm-highlight-chip {
+  background-color: #111111;
+  color: #ffffff !important;
+  padding: 2px 10px;
+  border-radius: 0 !important;
+  font-weight: 600;
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.cxm-manifesto-subtext {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  line-height: 1.6;
+  color: #24292f;
+  margin-bottom: 2rem;
+  max-width: 1040px;
+}
+
+.cxm-manifesto-faded {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+  line-height: 1.6;
+  color: #71717a;
+  max-width: 1040px;
+}
+
+.cxm-manifesto-faded strong {
+  color: #111111;
+}
+
+/* ── Section 3: Model Suite Architectural Grid ── */
+.cxm-suite-section {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-bottom: none;
+  padding: 4.5rem 0;
+  margin-bottom: 0;
+}
+
+.cxm-suite-header {
+  margin-bottom: 3rem;
+}
+
+.cxm-suite-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #111111;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.cxm-suite-item {
+  border-top: none;
+  padding: 3rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  position: relative;
+}
+
+.cxm-suite-item:last-child {
+  padding-bottom: 0;
+}
+
+.cxm-suite-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.cxm-model-index {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.85rem;
+  color: #111111;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+
+.cxm-model-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+  color: #111111;
+  letter-spacing: -0.015em;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.cxm-badge-new {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #111111;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 0 !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.cxm-badge-prod {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #111111;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 0 !important;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.cxm-model-visual-box {
+  background-color: #ffffff;
+  border-radius: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 2rem;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.cxm-suite-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.cxm-model-desc {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: #24292f;
+  margin-bottom: 2rem;
+}
+
+.cxm-spec-title {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #111111;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cxm-spec-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.cxm-spec-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 12px 0;
+  border-bottom: none;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  color: #374151;
+}
+
+.cxm-spec-row:last-child {
+  border-bottom: none;
+}
+
+.cxm-spec-id {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6a7282;
+  width: 32px;
+  flex-shrink: 0;
+}
+
+/* ── Interactive Simulator Section ── */
+.cxm-simulator-card {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-bottom: none;
+  padding: 4.5rem 0;
+  margin-bottom: 0;
+}
+
+.cxm-sim-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
+.cxm-sim-tab-btn {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 10px 18px;
+  border-radius: 0px;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111111;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cxm-sim-tab-btn.active {
+  background-color: #111111;
+  color: #ffffff;
+  border-color: #111111;
+}
+
+.cxm-sim-console {
+  background-color: #111111;
+  color: #d1d5dc;
+  border-radius: 0px;
+  padding: 1.75rem;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── Benchmarks Strip ── */
+.cxm-benchmarks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  padding: 4.5rem 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.cxm-benchmark-card {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-left: none;
+  padding: 0 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cxm-benchmark-val {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 700;
+  color: #111111;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.cxm-benchmark-label {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 4px;
+}
+
+.cxm-benchmark-sub {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.825rem;
+  color: #6a7282;
+}
+
+/* ── FAQ Accordion ── */
+.cxm-faq-section {
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  border-bottom: none;
+  padding: 3rem 0 4rem;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.cxm-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.cxm-faq-item {
+  background-color: #f4f3ec;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 0;
+  overflow: hidden;
+  width: 100%;
+  padding: 0;
+}
+
+.cxm-faq-item:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.cxm-faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: #f4f3ec;
+  border: none;
+  border-radius: 0;
+  text-align: left;
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111111;
+  cursor: pointer;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.cxm-faq-answer {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #4a5565;
+  padding: 0 24px 22px 24px;
+  margin-top: 0;
+}
+
+/* ── Bottom Thermal CTA Section ── */
+.cxm-cta-card {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5.5rem 1rem;
+  margin-bottom: 0;
+}
+
+.cxm-cta-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cxm-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.cxm-cta-headline {
+  font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #111111;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+}
+
+/* ── Responsive Rules ── */
+@media (max-width: 900px) {
+  .cxm-manifesto-card,
+  .cxm-suite-section,
+  .cxm-simulator-card,
+  .cxm-faq-section {
+    padding: 3rem 0;
+  }
+
+  .cxm-hero-card,
+  .cxm-cta-card {
+    padding: 3.5rem 0;
+  }
+
+  .cxm-benchmark-card {
+    border-left: none;
+    border-top: none;
+    padding: 1.5rem 0 0 0;
+  }
+
+  .cxm-suite-item {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* OUANTUM Capabilities Cards Standard: Sharp Corners & #f4f3ec Card Background */
+.cxm-page .cxm-card,
+.cxm-page [class*="-card"],
+.cxm-page .cxm-suite-item,
+.cxm-page .cxm-benchmark-card,
+.cxm-page .cxm-faq-item,
+.cxm-page .cxm-model-visual-box,
+.cxm-page .cxm-sim-console,
+.cxm-page .cxm-sim-tab-btn,
+.cxm-page button,
+.cxm-page a[class*="btn"],
+.cxm-page img {
+  border-radius: 0px !important;
+}

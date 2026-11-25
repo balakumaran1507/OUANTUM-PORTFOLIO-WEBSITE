@@ -22,37 +22,24 @@ const SystemStatus: React.FC = () => {
   return (
     <main
       className="subpage-wrapper"
-      style={{ background: '#000000', color: '#fff', minHeight: '100vh', paddingBottom: '80px', paddingTop: '120px' }}
+      style={{ background: 'var(--ic-bg)', color: 'var(--ic-text)', minHeight: '100vh', paddingBottom: '80px', paddingTop: '120px' }}
     >
       <div className="container" style={{ maxWidth: '800px', margin: '0 auto' }}>
 
         <header style={{ marginBottom: '4rem', textAlign: 'center' }}>
-          <span
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.15em',
-              color: 'rgba(255, 255, 255, 0.4)',
-              textTransform: 'uppercase',
-              marginBottom: '1rem',
-              display: 'block',
-            }}
-          >
-            UI COMPONENTS
-          </span>
-          <h1 style={{ fontFamily: 'var(--font-geist)', fontWeight: 200, fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1, color: '#fff' }}>
-            SYSTEM FEEDBACK STATES
+          <h1 style={{ fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontWeight: 300, fontSize: 'clamp(2rem, 5vw, 3.2rem)', lineHeight: 1.15, color: '#111111', letterSpacing: '-0.015em' }}>
+            System Feedback States
           </h1>
           <p
             style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.9rem',
-              color: 'rgba(255, 255, 255, 0.5)',
-              marginTop: '1.5rem',
+              fontFamily: 'var(--ic-font-sans)',
+              fontSize: '1rem',
+              color: '#4a5565',
+              marginTop: '1.25rem',
               lineHeight: 1.6,
             }}
           >
-            Preview of deterministic UI states used across the OUANTUM platform for field data ingestion and processing feedback.
+            Preview of <span className="ic-text-highlight">deterministic UI states</span> used across the OUANTUM platform for field data ingestion and processing feedback.
           </p>
         </header>
 
@@ -61,12 +48,13 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Loading state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-geist)',
-                fontWeight: 200,
+                fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                fontWeight: 400,
                 fontSize: '1.1rem',
-                color: '#fff',
+                color: '#111111',
                 marginBottom: '1.5rem',
                 paddingBottom: '0.5rem',
+                borderBottom: '1px solid var(--ic-border)',
               }}
             >
               1. PROCESSING / LOADING STATE
@@ -77,12 +65,13 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Success state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-geist)',
-                fontWeight: 200,
+                fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                fontWeight: 400,
                 fontSize: '1.1rem',
-                color: '#fff',
+                color: '#111111',
                 marginBottom: '1.5rem',
                 paddingBottom: '0.5rem',
+                borderBottom: '1px solid var(--ic-border)',
               }}
             >
               2. SUCCESS / VALIDATION STATE
@@ -93,12 +82,13 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Error state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-geist)',
-                fontWeight: 200,
+                fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                fontWeight: 400,
                 fontSize: '1.1rem',
-                color: '#fff',
+                color: '#111111',
                 marginBottom: '1.5rem',
                 paddingBottom: '0.5rem',
+                borderBottom: '1px solid var(--ic-border)',
               }}
             >
               3. ERROR / CRITICAL FAILURE STATE
@@ -109,12 +99,13 @@ const SystemStatus: React.FC = () => {
           <section aria-label="Empty state preview">
             <h2
               style={{
-                fontFamily: 'var(--font-geist)',
-                fontWeight: 200,
+                fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                fontWeight: 400,
                 fontSize: '1.1rem',
-                color: '#fff',
+                color: '#111111',
                 marginBottom: '1.5rem',
                 paddingBottom: '0.5rem',
+                borderBottom: '1px solid var(--ic-border)',
               }}
             >
               4. EMPTY / NULL STATE

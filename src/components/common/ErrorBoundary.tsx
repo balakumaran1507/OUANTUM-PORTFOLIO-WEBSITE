@@ -38,7 +38,7 @@ class ErrorBoundary extends Component<Props, State> {
           textAlign: 'center'
         }}>
           <div>
-            <h1 style={{ fontFamily: 'var(--font-adieu)', fontSize: '2rem', marginBottom: '1rem', color: '#ff3333' }}>
+            <h1 style={{ fontFamily: 'var(--font-title)', fontSize: '2rem', marginBottom: '1rem', color: '#ff3333' }}>
               SYSTEM DIAGNOSTIC FAILURE
             </h1>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '1rem', color: 'rgba(255, 255, 255, 0.7)', marginBottom: '2rem', maxWidth: '500px', margin: '0 auto 2rem' }}>
