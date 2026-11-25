@@ -112,15 +112,6 @@ const products: Record<ProductKey, ProductItem> = {
 const IntercomShowcase: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ProductKey>('hub');
   const [cycleKey, setCycleKey] = useState<number>(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   // Auto-advance active tab every 7 seconds with progress indicator
   useEffect(() => {
     const timer = setTimeout(() => {

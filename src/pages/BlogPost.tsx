@@ -643,7 +643,7 @@ const BlogPost: React.FC = () => {
                           fontStyle: 'normal',
                         }}
                       >
-                        “{renderHighlightedText(section.text)}”
+                        "{renderHighlightedText(section.text)}"
                       </blockquote>
                     );
 
@@ -693,7 +693,7 @@ const BlogPost: React.FC = () => {
               })}
 
               {/* ── Verified Customer Quote ── */}
-              <div className=”ic-blog-testimonial-grid”>
+              <div className="ic-blog-testimonial-grid">
                 <div
                   style={{
                     display: 'flex',
@@ -742,7 +742,7 @@ const BlogPost: React.FC = () => {
                     &ldquo;In 38 years of structural audit work, report compilation has always been the bottleneck &mdash; correlating
                     UPV data, rebound hammer readings, and IS 456 checks manually consumed close to 60 hours per
                     structure. With OX1,{' '}
-                    <span className=”ic-text-highlight”>
+                    <span className="ic-text-highlight">
                       that same report is ready in under 30 minutes on-site.
                     </span>{' '}
                     The SonReb engine handles the correlation; our team focuses on engineering judgment, not data entry.&rdquo;
