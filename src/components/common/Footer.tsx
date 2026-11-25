@@ -82,9 +82,6 @@ const Footer: React.FC = () => {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <Link to="/products/ox1" style={{ fontSize: '0.875rem', color: '#111111', fontWeight: 600, textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>OX1 - Omni eXtelligence 1</Link>
-              <Link to="/how-it-works/field-data-in" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>Field Data In</Link>
-              <Link to="/how-it-works/ai-analysis" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>AI Analysis Engine</Link>
-              <Link to="/how-it-works/report-out" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>Report Out</Link>
               <Link to="/pricing" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>Platform Pricing & Plans</Link>
             </div>
           </div>
@@ -112,7 +109,6 @@ const Footer: React.FC = () => {
               <Link to="/solutions" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>Highway & Metro Solutions</Link>
               <Link to="/integrations" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>Hardware & Sensor Integrations</Link>
               <Link to="/changelog" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>Platform Changelog</Link>
-              <Link to="/status" style={{ fontSize: '0.875rem', color: '#4a5565', textDecoration: 'none', fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}>System Reliability & Uptime</Link>
             </div>
           </div>
 

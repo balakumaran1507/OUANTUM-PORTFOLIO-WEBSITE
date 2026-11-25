@@ -25,7 +25,6 @@ const StructuralCorrosion = lazy(() => import('./pages/solutions/StructuralCorro
 const Integrations = lazy(() => import('./pages/Integrations'))
 const Changelog = lazy(() => import('./pages/Changelog'))
 const Demo = lazy(() => import('./pages/Demo'))
-const Status = lazy(() => import('./pages/Status'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const SecurityTerms = lazy(() => import('./pages/SecurityTerms'))
 const TermsAndPolicies = lazy(() => import('./pages/TermsAndPolicies'))
@@ -37,9 +36,6 @@ const NdtAnalysis = lazy(() => import('./pages/NdtAnalysis'))
 const IsCompliance = lazy(() => import('./pages/IsCompliance'))
 const Consensus = lazy(() => import('./pages/Consensus'))
 const ServiceLife = lazy(() => import('./pages/ServiceLife'))
-const FieldDataIn = lazy(() => import('./pages/FieldDataIn'))
-const AiAnalysis = lazy(() => import('./pages/AiAnalysis'))
-const ReportOut = lazy(() => import('./pages/ReportOut'))
 const WhyChooseOuantum = lazy(() => import('./pages/WhyChooseOuantum'))
 const OX1Platform = lazy(() => import('./pages/OX1Platform'))
 const OX1Countdown = lazy(() => import('./pages/OX1Countdown'))
@@ -74,8 +70,6 @@ function AppContent() {
           <Route path="/integrations" element={<Integrations />} />
           <Route path="/changelog" element={<Changelog />} />
           <Route path="/demo" element={<Demo />} />
-          <Route path="/status" element={<Status />} />
-          <Route path="/system-status" element={<Status />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/security" element={<SecurityTerms />} />
           <Route path="/terms" element={<TermsAndPolicies initialTab="terms" />} />
@@ -93,9 +87,6 @@ function AppContent() {
           <Route path="/capabilities/multi model consensus" element={<Consensus />} />
           <Route path="/capabilities/service-life-prediction" element={<ServiceLife />} />
           <Route path="/capabilities/service life prediction" element={<ServiceLife />} />
-          <Route path="/how-it-works/field-data-in" element={<FieldDataIn />} />
-          <Route path="/how-it-works/ai-analysis" element={<AiAnalysis />} />
-          <Route path="/how-it-works/report-out" element={<ReportOut />} />
           <Route path="/why-choose-ouantum" element={<WhyChooseOuantum />} />
           <Route path="/why-choose-quantum" element={<WhyChooseOuantum />} />
           <Route path="/why-ouantum" element={<WhyChooseOuantum />} />

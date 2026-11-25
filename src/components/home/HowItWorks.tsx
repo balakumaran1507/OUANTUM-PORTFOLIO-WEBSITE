@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import ScrollReveal from '@/components/common/ScrollReveal';
 import GlowCard from '../GlowCard';
 
@@ -67,7 +66,6 @@ const steps = [
    Clicking the × collapses it back.
 ───────────────────────────────────────────────────────── */
 const StepCard = ({ step }: { step: typeof steps[0] }) => {
-  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -219,24 +217,6 @@ const StepCard = ({ step }: { step: typeof steps[0] }) => {
           >
             {step.description}
           </p>
-          <span
-            onClick={() => navigate(step.route)}
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.72rem',
-              letterSpacing: '0.14em',
-              color: 'rgba(255,255,255,0.5)',
-              cursor: 'pointer',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.35rem',
-              transition: 'color 0.2s ease',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
-          >
-            READ MORE ↗
-          </span>
         </div>
       </div>
 
