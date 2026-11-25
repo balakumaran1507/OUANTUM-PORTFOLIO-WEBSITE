@@ -726,7 +726,7 @@ const BlogPost: React.FC = () => {
                       marginBottom: '1rem',
                     }}
                   >
-                    AMITH CIVIL & ALLIED ENGINEERING SERVICES PVT LTD
+                    AMITH CIVIL &amp; ALLIED ENGINEERING SERVICES PVT LTD
                   </div>
                   <blockquote
                     style={{
@@ -739,13 +739,13 @@ const BlogPost: React.FC = () => {
                       marginBottom: '1.5rem',
                     }}
                   >
-                    “In 38 years of structural audit work, report compilation has always been the bottleneck — correlating
+                    &ldquo;In 38 years of structural audit work, report compilation has always been the bottleneck &mdash; correlating
                     UPV data, rebound hammer readings, and IS 456 checks manually consumed close to 60 hours per
                     structure. With OX1,{' '}
                     <span className=”ic-text-highlight”>
                       that same report is ready in under 30 minutes on-site.
                     </span>{' '}
-                    The SonReb engine handles the correlation; our team focuses on engineering judgment, not data entry.”
+                    The SonReb engine handles the correlation; our team focuses on engineering judgment, not data entry.&rdquo;
                   </blockquote>
                   <div>
                     <div
@@ -768,7 +768,7 @@ const BlogPost: React.FC = () => {
                         marginTop: '3px',
                       }}
                     >
-                      DIRECTOR & QUALITY AUDITOR · SENIOR CONSULTANT, CUBE – IIT MADRAS
+                      DIRECTOR &amp; QUALITY AUDITOR &middot; SENIOR CONSULTANT, CUBE &ndash; IIT MADRAS
                     </div>
                   </div>
                 </div>
