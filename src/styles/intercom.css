@@ -1777,6 +1777,15 @@ body {
   min-height: 100vh;
 }
 
+/* Prevent browser autofill from overriding input background/text color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #111111 !important;
+  caret-color: #111111;
+}
+
 /* 2. Prevent iOS Safari disruptive auto-zoom on input focus */
 @media (max-width: 768px) {
   input,

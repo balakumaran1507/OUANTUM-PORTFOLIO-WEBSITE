@@ -592,6 +592,7 @@ const Demo: React.FC = () => {
                         width: '100%',
                         padding: '10px 14px',
                         background: '#ffffff',
+                        color: '#111111',
                         border: 'none',
                         borderRadius: 0,
                         fontSize: '0.9rem',
@@ -616,6 +617,7 @@ const Demo: React.FC = () => {
                         width: '100%',
                         padding: '10px 14px',
                         background: '#ffffff',
+                        color: '#111111',
                         border: 'none',
                         borderRadius: 0,
                         fontSize: '0.9rem',
@@ -641,6 +643,7 @@ const Demo: React.FC = () => {
                           width: '100%',
                           padding: '10px 14px',
                           background: '#ffffff',
+                          color: '#111111',
                           border: 'none',
                           borderRadius: 0,
                           fontSize: '0.9rem',
@@ -741,7 +744,7 @@ const Demo: React.FC = () => {
                       margin: '0 0 20px 0',
                     }}
                   >
-                    Thank you, {formData.name}. Our civil engineering team will reach out to <strong>{formData.email}</strong> within 4 business hours with your dedicated walkthrough agenda.
+                    Thank you, {formData.name}. Our civil engineering team will be in touch at <strong>{formData.email}</strong> with your dedicated walkthrough agenda.
                   </p>
                   <Link to="/pricing" className="ic-btn-secondary" style={{ padding: '8px 20px', borderRadius: 0, textDecoration: 'none' }}>
                     View Platform Editions

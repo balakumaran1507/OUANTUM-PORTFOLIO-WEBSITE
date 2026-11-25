@@ -566,7 +566,7 @@ const Contact: React.FC = () => {
 
                   <p className="ic-success-body">
                     Thank you, <strong>{formData.firstName || 'Partner'}</strong>. Your consultation request for{' '}
-                    <strong>{formData.organization || 'your organization'}</strong> has been assigned to our senior civil structural AI team. We guarantee a response within 2 hours.
+                    <strong>{formData.organization || 'your organization'}</strong> has been received by our senior civil structural AI team. We will be in touch shortly.
                   </p>
 
                   <div className="ic-direct-box">
