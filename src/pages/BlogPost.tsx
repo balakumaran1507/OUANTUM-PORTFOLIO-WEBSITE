@@ -694,19 +694,12 @@ const BlogPost: React.FC = () => {
 
               {/* ── Verified Customer Quote ── */}
               <div className="ic-blog-testimonial-grid">
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: '#f3f4f6',
-                    fontSize: '3rem',
-                    fontWeight: 700,
-                    color: '#6a7282',
-                    fontFamily: 'var(--ic-font-sans)',
-                  }}
-                >
-                  KR
+                <div style={{ overflow: 'hidden' }}>
+                  <img
+                    src="https://amith.in.net/images/images/new_images/home/promoters/er-kalaimony-r.jpg"
+                    alt="Er. Kalaimony R"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
                 </div>
                 <div
                   style={{

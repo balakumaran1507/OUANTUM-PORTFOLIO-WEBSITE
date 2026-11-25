@@ -91,17 +91,15 @@ const IntercomTestimonials: React.FC = () => {
                 borderRadius: '50%',
                 marginBottom: '16px',
                 border: '2px solid #e5e7eb',
-                background: '#f3f4f6',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '1.5rem',
-                fontWeight: 700,
-                color: '#6a7282',
-                fontFamily: 'var(--ic-font-sans)',
+                overflow: 'hidden',
+                flexShrink: 0,
               }}
             >
-              {testimonial.initials}
+              <img
+                src="https://amith.in.net/images/images/new_images/home/promoters/er-kalaimony-r.jpg"
+                alt="Er. Kalaimony R"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
             </div>
 
             <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#111111', marginBottom: '4px' }}>
