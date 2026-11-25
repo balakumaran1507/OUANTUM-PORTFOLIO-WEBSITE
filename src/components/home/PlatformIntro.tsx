@@ -8,7 +8,7 @@ const PlatformIntro: React.FC = () => {
     <section id="platform-intro" style={{ background: '#000000', padding: '100px 0' }}>
       <div className="container">
         <div style={{ textAlign: 'left', marginBottom: '3rem' }}>
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ fontFamily: 'var(--font-geist)', fontWeight: 200 }}>
             What is OUANTUM?
           </h2>
         </div>

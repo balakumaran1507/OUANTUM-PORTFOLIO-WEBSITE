@@ -2,23 +2,29 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft } from 'lucide-react';
-import GlowCard from '../components/GlowCard';
+import useSEO from '../hooks/useSEO';
 
 const ReportOut: React.FC = () => {
   const navigate = useNavigate();
+
+  useSEO({
+    title: 'Report Out | Ouantum',
+    description: 'Auto-generated government-format reports for civil infrastructure testing and compliance.',
+    canonicalPath: '/how-it-works/report-out',
+  });
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
     <div className="subpage-wrapper" style={{
-      background: '#000000',
-      color: '#fff',
+      background: '#ffffff',
+      color: '#111111',
       minHeight: '100vh',
-      fontFamily: 'var(--font-main)',
-      paddingTop: '140px',
+      fontFamily: 'var(--ic-font-sans)',
+      paddingTop: '100px',
       paddingBottom: '100px',
     }}>
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 16px' }}>
 
         {/* Back */}
         <motion.button
@@ -28,17 +34,17 @@ const ReportOut: React.FC = () => {
           onClick={() => navigate('/#how-it-works')}
           style={{
             background: 'none', border: 'none',
-            color: 'rgba(255,255,255,0.45)',
+            color: '#6a7282',
             display: 'inline-flex', alignItems: 'center', gap: '8px',
-            fontFamily: 'var(--font-mono)', fontSize: '0.8rem',
-            letterSpacing: '0.08em', cursor: 'pointer',
-            padding: '8px 0', marginBottom: '3rem',
+            fontFamily: 'var(--ic-font-sans)', fontSize: '0.8125rem',
+            fontWeight: 500, cursor: 'pointer',
+            padding: '8px 0', marginBottom: '2.5rem',
             transition: 'color 0.2s',
           }}
-          onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-          onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+          onMouseEnter={e => (e.currentTarget.style.color = '#111111')}
+          onMouseLeave={e => (e.currentTarget.style.color = '#6a7282')}
         >
-          <ArrowLeft size={16} /> BACK TO HOW IT WORKS
+          <ArrowLeft size={15} /> BACK TO HOW IT WORKS
         </motion.button>
 
         {/* Hero */}
@@ -46,38 +52,31 @@ const ReportOut: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '3rem', marginBottom: '3rem' }}
+          style={{ paddingBottom: '2.5rem', marginBottom: '2rem' }}
         >
-          <span style={{
-            fontFamily: 'var(--font-mono)', fontSize: '0.72rem',
-            letterSpacing: '0.25em', color: 'rgba(255,255,255,0.3)',
-            display: 'block', marginBottom: '1rem',
-          }}>
-            STEP 03 · GOVERNMENT FORMAT · SAME DAY
-          </span>
           <h1 style={{
-            fontFamily: 'var(--font-adieu)',
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-            fontWeight: 400, lineHeight: 1, color: '#fff',
-            margin: '0 0 1.5rem 0', letterSpacing: '0.02em',
+            fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+            fontWeight: 300, lineHeight: 1.1, color: '#111111',
+            margin: '0 0 1.25rem 0', letterSpacing: '-0.015em',
           }}>
-            REPORT OUT
+            Report Out
           </h1>
           <p style={{
-            fontFamily: 'var(--font-mono)', fontSize: '1rem',
-            color: 'rgba(255,255,255,0.55)', lineHeight: 1.75,
+            fontFamily: 'var(--ic-font-sans)', fontSize: '1.1rem',
+            color: '#4a5565', lineHeight: 1.65,
             maxWidth: '680px', margin: 0,
           }}>
-            Once analysis is complete, OUANTUM auto-generates the full government-format PDF: element findings, IS code compliance status, condition grading, and remediation recommendations. Ready for senior engineer review within the hour.
+            Once analysis is complete, OUANTUM auto-generates the full government-format PDF: element findings, IS code compliance status, condition grading, and remediation recommendations. Ready for senior engineer review <span className="ic-text-highlight">within the hour</span>.
           </p>
         </motion.div>
 
         {/* Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, x: -40, y: 240 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ marginBottom: '4rem', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          style={{ marginBottom: '3.5rem', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}
         >
           <img
             src="/assets/images/47766f42-6372-4a45-8a66-6043acfde415.png"
@@ -87,7 +86,7 @@ const ReportOut: React.FC = () => {
         </motion.div>
 
         {/* Detail blocks */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginBottom: '3.5rem' }}>
           {[
             {
               label: 'WHAT THE REPORT CONTAINS',
@@ -110,23 +109,29 @@ const ReportOut: React.FC = () => {
               key={i}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
             >
-              <GlowCard borderRadius={12} style={{ padding: '2rem', height: '100%' }}>
+              <div style={{
+                background: '#ffffff',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                borderRadius: '16px',
+                padding: '24px',
+                height: '100%',
+              }}>
                 <span style={{
-                  fontFamily: 'var(--font-mono)', fontSize: '0.65rem',
-                  letterSpacing: '0.2em', color: 'rgba(255,255,255,0.3)',
-                  display: 'block', marginBottom: '1rem',
+                  fontFamily: 'var(--ic-font-mono)', fontSize: '0.72rem',
+                  letterSpacing: '0.08em', color: '#111111', fontWeight: 700,
+                  display: 'block', marginBottom: '10px',
                 }}>
                   {label}
                 </span>
                 <p style={{
-                  fontFamily: 'var(--font-mono)', fontSize: '0.88rem',
-                  color: 'rgba(255,255,255,0.65)', lineHeight: 1.75, margin: 0,
+                  fontFamily: 'var(--ic-font-sans)', fontSize: '0.9rem',
+                  color: '#4a5565', lineHeight: 1.6, margin: 0,
                 }}>
                   {body}
                 </p>
-              </GlowCard>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -135,9 +140,9 @@ const ReportOut: React.FC = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem',
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px',
           }}
         >
           {[
@@ -146,16 +151,23 @@ const ReportOut: React.FC = () => {
             { stat: 'IS 456', label: 'Compliance grading standard' },
             { stat: 'Digitally signed', label: 'Ready for submission' },
           ].map(({ stat, label }, i) => (
-            <GlowCard key={i} borderRadius={12} style={{ padding: '2rem', textAlign: 'center' }}>
+            <div key={i} style={{
+              background: '#ffffff',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              borderRadius: '16px',
+              padding: '24px',
+              textAlign: 'center',
+            }}>
               <div style={{
-                fontFamily: 'var(--font-adieu)', fontSize: '1.8rem',
-                color: '#fff', marginBottom: '0.4rem',
+                fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                fontSize: '1.8rem', fontWeight: 400,
+                color: '#111111', marginBottom: '4px',
               }}>{stat}</div>
               <div style={{
-                fontFamily: 'var(--font-mono)', fontSize: '0.7rem',
-                color: 'rgba(255,255,255,0.35)', letterSpacing: '0.1em',
+                fontFamily: 'var(--ic-font-sans)', fontSize: '0.8rem',
+                color: '#6a7282',
               }}>{label}</div>
-            </GlowCard>
+            </div>
           ))}
         </motion.div>
 
@@ -165,5 +177,3 @@ const ReportOut: React.FC = () => {
 };
 
 export default ReportOut;
-
-

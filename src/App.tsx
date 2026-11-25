@@ -1,7 +1,8 @@
-import { useEffect, lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { lazy, Suspense } from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Header from './components/common/Header'
 import Footer from './components/common/Footer'
+import IntercomBottomCTA from './components/home/IntercomBottomCTA'
 import Chatbot from './components/common/Chatbot'
 import ErrorBoundary from './components/common/ErrorBoundary'
 import LoaderOverlay from './components/LoaderOverlay'
@@ -13,9 +14,21 @@ const About = lazy(() => import('./pages/About'))
 const Careers = lazy(() => import('./pages/Careers'))
 const Contact = lazy(() => import('./pages/Contact'))
 const CaseStudies = lazy(() => import('./pages/CaseStudies'))
-const SystemStatus = lazy(() => import('./pages/SystemStatus'))
+const Pricing = lazy(() => import('./pages/Pricing'))
+const Solutions = lazy(() => import('./pages/Solutions'))
+const SolutionDetail = lazy(() => import('./pages/solutions/SolutionDetail'))
+const CuringDelays = lazy(() => import('./pages/solutions/CuringDelays'))
+const DataTampering = lazy(() => import('./pages/solutions/DataTampering'))
+const MilestoneDisputes = lazy(() => import('./pages/solutions/MilestoneDisputes'))
+const SubsurfaceVoids = lazy(() => import('./pages/solutions/SubsurfaceVoids'))
+const StructuralCorrosion = lazy(() => import('./pages/solutions/StructuralCorrosion'))
+const Integrations = lazy(() => import('./pages/Integrations'))
+const Changelog = lazy(() => import('./pages/Changelog'))
+const Demo = lazy(() => import('./pages/Demo'))
+const Status = lazy(() => import('./pages/Status'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const SecurityTerms = lazy(() => import('./pages/SecurityTerms'))
+const TermsAndPolicies = lazy(() => import('./pages/TermsAndPolicies'))
 const Blog = lazy(() => import('./pages/Blog'))
 const BlogPost = lazy(() => import('./pages/BlogPost'))
 const FAQ = lazy(() => import('./pages/FAQ'))
@@ -27,94 +40,82 @@ const ServiceLife = lazy(() => import('./pages/ServiceLife'))
 const FieldDataIn = lazy(() => import('./pages/FieldDataIn'))
 const AiAnalysis = lazy(() => import('./pages/AiAnalysis'))
 const ReportOut = lazy(() => import('./pages/ReportOut'))
+const WhyChooseOuantum = lazy(() => import('./pages/WhyChooseOuantum'))
+const OX1Platform = lazy(() => import('./pages/OX1Platform'))
+const OX1Countdown = lazy(() => import('./pages/OX1Countdown'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 
 function GlobalWordHover() {
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleElement = (el: HTMLElement) => {
-      if (el.dataset.wordHovered) return;
-      
-      const selector = 'p, li span, .side-description, .about-text-block p, .equipment-overlay-description, .service-card-description, .hero-subtext, .subpage-hero-text, .faq-answer, .privacy-text, .careers-description';
-      
-      if (el.matches(selector) || el.closest(selector)) {
-        const targetEl = el.matches(selector) ? el : el.closest(selector) as HTMLElement;
-        if (targetEl.dataset.wordHovered) return;
-        targetEl.dataset.wordHovered = 'true';
-        
-        // Find all child text nodes
-        const walk = document.createTreeWalker(targetEl, NodeFilter.SHOW_TEXT);
-        let node: Node | null;
-        const textNodes: Node[] = [];
-        while ((node = walk.nextNode())) {
-          if (node.nodeValue && node.nodeValue.trim()) {
-            textNodes.push(node);
-          }
-        }
-        
-        textNodes.forEach(textNode => {
-          const parent = textNode.parentNode;
-          if (!parent) return;
-          const parentElement = parent as HTMLElement;
-          if (parentElement.tagName === 'SPAN' && parentElement.classList.contains('word-hover-span')) return;
-          if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'A', 'BUTTON'].includes(parentElement.tagName)) return;
-          
-          if (!textNode.nodeValue) return;
-          const words = textNode.nodeValue.split(/(\s+)/);
-          const fragment = document.createDocumentFragment();
-          
-          words.forEach(word => {
-            if (/\s+/.test(word)) {
-              fragment.appendChild(document.createTextNode(word));
-            } else {
-              const span = document.createElement('span');
-              span.className = 'word-hover-span';
-              span.textContent = word;
-              fragment.appendChild(span);
-            }
-          });
-          
-          parentElement.replaceChild(fragment, textNode);
-        });
-      }
-    };
-
-    // Run on initial query selector
-    const run = () => {
-      const elements = document.querySelectorAll(
-        'p, li span, .side-description, .about-text-block p, .equipment-overlay-description, .service-card-description, .hero-subtext, .subpage-hero-text, .faq-answer, .privacy-text, .careers-description'
-      );
-      elements.forEach(el => handleElement(el as HTMLElement));
-    };
-
-    const timer = setTimeout(run, 150);
-
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(mutation => {
-        mutation.addedNodes.forEach(node => {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            const el = node as HTMLElement;
-            handleElement(el);
-            const selector = 'p, li span, .side-description, .about-text-block p, .equipment-overlay-description, .service-card-description, .hero-subtext, .subpage-hero-text, .faq-answer, .privacy-text, .careers-description';
-            el.querySelectorAll(selector).forEach(child => handleElement(child as HTMLElement));
-          }
-        });
-      });
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
-
-    return () => {
-      clearTimeout(timer);
-      observer.disconnect();
-    };
-  }, [location]);
-
   return null;
+}
+
+function AppContent() {
+  const location = useLocation();
+  const isCountdown = location.pathname.includes('countdown');
+
+  return (
+    <div className="app-wrapper">
+      <Header />
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/solutions/curing-delays" element={<CuringDelays />} />
+          <Route path="/solutions/data-tampering" element={<DataTampering />} />
+          <Route path="/solutions/milestone-disputes" element={<MilestoneDisputes />} />
+          <Route path="/solutions/subsurface-voids" element={<SubsurfaceVoids />} />
+          <Route path="/solutions/structural-corrosion" element={<StructuralCorrosion />} />
+          <Route path="/solutions/:slug" element={<SolutionDetail />} />
+          <Route path="/integrations" element={<Integrations />} />
+          <Route path="/changelog" element={<Changelog />} />
+          <Route path="/demo" element={<Demo />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/system-status" element={<Status />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/security" element={<SecurityTerms />} />
+          <Route path="/terms" element={<TermsAndPolicies initialTab="terms" />} />
+          <Route path="/legal" element={<TermsAndPolicies initialTab="terms" />} />
+          <Route path="/legal/terms-and-policies" element={<TermsAndPolicies initialTab="terms" />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/capabilities" element={<Capabilities />} />
+          <Route path="/capabilities/ndt-analysis-engine" element={<NdtAnalysis />} />
+          <Route path="/capabilities/ndt analysis engine" element={<NdtAnalysis />} />
+          <Route path="/capabilities/is-code-compliance" element={<IsCompliance />} />
+          <Route path="/capabilities/is code compliance" element={<IsCompliance />} />
+          <Route path="/capabilities/multi-model-consensus" element={<Consensus />} />
+          <Route path="/capabilities/multi model consensus" element={<Consensus />} />
+          <Route path="/capabilities/service-life-prediction" element={<ServiceLife />} />
+          <Route path="/capabilities/service life prediction" element={<ServiceLife />} />
+          <Route path="/how-it-works/field-data-in" element={<FieldDataIn />} />
+          <Route path="/how-it-works/ai-analysis" element={<AiAnalysis />} />
+          <Route path="/how-it-works/report-out" element={<ReportOut />} />
+          <Route path="/why-choose-ouantum" element={<WhyChooseOuantum />} />
+          <Route path="/why-choose-quantum" element={<WhyChooseOuantum />} />
+          <Route path="/why-ouantum" element={<WhyChooseOuantum />} />
+          <Route path="/why-quantum" element={<WhyChooseOuantum />} />
+          <Route path="/products/ox1" element={<OX1Platform />} />
+          <Route path="/products/omni-extelligence-1" element={<OX1Platform />} />
+          <Route path="/products/ox-1" element={<OX1Platform />} />
+          <Route path="/ox1-platform" element={<OX1Platform />} />
+          <Route path="/ox1" element={<Navigate to="/products/ox1" replace />} />
+          <Route path="/ox-1" element={<Navigate to="/products/ox1" replace />} />
+          <Route path="/ox1-countdown" element={<OX1Countdown />} />
+          <Route path="/ox1/countdown" element={<OX1Countdown />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+      {!isCountdown && <IntercomBottomCTA />}
+      {!isCountdown && <Footer />}
+      {!isCountdown && <Chatbot />}
+    </div>
+  );
 }
 
 function App() {
@@ -123,39 +124,7 @@ function App() {
       <LoaderOverlay />
       <Router>
         <GlobalWordHover />
-        <div className="app-wrapper">
-          <Header />
-          <Suspense fallback={null}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/careers" element={<Careers />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/case-studies" element={<CaseStudies />} />
-              <Route path="/system-status" element={<SystemStatus />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/security" element={<SecurityTerms />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/faq" element={<FAQ />} />
-              <Route path="/capabilities" element={<Capabilities />} />
-              <Route path="/capabilities/ndt-analysis-engine" element={<NdtAnalysis />} />
-              <Route path="/capabilities/ndt analysis engine" element={<NdtAnalysis />} />
-              <Route path="/capabilities/is-code-compliance" element={<IsCompliance />} />
-              <Route path="/capabilities/is code compliance" element={<IsCompliance />} />
-              <Route path="/capabilities/multi-model-consensus" element={<Consensus />} />
-              <Route path="/capabilities/multi model consensus" element={<Consensus />} />
-              <Route path="/capabilities/service-life-prediction" element={<ServiceLife />} />
-              <Route path="/capabilities/service life prediction" element={<ServiceLife />} />
-              <Route path="/how-it-works/field-data-in" element={<FieldDataIn />} />
-              <Route path="/how-it-works/ai-analysis" element={<AiAnalysis />} />
-              <Route path="/how-it-works/report-out" element={<ReportOut />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-          <Footer />
-          <Chatbot />
-        </div>
+        <AppContent />
       </Router>
     </ErrorBoundary>
   )

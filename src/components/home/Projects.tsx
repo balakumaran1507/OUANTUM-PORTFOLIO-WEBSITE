@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import GlowCard from '../GlowCard';
 
 const projects = [
   {
@@ -84,40 +85,44 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.8 }}
           onMouseEnter={() => setHoveredId(featured.id)}
           onMouseLeave={() => setHoveredId(null)}
-          className={`featured-project-card ${hoveredId === featured.id ? 'hovered' : ''}`}
+          style={{ width: '100%' }}
         >
-          <motion.div
-            animate={{ scale: hoveredId === featured.id ? 1.04 : 1 }}
-            transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-            className="card-bg-wrapper"
-          >
-            <img
-              src={featured.image}
-              alt={featured.title}
-              className="card-img"
-              loading="lazy"
-            />
-          </motion.div>
+          <GlowCard style={{ padding: 0, overflow: 'hidden' }}>
+            <div className={`featured-project-card ${hoveredId === featured.id ? 'hovered' : ''}`} style={{ border: 'none', height: '100%', width: '100%', borderRadius: 0 }}>
+              <motion.div
+                animate={{ scale: hoveredId === featured.id ? 1.04 : 1 }}
+                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                className="card-bg-wrapper"
+              >
+                <img
+                  src={featured.image}
+                  alt={featured.title}
+                  className="card-img"
+                  loading="lazy"
+                />
+              </motion.div>
 
-          <div className="card-overlay" />
+              <div className="card-overlay" />
 
-          <div className="featured-project-content">
-            <div className="project-info">
-              <h3 className="project-title">
-                {featured.title}
-              </h3>
-              <div className="project-scope">
-                {featured.scope}
+              <div className="featured-project-content">
+                <div className="project-info">
+                  <h3 className="project-title">
+                    {featured.title}
+                  </h3>
+                  <div className="project-scope">
+                    {featured.scope}
+                  </div>
+                </div>
+                <motion.div
+                  animate={{ rotate: hoveredId === featured.id ? 45 : 0, scale: hoveredId === featured.id ? 1.05 : 1 }}
+                  transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                  className="project-arrow-btn"
+                >
+                  <ArrowUpRight size={28} />
+                </motion.div>
               </div>
             </div>
-            <motion.div
-              animate={{ rotate: hoveredId === featured.id ? 45 : 0, scale: hoveredId === featured.id ? 1.05 : 1 }}
-              transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              className="project-arrow-btn"
-            >
-              <ArrowUpRight size={28} />
-            </motion.div>
-          </div>
+          </GlowCard>
         </motion.div>
 
         {/* ── Grid ── */}
@@ -128,40 +133,44 @@ const Projects: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
-              className={`project-card ${hoveredId === project.id ? 'hovered' : ''}`}
+              style={{ height: '100%' }}
             >
-              <motion.div
-                animate={{ scale: hoveredId === project.id ? 1.06 : 1 }}
-                transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
-                className="card-bg-wrapper"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="card-img"
-                  loading="lazy"
-                />
-              </motion.div>
-
-              <div className="card-overlay" />
-
-              <div className="project-card-content">
-                <h4 className="project-card-title">
-                  {project.title}
-                </h4>
-                <div className="project-card-scope">
-                  {project.scope}
-                </div>
-
-                <div className="project-card-footer">
+              <GlowCard style={{ padding: 0, overflow: 'hidden', height: '100%' }}>
+                <div className={`project-card ${hoveredId === project.id ? 'hovered' : ''}`} style={{ border: 'none', height: '100%', width: '100%', borderRadius: 0 }}>
                   <motion.div
-                    animate={{ x: hoveredId === project.id ? 4 : 0, y: hoveredId === project.id ? -4 : 0 }}
-                    transition={{ duration: 0.3 }}
+                    animate={{ scale: hoveredId === project.id ? 1.06 : 1 }}
+                    transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
+                    className="card-bg-wrapper"
                   >
-                    <ArrowUpRight size={18} />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="card-img"
+                      loading="lazy"
+                    />
                   </motion.div>
+
+                  <div className="card-overlay" />
+
+                  <div className="project-card-content">
+                    <h4 className="project-card-title">
+                      {project.title}
+                    </h4>
+                    <div className="project-card-scope">
+                      {project.scope}
+                    </div>
+
+                    <div className="project-card-footer">
+                      <motion.div
+                        animate={{ x: hoveredId === project.id ? 4 : 0, y: hoveredId === project.id ? -4 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ArrowUpRight size={18} />
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

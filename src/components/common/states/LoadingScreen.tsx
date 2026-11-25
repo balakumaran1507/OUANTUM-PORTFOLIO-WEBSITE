@@ -27,12 +27,12 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-        style={{ marginBottom: '2rem', color: '#2563EB' }}
+        style={{ marginBottom: '2rem', color: '#111111' }}
       >
         <Loader2 size={48} />
       </motion.div>
       <h3 style={{ 
-        fontFamily: 'var(--font-adieu)', 
+        fontFamily: 'var(--font-title)', 
         fontSize: '1.5rem', 
         color: '#fff', 
         marginBottom: '1rem',

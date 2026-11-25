@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import useSEO from '../hooks/useSEO';
-import ScrollReveal from '../components/common/ScrollReveal';
 
 const BASE_URL = 'https://ouantum.com';
-
-// ─── FAQ Content ────────────────────────────────────────────────────────────
 
 interface FAQItem {
   id: number;
@@ -230,9 +228,43 @@ const faqData: FAQSection[] = [
       },
     ],
   },
+  {
+    title: 'Careers & Opportunities',
+    items: [
+      {
+        id: 31,
+        question: 'What Roles Is OUANTUM Currently Hiring For?',
+        answer:
+          'OUANTUM is actively expanding its core engineering team across Autonomous Systems, Computer Vision Research, Structural QA Engineering, Embedded Edge Compute, and Full-Stack Systems Architecture. We recruit passionate engineers and researchers looking to deploy production AI to large-scale civil infrastructure.',
+      },
+      {
+        id: 32,
+        question: 'What Is the Engineering Culture at OUANTUM?',
+        answer:
+          'Our engineering culture is rooted in rigorous empirical validation, extreme ownership, and deterministic design. We bridge real-world physical site conditions with state-of-the-art neural architectures. We believe in rapid prototyping, autonomous decision-making, and delivering zero-defect safety-critical infrastructure technologies.',
+      },
+      {
+        id: 33,
+        question: 'How Can Civil Engineers and Computer Scientists Collaborate Here?',
+        answer:
+          'At OUANTUM, structural engineers collaborate daily with computer vision scientists and machine learning engineers. Civil domain specialists define deterministic inspection thresholds, fracture mechanics, and code compliance standards, while AI engineers develop real-time volumetric point cloud reconstruction and edge defect detection algorithms.',
+      },
+      {
+        id: 34,
+        question: 'What Does the Interview and Selection Process Involve?',
+        answer:
+          'Our evaluation process is transparent and hands-on: an initial technical discussion, a practical domain assessment or architecture challenge reflecting our actual problems, and a cultural alignment session with engineering leadership. We evaluate first-principles reasoning and execution speed over memorized trivia.',
+      },
+      {
+        id: 35,
+        question: 'Does OUANTUM Support Internships and Research Fellowships?',
+        answer:
+          'Yes. We offer intensive engineering internships and graduate research fellowships for talented students and researchers in robotics, computer vision, structural engineering, and edge AI compute. High-performing fellows regularly transition into full-time core engineering roles.',
+      },
+    ],
+  },
 ];
 
-// Build JSON-LD FAQPage schema
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -256,129 +288,13 @@ const organizationSchema = {
   sameAs: ['https://www.linkedin.com/company/ouantum/'],
 };
 
-// ─── Accordion Item Component ────────────────────────────────────────────────
-
-interface AccordionItemProps {
-  item: FAQItem;
-  isOpen: boolean;
-  onToggle: () => void;
-  accentColor: string;
-}
-
-const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle, accentColor }) => {
-  return (
-    <div
-      style={{
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-      }}
-    >
-      <button
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        id={`faq-btn-${item.id}`}
-        aria-controls={`faq-answer-${item.id}`}
-        style={{
-          width: '100%',
-          textAlign: 'left',
-          background: 'none',
-          border: 'none',
-          padding: '1.5rem 0',
-          cursor: 'pointer',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          gap: '1rem',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-adieu)',
-            fontSize: 'clamp(1.1rem, 2.2vw, 1.35rem)',
-            lineHeight: 1.4,
-            color: isOpen ? accentColor : 'rgba(255, 255, 255, 0.85)',
-            fontWeight: 400,
-            transition: 'color 0.2s ease',
-          }}
-        >
-          {item.question}
-        </span>
-        <span
-          style={{
-            flexShrink: 0,
-            width: 28,
-            height: 28,
-            borderRadius: '50%',
-            border: `1px solid ${isOpen ? accentColor : 'rgba(255, 255, 255, 0.2)'}`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: isOpen ? accentColor : 'rgba(255, 255, 255, 0.65)',
-            transition: 'all 0.25s ease',
-            background: isOpen ? `${accentColor}18` : 'transparent',
-            marginTop: '2px',
-          }}
-          aria-hidden="true"
-        >
-          {isOpen ? <Minus size={13} /> : <Plus size={13} />}
-        </span>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={`faq-answer-${item.id}`}
-            role="region"
-            aria-labelledby={`faq-btn-${item.id}`}
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div
-              style={{
-                paddingBottom: '1.5rem',
-                paddingRight: '2.5rem',
-              }}
-            >
-              <ScrollReveal
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '0.88rem',
-                  lineHeight: 1.85,
-                  color: 'rgba(255, 255, 255, 0.75)',
-                }}
-              >
-                {item.answer}
-              </ScrollReveal>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-// ─── Section colors ──────────────────────────────────────────────────────────
-const SECTION_COLORS = [
-  '#ffffff', // AI in Construction
-  '#ffffff', // Infrastructure
-  '#ffffff', // BIM & Digital Twins
-  '#ffffff', // Structural Engineering
-  '#ffffff', // Construction Management
-  '#ffffff', // Future Engineering
-];
-
-// ─── FAQ Page ────────────────────────────────────────────────────────────────
-
 const FAQ: React.FC = () => {
   useSEO({
-    title: 'FAQ | OUANTUM, AI, BIM & Construction Engineering Questions',
+    title: 'Knowledge Base & FAQ | OUANTUM',
     description:
-      'Answers to the most common questions about AI in construction, predictive maintenance, BIM, structural engineering, construction management, and the future of civil engineering.',
+      'Answers to common questions about AI in construction, predictive maintenance, BIM, structural engineering, and civil infrastructure innovation.',
     keywords:
-      'AI construction FAQ, BIM questions, predictive maintenance, structural engineering AI, construction management, civil engineering future',
+      'AI construction FAQ, BIM questions, civil engineering careers, OUANTUM jobs, predictive maintenance, structural engineering AI',
     canonicalPath: '/faq',
     jsonLd: [organizationSchema, faqSchema],
   });
@@ -387,124 +303,377 @@ const FAQ: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Track one open item per section: sectionIndex -> itemId | null
-  const [openItems, setOpenItems] = useState<Record<number, number | null>>({});
+  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [openItems, setOpenItems] = useState<Record<number, boolean>>({ 1: true });
 
-  const toggle = (sectionIdx: number, itemId: number) => {
+  const toggleItem = (id: number) => {
     setOpenItems((prev) => ({
       ...prev,
-      [sectionIdx]: prev[sectionIdx] === itemId ? null : itemId,
+      [id]: !prev[id],
     }));
   };
+
+  const categories = useMemo(() => ['All', ...faqData.map((s) => s.title)], []);
+
+  const displayedSections = useMemo(() => {
+    if (activeCategory === 'All') return faqData;
+    return faqData.filter((s) => s.title === activeCategory);
+  }, [activeCategory]);
 
   return (
     <main
       className="subpage-wrapper"
-      style={{ background: '#000000', color: '#fff', minHeight: '100vh', paddingBottom: '100px' }}
+      style={{ background: '#ffffff', color: '#111111', minHeight: '100vh', paddingBottom: '0' }}
     >
-      {/* Hero */}
+      <style>{`
+        .subpage-wrapper .ic-hero-section h1,
+        .subpage-wrapper .ic-hero-headline,
+        .subpage-wrapper .ic-hero-headline span {
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: block !important;
+          font-family: 'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          font-weight: 400 !important;
+          color: #111111 !important;
+          letter-spacing: -0.03em !important;
+          line-height: 1.05 !important;
+          -webkit-text-fill-color: #111111 !important;
+          -webkit-text-stroke: 0px transparent !important;
+        }
+      `}</style>
+
+      {/* =========================================================================
+          1. HERO SECTION (2-Column Layout matching Solution Detail)
+          ========================================================================= */}
       <section
-        className="hero"
-        style={{ minHeight: '60vh', paddingTop: '120px' }}
-        aria-label="FAQ hero section"
+        style={{
+          padding: 'clamp(48px, 6vw, 76px) 16px 40px',
+          background: '#ffffff',
+        }}
       >
-        <div className="container hero-content">
-          <div className="section-split hero-main-layout">
-            <motion.div className="sidebar-info hero-left">
-              <div className="hero-labels">
-                <span className="hero-tech-label">30 QUESTIONS · 6 CATEGORIES · SYSTEM COMPLIANCE</span>
-              </div>
-              <p className="side-description hero-description">
-                RESOLVING THE CORE QUERIES OF DETERMINISTIC CIVIL QA.
-              </p>
-            </motion.div>
-            <motion.div className="hero-right-content hero-right">
-              <h1
-                className="section-title"
+        <div
+          style={{
+            maxWidth: '1440px',
+            margin: '0 auto',
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '40px',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <h1
+              style={{
+                fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)',
+                fontWeight: 400,
+                lineHeight: 1.12,
+                color: '#111111',
+                letterSpacing: '-0.025em',
+                margin: '0 0 16px 0',
+                textAlign: 'left',
+              }}
+            >
+              Frequently Asked Technical Questions
+            </h1>
+
+            <p
+              style={{
+                fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
+                lineHeight: 1.6,
+                color: '#4b5563',
+                margin: '0 0 28px 0',
+                textAlign: 'left',
+              }}
+            >
+              Technical answers for EPC concessionaires, structural audit teams, government TPQM monitors, and civil engineering consultants adopting AI QA systems.
+            </p>
+
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '12px',
+                alignItems: 'center',
+              }}
+            >
+              <Link
+                to="/contact?subject=Engineering%20Inquiry"
                 style={{
-                  marginBottom: '2rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '13px 26px',
+                  borderRadius: 0,
+                  background: '#111111',
+                  color: '#ffffff',
+                  fontSize: '0.925rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
                 }}
               >
-                Frequently<br />Asked Questions
-              </h1>
-            </motion.div>
+                Ask Our Engineers
+                <ArrowRight size={16} />
+              </Link>
+              <Link
+                to="/capabilities"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '13px 24px',
+                  borderRadius: 0,
+                  background: '#ffffff',
+                  color: '#111111',
+                  border: '1px solid #111111',
+                  fontSize: '0.925rem',
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                }}
+              >
+                Explore Capabilities
+              </Link>
+            </div>
           </div>
-          <p className="hero-subtext" style={{ marginTop: '2rem' }}>
-            Everything you need to know about AI in construction, infrastructure monitoring, BIM, and the future of civil engineering.
-          </p>
+
+          {/* Hero Visual Card */}
+          <div
+            style={{
+              position: 'relative',
+              borderRadius: 0,
+              overflow: 'hidden',
+              background: '#f4f3ec',
+              aspectRatio: '16 / 10',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+            }}
+          >
+            <img
+              src="/assets/images/buildings/building-9.png"
+              alt="OUANTUM Engineering FAQ & Structural Standards Knowledge Base"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </div>
         </div>
-        <motion.div
-          className="hero-image-container"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          style={{ height: '60vh' }}
-        >
-          <img
-            src="/assets/images/faq_page_bg.png"
-            alt="Civil infrastructure engineering site background image for OUANTUM FAQ page"
-            className="subpage-hero-image"
-          />
-          <div className="overlay-gradient" aria-hidden="true" />
-        </motion.div>
       </section>
 
-      <div className="container">
-        {faqData.map((section, sectionIdx) => {
-          const color = SECTION_COLORS[sectionIdx] ?? '#000000';
-          return (
-            <motion.section
-              key={section.title}
-              id={`faq-section-${sectionIdx + 1}`}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.6, delay: sectionIdx * 0.05 }}
-              style={{ marginBottom: '4rem' }}
-              aria-labelledby={`faq-heading-${sectionIdx}`}
-            >
-              {/* Section heading */}
-              <div
+      {/* Main Container - Standardized to 1440px matching Header, Footer & Site Standards */}
+      <div style={{ maxWidth: '1440px', margin: '0 auto', padding: '0 16px 70px' }}>
+        {/* Category Filter Pills */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '10px',
+            marginBottom: '3rem',
+            justifyContent: 'center',
+          }}
+        >
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '2rem',
-                  paddingBottom: '1rem',
-                  borderBottom: `1px solid rgba(255, 255, 255, 0.1)`,
+                  fontFamily: 'var(--ic-font-sans)',
+                  fontSize: '0.875rem',
+                  fontWeight: 600,
+                  padding: '9px 20px',
+                  borderRadius: '9999px',
+                  border: isActive ? '1px solid #111111' : '1px solid rgba(0, 0, 0, 0.1)',
+                  background: isActive ? '#111111' : '#ffffff',
+                  color: isActive ? '#ffffff' : '#4a5565',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
                 }}
               >
-                <h2
-                  id={`faq-heading-${sectionIdx}`}
-                  className="section-title"
-                  style={{
-                    marginBottom: '0.5rem',
-                  }}
-                >
-                  {section.title}
-                </h2>
-              </div>
+                {cat}
+              </button>
+            );
+          })}
+        </div>
 
-              {/* Accordion items */}
-              <div>
-                {section.items.map((item) => (
-                  <AccordionItem
-                    key={item.id}
-                    item={item}
-                    isOpen={openItems[sectionIdx] === item.id}
-                    onToggle={() => toggle(sectionIdx, item.id)}
-                    accentColor={color}
-                  />
-                ))}
+        {/* FAQ Sections */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+          {displayedSections.map((section, sIdx) => (
+            <motion.section
+              key={section.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: sIdx * 0.05 }}
+              style={{
+                background: '#ffffff',
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                borderRadius: 0,
+                padding: 'clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.02)',
+              }}
+            >
+              <h2
+                style={{
+                  fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                  fontSize: 'clamp(1.35rem, 2.2vw, 1.6rem)',
+                  fontWeight: 400,
+                  color: '#111111',
+                  letterSpacing: '-0.015em',
+                  marginBottom: '1.5rem',
+                  paddingBottom: '1rem',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.06)',
+                }}
+              >
+                {section.title}
+              </h2>
+
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {section.items.map((item, itemIdx) => {
+                  const isOpen = !!openItems[item.id];
+                  const isLast = itemIdx === section.items.length - 1;
+                  return (
+                    <div
+                      key={item.id}
+                      style={{
+                        borderBottom: isLast ? 'none' : '1px solid rgba(0, 0, 0, 0.06)',
+                        padding: '1.35rem 0',
+                      }}
+                    >
+                      <button
+                        onClick={() => toggleItem(item.id)}
+                        aria-expanded={isOpen}
+                        style={{
+                          width: '100%',
+                          textAlign: 'left',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          gap: '20px',
+                          padding: 0,
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                            fontSize: 'clamp(1.05rem, 1.6vw, 1.18rem)',
+                            lineHeight: 1.4,
+                            fontWeight: 600,
+                            color: '#111111',
+                            letterSpacing: '-0.01em',
+                          }}
+                        >
+                          {item.question}
+                        </span>
+                        <span
+                          style={{
+                            flexShrink: 0,
+                            width: 30,
+                            height: 30,
+                            borderRadius: '50%',
+                            border: '1px solid rgba(0, 0, 0, 0.12)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#111111',
+                            background: isOpen ? '#f1f5f9' : '#ffffff',
+                            transition: 'background 0.2s, border-color 0.2s',
+                          }}
+                        >
+                          {isOpen ? <Minus size={13} strokeWidth={2.5} /> : <Plus size={13} strokeWidth={2.5} />}
+                        </span>
+                      </button>
+
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                            style={{ overflow: 'hidden' }}
+                          >
+                            <p
+                              style={{
+                                fontFamily: 'var(--ic-font-sans)',
+                                fontSize: '1rem',
+                                lineHeight: 1.75,
+                                color: '#4a5565',
+                                marginTop: '1.15rem',
+                                marginBottom: '0.5rem',
+                                paddingRight: 'clamp(1rem, 4vw, 3rem)',
+                              }}
+                            >
+                              {item.answer}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
               </div>
             </motion.section>
-          );
-        })}
+          ))}
+        </div>
+
+        {/* Careers & Engineering Link Card */}
+        <section style={{ marginTop: '2.5rem' }}>
+          <div
+            style={{
+              background: '#faf9f6',
+              border: '1px solid rgba(0, 0, 0, 0.08)',
+              borderRadius: 0,
+              padding: 'clamp(28px, 4vw, 44px)',
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '24px',
+            }}
+          >
+            <div>
+              <h3
+                style={{
+                  fontFamily: "'Saans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                  fontSize: 'clamp(1.25rem, 2vw, 1.45rem)',
+                  fontWeight: 400,
+                  color: '#111111',
+                  letterSpacing: '-0.015em',
+                  marginBottom: '8px',
+                }}
+              >
+                Looking for technical careers or research?
+              </h3>
+              <p
+                style={{
+                  fontFamily: 'var(--ic-font-sans)',
+                  fontSize: '0.95rem',
+                  lineHeight: 1.6,
+                  color: '#4a5565',
+                  margin: 0,
+                }}
+              >
+                Explore openings in Chennai across computer vision, civil AI, and systems architecture.
+              </p>
+            </div>
+
+            <Link to="/careers" className="ic-btn-primary" style={{ padding: '12px 24px', fontSize: '0.9rem' }}>
+              <span>View Open Roles</span>
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </section>
       </div>
+
+
     </main>
   );
 };
 
 export default FAQ;
-
-
